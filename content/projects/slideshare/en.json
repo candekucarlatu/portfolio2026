@@ -1,0 +1,62 @@
+{
+  "slug": "slideshare",
+  "card": {
+    "title": "A reader built for slides but full of documents nobody could read.",
+    "subtitle": "A reader redesign to make SlideShare's 30M+ slides and documents actually readable.",
+    "color": "orange"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "title": "A reader built for slides but full of documents nobody could read.",
+      "subtitle": "SlideShare is a global UGC platform with 70M+ users, originally built around slide presentations. I redesigned the document reader to improve readability across multiple formats — increasing engagement and ad revenue.",
+      "meta": {
+        "duration": "July–Sep 2023",
+        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer",
+        "role": "Product Designer"
+      }
+    },
+    {
+      "type": "section",
+      "label": "THE PROBLEM",
+      "title": "SlideShare's reader wasn't built for reading documents. At all.",
+      "body": "Users needed a reader that got out of the way: one that let them evaluate documents quickly and read without distraction. For the product, longer and more focused sessions meant more ad value and a layout that could finally scale across formats."
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/slideshare/before.png", "alt": "SlideShare reader before the redesign", "width": 1100, "height": 600 },
+      "width": "default"
+    },
+    {
+      "type": "section",
+      "label": "THE APPROACH",
+      "title": "Expanding the reading model — not just the layout.",
+      "body": "I redefined the visual hierarchy to support multiple formats and align with Scribd's design system. I simplified the surrounding interface and rebalanced ads and recommendations — keeping the document central without compromising revenue."
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/slideshare/hero.jpg", "alt": "SlideShare redesigned reader on a laptop", "width": 1440, "height": 720 },
+      "width": "full"
+    },
+    {
+      "type": "section",
+      "label": "MEASURING IMPACT",
+      "title": "The numbers moved in the right direction.",
+      "body": "Users stayed longer after removing friction. Mobile-first focused sessions on smaller screens. Users went deeper into documents. Users stayed long enough to read offline."
+    },
+    {
+      "type": "stat-cards",
+      "cards": [
+        { "value": "Cluttered", "label": "Recommendations, metadata, ads, and actions competed for space.", "color": "purple" },
+        { "value": "Rigid", "label": "The reader had no way to adapt to different formats.", "color": "orange" },
+        { "value": "Unfocused", "label": "Competing elements and a rigid model made reading complex.", "color": "green" }
+      ]
+    },
+    {
+      "type": "next-project",
+      "slug": "kaplan",
+      "title": "How do you navigate between what users say and what users do?",
+      "image": { "src": "/canvas/projects/kaplan/cover-thumb.jpg", "alt": "Kaplan navigation redesign", "width": 320, "height": 200 }
+    }
+  ]
+}
