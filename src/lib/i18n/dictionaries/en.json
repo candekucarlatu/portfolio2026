@@ -1,0 +1,33 @@
+{
+  "site": {
+    "title": "Candela Kucar Latu — Product Designer",
+    "description": "Argentine product designer with 8+ years of experience shaping B2C and SaaS products from strategy to the final pixel."
+  },
+  "about": {
+    "headline": "Candela is a product designer",
+    "body": "with 8+ years of experience, shaping B2C and SaaS products from strategy to the final pixel.",
+    "tagline": "proud dog mom"
+  },
+  "contact": {
+    "linkedin": "LinkedIn",
+    "linkedinUrl": "https://www.linkedin.com/in/candelakucarlatu/",
+    "email": "Email",
+    "emailAddress": "kucarlatu@gmail.com",
+    "resume": "Resume",
+    "resumeUrl": "https://drive.google.com/file/d/1UJj03L-fTNvnKYDtoG55zHxTo0ZabUfc/view"
+  },
+  "ui": {
+    "openProject": "Open project",
+    "closeProject": "Close",
+    "nextCaseStudy": "Next case study →",
+    "dragHint": "Drag to explore",
+    "languageSwitch": "ES",
+    "loading": "Loading…",
+    "backHome": "Back home"
+  },
+  "meta": {
+    "duration": "Duration",
+    "team": "Team",
+    "role": "Role"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "slug": "scribd",
+  "card": {
+    "title": "How do you monetize a reading experience without ruining it?",
+    "subtitle": "A document page redesign for Scribd's 1.8M+ subscribers that made ads and reading work together.",
+    "color": "green"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "title": "How do you monetize a reading experience without ruining it?",
+      "subtitle": "Scribd is a global SaaS document platform with 1.8M+ subscribers. I led the redesign of the document page to balance monetization and trust through a scalable layout.",
+      "meta": {
+        "duration": "Jan–Sep 2024",
+        "team": "2 Product Designers · UX Researcher · Product Manager · Lead Engineer",
+        "role": "Lead designer"
+      }
+    },
+    {
+      "type": "section",
+      "label": "THE PROBLEM",
+      "title": "For Scribd more ads didn't mean more revenue. It meant fewer readers.",
+      "body": "Scribd let revenue win in some free access, but over time ads and recommendations began to crowd the page. Users needed to evaluate documents quickly and, when something was worth their time, read without distraction. The product needed to ensure engagement and reduce churn to give advertisers an audience worth investing in."
+    },
+    {
+      "type": "stat-cards",
+      "cards": [
+        { "value": "+15%", "label": "in document scroll depth after the redesign.", "color": "orange" },
+        { "value": "“Where are the books I just read?”", "label": "User feedback after the first round of testing.", "color": "green" },
+        { "value": "“I felt like the doc is interesting & everything else is on the page.”", "label": "Recurring sentiment across user interviews.", "color": "purple" }
+      ]
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/scribd/cover.jpg", "alt": "Scribd document page redesign", "width": 1200, "height": 720 },
+      "width": "wide"
+    },
+    {
+      "type": "section",
+      "label": "USER FEEDBACK",
+      "title": "The reading experience was the product.",
+      "body": "I reframed the monetization approach: surface ads where they signal value, instead of competing with the document. The team made better trade-offs through weekly testing and ultimately moved metrics in both directions — ads were less intrusive and reading sessions got longer."
+    },
+    {
+      "type": "insight",
+      "title": "Fullscreen was a workaround. Not a feature.",
+      "body": "4 out of 7 users entered fullscreen not to engage more deeply — but to compensate for a reading space that felt too constrained. Fullscreen had become a patch for poor readability.",
+      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Fullscreen reading mode mockup", "width": 600, "height": 400 }
+    },
+    {
+      "type": "insight",
+      "title": "Persistent metadata reduced cognitive load.",
+      "body": "6 out of 7 users preferred always-visible title, author, and ratings. It let them assess relevance without losing context — and increased confidence while browsing.",
+      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Document with persistent metadata", "width": 600, "height": 400 },
+      "reverse": true
+    },
+    {
+      "type": "insight",
+      "title": "The right column competed with the document.",
+      "body": "6 out of 7 users disliked recommendations while reading. They felt forced, took preferred saving them after finishing — not during.",
+      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Recommendation column placement", "width": 600, "height": 400 }
+    },
+    {
+      "type": "section",
+      "label": "AD STRATEGY",
+      "title": "Fewer ads. Better placed. More valuable.",
+      "body": "I partnered with the product and advertising teams to pitch performance and keep any high-impact formats. Vertical ads respected by advertisers were maintained. Ad placements were standardized to reduce visual confusion and prevent ads from competing with core content. The goal was a page where ads felt like part of the layout — not an intrusion on it."
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/scribd/final.jpg", "alt": "Final Scribd document page", "width": 1200, "height": 720 },
+      "width": "wide"
+    },
+    {
+      "type": "next-project",
+      "slug": "slideshare",
+      "title": "A reader built for slides but full of documents nobody could read.",
+      "image": { "src": "/canvas/projects/slideshare/cover-thumb.jpg", "alt": "SlideShare reader redesign", "width": 320, "height": 200 }
+    }
+  ]
+}

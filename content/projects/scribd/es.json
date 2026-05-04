@@ -1,0 +1,81 @@
+{
+  "slug": "scribd",
+  "card": {
+    "title": "¿Cómo monetizar una experiencia de lectura sin arruinarla?",
+    "subtitle": "Rediseño de la página de documento para los 1,8M+ suscriptores de Scribd para que ads y lectura convivan.",
+    "color": "green"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "title": "¿Cómo monetizar una experiencia de lectura sin arruinarla?",
+      "subtitle": "Scribd es una plataforma SaaS global de documentos con 1,8M+ suscriptores. Lideré el rediseño de la página de documento para equilibrar monetización y confianza con un layout escalable.",
+      "meta": {
+        "duration": "Ene–Sep 2024",
+        "team": "2 Product Designers · UX Researcher · Product Manager · Lead Engineer",
+        "role": "Lead designer"
+      }
+    },
+    {
+      "type": "section",
+      "label": "EL PROBLEMA",
+      "title": "Para Scribd más ads no significaba más revenue. Significaba menos lectores.",
+      "body": "Con el tiempo los ads y recomendaciones empezaron a saturar la página. Los usuarios necesitaban evaluar documentos rápido y, cuando uno valía la pena, leerlo sin distracciones. El producto tenía que sostener engagement y reducir churn para darle a los anunciantes una audiencia que valiera la pena."
+    },
+    {
+      "type": "stat-cards",
+      "cards": [
+        { "value": "+15%", "label": "en profundidad de scroll después del rediseño.", "color": "orange" },
+        { "value": "“¿Dónde están los libros que acabo de leer?”", "label": "Feedback recurrente en el primer round de testing.", "color": "green" },
+        { "value": "“Siento que el doc es interesante y todo lo demás compite con él.”", "label": "Sentimiento repetido en las entrevistas de usuarios.", "color": "purple" }
+      ]
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/scribd/cover.jpg", "alt": "Rediseño de la página de documento de Scribd", "width": 1200, "height": 720 },
+      "width": "wide"
+    },
+    {
+      "type": "section",
+      "label": "USER FEEDBACK",
+      "title": "La experiencia de lectura era el producto.",
+      "body": "Reformulé el enfoque de monetización: mostrar ads donde aporten valor, no donde compitan con el documento. El equipo iteró con tests semanales y movió métricas en ambas direcciones — ads menos intrusivos y sesiones de lectura más largas."
+    },
+    {
+      "type": "insight",
+      "title": "El fullscreen era un parche. No una feature.",
+      "body": "4 de 7 usuarios usaban fullscreen no para sumergirse, sino para compensar un espacio de lectura que se sentía apretado. Era un workaround para mala legibilidad.",
+      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Mockup de modo fullscreen", "width": 600, "height": 400 }
+    },
+    {
+      "type": "insight",
+      "title": "La metadata persistente bajó la carga cognitiva.",
+      "body": "6 de 7 usuarios preferían título, autor y ratings siempre visibles. Les permitía evaluar relevancia sin perder contexto y subió la confianza al navegar.",
+      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Documento con metadata persistente", "width": 600, "height": 400 },
+      "reverse": true
+    },
+    {
+      "type": "insight",
+      "title": "La columna derecha competía con el documento.",
+      "body": "6 de 7 usuarios rechazaban recomendaciones mientras leían. Se sentían forzadas; preferían guardarlas para después de terminar, no durante.",
+      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 600, "height": 400 }
+    },
+    {
+      "type": "section",
+      "label": "AD STRATEGY",
+      "title": "Menos ads. Mejor ubicados. Más valiosos.",
+      "body": "Trabajé con producto y advertising para alinear performance y formatos de alto impacto. Estandaricé las ubicaciones para reducir confusión visual y evitar que los ads pelearan con el contenido principal. El objetivo: una página donde el ad se sintiera parte del layout, no una intrusión."
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/scribd/final.jpg", "alt": "Página de documento final de Scribd", "width": 1200, "height": 720 },
+      "width": "wide"
+    },
+    {
+      "type": "next-project",
+      "slug": "slideshare",
+      "title": "Un reader construido para slides pero lleno de documentos que nadie podía leer.",
+      "image": { "src": "/canvas/projects/slideshare/cover-thumb.jpg", "alt": "Rediseño del reader de SlideShare", "width": 320, "height": 200 }
+    }
+  ]
+}

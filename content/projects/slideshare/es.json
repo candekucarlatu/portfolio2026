@@ -1,0 +1,62 @@
+{
+  "slug": "slideshare",
+  "card": {
+    "title": "Un reader hecho para slides pero lleno de documentos que nadie podía leer.",
+    "subtitle": "Rediseño del reader para que los 30M+ de slides y documentos de SlideShare sean realmente legibles.",
+    "color": "orange"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "title": "Un reader hecho para slides pero lleno de documentos que nadie podía leer.",
+      "subtitle": "SlideShare es una plataforma UGC global con 70M+ usuarios, originalmente construida para presentaciones. Rediseñé el reader de documentos para mejorar la legibilidad en múltiples formatos, aumentando engagement y revenue por ads.",
+      "meta": {
+        "duration": "Jul–Sep 2023",
+        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer",
+        "role": "Product Designer"
+      }
+    },
+    {
+      "type": "section",
+      "label": "EL PROBLEMA",
+      "title": "El reader de SlideShare no estaba hecho para leer documentos. Para nada.",
+      "body": "Los usuarios necesitaban un reader que se hiciera invisible: que les dejara evaluar documentos rápido y leer sin distracciones. Para el producto, sesiones más largas y enfocadas significaban más valor publicitario y un layout que finalmente escalara entre formatos."
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/slideshare/before.png", "alt": "Reader de SlideShare antes del rediseño", "width": 1100, "height": 600 },
+      "width": "default"
+    },
+    {
+      "type": "section",
+      "label": "EL ENFOQUE",
+      "title": "Expandir el modelo de lectura — no solo el layout.",
+      "body": "Redefiní la jerarquía visual para soportar múltiples formatos y alinearla con el design system de Scribd. Simplifiqué la interfaz alrededor y rebalanceé ads y recomendaciones — manteniendo al documento como protagonista sin comprometer revenue."
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/slideshare/hero.jpg", "alt": "Reader rediseñado de SlideShare en una laptop", "width": 1440, "height": 720 },
+      "width": "full"
+    },
+    {
+      "type": "section",
+      "label": "MEASURING IMPACT",
+      "title": "Los números se movieron en la dirección correcta.",
+      "body": "Los usuarios se quedaron más después de remover fricción. Mobile-first focused sessions en pantallas chicas. Los usuarios profundizaron en los documentos. Se quedaron lo suficiente para leer offline."
+    },
+    {
+      "type": "stat-cards",
+      "cards": [
+        { "value": "Saturado", "label": "Recomendaciones, metadata, ads y acciones competían por el espacio.", "color": "purple" },
+        { "value": "Rígido", "label": "El reader no se adaptaba a distintos formatos.", "color": "orange" },
+        { "value": "Sin foco", "label": "Elementos compitiendo y un modelo rígido hacían la lectura compleja.", "color": "green" }
+      ]
+    },
+    {
+      "type": "next-project",
+      "slug": "kaplan",
+      "title": "¿Cómo navegar entre lo que dicen y lo que hacen los usuarios?",
+      "image": { "src": "/canvas/projects/kaplan/cover-thumb.jpg", "alt": "Rediseño de navegación de Kaplan", "width": 320, "height": 200 }
+    }
+  ]
+}

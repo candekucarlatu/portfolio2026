@@ -1,0 +1,67 @@
+{
+  "slug": "kaplan",
+  "card": {
+    "title": "How do you navigate between what users say and what users do?",
+    "subtitle": "Simplified Learner Home's navigation to reduce friction and align the experience across platforms.",
+    "color": "blue"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "title": "How do you navigate between what users say and what users do?",
+      "subtitle": "Kaplan is a global educational services company. I simplified Learner Home's navigation to reduce friction and align the experience across platforms.",
+      "meta": {
+        "duration": "Oct–Dec 2022",
+        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer",
+        "role": "Product Designer"
+      }
+    },
+    {
+      "type": "section",
+      "label": "THE PROBLEM",
+      "title": "Learner Home had too many ways to get anywhere. None of them obvious.",
+      "body": "Learner Home was cluttered with overlapping menus, duplicate functionality, and unclear hierarchies. Crucial actions were hidden behind a hamburger menu, and the learners' experience across platforms wasn't in harmony for access to their courses, certificates, and account settings. The navigation had grown organically — and it showed."
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/kaplan/before.png", "alt": "Kaplan Learner Home before the redesign", "width": 1000, "height": 600 },
+      "width": "default"
+    },
+    {
+      "type": "section",
+      "label": "USER INTERVIEWS",
+      "title": "Users said one thing, did another.",
+      "body": "I designed two options: a consolidated layout that unified all actions into a clear hierarchy, and an incremental approach that maintained consistency with others. We partnered with users to spend most of their time. Before committing to re-engineering effort, I tested both with 7 users to see if the effort was worth it."
+    },
+    {
+      "type": "insight",
+      "title": "Users navigate by quick links. Not the primary nav.",
+      "body": "Across both options, participants consistently used the content cards on the page rather than the menu to complete tasks — confirming that page layout carries as much navigational weight as the nav itself.",
+      "image": { "src": "/canvas/projects/kaplan/insight-1.png", "alt": "User clicking a card", "width": 600, "height": 400 }
+    },
+    {
+      "type": "insight",
+      "title": "Placement decides whether a CTA works.",
+      "body": "Same label, same task — 72% failure rate in Option 2 vs. 100% success in Option 1. Position, not naming, was the deciding factor.",
+      "image": { "src": "/canvas/projects/kaplan/insight-2.png", "alt": "CTA placement comparison", "width": 600, "height": 400 },
+      "reverse": true
+    },
+    {
+      "type": "insight",
+      "title": "Preference and behavior pulled in opposite directions.",
+      "body": "78% of users preferred Option 2. But Option 1 consistently outperformed it in task completion. We sided with behavior over stated preference.",
+      "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Preference vs. behavior chart", "width": 600, "height": 400 }
+    },
+    {
+      "type": "image",
+      "image": { "src": "/canvas/projects/kaplan/final.jpg", "alt": "Kaplan Learner Home final design", "width": 1200, "height": 720 },
+      "width": "wide"
+    },
+    {
+      "type": "next-project",
+      "slug": "tacobell",
+      "title": "Can a treasure hunt fix a broken loyalty loop?",
+      "image": { "src": "/canvas/projects/tacobell/cover-thumb.jpg", "alt": "Taco Bell loyalty redesign", "width": 320, "height": 200 }
+    }
+  ]
+}
