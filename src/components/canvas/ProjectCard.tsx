@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import type { ProjectCard as ProjectCardData } from '@/lib/content/schema'
 import type { ProjectItem } from './itemPositions'
 import { StickyNote } from './StickyNote'
@@ -17,11 +17,20 @@ interface ProjectCardProps {
 
 export function ProjectCard({ item, card, href, ariaLabel }: ProjectCardProps) {
   const dragStartRef = useRef<{ x: number; y: number } | null>(null)
+  const [hovered, setHovered] = useState(false)
 
   return (
     <motion.div
       className="absolute touch-none"
-      style={{ left: item.photo.x, top: item.photo.y, width: item.photo.w, height: item.photo.h }}
+      style={{
+        left: item.photo.x,
+        top: item.photo.y,
+        width: item.photo.w,
+        height: item.photo.h,
+        zIndex: hovered ? 10 : 1,
+      }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
       whileHover={{ scale: 1.015, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
       whileTap={{ scale: 0.985 }}
     >
