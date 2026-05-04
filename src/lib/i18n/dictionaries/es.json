@@ -6,6 +6,11 @@
   "about": {
     "headline": "Candela es product designer",
     "body": "con 8+ años de experiencia, diseñando productos B2C y SaaS desde la estrategia hasta el último píxel.",
+    "bodyLines": [
+      "con 8+ años de experiencia,",
+      "diseñando productos B2C y SaaS",
+      "desde la estrategia al último píxel."
+    ],
     "tagline": "proud dog mom"
   },
   "contact": {
