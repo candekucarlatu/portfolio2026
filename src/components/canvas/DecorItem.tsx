@@ -31,6 +31,7 @@ export function DecorItem({ item, priority, mouseX, mouseY }: DecorItemProps) {
         width={item.w}
         height={item.h}
         sizes={`${item.w}px`}
+        quality={90}
         className="h-full w-full object-contain select-none"
         priority={priority}
         draggable={false}

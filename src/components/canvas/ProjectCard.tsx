@@ -50,6 +50,7 @@ export function ProjectCard({ item, card, href, ariaLabel }: ProjectCardProps) {
           width={item.photo.w}
           height={item.photo.h}
           sizes={`${item.photo.w}px`}
+          quality={90}
           className="pointer-events-none h-full w-full object-contain select-none"
           draggable={false}
           priority

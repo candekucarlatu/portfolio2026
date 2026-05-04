@@ -28,6 +28,7 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
         alt={`${dict.about.headline}. ${dict.about.body}`}
         fill
         sizes="580px"
+        quality={90}
         className="pointer-events-none object-contain"
         priority
       />
