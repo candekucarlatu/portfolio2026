@@ -103,7 +103,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 159, top: 194 }}
+        style={{ left: 156, top: 230 }}
         aria-hidden
       />
 
@@ -153,19 +153,6 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         </div>
       </div>
 
-      {/* 7 ── TG$ Sticker */}
-      {/* MCP: left=109 top=86 w=40 h=39 */}
-      <div className="absolute" style={{ left: 305, top: 443, width: 40, height: 39 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canvas/tacobell/tg-sticker.png"
-          alt=""
-          aria-hidden
-          className="pointer-events-none select-none"
-          style={{ position: 'absolute', inset: 0, maxWidth: 'none', width: '100%', height: '100%' }}
-        />
-      </div>
-
       {/* 8 ── Pinza for Paconaut cards */}
       <Image
         src="/canvas/tacobell/pinza.png"
@@ -175,7 +162,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 416, top: 344 }}
+        style={{ left: 416, top: 351 }}
         aria-hidden
       />
 
@@ -223,7 +210,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 416, top: 35 }}
+        style={{ left: 416, top: 42 }}
         aria-hidden
       />
 
@@ -234,39 +221,14 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
           className="flex h-full w-full items-center justify-center"
           style={{ transform: 'rotate(-9.5deg)' }}
         >
-          <div
-            style={{
-              width: 112,
-              height: 312,
-              position: 'relative',
-              maskImage: 'url(/canvas/tacobell/llavero-mask.svg)',
-              maskRepeat: 'no-repeat',
-              maskPosition: '32.446px 19.967px',
-              maskSize: '116.804px 298px',
-              WebkitMaskImage: 'url(/canvas/tacobell/llavero-mask.svg)',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskPosition: '32.446px 19.967px',
-              WebkitMaskSize: '116.804px 298px',
-            }}
-          >
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/tacobell/llavero.png"
-                alt=""
-                aria-hidden
-                className="pointer-events-none select-none"
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: '-46.4%',
-                  width: '186.19%',
-                  height: '100%',
-                  maxWidth: 'none',
-                }}
-              />
-            </div>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/canvas/tacobell/llavero.png"
+            alt=""
+            aria-hidden
+            className="pointer-events-none select-none"
+            style={{ width: 112, height: 312, objectFit: 'contain', objectPosition: 'center' }}
+          />
         </div>
       </div>
 
@@ -279,7 +241,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
           alt=""
           aria-hidden
           className="pointer-events-none select-none"
-          style={{ position: 'absolute', inset: 0, maxWidth: 'none', width: '100%', height: '100%', objectPosition: 'bottom' }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
         />
       </div>
     </Link>
