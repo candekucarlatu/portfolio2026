@@ -100,18 +100,17 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
 
       {/* 4 — Bio text lines (on paper, above photo edge) */}
       {[
-        { text: dict.about.headline,       cx: 353, cy: 228, rot: -13.02, w: 282 },
-        { text: dict.about.bodyLines[0],   cx: 355, cy: 260, rot: -14.35, w: 266 },
-        { text: dict.about.bodyLines[1],   cx: 367, cy: 294, rot: -15.27, w: 275 },
-        { text: dict.about.bodyLines[2],   cx: 384, cy: 338, rot: -15.99, w: 292 },
-      ].map(({ text, cx, cy, rot, w }) => (
+        { text: dict.about.headline,       cx: 353, cy: 228, rot: -13.02 },
+        { text: dict.about.bodyLines[0],   cx: 355, cy: 260, rot: -14.35 },
+        { text: dict.about.bodyLines[1],   cx: 367, cy: 294, rot: -15.27 },
+        { text: dict.about.bodyLines[2],   cx: 384, cy: 338, rot: -15.99 },
+      ].map(({ text, cx, cy, rot }) => (
         <span
           key={text}
-          className="font-script absolute text-2xl leading-normal text-black/85 pointer-events-none select-none"
+          className="font-script absolute whitespace-nowrap text-2xl leading-normal text-black/85 pointer-events-none select-none"
           style={{
             left: cx,
             top: cy,
-            width: w,
             transform: `translate(-50%, -50%) rotate(${rot}deg)`,
           }}
           aria-hidden
