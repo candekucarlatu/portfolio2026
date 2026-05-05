@@ -1,19 +1,19 @@
 'use client'
 
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useReducedMotion } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Project } from '@/lib/content/schema'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 import type { Locale } from '@/lib/i18n/config'
 import { AboutMeCard } from './AboutMeCard'
-import { DecorItem } from './DecorItem'
+import { WowDecor, LetteringDecor, GastlyDecor, CollageDecor } from './DecorItems'
 import { ProjectCard } from './ProjectCard'
 import { TacoBellCard } from './TacoBellCard'
 import { SlideShareCard } from './SlideShareCard'
 import { ScribdCard } from './ScribdCard'
 import { KaplanCard } from './KaplanCard'
 import { PortfolioMobile } from './PortfolioMobile'
-import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, DECOR, PROJECTS } from './itemPositions'
+import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, PROJECTS } from './itemPositions'
 
 interface PortfolioCanvasProps {
   projects: Project[]
@@ -74,12 +74,6 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-
-  // Mouse parallax — raw values snapped immediately, springs smooth the output
-  const rawMouseX = useMotionValue(0)
-  const rawMouseY = useMotionValue(0)
-  const mouseX = useSpring(rawMouseX, { stiffness: 55, damping: 22 })
-  const mouseY = useSpring(rawMouseY, { stiffness: 55, damping: 22 })
 
   // Cursor position for edge-panning (no re-render needed — read in RAF)
   const cursorRef = useRef({ x: 0, y: 0 })
@@ -167,24 +161,15 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
       const el = containerRef.current
       if (!el) return
       const rect = el.getBoundingClientRect()
-
       // Update cursor position for edge panning
       cursorRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
-
-      // Update parallax
-      if (!reduceMotion) {
-        rawMouseX.set(e.clientX - rect.left - rect.width / 2)
-        rawMouseY.set(e.clientY - rect.top - rect.height / 2)
-      }
     },
-    [rawMouseX, rawMouseY, reduceMotion],
+    [],
   )
 
   const handleMouseLeave = useCallback(() => {
     cursorInsideRef.current = false
-    rawMouseX.set(0)
-    rawMouseY.set(0)
-  }, [rawMouseX, rawMouseY])
+  }, [])
 
   const projectMap = new Map(projects.map((p) => [p.slug, p]))
   const scale = viewport ? getScale(viewport) : 1
@@ -226,15 +211,11 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             dragEnabled ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'
           }`}
         >
-          {DECOR.map((item) => (
-            <DecorItem
-              key={item.id}
-              item={item}
-              priority={item.id === 'lettering'}
-              mouseX={mouseX}
-              mouseY={mouseY}
-            />
-          ))}
+          {/* Decorative elements — static, no parallax */}
+          <WowDecor />
+          <LetteringDecor />
+          <GastlyDecor />
+          <CollageDecor />
 
           <AboutMeCard dict={dict} />
 
