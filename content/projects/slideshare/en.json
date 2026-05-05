@@ -1,7 +1,7 @@
 {
   "slug": "slideshare",
   "card": {
-    "title": "A reader built for slides but full of documents nobody could read.",
+    "title": "A platform built for slides that needed to learn how to show documents.",
     "subtitle": "A reader redesign to make SlideShare's 30M+ slides and documents actually readable.",
     "color": "orange"
   },
