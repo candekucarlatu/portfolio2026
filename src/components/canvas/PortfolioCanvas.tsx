@@ -21,21 +21,41 @@ interface ViewportSize {
   height: number
 }
 
-function getCenteredOffset(viewport: ViewportSize) {
+/**
+ * Canvas zoom: 1.0 at ≥1280px, scales linearly down to 0.65 at 768px.
+ * Below 768px keeps scale=1 (mobile layout handled separately).
+ */
+function getScale(viewport: ViewportSize): number {
+  if (viewport.width < 768) return 1
+  return Math.min(1, Math.max(0.65, viewport.width / 1280))
+}
+
+/**
+ * Initial offset so ABOUT_ME_RECT is centered in the viewport, accounting for scale.
+ * With transformOrigin "0 0": canvas pixel (cx,cy) maps to viewport (x + cx*S, y + cy*S).
+ */
+function getCenteredOffset(viewport: ViewportSize, scale: number) {
   const cx = ABOUT_ME_RECT.x + ABOUT_ME_RECT.w / 2
   const cy = ABOUT_ME_RECT.y + ABOUT_ME_RECT.h / 2
   return {
-    x: viewport.width / 2 - cx,
-    y: viewport.height / 2 - cy,
+    x: viewport.width / 2 - cx * scale,
+    y: viewport.height / 2 - cy * scale,
   }
 }
 
-function getDragConstraints(viewport: ViewportSize) {
-  const left = Math.min(0, viewport.width - BOARD_WIDTH)
-  const top = Math.min(0, viewport.height - BOARD_HEIGHT)
-  const right = Math.max(0, viewport.width - BOARD_WIDTH)
-  const bottom = Math.max(0, viewport.height - BOARD_HEIGHT)
-  return { left, top, right, bottom }
+/**
+ * Drag bounds so the canvas never shows empty space.
+ * Accounts for scale: the visual canvas size is BOARD * scale.
+ */
+function getDragConstraints(viewport: ViewportSize, scale: number) {
+  const scaledW = BOARD_WIDTH * scale
+  const scaledH = BOARD_HEIGHT * scale
+  return {
+    left: Math.min(0, viewport.width - scaledW),
+    top: Math.min(0, viewport.height - scaledH),
+    right: Math.max(0, viewport.width - scaledW),
+    bottom: Math.max(0, viewport.height - scaledH),
+  }
 }
 
 export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps) {
@@ -68,8 +88,9 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
 
   useEffect(() => {
     if (!viewport) return
-    const initial = getCenteredOffset(viewport)
-    const constraints = getDragConstraints(viewport)
+    const scale = getScale(viewport)
+    const initial = getCenteredOffset(viewport, scale)
+    const constraints = getDragConstraints(viewport, scale)
     const clampedX = Math.max(constraints.left, Math.min(constraints.right, initial.x))
     const clampedY = Math.max(constraints.top, Math.min(constraints.bottom, initial.y))
     x.set(clampedX)
@@ -80,7 +101,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   useEffect(() => {
     const el = containerRef.current
     if (!el || !viewport) return
-    const constraints = getDragConstraints(viewport)
+    const scale = getScale(viewport)
+    const constraints = getDragConstraints(viewport, scale)
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault()
@@ -112,7 +134,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   }, [rawMouseX, rawMouseY])
 
   const projectMap = new Map(projects.map((p) => [p.slug, p]))
-  const constraints = viewport ? getDragConstraints(viewport) : undefined
+  const scale = viewport ? getScale(viewport) : 1
+  const constraints = viewport ? getDragConstraints(viewport, scale) : undefined
 
   return (
       <div
@@ -131,6 +154,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           style={{
             x,
             y,
+            scale,
+            transformOrigin: '0% 0%',
             width: BOARD_WIDTH,
             height: BOARD_HEIGHT,
             backgroundImage: 'url(/canvas/bg-pegboard-tile.png)',
