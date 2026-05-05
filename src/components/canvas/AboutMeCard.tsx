@@ -54,34 +54,28 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
         style={{
           left: 104,
           top: 170,
+          width: 162,
+          height: 162,
           transform: 'translate(-50%, -50%) rotate(-12.99deg)',
         }}
       >
-        <div
-          className="pointer-events-none absolute inset-0 opacity-20 blur-[4px]"
+        <Image
+          src="/canvas/aboutme/shadow.png"
+          alt=""
+          width={162}
+          height={162}
+          className="pointer-events-none absolute inset-0 size-full object-cover opacity-20 blur-[4px] select-none"
           aria-hidden
-        >
-          <Image
-            src="/canvas/aboutme/shadow.png"
-            alt=""
-            width={136}
-            height={82}
-            sizes="136px"
-            className="h-full w-full object-contain"
-          />
-        </div>
-        <div className="relative overflow-hidden" style={{ width: 136, height: 82 }}>
-          <Image
-            src="/canvas/aboutme/sticker-arg.png"
-            alt="Argentina sticker"
-            width={162}
-            height={162}
-            sizes="162px"
-            quality={90}
-            className="pointer-events-none absolute select-none"
-            style={{ left: '-10.1%', top: '-48.18%', width: '118.81%', height: '198.02%' }}
-          />
-        </div>
+        />
+        <Image
+          src="/canvas/aboutme/sticker-arg.png"
+          alt="Argentina sticker"
+          width={162}
+          height={162}
+          sizes="162px"
+          quality={90}
+          className="pointer-events-none relative block select-none"
+        />
       </div>
 
       {/* 3 — Paper note background (in front of photo, text sits on top) */}
@@ -100,10 +94,10 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
 
       {/* 4 — Bio text lines (on paper, above photo edge) */}
       {[
-        { text: dict.about.headline,       cx: 353, cy: 228, rot: -13.02 },
-        { text: dict.about.bodyLines[0],   cx: 355, cy: 260, rot: -14.35 },
-        { text: dict.about.bodyLines[1],   cx: 367, cy: 294, rot: -15.27 },
-        { text: dict.about.bodyLines[2],   cx: 384, cy: 338, rot: -15.99 },
+        { text: dict.about.headline,       cx: 354, cy: 169, rot: -13.02 },
+        { text: dict.about.bodyLines[0],   cx: 355, cy: 207, rot: -14.35 },
+        { text: dict.about.bodyLines[1],   cx: 367, cy: 239, rot: -15.27 },
+        { text: dict.about.bodyLines[2],   cx: 384, cy: 270, rot: -15.99 },
       ].map(({ text, cx, cy, rot }) => (
         <span
           key={text}
@@ -121,16 +115,16 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
 
       {/* 5 — Contact links */}
       {[
-        { link: links[0], cx: 284, cy: 383 },
-        { link: links[1], cx: 365, cy: 360 },
-        { link: links[2], cx: 432, cy: 342 },
+        { link: links[0], cx: 284, cy: 354 },
+        { link: links[1], cx: 365, cy: 331 },
+        { link: links[2], cx: 432, cy: 312 },
       ].map(({ link, cx, cy }) => (
         <a
           key={link.label}
           href={link.href}
           target={link.href.startsWith('http') ? '_blank' : undefined}
           rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          className="font-script absolute text-xl text-black/85 underline underline-offset-2 decoration-black/50 hover:text-black transition-colors"
+          className="font-script absolute text-xl text-black/85 underline hover:text-black transition-colors"
           style={{
             left: cx,
             top: cy,
@@ -167,7 +161,7 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
         sizes="48px"
         quality={90}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 128, top: 37 }}
+        style={{ left: 106, top: 37 }}
         priority
         aria-hidden
       />
@@ -181,7 +175,7 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
         sizes="48px"
         quality={90}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 318, top: 0 }}
+        style={{ left: 301, top: 2 }}
         priority
         aria-hidden
       />
