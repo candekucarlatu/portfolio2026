@@ -1,0 +1,400 @@
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { ProjectCard as ProjectCardData } from '@/lib/content/schema'
+
+interface ScribdCardProps {
+  card: ProjectCardData
+  href: string
+  ariaLabel: string
+}
+
+// Group bounding box on canvas: x=1613, y=965, w=688, h=662
+// Figma bbox: left=1046, top=534 → container_x = figma_x - 1046, container_y = figma_y - 534
+const W = 688
+const H = 662
+
+function Inner({ card, href, ariaLabel }: ScribdCardProps) {
+  const dragStartRef = useRef<{ x: number; y: number } | null>(null)
+
+  return (
+    <Link
+      href={href}
+      aria-label={ariaLabel}
+      className="focus-visible:outline-accent relative block h-full w-full focus-visible:outline-2 focus-visible:outline-offset-8"
+      onPointerDown={(e) => { dragStartRef.current = { x: e.clientX, y: e.clientY } }}
+      onClickCapture={(e) => {
+        const s = dragStartRef.current
+        if (s && Math.hypot(e.clientX - s.x, e.clientY - s.y) > 8) {
+          e.preventDefault()
+          e.stopPropagation()
+        }
+        dragStartRef.current = null
+      }}
+    >
+      {/* ── Z-ORDER: bottom → top ── */}
+
+      {/* 1 ── Paper 02 shadow */}
+      {/* Figma flex: left=1050.19 top=695.21 w=269.868 h=468.55 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 4, top: 161, width: 270, height: 469 }}
+      >
+        <div style={{ transform: 'rotate(0.99deg)', flexShrink: 0 }}>
+          <div
+            className="bg-black opacity-15"
+            style={{ width: 262, height: 464, filter: 'blur(10px)' }}
+          />
+        </div>
+      </div>
+
+      {/* 2 ── Paper 02 (back paper, slightly tilted right) */}
+      {/* Figma flex: left=1046.13 top=692 w=266.622 h=464.363 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 0, top: 158, width: 267, height: 464 }}
+      >
+        <div style={{ transform: 'rotate(0.99deg)', flexShrink: 0 }}>
+          <div
+            style={{
+              width: 259,
+              height: 460,
+              position: 'relative',
+              filter: 'blur(0.5px)',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/scribd/paper02.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover', opacity: 0.95 }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 3 ── Bookmark shadow */}
+      {/* Figma flex: left=1090.44 top=887.38 w=36.01 h=290.727 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 44, top: 353, width: 36, height: 291 }}
+      >
+        <div style={{ transform: 'rotate(-1.2deg)', flexShrink: 0 }}>
+          <div
+            className="bg-black opacity-15"
+            style={{ width: 30, height: 290, filter: 'blur(6px)' }}
+          />
+        </div>
+      </div>
+
+      {/* 4 ── Bookmark (green Scribd bookmark) */}
+      {/* Figma flex: left=1087.75 top=877.21 w=108.448 h=319.004 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 42, top: 343, width: 108, height: 319 }}
+      >
+        <div style={{ transform: 'rotate(-1.16deg)', flexShrink: 0 }}>
+          <div
+            style={{
+              width: 102,
+              height: 317,
+              position: 'relative',
+              filter: 'blur(0.15px)',
+              opacity: 0.9,
+              borderRadius: 3,
+              boxShadow: '0px 1px 10px 0px rgba(0,0,0,0.1)',
+              overflow: 'hidden',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/scribd/bookmark.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover', objectPosition: 'bottom' }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 5 ── Paper 01 shadow */}
+      {/* Figma flex: left=1056.17 top=681.12 w=330.828 h=494.806 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 10, top: 147, width: 331, height: 495 }}
+      >
+        <div style={{ transform: 'rotate(-7.17deg)', flexShrink: 0 }}>
+          <div
+            className="bg-black opacity-15"
+            style={{ width: 275, height: 464, filter: 'blur(10px)' }}
+          />
+        </div>
+      </div>
+
+      {/* 6 ── Paper 01 (front paper with Scribd cover, tilted left) */}
+      {/* Figma flex: left=1064.66 top=678.92 w=314.121 h=488.67 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 19, top: 145, width: 314, height: 489 }}
+      >
+        <div style={{ transform: 'rotate(-7.17deg)', flexShrink: 0 }}>
+          <div
+            style={{
+              width: 259,
+              height: 460,
+              position: 'relative',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/scribd/paper01.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 7 ── Pinza for papers */}
+      {/* Figma: left=1178 top=603 → container left=132 top=69 */}
+      <Image
+        src="/canvas/scribd/pinza.png"
+        alt=""
+        width={46}
+        height={139}
+        sizes="46px"
+        quality={100}
+        className="pointer-events-none absolute object-contain select-none"
+        style={{ left: 132, top: 69 }}
+        aria-hidden
+      />
+
+      {/* 8 ── Green sticky note (Evidence 1) */}
+      {/* Figma flex: left=1463 top=918 w=270.753 h=220.277 */}
+      <div className="absolute" style={{ left: 417, top: 384, width: 271, height: 220 }}>
+        <div className="flex h-full w-full items-center justify-center">
+          <div
+            className="relative"
+            style={{
+              width: 249,
+              height: 191,
+              backgroundColor: '#d6f5db',
+              filter: 'drop-shadow(2px 5px 5px rgba(0,0,0,0.1))',
+              transform: 'rotate(6.98deg)',
+              transformOrigin: 'center',
+            }}
+          >
+            {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
+            <p
+              className="font-script absolute font-bold"
+              style={{ left: 22, top: 33, width: 212, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
+            >
+              {card.title}
+            </p>
+
+            {/* Line 1 — h=2.29 */}
+            <div className="absolute" style={{ left: 24, top: 52, width: 208, height: 2, overflow: 'visible' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/canvas/scribd/linea.svg"
+                alt=""
+                aria-hidden
+                style={{ position: 'absolute', inset: '-43.67% -0.48% -43.68% -0.48%', display: 'block', width: '100%', height: '100%' }}
+              />
+            </div>
+
+            {/* Line 2 — h=3.09 */}
+            <div className="absolute" style={{ left: 23, top: 77, width: 202, height: 3, overflow: 'visible' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/canvas/scribd/linea1.svg"
+                alt=""
+                aria-hidden
+                style={{ position: 'absolute', inset: '-32.37% -0.49%', display: 'block', width: '100%', height: '100%' }}
+              />
+            </div>
+
+            {/* Subtitle — Caveat Regular 16px #1f1a14 leading-1.35 */}
+            <p
+              className="font-script absolute font-normal"
+              style={{ left: 19, top: 92, width: 203, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
+            >
+              {card.subtitle}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 9 ── Pinza for sticky — ABOVE the sticky (z-order) */}
+      {/* Figma: left=1640 top=838 → container left=594 top=304 */}
+      <Image
+        src="/canvas/scribd/pinza.png"
+        alt=""
+        width={46}
+        height={139}
+        sizes="46px"
+        quality={100}
+        className="pointer-events-none absolute object-contain select-none"
+        style={{ left: 594, top: 304 }}
+        aria-hidden
+      />
+
+      {/* 10 ── Sticker (circular "ask me what I'm reading") */}
+      {/* Figma flex: left=1141 top=942 size=91.05 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 95, top: 408, width: 91, height: 91 }}
+      >
+        <div style={{ transform: 'rotate(-7.64deg)', flexShrink: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/canvas/scribd/sticker.png"
+            alt=""
+            aria-hidden
+            className="pointer-events-none select-none"
+            style={{ width: 81, height: 81, objectFit: 'cover', maxWidth: 'none' }}
+          />
+        </div>
+      </div>
+
+      {/* 11 ── Image 26 (document page screenshot, slightly tilted) */}
+      {/* Figma flex: left=1365 top=599 w=208.708 h=276.607 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 319, top: 65, width: 209, height: 277 }}
+      >
+        <div style={{ transform: 'rotate(-2.83deg)', flexShrink: 0 }}>
+          <div
+            style={{
+              width: 196,
+              height: 267,
+              position: 'relative',
+              boxShadow: '4px 4px 4px 0px rgba(0,0,0,0.15)',
+              overflow: 'hidden',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/scribd/image26.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{
+                position: 'absolute',
+                top: '-6.53%',
+                left: '-13.41%',
+                width: '126.47%',
+                height: '115.79%',
+                maxWidth: 'none',
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 12 ── Image 25 (phone/tablet screenshot) */}
+      {/* Figma flex: left=1435.1 top=618.92 w=160.303 h=299.378 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 389, top: 85, width: 160, height: 299 }}
+      >
+        <div style={{ transform: 'rotate(-4.83deg)', flexShrink: 0 }}>
+          <div
+            style={{
+              width: 136,
+              height: 289,
+              position: 'relative',
+              boxShadow: '2px 2px 6px 0px rgba(0,0,0,0.15)',
+              overflow: 'hidden',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/scribd/image25.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 13 ── Pinza for screenshots — ABOVE screenshots (z-order) */}
+      {/* Figma: left=1486 top=534 → container left=440 top=0 */}
+      <Image
+        src="/canvas/scribd/pinza.png"
+        alt=""
+        width={46}
+        height={139}
+        sizes="46px"
+        quality={100}
+        className="pointer-events-none absolute object-contain select-none"
+        style={{ left: 440, top: 0 }}
+        aria-hidden
+      />
+    </Link>
+  )
+}
+
+// ── Canvas version ──────────────────────────────────────────────────────────
+export function ScribdCard({ card, href, ariaLabel }: ScribdCardProps) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <motion.div
+      className="absolute touch-none"
+      style={{ left: 1613, top: 965, width: W, height: H, zIndex: hovered ? 10 : 1 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      whileHover={{ scale: 1.015, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+      whileTap={{ scale: 0.985 }}
+    >
+      <Inner card={card} href={href} ariaLabel={ariaLabel} />
+    </motion.div>
+  )
+}
+
+// ── Mobile version (scales to container width) ──────────────────────────────
+export function ScribdCardMobile({ card, href, ariaLabel }: ScribdCardProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(1)
+
+  const measure = useCallback(() => {
+    const el = containerRef.current
+    if (!el) return
+    setScale(el.getBoundingClientRect().width / W)
+  }, [])
+
+  useEffect(() => {
+    measure()
+    const observer = new ResizeObserver(measure)
+    if (containerRef.current) observer.observe(containerRef.current)
+    return () => observer.disconnect()
+  }, [measure])
+
+  return (
+    <div ref={containerRef} style={{ position: 'relative', width: '100%', height: H * scale }}>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: W,
+          height: H,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+        }}
+      >
+        <Inner card={card} href={href} ariaLabel={ariaLabel} />
+      </div>
+    </div>
+  )
+}
