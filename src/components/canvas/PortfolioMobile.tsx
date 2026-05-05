@@ -9,6 +9,7 @@ import type { Locale } from '@/lib/i18n/config'
 import { StickyNote } from './StickyNote'
 import { TacoBellCardMobile } from './TacoBellCard'
 import { SlideShareCardMobile } from './SlideShareCard'
+import { ScribdCardMobile } from './ScribdCard'
 import { PROJECTS } from './itemPositions'
 
 interface PortfolioMobileProps {
@@ -160,6 +161,23 @@ export function PortfolioMobile({ projects, dict, locale }: PortfolioMobileProps
                 transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
                 <SlideShareCardMobile
+                  card={project.card}
+                  href={`/${locale}/work/${item.slug}`}
+                  ariaLabel={`${dict.ui.openProject}: ${project.card.title}`}
+                />
+              </motion.div>
+            )
+          }
+
+          if (item.slug === 'scribd') {
+            return (
+              <motion.div
+                key={item.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <ScribdCardMobile
                   card={project.card}
                   href={`/${locale}/work/${item.slug}`}
                   ariaLabel={`${dict.ui.openProject}: ${project.card.title}`}

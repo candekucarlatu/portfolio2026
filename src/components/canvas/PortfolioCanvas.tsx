@@ -10,6 +10,7 @@ import { DecorItem } from './DecorItem'
 import { ProjectCard } from './ProjectCard'
 import { TacoBellCard } from './TacoBellCard'
 import { SlideShareCard } from './SlideShareCard'
+import { ScribdCard } from './ScribdCard'
 import { PortfolioMobile } from './PortfolioMobile'
 import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, DECOR, PROJECTS } from './itemPositions'
 
@@ -252,6 +253,16 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             if (item.slug === 'slideshare') {
               return (
                 <SlideShareCard
+                  key={item.slug}
+                  card={project.card}
+                  href={`/${locale}/work/${item.slug}`}
+                  ariaLabel={`${dict.ui.openProject}: ${project.card.title}`}
+                />
+              )
+            }
+            if (item.slug === 'scribd') {
+              return (
+                <ScribdCard
                   key={item.slug}
                   card={project.card}
                   href={`/${locale}/work/${item.slug}`}
