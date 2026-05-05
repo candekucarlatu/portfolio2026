@@ -8,6 +8,7 @@ import type { Locale } from '@/lib/i18n/config'
 import { AboutMeCard } from './AboutMeCard'
 import { DecorItem } from './DecorItem'
 import { ProjectCard } from './ProjectCard'
+import { TacoBellCard } from './TacoBellCard'
 import { PortfolioMobile } from './PortfolioMobile'
 import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, DECOR, PROJECTS } from './itemPositions'
 
@@ -237,6 +238,16 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           {PROJECTS.map((item) => {
             const project = projectMap.get(item.slug)
             if (!project) return null
+            if (item.slug === 'tacobell') {
+              return (
+                <TacoBellCard
+                  key={item.slug}
+                  card={project.card}
+                  href={`/${locale}/work/${item.slug}`}
+                  ariaLabel={`${dict.ui.openProject}: ${project.card.title}`}
+                />
+              )
+            }
             return (
               <ProjectCard
                 key={item.slug}
