@@ -53,16 +53,16 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
               transformOrigin: 'center',
             }}
           >
-            {/* Title — Caveat Bold 18px #1f1a14 */}
+            {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
             <p
-              className="font-script absolute font-bold leading-normal"
-              style={{ left: 22, top: 33, width: 212, fontSize: 18, color: '#1f1a14' }}
+              className="font-script absolute font-bold"
+              style={{ left: 22, top: 33, width: 212, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
             >
               {card.title}
             </p>
 
-            {/* Line 1 — at top=51.53 */}
-            <div className="absolute" style={{ left: 24, top: 51, width: 208, height: 5, overflow: 'visible' }}>
+            {/* Line 1 — at top=51.53, h=2.29 */}
+            <div className="absolute" style={{ left: 24, top: 51, width: 208, height: 2, overflow: 'visible' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/canvas/tacobell/linea.svg"
@@ -72,8 +72,8 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
               />
             </div>
 
-            {/* Line 2 — at top=77.04 */}
-            <div className="absolute" style={{ left: 23, top: 77, width: 202, height: 5, overflow: 'visible' }}>
+            {/* Line 2 — at top=77.04, h=3.09 */}
+            <div className="absolute" style={{ left: 23, top: 77, width: 202, height: 3, overflow: 'visible' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/canvas/tacobell/linea1.svg"
@@ -103,7 +103,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 156, top: 223 }}
+        style={{ left: 159, top: 194 }}
         aria-hidden
       />
 
@@ -155,17 +155,16 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
 
       {/* 7 ── TG$ Sticker */}
       {/* MCP: left=109 top=86 w=40 h=39 */}
-      <Image
-        src="/canvas/tacobell/tg-sticker.png"
-        alt=""
-        width={40}
-        height={39}
-        sizes="40px"
-        quality={100}
-        className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 305, top: 443 }}
-        aria-hidden
-      />
+      <div className="absolute" style={{ left: 305, top: 443, width: 40, height: 39 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/canvas/tacobell/tg-sticker.png"
+          alt=""
+          aria-hidden
+          className="pointer-events-none select-none"
+          style={{ position: 'absolute', inset: 0, maxWidth: 'none', width: '100%', height: '100%' }}
+        />
+      </div>
 
       {/* 8 ── Pinza for Paconaut cards */}
       <Image
@@ -200,18 +199,18 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
 
       {/* 10 ── Image 377 (phone screenshot) */}
       {/* MCP: centered left=221.38 top=-256.37 w=115 h=217 rotate(-7.32deg) */}
-      <div className="absolute" style={{ left: 417, top: 101, width: 115, height: 217 }}>
-        <div className="flex h-full w-full items-center justify-center" style={{ transform: 'rotate(-7.32deg)' }}>
-          <Image
-            src="/canvas/tacobell/image377.png"
-            alt=""
-            width={90}
-            height={207}
-            sizes="90px"
-            quality={100}
-            className="pointer-events-none block object-contain select-none"
-            style={{ boxShadow: '2px 2px 5px 0px rgba(0,0,0,0.1)' }}
-          />
+      <div className="absolute flex items-center justify-center" style={{ left: 417, top: 101, width: 115, height: 217 }}>
+        <div style={{ transform: 'rotate(-7.32deg)', flexShrink: 0 }}>
+          <div style={{ width: 90, height: 207, position: 'relative', boxShadow: '2px 2px 5px 0px rgba(0,0,0,0.1)' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/tacobell/image377.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{ position: 'absolute', inset: 0, maxWidth: 'none', width: '100%', height: '100%', objectPosition: 'bottom' }}
+            />
+          </div>
         </div>
       </div>
 
@@ -240,7 +239,6 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
               width: 112,
               height: 312,
               position: 'relative',
-              overflow: 'hidden',
               maskImage: 'url(/canvas/tacobell/llavero-mask.svg)',
               maskRepeat: 'no-repeat',
               maskPosition: '32.446px 19.967px',
@@ -251,39 +249,39 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
               WebkitMaskSize: '116.804px 298px',
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/canvas/tacobell/llavero.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none select-none"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: '-46.4%',
-                width: '186.19%',
-                height: '100%',
-                objectFit: 'cover',
-                maxWidth: 'none',
-              }}
-            />
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/canvas/tacobell/llavero.png"
+                alt=""
+                aria-hidden
+                className="pointer-events-none select-none"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '-46.4%',
+                  width: '186.19%',
+                  height: '100%',
+                  maxWidth: 'none',
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
 
       {/* 13 ── Gancho (llavero hook) — top of z-order, above sticky */}
       {/* MCP: left=-195 top=-33 w=48 h=49 */}
-      <Image
-        src="/canvas/tacobell/gancho.png"
-        alt=""
-        width={48}
-        height={49}
-        sizes="48px"
-        quality={100}
-        className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 1, top: 324 }}
-        aria-hidden
-      />
+      <div className="absolute" style={{ left: 1, top: 324, width: 48, height: 49 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/canvas/tacobell/gancho.png"
+          alt=""
+          aria-hidden
+          className="pointer-events-none select-none"
+          style={{ position: 'absolute', inset: 0, maxWidth: 'none', width: '100%', height: '100%', objectPosition: 'bottom' }}
+        />
+      </div>
     </Link>
   )
 }
