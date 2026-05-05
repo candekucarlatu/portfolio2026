@@ -94,18 +94,18 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
 
       {/* 4 — Bio text lines (on paper, above photo edge) */}
       {[
-        { text: dict.about.headline,       cx: 354, cy: 169, rot: -13.02 },
-        { text: dict.about.bodyLines[0],   cx: 355, cy: 207, rot: -14.35 },
-        { text: dict.about.bodyLines[1],   cx: 367, cy: 239, rot: -15.27 },
-        { text: dict.about.bodyLines[2],   cx: 384, cy: 270, rot: -15.99 },
-      ].map(({ text, cx, cy, rot }) => (
+        { text: dict.about.headline,       lx: 210, cy: 169, rot: -13.02 },
+        { text: dict.about.bodyLines[0],   lx: 221, cy: 207, rot: -14.35 },
+        { text: dict.about.bodyLines[1],   lx: 229, cy: 239, rot: -15.27 },
+        { text: dict.about.bodyLines[2],   lx: 236, cy: 270, rot: -15.99 },
+      ].map(({ text, lx, cy, rot }) => (
         <span
           key={text}
           className="font-script absolute whitespace-nowrap text-2xl leading-normal text-black/85 pointer-events-none select-none"
           style={{
-            left: cx,
+            left: lx,
             top: cy,
-            transform: `translate(-50%, -50%) rotate(${rot}deg)`,
+            transform: `translate(0, -50%) rotate(${rot}deg)`,
           }}
           aria-hidden
         >
@@ -115,10 +115,10 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
 
       {/* 5 — Contact links */}
       {[
-        { link: links[0], cx: 284, cy: 354 },
-        { link: links[1], cx: 365, cy: 331 },
-        { link: links[2], cx: 432, cy: 312 },
-      ].map(({ link, cx, cy }) => (
+        { link: links[0], lx: 249, cy: 354 },
+        { link: links[1], lx: 330, cy: 331 },
+        { link: links[2], lx: 394, cy: 312 },
+      ].map(({ link, lx, cy }) => (
         <a
           key={link.label}
           href={link.href}
@@ -126,9 +126,9 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
           rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           className="font-script absolute text-xl text-black/85 underline hover:text-black transition-colors"
           style={{
-            left: cx,
+            left: lx,
             top: cy,
-            transform: 'translate(-50%, -50%) rotate(-15.99deg)',
+            transform: 'translate(0, -50%) rotate(-15.99deg)',
           }}
         >
           {link.label}
@@ -161,7 +161,7 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
         sizes="48px"
         quality={90}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 106, top: 37 }}
+        style={{ left: 128, top: 37 }}
         priority
         aria-hidden
       />
@@ -175,7 +175,7 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
         sizes="48px"
         quality={90}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 301, top: 2 }}
+        style={{ left: 318, top: 0 }}
         priority
         aria-hidden
       />
