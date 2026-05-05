@@ -95,7 +95,6 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
       </div>
 
       {/* 2 ── Pinza for sticky */}
-      {/* MCP: left=-37 top=-163 w=46 h=139 */}
       <Image
         src="/canvas/tacobell/pinza.png"
         alt=""
@@ -104,7 +103,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 159, top: 194 }}
+        style={{ left: 156, top: 223 }}
         aria-hidden
       />
 
@@ -169,7 +168,6 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
       />
 
       {/* 8 ── Pinza for Paconaut cards */}
-      {/* MCP: left=189.54 top=-10 w=46 h=139 */}
       <Image
         src="/canvas/tacobell/pinza.png"
         alt=""
@@ -178,7 +176,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 386, top: 347 }}
+        style={{ left: 416, top: 344 }}
         aria-hidden
       />
 
@@ -218,7 +216,6 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
       </div>
 
       {/* 11 ── Pinza for kiosk */}
-      {/* MCP: left=228 top=-357 w=46 h=139 */}
       <Image
         src="/canvas/tacobell/pinza.png"
         alt=""
@@ -227,7 +224,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 424, top: 0 }}
+        style={{ left: 416, top: 35 }}
         aria-hidden
       />
 
