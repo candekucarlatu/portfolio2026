@@ -6,15 +6,16 @@ interface ImageBlockProps {
   image: ProjectImage
   caption?: string
   width: 'default' | 'wide' | 'full'
+  variant?: 'framed' | 'plain'
 }
 
 const widths: Record<ImageBlockProps['width'], string> = {
   default: 'max-w-[640px]',
   wide: 'max-w-[960px]',
-  full: 'max-w-[1200px]',
+  full: 'max-w-[1180px]',
 }
 
-export function ImageBlock({ image, caption, width }: ImageBlockProps) {
+export function ImageBlock({ image, caption, width, variant = 'framed' }: ImageBlockProps) {
   return (
     <figure
       className={clsx(
@@ -22,7 +23,12 @@ export function ImageBlock({ image, caption, width }: ImageBlockProps) {
         widths[width],
       )}
     >
-      <div className="bg-cork relative w-full overflow-hidden rounded-lg">
+      <div
+        className={clsx(
+          'relative w-full overflow-hidden',
+          variant === 'framed' && 'bg-cork rounded-lg',
+        )}
+      >
         <Image
           src={image.src}
           alt={image.alt}

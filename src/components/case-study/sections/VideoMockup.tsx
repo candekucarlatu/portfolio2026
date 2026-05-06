@@ -1,5 +1,8 @@
+import Image from 'next/image'
+
 interface VideoMockupProps {
   src?: string
+  imageSrc?: string
   poster?: string
   background?: string
   variant?: 'phone' | 'desktop'
@@ -13,7 +16,7 @@ interface VideoMockupProps {
  * Landscape browser-style video at 820×477 with rounded-12, border, shadow,
  * centered in a 664px-tall colored background.
  */
-export function VideoMockup({ src, poster, background = '#ede5fa', variant = 'phone' }: VideoMockupProps) {
+export function VideoMockup({ src, imageSrc, poster, background = '#ede5fa', variant = 'phone' }: VideoMockupProps) {
   if (variant === 'desktop') {
     return (
       <section className="mx-auto w-full max-w-[1180px] overflow-hidden">
@@ -22,11 +25,11 @@ export function VideoMockup({ src, poster, background = '#ede5fa', variant = 'ph
           style={{ backgroundColor: background }}
         >
           <div
-            className="overflow-hidden shadow-[12px_12px_20px_0px_rgba(0,0,0,0.1)] w-[90%] max-w-[820px]"
+            className="overflow-hidden shadow-[12px_12px_20px_0px_rgba(0,0,0,0.1)] w-[90%] max-w-[848px]"
             style={{
               borderRadius: 12,
               border: '5px solid #e8e8e8',
-              aspectRatio: '820/477',
+              aspectRatio: '848/477',
             }}
           >
             {src ? (
@@ -39,6 +42,16 @@ export function VideoMockup({ src, poster, background = '#ede5fa', variant = 'ph
                 playsInline
                 className="h-full w-full object-cover"
               />
+            ) : imageSrc ? (
+              <div className="relative h-full w-full">
+                <Image
+                  src={imageSrc}
+                  alt=""
+                  fill
+                  sizes="848px"
+                  className="object-cover"
+                />
+              </div>
             ) : (
               <div className="h-full w-full bg-white" />
             )}

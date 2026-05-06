@@ -5,7 +5,7 @@ const colorHex: Record<NoteColor, string> = {
   pink: '#fcd3c9',
   yellow: '#fff5b8',
   green: '#d6f5db',
-  blue: '#d3eefe',
+  blue: '#b8def2',
   orange: '#ffebc9',
 }
 

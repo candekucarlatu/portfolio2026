@@ -53,6 +53,7 @@ const ImageBlock = z.object({
   image: ProjectImage,
   caption: z.string().optional(),
   width: z.enum(['default', 'wide', 'full']).default('default'),
+  variant: z.enum(['framed', 'plain']).default('framed'),
 })
 
 const Insight = z.object({
@@ -86,6 +87,7 @@ const CalloutList = z.object({
 const Video = z.object({
   type: z.literal('video'),
   src: z.string().optional(),
+  imageSrc: z.string().optional(),
   poster: z.string().optional(),
   background: z.string().optional(),
   variant: z.enum(['phone', 'desktop']).default('phone'),

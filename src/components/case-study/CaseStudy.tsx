@@ -90,6 +90,7 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                   image={section.image}
                   caption={section.caption}
                   width={section.width}
+                  variant={section.variant}
                 />
               )
             case 'insight':
@@ -107,6 +108,7 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
               return (
                 <VideoMockup
                   src={section.src}
+                  imageSrc={section.imageSrc}
                   poster={section.poster}
                   background={section.background}
                   variant={section.variant}
