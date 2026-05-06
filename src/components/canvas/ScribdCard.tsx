@@ -181,6 +181,17 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         aria-hidden
       />
 
+      {/* 11 ── Shelf composite for screenshots area — rendered HERE so note/sticker appear on top */}
+      {/* Figma 439:12766 bounding box → container: left=319 top=0, width=230 height=384 */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/scribd/shelf.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute select-none"
+        style={{ left: 319, top: 0, width: 230, height: 384, objectFit: 'contain', objectPosition: 'top left', maxWidth: 'none' }}
+      />
+
       {/* 8 ── Green sticky note (Evidence 1) */}
       {/* Figma 439:12759: inner 305×200 rotated 6.98° → outer ~325×236, pos left=390 top=377 */}
       <div className="absolute" style={{ left: 390, top: 377, width: 325, height: 236 }}>
@@ -273,16 +284,6 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         </div>
       </div>
 
-      {/* 11 ── Shelf composite for screenshots area */}
-      {/* Replaces image25, image26 and their pinza — drop shelf.png to update */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/canvas/scribd/shelf.png"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute select-none"
-        style={{ left: 319, top: 0, maxWidth: 'none' }}
-      />
     </Link>
   )
 }
