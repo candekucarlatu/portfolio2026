@@ -41,7 +41,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
             {/* Full-screen backdrop — blurs the canvas, closes on click */}
             <motion.div
               key="sheet-backdrop"
-              className="fixed inset-0 z-40 bg-white/70 backdrop-blur-[4px]"
+              className="fixed inset-0 z-40 bg-[#1f1a14]/15 backdrop-blur-[4px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
