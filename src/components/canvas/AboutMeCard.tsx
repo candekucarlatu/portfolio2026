@@ -1,5 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 import type { Locale } from '@/lib/i18n/config'
 import { ABOUT_ME_RECT } from './itemPositions'
@@ -14,6 +18,8 @@ interface AboutMeCardProps {
 // DOM order matches Figma stacking: photo → sticker → paper+text+links → stars → pinzas.
 
 export function AboutMeCard({ dict, locale }: AboutMeCardProps) {
+  const [hovered, setHovered] = useState(false)
+
   const links = [
     { label: dict.contact.linkedin, href: dict.contact.linkedinUrl },
     { label: dict.contact.email, href: `mailto:${dict.contact.emailAddress}` },
@@ -21,14 +27,19 @@ export function AboutMeCard({ dict, locale }: AboutMeCardProps) {
   ]
 
   return (
-    <div
-      className="absolute"
+    <motion.div
+      className="absolute touch-none"
       style={{
         left: ABOUT_ME_RECT.x,
         top: ABOUT_ME_RECT.y,
         width: ABOUT_ME_RECT.w,
         height: ABOUT_ME_RECT.h,
+        zIndex: hovered ? 10 : 1,
       }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      whileHover={{ scale: 1.015, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+      whileTap={{ scale: 0.985 }}
     >
       {/* 1 — Polaroid photo (lowest layer) */}
       <div
@@ -190,6 +201,6 @@ export function AboutMeCard({ dict, locale }: AboutMeCardProps) {
         priority
         aria-hidden
       />
-    </div>
+    </motion.div>
   )
 }
