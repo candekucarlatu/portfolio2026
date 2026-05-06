@@ -146,7 +146,7 @@ export function AboutMeCard({ dict, locale }: AboutMeCardProps) {
           href={link.href}
           target={link.href.startsWith('http') ? '_blank' : undefined}
           rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          className="font-script absolute text-xl text-black/85 underline hover:text-[#FF3E00] transition-colors"
+          className="font-script absolute z-20 text-xl text-black/85 underline hover:text-[#FF3E00] transition-colors"
           style={{
             left: lx,
             top: cy,
