@@ -223,13 +223,14 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
       />
 
       {/* 12 ── Llavero (Figma 439:12865) */}
+      {/* Figma outer: left=-293.85 top=-34.97 → container: 196+(-293.85)=-97.85, 357+(-34.97)=322.03 */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/canvas/tacobell/Llavero.png"
         alt=""
         aria-hidden
         className="pointer-events-none absolute select-none"
-        style={{ left: -25, top: 322, width: 162, height: 326, objectFit: 'contain', objectPosition: 'top left' }}
+        style={{ left: -98, top: 322, width: 162, height: 326, objectFit: 'contain', objectPosition: 'top left' }}
         draggable={false}
       />
     </Link>
