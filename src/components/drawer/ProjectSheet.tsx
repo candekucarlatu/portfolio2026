@@ -38,10 +38,11 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
       <AnimatePresence>
         {open && (
           <>
-            {/* Full-screen backdrop — blurs the canvas, closes on click */}
+            {/* Backdrop — warm orange tint + blur, click to close */}
             <motion.div
               key="sheet-backdrop"
-              className="fixed inset-0 z-40 bg-[#1f1a14]/15 backdrop-blur-[4px]"
+              className="fixed inset-0 z-40 backdrop-blur-[4px]"
+              style={{ backgroundColor: 'rgba(255, 62, 0, 0.12)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -49,37 +50,19 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               onClick={close}
             />
 
-            {/* Close button — always fixed at top-right of the panel, outside scroll */}
-            <motion.button
-              key="sheet-close"
-              type="button"
-              aria-label={closeLabel}
-              onClick={close}
-              className="fixed top-4 z-[51] flex h-9 w-9 items-center justify-center rounded-md border border-ink/15 bg-paper transition-colors hover:border-ink/30 hover:bg-cork focus-visible:outline-2 focus-visible:outline-offset-2"
-              style={{ right: 376, color: '#FF3E00' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.2 }}
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-                <path
-                  d="M1 1L13 13M13 1L1 13"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </motion.button>
-
             {/*
-             * Scrollable column — 360px from each side.
-             * 88px top spacer (scrolls away) + white card + 88px bottom spacer.
+             * Panel — fixed at 88px from top, 360px from each side, flush at bottom.
+             * overflow-hidden clips the rounded-[20px] corners on the scrollable content.
+             * overflow-y-auto scrolls the content inside.
+             *
+             * Structure inside:
+             *   - bg-paper div: close button + case study content
+             *   - transparent spacer at end: reveals the backdrop below (no white square)
              */}
             <motion.div
               key="sheet-panel"
-              className="canvas-scroll-hidden fixed inset-y-0 z-50 overflow-y-auto overscroll-contain"
-              style={{ left: 360, right: 360 }}
+              className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain rounded-[20px] shadow-2xl"
+              style={{ left: 360, right: 360, top: 88, bottom: 0 }}
               initial={{ y: reduceMotion ? 0 : '100%' }}
               animate={{ y: 0 }}
               exit={{ y: reduceMotion ? 0 : '100%' }}
@@ -88,16 +71,36 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              {/* Top spacer — clicking it closes the modal */}
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-              <div className="h-[88px] flex-shrink-0" onClick={close} />
+              {/* bg-paper wrapper — content only, ends with the last section */}
+              <div className="bg-paper text-ink">
+                {/* Close button — scrolls with content, like Stripe */}
+                <div className="flex justify-end px-4 pt-4">
+                  <button
+                    type="button"
+                    aria-label={closeLabel}
+                    onClick={close}
+                    className="flex h-9 w-9 items-center justify-center rounded-md border border-ink/15 bg-paper transition-colors hover:border-ink/30 hover:bg-cork focus-visible:outline-2 focus-visible:outline-offset-2"
+                    style={{ color: '#FF3E00' }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+                      <path
+                        d="M1 1L13 13M13 1L1 13"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
 
-              {/* White card */}
-              <div className="bg-paper text-ink rounded-[20px] shadow-2xl">
                 {children}
-                {/* Bottom spacer — air at end of content */}
-                <div className="h-[88px]" />
               </div>
+
+              {/*
+               * Transparent bottom spacer — sits outside bg-paper so the backdrop
+               * shows through here instead of a white rectangle.
+               */}
+              <div className="h-[88px]" />
             </motion.div>
           </>
         )}

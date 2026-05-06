@@ -65,7 +65,7 @@ function CardValue({ value }: { value: string }) {
 
 export function StatCards({ cards }: StatCardsProps) {
   return (
-    <section className="mx-auto flex w-full max-w-[680px] flex-wrap justify-center gap-6 px-6 md:px-0">
+    <section className="mx-auto flex w-full max-w-[700px] flex-wrap justify-center gap-6 px-6 md:px-0">
       {cards.map((card, i) => {
         const rotation = rotations[i % rotations.length]
         return (
