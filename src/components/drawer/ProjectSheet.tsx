@@ -82,9 +82,9 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               animate={{
                 top: scrolled ? 0 : 88,
                 y: 0,
-                // When scrolled: flush to top → remove top corners, keep bottom ones
+                // When scrolled: no corners at all (panel fills edge-to-edge)
                 // When at top: all 4 corners rounded (floating card)
-                borderRadius: scrolled ? '0px 0px 20px 20px' : '20px',
+                borderRadius: scrolled ? '0px' : '20px',
               }}
               exit={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               transition={{
