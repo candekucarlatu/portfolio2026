@@ -41,7 +41,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
             {/* Full-screen backdrop — blurs the canvas, closes on click */}
             <motion.div
               key="sheet-backdrop"
-              className="fixed inset-0 z-40 bg-white/70 backdrop-blur-[8px]"
+              className="fixed inset-0 z-40 bg-white/70 backdrop-blur-[4px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -73,7 +73,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               <div className="h-[88px] flex-shrink-0" onClick={close} />
 
               {/* White card */}
-              <div className="bg-paper text-ink relative min-h-[calc(100vh-88px)] rounded-t-2xl shadow-2xl">
+              <div className="bg-paper text-ink relative min-h-[calc(100vh-88px)] rounded-2xl shadow-2xl">
                 {/*
                  * Sticky close button — uses a zero-height sticky container so it doesn't
                  * push content down. The button floats in the top-right corner and stays
