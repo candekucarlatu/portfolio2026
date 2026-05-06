@@ -273,81 +273,15 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         </div>
       </div>
 
-      {/* 11 ── Image 26 (document page screenshot, slightly tilted) */}
-      {/* Figma flex: left=1365 top=599 w=208.708 h=276.607 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 319, top: 65, width: 209, height: 277 }}
-      >
-        <div style={{ transform: 'rotate(-2.83deg)', flexShrink: 0 }}>
-          <div
-            style={{
-              width: 196,
-              height: 267,
-              position: 'relative',
-              boxShadow: '4px 4px 4px 0px rgba(0,0,0,0.15)',
-              overflow: 'hidden',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/canvas/scribd/image26.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none select-none"
-              style={{
-                position: 'absolute',
-                top: '-6.53%',
-                left: '-13.41%',
-                width: '126.47%',
-                height: '115.79%',
-                maxWidth: 'none',
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* 12 ── Image 25 (phone/tablet screenshot) */}
-      {/* Figma flex: left=1435.1 top=618.92 w=160.303 h=299.378 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 389, top: 85, width: 160, height: 299 }}
-      >
-        <div style={{ transform: 'rotate(-4.83deg)', flexShrink: 0 }}>
-          <div
-            style={{
-              width: 136,
-              height: 289,
-              position: 'relative',
-              boxShadow: '2px 2px 6px 0px rgba(0,0,0,0.15)',
-              overflow: 'hidden',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/canvas/scribd/image25.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none select-none"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* 13 ── Pinza for screenshots — ABOVE screenshots (z-order) */}
-      {/* Figma: left=1486 top=534 → container left=440 top=0 */}
-      <Image
-        src="/canvas/scribd/pinza.png"
+      {/* 11 ── Shelf composite for screenshots area */}
+      {/* Replaces image25, image26 and their pinza — drop shelf.png to update */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/scribd/shelf.png"
         alt=""
-        width={46}
-        height={139}
-        sizes="46px"
-        quality={100}
-        className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 440, top: 0 }}
         aria-hidden
+        className="pointer-events-none absolute select-none"
+        style={{ left: 319, top: 0, maxWidth: 'none' }}
       />
     </Link>
   )
