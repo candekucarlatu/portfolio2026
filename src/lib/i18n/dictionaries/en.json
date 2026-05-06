@@ -34,5 +34,27 @@
     "duration": "Duration",
     "team": "Team",
     "role": "Role"
+  },
+  "aboutSheet": {
+    "profileLabel": "PROFILE",
+    "principlesLabel": "DESIGN PRINCIPLES",
+    "collage1": "Hey there!",
+    "collage2": "I'm Cande",
+    "collage3": "and Membrillo",
+    "bio1": "I'm a Product Designer from Buenos Aires with 8+ years of experience working end-to-end on B2C and SaaS products.",
+    "bio2": "Most recently I led the strategy and design of a city-scale game for Las Vegas — joining when it was just an idea and seeing it through: team alignment, game mechanics, roadmap, and final visual design. Before that, I worked at Intive on products you've probably used — Scribd, SlideShare, Kaplan, and BlackBerry.",
+    "links": {
+      "email": "Email",
+      "linkedin": "Linkedin",
+      "instagram": "Instagram",
+      "resume": "Resume",
+      "resumeValue": "download here"
+    },
+    "principles": [
+      { "title": "Use research to decide, not to validate.", "body": "By the time I'm running a study, I already know what question I'm answering and what we'll do with the answer." },
+      { "title": "Work end-to-end.", "body": "Not because I want to own everything, but because the handoff is where things break." },
+      { "title": "Ship to learn.", "body": "I'd rather ship something imperfect and learn than spend another sprint perfecting a bet we haven't tested." },
+      { "title": "Treat efficiency as a design problem.", "body": "That means using AI to compress the gap between decision and artifact to giving developers more context, less friction, and fewer back-and-forth rounds." }
+    ]
   }
 }

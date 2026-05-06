@@ -218,7 +218,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           <GastlyDecor />
           <CollageDecor />
 
-          <AboutMeCard dict={dict} />
+          <AboutMeCard dict={dict} locale={locale} />
 
           {PROJECTS.map((item) => {
             const project = projectMap.get(item.slug)

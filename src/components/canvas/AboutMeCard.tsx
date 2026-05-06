@@ -1,16 +1,19 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
+import type { Locale } from '@/lib/i18n/config'
 import { ABOUT_ME_RECT } from './itemPositions'
 
 interface AboutMeCardProps {
   dict: Dictionary
+  locale: Locale
 }
 
 // Positions from Figma node 201:64 (580×430). Coord offset: Figma abs (-405, -224).
 // Elements use centered-rotation: position = center of bbox, translate(-50%,-50%) + rotate.
 // DOM order matches Figma stacking: photo → sticker → paper+text+links → stars → pinzas.
 
-export function AboutMeCard({ dict }: AboutMeCardProps) {
+export function AboutMeCard({ dict, locale }: AboutMeCardProps) {
   const links = [
     { label: dict.contact.linkedin, href: dict.contact.linkedinUrl },
     { label: dict.contact.email, href: `mailto:${dict.contact.emailAddress}` },
@@ -90,6 +93,14 @@ export function AboutMeCard({ dict }: AboutMeCardProps) {
         style={{ left: 170, top: 63 }}
         priority
         aria-hidden
+      />
+
+      {/* 3b — Invisible tap target that opens the About Me sheet */}
+      <Link
+        href={`/${locale}/about`}
+        aria-label="About Me"
+        className="absolute z-10 focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 rounded"
+        style={{ left: 170, top: 63, width: 410, height: 280 }}
       />
 
       {/* 4 — Bio text lines (on paper, above photo edge) */}
