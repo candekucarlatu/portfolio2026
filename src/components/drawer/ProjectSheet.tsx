@@ -76,14 +76,17 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
             <motion.div
               ref={panelRef}
               key="sheet-panel"
-              className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain rounded-[20px] shadow-2xl"
+              className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain shadow-2xl"
               style={{ left: 360, right: 360, bottom: 0 }}
-              initial={{ top: 88, y: reduceMotion ? 0 : '100%' }}
+              initial={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               animate={{
                 top: scrolled ? 0 : 88,
                 y: 0,
+                // When scrolled: flush to top → remove top corners, keep bottom ones
+                // When at top: all 4 corners rounded (floating card)
+                borderRadius: scrolled ? '0px 0px 20px 20px' : '20px',
               }}
-              exit={{ top: 88, y: reduceMotion ? 0 : '100%' }}
+              exit={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               transition={{
                 y: {
                   duration: reduceMotion ? 0.01 : 0.52,
@@ -93,10 +96,14 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
                   duration: reduceMotion ? 0.01 : 0.35,
                   ease: [0.16, 1, 0.3, 1],
                 },
+                borderRadius: {
+                  duration: reduceMotion ? 0.01 : 0.35,
+                  ease: [0.16, 1, 0.3, 1],
+                },
               }}
             >
-              {/* bg-paper wrapper — content only, ends with the last section */}
-              <div className="bg-paper text-ink">
+              {/* bg-paper wrapper — overflow-hidden ensures no ghost space after last section */}
+              <div className="bg-paper text-ink overflow-hidden">
                 {/* Close button — scrolls with content, like Stripe */}
                 <div className="flex justify-end px-4 pt-4">
                   <button

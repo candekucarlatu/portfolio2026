@@ -55,7 +55,7 @@ function getTopSpacing(prev: Section | null, curr: Section): string {
 
 export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
   return (
-    <article className="bg-paper text-ink mx-auto flex w-full flex-col pb-0">
+    <article className="bg-paper text-ink mx-auto mb-0 flex w-full flex-col pb-0">
       {project.sections.map((section, idx) => {
         const prev = idx > 0 ? project.sections[idx - 1] : null
         const spacing = getTopSpacing(prev, section)
