@@ -22,10 +22,12 @@
       "body": "But when it came to documents, users needed a reader that got out of the way: one that let them evaluate and read without distraction. For the product, longer, more focused sessions meant more ad value and a layout that could finally scale across formats."
     },
     {
-      "type": "video",
-      "variant": "desktop",
+      "type": "image-compare",
       "background": "#ede8dd",
-      "imageSrc": "/canvas/projects/slideshare/problem-screenshot.png"
+      "before": { "src": "/canvas/projects/slideshare/before.png", "alt": "SlideShare document reader — before redesign" },
+      "after": { "src": "/canvas/projects/slideshare/after.png", "alt": "SlideShare document reader — after redesign" },
+      "beforeLabel": "Before",
+      "afterLabel": "After"
     },
     {
       "type": "section",
@@ -57,7 +59,9 @@
       "type": "next-project",
       "slug": "kaplan",
       "title": "Giving Learner Home's navigation the structure it never had.",
-      "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Kaplan case study preview", "width": 251, "height": 513 }
+      "cta": "Explore Kaplan's redesign →",
+      "imageLayout": "wide",
+      "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Kaplan case study preview", "width": 666, "height": 513 }
     }
   ]
 }

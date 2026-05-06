@@ -39,54 +39,62 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
       {/* ── Z-ORDER: bottom → top ── */}
 
       {/* 1 ── Case Study sticky (bottom layer) */}
-      {/* MCP: left=-118 top=-61.78 wrapper w=254 h=198 */}
-      <div className="absolute" style={{ left: 78, top: 295, width: 254, height: 198 }}>
+      {/* Figma 449:9287: wrapper 318.998×203.592 at container (13, 294) */}
+      <div className="absolute" style={{ left: 13, top: 294, width: 319, height: 204 }}>
         <div className="flex h-full w-full items-center justify-center">
           <div
             className="relative"
             style={{
-              width: 249,
-              height: 191,
+              width: 314,
+              height: 195,
               backgroundColor: '#e5dbfc',
-              boxShadow: '2px 5px 5px rgba(0,0,0,0.1)',
+              filter: 'drop-shadow(2px 5px 5px rgba(0,0,0,0.1))',
               transform: 'rotate(1.51deg)',
               transformOrigin: 'center',
             }}
           >
-            {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
+            {/* Title — Caveat Bold 20px #1f1a14 line-height:normal */}
             <p
               className="font-script absolute font-bold"
-              style={{ left: 22, top: 33, width: 212, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
+              style={{ left: 29.76, top: 33.05, width: 242, fontSize: 20, color: '#1f1a14', lineHeight: 'normal' }}
             >
               {card.title}
             </p>
 
-            {/* Line 1 — at top=51.53, h=2.29 */}
-            <div className="absolute" style={{ left: 24, top: 51, width: 208, height: 2, overflow: 'visible' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/tacobell/linea.svg"
-                alt=""
-                aria-hidden
-                style={{ position: 'absolute', inset: '-43.67% -0.48% -43.68% -0.48%', display: 'block', width: '100%', height: '100%' }}
-              />
+            {/* Line 1 — Figma: outer left=23.17 top=53.37 w=252.891 */}
+            <div
+              className="absolute flex items-center justify-center"
+              style={{ left: 23.17, top: 53.37, width: 252.891, height: 3.467, overflow: 'visible' }}
+            >
+              <div style={{ transform: 'rotate(-0.27deg) skewX(-0.59deg)', flexShrink: 0 }}>
+                <div style={{ width: 252.881, height: 2.29, position: 'relative' }}>
+                  <div style={{ position: 'absolute', inset: '-43.67% -0.4% -43.68% -0.4%' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/canvas/tacobell/linea.svg" alt="" aria-hidden style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Line 2 — at top=77.04, h=3.09 */}
-            <div className="absolute" style={{ left: 23, top: 77, width: 202, height: 3, overflow: 'visible' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/tacobell/linea1.svg"
-                alt=""
-                aria-hidden
-                style={{ position: 'absolute', inset: '-32.37% -0.49%', display: 'block', width: '100%', height: '100%' }}
-              />
+            {/* Line 2 — Figma: outer left=22.73 top=78.9 w=245.941 */}
+            <div
+              className="absolute flex items-center justify-center"
+              style={{ left: 22.73, top: 78.9, width: 245.941, height: 4.235, overflow: 'visible' }}
+            >
+              <div style={{ transform: 'rotate(-0.27deg) skewX(-0.59deg)', flexShrink: 0 }}>
+                <div style={{ width: 245.926, height: 3.09, position: 'relative' }}>
+                  <div style={{ position: 'absolute', inset: '-32.36% -0.41%' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/canvas/tacobell/linea1.svg" alt="" aria-hidden style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Subtitle — Caveat Regular 16px #1f1a14 leading-1.35 */}
+            {/* Subtitle — Caveat Regular 18px #1f1a14 leading-1.35 */}
             <p
               className="font-script absolute font-normal"
-              style={{ left: 19, top: 92, width: 203, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
+              style={{ left: 26.02, top: 97.17, width: 251, fontSize: 18, lineHeight: 1.35, color: '#1f1a14' }}
             >
               {card.subtitle}
             </p>

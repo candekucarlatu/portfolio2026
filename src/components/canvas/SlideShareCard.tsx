@@ -128,54 +128,72 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
       </div>
 
       {/* 8 ── Case Study sticky note */}
-      {/* Figma: inner 290×170 rotated 1.51° → outer ≈294×176, pos left=378 top=267 */}
-      <div className="absolute" style={{ left: 378, top: 267, width: 294, height: 176 }}>
+      {/* Figma 439:12788: inner 318×178 rotated 1.51° → outer ≈324×186, pos left=363 top=262 */}
+      <div className="absolute" style={{ left: 363, top: 262, width: 324, height: 186 }}>
         <div className="flex h-full w-full items-center justify-center">
           <div
             className="relative"
             style={{
-              width: 290,
-              height: 170,
+              width: 318,
+              height: 178,
               backgroundColor: '#ffebca',
               filter: 'drop-shadow(2px 5px 5px rgba(0,0,0,0.1))',
               transform: 'rotate(1.51deg)',
               transformOrigin: 'center',
             }}
           >
-            {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
+            {/* Title — Caveat Bold 20px #1f1a14 line-height:normal */}
             <p
               className="font-script absolute font-bold"
-              style={{ left: 22.13, top: 42.43, width: 248.265, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
+              style={{ left: 22.13, top: 42.43, width: 266.698, fontSize: 20, color: '#1f1a14', lineHeight: 'normal' }}
             >
               {card.title}
             </p>
 
-            {/* Line 1 — h=2.29 */}
-            <div className="absolute" style={{ left: 24.13, top: 60.7, width: 234.57, height: 2, overflow: 'visible' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/slideshare/linea.svg"
-                alt=""
-                aria-hidden
-                style={{ position: 'absolute', inset: '-43.67% -0.43% -43.68% -0.43%', display: 'block', width: '100%', height: '100%' }}
-              />
+            {/* Line 1 — Figma: outer left=24.68 top=62.21 w=291.035 */}
+            <div
+              className="absolute flex items-center justify-center"
+              style={{ left: 24.68, top: 62.21, width: 291.035, height: 3.774, overflow: 'visible' }}
+            >
+              <div style={{ transform: 'rotate(-0.29deg) skewX(-0.65deg)', flexShrink: 0 }}>
+                <div style={{ width: 291.024, height: 2.29, position: 'relative' }}>
+                  <div style={{ position: 'absolute', inset: '-43.66% -0.34% -43.67% -0.34%' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/canvas/slideshare/linea.svg"
+                      alt=""
+                      aria-hidden
+                      style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Line 2 — h=3.09 */}
-            <div className="absolute" style={{ left: 22.88, top: 85.61, width: 236.001, height: 3, overflow: 'visible' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/slideshare/linea1.svg"
-                alt=""
-                aria-hidden
-                style={{ position: 'absolute', inset: '-32.37% -0.42%', display: 'block', width: '100%', height: '100%' }}
-              />
+            {/* Line 2 — Figma: outer left=22.96 top=87.11 w=292.815 */}
+            <div
+              className="absolute flex items-center justify-center"
+              style={{ left: 22.96, top: 87.11, width: 292.815, height: 4.584, overflow: 'visible' }}
+            >
+              <div style={{ transform: 'rotate(-0.29deg) skewX(-0.65deg)', flexShrink: 0 }}>
+                <div style={{ width: 292.799, height: 3.09, position: 'relative' }}>
+                  <div style={{ position: 'absolute', inset: '-32.36% -0.34%' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/canvas/slideshare/linea1.svg"
+                      alt=""
+                      aria-hidden
+                      style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Subtitle — Caveat Regular 16px #1f1a14 leading-1.35 */}
+            {/* Subtitle — Caveat Regular 18px #1f1a14 leading-1.35 */}
             <p
               className="font-script absolute font-normal"
-              style={{ left: 18.88, top: 104.54, width: 248.582, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
+              style={{ left: 18.88, top: 104.54, width: 280.092, fontSize: 18, lineHeight: 1.35, color: '#1f1a14' }}
             >
               {card.subtitle}
             </p>

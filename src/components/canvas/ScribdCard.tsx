@@ -182,54 +182,58 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
       />
 
       {/* 8 ── Green sticky note (Evidence 1) */}
-      {/* Figma flex: left=1463 top=918 — inner 305×185 rotated 6.98° → outer 325×221 */}
-      <div className="absolute" style={{ left: 390, top: 384, width: 325, height: 221 }}>
+      {/* Figma 439:12759: inner 305×200 rotated 6.98° → outer ~325×236, pos left=390 top=377 */}
+      <div className="absolute" style={{ left: 390, top: 377, width: 325, height: 236 }}>
         <div className="flex h-full w-full items-center justify-center">
           <div
             className="relative"
             style={{
               width: 305,
-              height: 185,
+              height: 200,
               backgroundColor: '#d6f5db',
               filter: 'drop-shadow(2px 5px 5px rgba(0,0,0,0.1))',
               transform: 'rotate(6.98deg)',
               transformOrigin: 'center',
             }}
           >
-            {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
+            {/* Title — Caveat Bold 20px #1f1a14 line-height:normal */}
             <p
               className="font-script absolute font-bold"
-              style={{ left: 22.38, top: 37.23, width: 260.88, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
+              style={{ left: 22.38, top: 37.23, width: 260.88, fontSize: 20, color: '#1f1a14', lineHeight: 'normal' }}
             >
               {card.title}
             </p>
 
-            {/* Line 1 — h=2.29 */}
-            <div className="absolute" style={{ left: 24.38, top: 55.5, width: 232.606, height: 2, overflow: 'visible' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/scribd/linea.svg"
-                alt=""
-                aria-hidden
-                style={{ position: 'absolute', inset: '-43.67% -0.43% -43.68% -0.43%', display: 'block', width: '100%', height: '100%' }}
-              />
+            {/* Line 1 — Figma: left=25.12 top=55.39 w=269.54 h=2.652 */}
+            <div className="absolute" style={{ left: 25.12, top: 55.39, width: 269.54, height: 2.652, overflow: 'visible' }}>
+              <div style={{ position: 'absolute', inset: '-37.71% -0.37% -37.72% -0.37%' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/canvas/scribd/linea.svg"
+                  alt=""
+                  aria-hidden
+                  style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }}
+                />
+              </div>
             </div>
 
-            {/* Line 2 — h=3.09 */}
-            <div className="absolute" style={{ left: 23.14, top: 81.01, width: 236.314, height: 3, overflow: 'visible' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/scribd/linea1.svg"
-                alt=""
-                aria-hidden
-                style={{ position: 'absolute', inset: '-32.37% -0.42%', display: 'block', width: '100%', height: '100%' }}
-              />
+            {/* Line 2 — Figma: left=23.68 top=84.94 w=273.837 h=3.578 */}
+            <div className="absolute" style={{ left: 23.68, top: 84.94, width: 273.837, height: 3.578, overflow: 'visible' }}>
+              <div style={{ position: 'absolute', inset: '-27.95% -0.37%' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/canvas/scribd/linea1.svg"
+                  alt=""
+                  aria-hidden
+                  style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }}
+                />
+              </div>
             </div>
 
-            {/* Subtitle — Caveat Regular 16px #1f1a14 leading-1.35 */}
+            {/* Subtitle — Caveat Regular 18px #1f1a14 leading-1.35 */}
             <p
               className="font-script absolute font-normal"
-              style={{ left: 21.09, top: 100.16, width: 245.63, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
+              style={{ left: 21.09, top: 100.16, width: 245.63, fontSize: 18, lineHeight: 1.35, color: '#1f1a14' }}
             >
               {card.subtitle}
             </p>

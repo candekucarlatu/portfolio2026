@@ -22,10 +22,12 @@
       "body": "Pero cuando se trataba de documentos, los usuarios necesitaban un lector que no estorbara: uno que les permitiera evaluar y leer sin distracciones. Para el producto, sesiones más largas y enfocadas significaban más valor publicitario y un layout que por fin pudiera escalar a distintos formatos."
     },
     {
-      "type": "video",
-      "variant": "desktop",
+      "type": "image-compare",
       "background": "#ede8dd",
-      "imageSrc": "/canvas/projects/slideshare/problem-screenshot.png"
+      "before": { "src": "/canvas/projects/slideshare/before.png", "alt": "Lector de SlideShare — antes del rediseño" },
+      "after": { "src": "/canvas/projects/slideshare/after.png", "alt": "Lector de SlideShare — después del rediseño" },
+      "beforeLabel": "Antes",
+      "afterLabel": "Después"
     },
     {
       "type": "section",
@@ -57,7 +59,9 @@
       "type": "next-project",
       "slug": "kaplan",
       "title": "Darle a Learner Home la estructura de navegación que nunca tuvo.",
-      "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Vista previa del caso Kaplan", "width": 251, "height": 513 }
+      "cta": "Explorá el rediseño de Kaplan →",
+      "imageLayout": "wide",
+      "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Vista previa del caso Kaplan", "width": 666, "height": 513 }
     }
   ]
 }

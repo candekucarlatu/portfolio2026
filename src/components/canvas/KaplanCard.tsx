@@ -57,36 +57,36 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
       {/* ── Z-ORDER: bottom → top ── */}
 
       {/* 1 ── Light-blue sticky note (Evidence 3) */}
-      {/* Figma flex: left=1065.23 top=-143 w=282.1 h=189.922 */}
-      <div className="absolute" style={{ left: 44, top: 102, width: 282, height: 190 }}>
+      {/* Figma 439:12828: wrapper ~285×192 */}
+      <div className="absolute" style={{ left: 43, top: 101, width: 285, height: 192 }}>
         <div className="flex h-full w-full items-center justify-center">
           <div
             className="relative"
             style={{
-              width: 277,
-              height: 183,
+              width: 280,
+              height: 185,
               backgroundColor: '#d3effe',
               filter: 'drop-shadow(2px 5px 5px rgba(0,0,0,0.1))',
               transform: 'rotate(1.51deg)',
               transformOrigin: 'center',
             }}
           >
-            {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
+            {/* Title — Caveat Bold 20px #1f1a14 line-height:normal */}
             <p
               className="font-script absolute font-bold"
-              style={{ left: 22, top: 33, width: 224, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
+              style={{ left: 21.89, top: 33.26, width: 237.577, fontSize: 20, color: '#1f1a14', lineHeight: 'normal' }}
             >
               {card.title}
             </p>
 
-            {/* Line 1 — flex wrapper with slight rotation/skew, h=2.29 */}
+            {/* Line 1 — Figma: outer left=24.33 top=50.28 w=255.259 */}
             <div
               className="absolute flex items-center justify-center"
-              style={{ left: 24, top: 51, width: 228, height: 3, overflow: 'visible' }}
+              style={{ left: 24.33, top: 50.28, width: 255.259, height: 3.53, overflow: 'visible' }}
             >
-              <div style={{ transform: 'rotate(-0.13deg) skewX(-0.28deg)', flexShrink: 0 }}>
-                <div style={{ width: 228, height: 2, position: 'relative' }}>
-                  <div style={{ position: 'absolute', inset: '-43.67% -0.44% -43.68% -0.44%' }}>
+              <div style={{ transform: 'rotate(-0.28deg) skewX(-0.62deg)', flexShrink: 0 }}>
+                <div style={{ width: 255.248, height: 2.29, position: 'relative' }}>
+                  <div style={{ position: 'absolute', inset: '-43.66% -0.39% -43.68% -0.39%' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/canvas/kaplan/linea.svg"
@@ -99,14 +99,14 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
               </div>
             </div>
 
-            {/* Line 2 — flex wrapper with slight rotation/skew, h=3.09 */}
+            {/* Line 2 — Figma: outer left=22.65 top=75.84 w=248.244 */}
             <div
               className="absolute flex items-center justify-center"
-              style={{ left: 23, top: 77, width: 222, height: 4, overflow: 'visible' }}
+              style={{ left: 22.65, top: 75.84, width: 248.244, height: 4.296, overflow: 'visible' }}
             >
-              <div style={{ transform: 'rotate(-0.13deg) skewX(-0.28deg)', flexShrink: 0 }}>
-                <div style={{ width: 222, height: 3, position: 'relative' }}>
-                  <div style={{ position: 'absolute', inset: '-32.37% -0.45% -32.36% -0.45%' }}>
+              <div style={{ transform: 'rotate(-0.28deg) skewX(-0.62deg)', flexShrink: 0 }}>
+                <div style={{ width: 248.229, height: 3.09, position: 'relative' }}>
+                  <div style={{ position: 'absolute', inset: '-32.36% -0.4%' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="/canvas/kaplan/linea1.svg"
@@ -119,10 +119,10 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
               </div>
             </div>
 
-            {/* Subtitle — Caveat Regular 16px #1f1a14 leading-1.35 */}
+            {/* Subtitle — Caveat Regular 18px #1f1a14 leading-1.35 */}
             <p
               className="font-script absolute font-normal"
-              style={{ left: 19, top: 92, width: 229, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
+              style={{ left: 20.09, top: 94.33, width: 256.397, fontSize: 18, lineHeight: 1.35, color: '#1f1a14' }}
             >
               {card.subtitle}
             </p>
