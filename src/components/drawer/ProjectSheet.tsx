@@ -16,7 +16,9 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
   const reduceMotion = useReducedMotion()
   const isDesktop = useMediaQuery('(min-width: 1024px)', true)
   const [open, setOpen] = useState(true)
+  const [scrolled, setScrolled] = useState(false)
   const closingRef = useRef(false)
+  const panelRef = useRef<HTMLDivElement>(null)
 
   const close = useCallback(() => {
     if (closingRef.current) return
@@ -33,16 +35,29 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
     return () => window.removeEventListener('keydown', handler)
   }, [close])
 
+  // Track scroll position to collapse top gap when user scrolls down
+  useEffect(() => {
+    if (!isDesktop) return
+    const el = panelRef.current
+    if (!el) return
+    const handler = () => setScrolled(el.scrollTop > 20)
+    el.addEventListener('scroll', handler, { passive: true })
+    return () => el.removeEventListener('scroll', handler)
+  }, [isDesktop])
+
   if (isDesktop) {
     return (
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop — warm orange tint + blur, click to close */}
+            {/* Backdrop — diagonal gradient white → orange + blur, click to close */}
             <motion.div
               key="sheet-backdrop"
               className="fixed inset-0 z-40 backdrop-blur-[4px]"
-              style={{ backgroundColor: 'rgba(255, 62, 0, 0.12)' }}
+              style={{
+                background:
+                  'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,62,0,0.28) 100%)',
+              }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -51,24 +66,33 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
             />
 
             {/*
-             * Panel — fixed at 88px from top, 360px from each side, flush at bottom.
-             * overflow-hidden clips the rounded-[20px] corners on the scrollable content.
-             * overflow-y-auto scrolls the content inside.
+             * Panel — starts at 88px from top. Shrinks to top:0 as user scrolls,
+             * giving the appearance the content is "taking over" the screen.
+             * Rounded corners stay visible at all times (sides are always 360px).
              *
-             * Structure inside:
-             *   - bg-paper div: close button + case study content
-             *   - transparent spacer at end: reveals the backdrop below (no white square)
+             * overflow-hidden clips rounded corners on scrollable content.
+             * overflow-y-auto scrolls content inside.
              */}
             <motion.div
+              ref={panelRef}
               key="sheet-panel"
               className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain rounded-[20px] shadow-2xl"
-              style={{ left: 360, right: 360, top: 88, bottom: 0 }}
-              initial={{ y: reduceMotion ? 0 : '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: reduceMotion ? 0 : '100%' }}
+              style={{ left: 360, right: 360, bottom: 0 }}
+              initial={{ top: 88, y: reduceMotion ? 0 : '100%' }}
+              animate={{
+                top: scrolled ? 0 : 88,
+                y: 0,
+              }}
+              exit={{ top: 88, y: reduceMotion ? 0 : '100%' }}
               transition={{
-                duration: reduceMotion ? 0.01 : 0.52,
-                ease: [0.16, 1, 0.3, 1],
+                y: {
+                  duration: reduceMotion ? 0.01 : 0.52,
+                  ease: [0.16, 1, 0.3, 1],
+                },
+                top: {
+                  duration: reduceMotion ? 0.01 : 0.35,
+                  ease: [0.16, 1, 0.3, 1],
+                },
               }}
             >
               {/* bg-paper wrapper — content only, ends with the last section */}
