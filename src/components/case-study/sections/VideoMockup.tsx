@@ -8,7 +8,7 @@ export function VideoMockup({ src, poster, background = '#ede5fa' }: VideoMockup
   return (
     <section className="w-full overflow-hidden">
       <div
-        className="relative flex h-[320px] w-full items-center justify-center md:h-[520px] lg:h-[664px]"
+        className="relative flex h-[520px] w-full items-center justify-center lg:h-[664px]"
         style={{ backgroundColor: background }}
       >
         {/* iPhone frame — 236×481px per Figma 392:98 */}

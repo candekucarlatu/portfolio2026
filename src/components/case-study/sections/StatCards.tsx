@@ -16,6 +16,53 @@ interface StatCardsProps {
   cards: { value: string; label: string; color: NoteColor }[]
 }
 
+/**
+ * Renders the value text for a sticky note card.
+ *
+ * Rules (from Figma 170:846–855):
+ *  - Value with ★ → number at 40px, star at 24px (e.g. "1.9 ★")
+ *  - Long value (>8 chars, typically a quote) → 24px, positioned higher (top=24)
+ *  - Short stat → 40px (default, top=34)
+ */
+function CardValue({ value }: { value: string }) {
+  // Case: "1.9 ★" — split at the star, render star smaller
+  if (value.includes('★')) {
+    const parts = value.split('★')
+    return (
+      <p
+        className="font-script absolute font-bold text-ink"
+        style={{ top: 38, left: 20, lineHeight: 0, fontSize: 0, whiteSpace: 'nowrap' }}
+      >
+        <span style={{ fontSize: 40, lineHeight: 'normal' }}>{parts[0]}</span>
+        <span style={{ fontSize: 24, lineHeight: 'normal', fontWeight: 400 }}>★</span>
+        {parts[1]}
+      </p>
+    )
+  }
+
+  // Case: long text / quote (e.g. "\"just another coupon app.\"")
+  if (value.length > 8) {
+    return (
+      <p
+        className="font-script absolute font-bold text-ink"
+        style={{ fontSize: 24, lineHeight: 'normal', top: 24, left: 20, width: 165 }}
+      >
+        {value}
+      </p>
+    )
+  }
+
+  // Default: short stat (84%, etc.)
+  return (
+    <p
+      className="font-script absolute font-bold text-ink"
+      style={{ fontSize: 40, lineHeight: 'normal', top: 34, left: 20, whiteSpace: 'nowrap' }}
+    >
+      {value}
+    </p>
+  )
+}
+
 export function StatCards({ cards }: StatCardsProps) {
   return (
     <section className="mx-auto flex w-full max-w-[680px] flex-wrap justify-center gap-6 px-6 md:px-0">
@@ -37,13 +84,7 @@ export function StatCards({ cards }: StatCardsProps) {
                   boxShadow: '2px 5px 10px 0px rgba(0,0,0,0.1)',
                 }}
               >
-                {/* Value — Caveat Bold 40px */}
-                <p
-                  className="font-script absolute font-bold text-ink"
-                  style={{ fontSize: 40, lineHeight: 'normal', top: 34, left: 20, whiteSpace: 'pre-wrap' }}
-                >
-                  {card.value}
-                </p>
+                <CardValue value={card.value} />
                 {/* Label — Caveat Regular 16px */}
                 <p
                   className="font-script absolute font-normal text-ink"

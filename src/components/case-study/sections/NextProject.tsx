@@ -21,7 +21,7 @@ export function NextProject({ slug, title, cta, image, ctaLabel, locale }: NextP
       <div className="relative mx-auto flex min-h-[400px] w-full max-w-[960px] items-center gap-16 px-6 py-16 md:min-h-[480px] md:px-8 md:py-20">
         {/* Left: tag + title + cta */}
         <div className="relative z-10 flex max-w-[420px] flex-col gap-5">
-          <div className="inline-flex h-[25px] items-center overflow-hidden rounded-[2px] bg-white px-2">
+          <div className="inline-flex h-[25px] items-center overflow-hidden rounded-[2px] bg-white px-2 shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
             <span className="text-ink text-[11px] font-bold tracking-[0.8px] whitespace-nowrap uppercase">
               {ctaLabel}
             </span>

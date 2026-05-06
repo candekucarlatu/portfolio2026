@@ -7,7 +7,7 @@ interface SectionBlockProps {
 export function SectionBlock({ label, title, body }: SectionBlockProps) {
   return (
     <section className="mx-auto flex max-w-[640px] flex-col gap-5 px-6 md:px-0">
-      <div className="inline-flex h-[25px] items-center overflow-hidden rounded-[2px] bg-white px-2">
+      <div className="inline-flex h-[25px] items-center overflow-hidden rounded-[2px] bg-white px-2 shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
         <span className="text-ink text-[11px] font-bold tracking-[0.8px] whitespace-nowrap">
           {label}
         </span>
