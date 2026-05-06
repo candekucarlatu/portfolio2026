@@ -155,6 +155,15 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
                 className="pointer-events-none select-none"
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
               />
+              {/* Texture overlay — mix-blend-mode overlay */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/canvas/slideshare/texture.png"
+                alt=""
+                aria-hidden
+                className="pointer-events-none select-none"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover', opacity: 0.4, mixBlendMode: 'overlay' }}
+              />
             </div>
           </div>
         </div>
@@ -245,37 +254,37 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
             {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
             <p
               className="font-script absolute font-bold"
-              style={{ left: 22, top: 33, width: 212, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
+              style={{ left: 22.13, top: 42.43, width: 248.265, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
             >
               {card.title}
             </p>
 
             {/* Line 1 — h=2.29 */}
-            <div className="absolute" style={{ left: 24, top: 52, width: 208, height: 2, overflow: 'visible' }}>
+            <div className="absolute" style={{ left: 24.13, top: 60.7, width: 234.57, height: 2, overflow: 'visible' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/canvas/slideshare/linea.svg"
                 alt=""
                 aria-hidden
-                style={{ position: 'absolute', inset: '-43.67% -0.48% -43.68% -0.48%', display: 'block', width: '100%', height: '100%' }}
+                style={{ position: 'absolute', inset: '-43.67% -0.43% -43.68% -0.43%', display: 'block', width: '100%', height: '100%' }}
               />
             </div>
 
             {/* Line 2 — h=3.09 */}
-            <div className="absolute" style={{ left: 23, top: 77, width: 202, height: 3, overflow: 'visible' }}>
+            <div className="absolute" style={{ left: 22.88, top: 85.61, width: 236.001, height: 3, overflow: 'visible' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/canvas/slideshare/linea1.svg"
                 alt=""
                 aria-hidden
-                style={{ position: 'absolute', inset: '-32.37% -0.49%', display: 'block', width: '100%', height: '100%' }}
+                style={{ position: 'absolute', inset: '-32.37% -0.42%', display: 'block', width: '100%', height: '100%' }}
               />
             </div>
 
             {/* Subtitle — Caveat Regular 16px #1f1a14 leading-1.35 */}
             <p
               className="font-script absolute font-normal"
-              style={{ left: 19, top: 92, width: 203, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
+              style={{ left: 18.88, top: 104.54, width: 248.582, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
             >
               {card.subtitle}
             </p>
@@ -366,7 +375,7 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/canvas/slideshare/cuaderno.png"
+                src="/canvas/slideshare/cuaderno-img.png"
                 alt=""
                 aria-hidden
                 className="pointer-events-none select-none"
