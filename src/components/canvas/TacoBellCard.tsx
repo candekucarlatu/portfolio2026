@@ -94,16 +94,16 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         </div>
       </div>
 
-      {/* 2 ── Pinza for sticky */}
+      {/* 2 ── Pinza for sticky — Figma 449:9287: left=-37, top=-163 → container (159, 194) */}
       <Image
         src="/canvas/tacobell/pinza.png"
         alt=""
-        width={46}
-        height={139}
+        width={92}
+        height={277}
         sizes="46px"
         quality={100}
-        className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 156, top: 230 }}
+        className="pointer-events-none absolute select-none"
+        style={{ left: 159, top: 194, width: 46, height: 138.5 }}
         aria-hidden
       />
 
@@ -214,34 +214,50 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         aria-hidden
       />
 
-      {/* 12 ── Llavero */}
-      {/* MCP: centered left=-220.85 top=-34.97 w=162 h=326 rotate(-9.5deg) */}
-      <div className="absolute" style={{ left: -25, top: 322, width: 162, height: 326 }}>
-        <div
-          className="flex h-full w-full items-center justify-center"
-          style={{ transform: 'rotate(-9.5deg)' }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/canvas/tacobell/llavero.png"
-            alt=""
-            aria-hidden
-            className="pointer-events-none select-none"
-            style={{ width: 112, height: 312, objectFit: 'contain', objectPosition: 'center' }}
-          />
+      {/* 12 ── Llavero + Gancho (Figma 439:12865) — one unified group */}
+      {/* Wrapper bounding box: MCP left=-220.85 top=-34.97 → container (−25, 322) */}
+      <div className="pointer-events-none absolute" style={{ left: -25, top: 322, width: 162, height: 326 }}>
+        {/* Llavero character with mask — flex-center, rotate(-9.5deg) */}
+        <div className="absolute flex h-full w-full items-center justify-center">
+          <div className="flex-none" style={{ transform: 'rotate(-9.5deg)' }}>
+            <div
+              style={{
+                width: 111.805,
+                height: 312.253,
+                position: 'relative',
+                overflow: 'hidden',
+                maskImage: 'url(/canvas/tacobell/llavero-mask.svg)',
+                WebkitMaskImage: 'url(/canvas/tacobell/llavero-mask.svg)',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: '32.446px 19.967px',
+                WebkitMaskPosition: '32.446px 19.967px',
+                maskSize: '116.804px 298px',
+                WebkitMaskSize: '116.804px 298px',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/canvas/tacobell/llavero.png"
+                alt=""
+                aria-hidden
+                className="pointer-events-none select-none"
+                style={{ position: 'absolute', height: '100%', left: '-46.4%', maxWidth: 'none', top: 0, width: '186.19%' }}
+                draggable={false}
+              />
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* 13 ── Gancho (llavero hook) — top of z-order, above sticky */}
-      {/* MCP: left=-195 top=-33 w=48 h=49 */}
-      <div className="absolute" style={{ left: 1, top: 324, width: 48, height: 49 }}>
+        {/* Gancho (clasp) — MCP offset from wrapper: (25.85, 1.97) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/canvas/tacobell/gancho.png"
           alt=""
           aria-hidden
-          className="pointer-events-none select-none"
-          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
+          className="pointer-events-none absolute select-none"
+          style={{ left: 25.85, top: 2, width: 48, height: 49 }}
+          draggable={false}
         />
       </div>
     </Link>
