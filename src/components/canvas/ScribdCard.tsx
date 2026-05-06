@@ -167,8 +167,7 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         </div>
       </div>
 
-      {/* 7 ── Pinza for papers */}
-      {/* Figma: left=1178 top=603 → container left=132 top=69 */}
+      {/* 7 ── Pinza for papers — hole-aligned: left=129 top=83 */}
       <Image
         src="/canvas/scribd/pinza.png"
         alt=""
@@ -177,7 +176,7 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 132, top: 69 }}
+        style={{ left: 129, top: 83 }}
         aria-hidden
       />
 
@@ -252,8 +251,7 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         </div>
       </div>
 
-      {/* 9 ── Pinza for sticky — ABOVE the sticky (z-order) */}
-      {/* Figma: left=1640 top=838 → container left=594 top=304 */}
+      {/* 9 ── Pinza for sticky — hole-aligned: left=586 top=315 */}
       <Image
         src="/canvas/scribd/pinza.png"
         alt=""
@@ -262,7 +260,7 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 594, top: 304 }}
+        style={{ left: 586, top: 315 }}
         aria-hidden
       />
 

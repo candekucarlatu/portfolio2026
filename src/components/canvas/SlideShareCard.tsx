@@ -76,8 +76,7 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
         </div>
       </div>
 
-      {/* 11 ── Pinza for poster */}
-      {/* Figma 439:12798: left=-228 top=409 → container left=136 top=0 */}
+      {/* 11 ── Pinza for poster — hole-aligned: left=129 top=14 */}
       <Image
         src="/canvas/slideshare/pinza.png"
         alt=""
@@ -86,7 +85,7 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 136, top: 0 }}
+        style={{ left: 129, top: 14 }}
         aria-hidden
       />
 
@@ -175,8 +174,7 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
         </div>
       </div>
 
-      {/* 9 ── Pinza for sticky note */}
-      {/* Figma: left=151 top=567 w=46 h=138.5 → container: left=515 top=158 */}
+      {/* 9 ── Pinza for sticky note — hole-aligned: left=509 top=170 */}
       <Image
         src="/canvas/slideshare/pinza.png"
         alt=""
@@ -185,7 +183,7 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 515, top: 158 }}
+        style={{ left: 509, top: 170 }}
         aria-hidden
       />
 

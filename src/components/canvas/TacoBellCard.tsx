@@ -102,7 +102,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         </div>
       </div>
 
-      {/* 2 ── Pinza for sticky — Figma 449:9287: left=-37, top=-163 → container (159, 194) */}
+      {/* 2 ── Pinza for sticky — hole-aligned: left=150 top=202 */}
       <Image
         src="/canvas/tacobell/pinza.png"
         alt=""
@@ -111,7 +111,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute select-none"
-        style={{ left: 159, top: 194, width: 46, height: 138.5 }}
+        style={{ left: 150, top: 202, width: 46, height: 138.5 }}
         aria-hidden
       />
 
@@ -161,7 +161,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         </div>
       </div>
 
-      {/* 8 ── Pinza for Paconaut cards */}
+      {/* 8 ── Pinza for Paconaut cards — hole-aligned: left=417 top=354 */}
       <Image
         src="/canvas/tacobell/pinza.png"
         alt=""
@@ -170,7 +170,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 416, top: 351 }}
+        style={{ left: 417, top: 354 }}
         aria-hidden
       />
 
@@ -209,7 +209,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         </div>
       </div>
 
-      {/* 11 ── Pinza for kiosk */}
+      {/* 11 ── Pinza for kiosk — hole-aligned: left=417 top=46 */}
       <Image
         src="/canvas/tacobell/pinza.png"
         alt=""
@@ -218,7 +218,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 416, top: 42 }}
+        style={{ left: 417, top: 46 }}
         aria-hidden
       />
 

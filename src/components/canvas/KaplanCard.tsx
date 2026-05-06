@@ -112,8 +112,7 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
         </div>
       </div>
 
-      {/* 2 ── Pinza for sticky — ABOVE sticky (z-order) */}
-      {/* Figma: left=1181 top=-245 → container left=160 top=0 */}
+      {/* 2 ── Pinza for sticky — hole-aligned: left=154 top=10 */}
       <Image
         src="/canvas/kaplan/pinza.png"
         alt=""
@@ -122,7 +121,7 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
         sizes="46px"
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 160, top: 0 }}
+        style={{ left: 154, top: 10 }}
         aria-hidden
       />
 
