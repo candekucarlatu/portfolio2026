@@ -3,14 +3,85 @@ import type { ProjectImage } from '@/lib/content/schema'
 
 interface ResearchCardsProps {
   cards: { title: string; body: string; image: ProjectImage }[]
+  layout?: 'stacked' | 'horizontal'
 }
 
 /**
- * Research insight cards — Figma 358:9101
- * White cards with drop-shadow. Alternating layout: odd cards → text then image,
- * even cards → image then text. Fully stacked (flex-col) to work within the panel width.
+ * Research insight cards.
+ *
+ * stacked (default) — Figma 358:9101 (Scribd)
+ *   White cards with drop-shadow. Alternating: odd cards → image top, text bottom;
+ *   even cards → text top, image bottom. Fully stacked (flex-col).
+ *
+ * horizontal — Figma 329:8676 (Kaplan)
+ *   White cards with drop-shadow. Alternating: even cards (0, 2) → text left, image right;
+ *   odd cards (1) → image left, text right. Responsive: stacks on mobile.
  */
-export function ResearchCards({ cards }: ResearchCardsProps) {
+export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps) {
+  if (layout === 'horizontal') {
+    return (
+      <section className="mx-auto w-full max-w-[1180px] flex flex-col gap-[54px]">
+        {cards.map((card, i) => {
+          const imageRight = i % 2 === 0 // 0, 2 → text left / image right; 1 → image left / text right
+
+          return (
+            <div
+              key={i}
+              className="bg-white shadow-[0px_6px_20px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col lg:flex-row"
+            >
+              {/* Image on left (odd cards) */}
+              {!imageRight && (
+                <div
+                  className="relative w-full overflow-hidden shrink-0 lg:w-1/2"
+                  style={{ aspectRatio: '599/446', borderRadius: 4 }}
+                >
+                  <Image
+                    src={card.image.src}
+                    alt={card.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+
+              {/* Text content */}
+              <div
+                className={`flex flex-1 flex-col gap-5 p-10 ${
+                  imageRight
+                    ? 'lg:pl-[56px] lg:pr-[40px] lg:py-[40px]'
+                    : 'lg:p-[40px]'
+                }`}
+              >
+                <h3 className="text-ink text-[22px] leading-[1.4] font-bold md:text-[28px]">
+                  {card.title}
+                </h3>
+                <p className="text-muted text-[18px] leading-[1.58]">{card.body}</p>
+              </div>
+
+              {/* Image on right (even cards: 0, 2) */}
+              {imageRight && (
+                <div
+                  className="relative w-full overflow-hidden shrink-0 lg:w-1/2"
+                  style={{ aspectRatio: '599/446', borderRadius: 4 }}
+                >
+                  <Image
+                    src={card.image.src}
+                    alt={card.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </section>
+    )
+  }
+
+  // stacked layout (default — Scribd)
   return (
     <section className="mx-auto w-full max-w-[1180px] flex flex-col gap-[54px]">
       {cards.map((card, i) => {

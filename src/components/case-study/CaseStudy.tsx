@@ -115,7 +115,7 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                 />
               )
             case 'research-cards':
-              return <ResearchCards cards={section.cards} />
+              return <ResearchCards cards={section.cards} layout={section.layout} />
             case 'next-project':
               return (
                 <NextProject

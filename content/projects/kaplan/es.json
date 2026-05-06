@@ -8,60 +8,71 @@
   "sections": [
     {
       "type": "hero",
-      "title": "¿Cómo navegar entre lo que dicen y lo que hacen los usuarios?",
-      "subtitle": "Kaplan es una empresa global de servicios educativos. Simplifiqué la navegación de Learner Home para reducir fricción y alinear la experiencia entre plataformas.",
+      "title": "Darle a la navegación de Learner Home la estructura que nunca tuvo.",
+      "subtitle": "Kaplan es una empresa global de servicios educativos con productos B2C y B2B. Simplifiqué la navegación para reducir fricción y alinear la experiencia entre plataformas.",
       "meta": {
-        "duration": "Oct–Dic 2022",
-        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer",
-        "role": "Product Designer"
+        "duration": "Oct–Dic 2023",
+        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "EL PROBLEMA",
-      "title": "Learner Home tenía demasiadas formas de llegar a cualquier lado. Ninguna obvia.",
-      "body": "Learner Home estaba saturado de menús superpuestos, funcionalidad duplicada y jerarquías poco claras. Acciones críticas estaban escondidas detrás de un hamburguesa, y la experiencia entre plataformas no acompañaba el acceso a cursos, certificados y configuraciones. La navegación había crecido orgánicamente — y se notaba."
+      "title": "Menús saturados y jerarquías poco claras.",
+      "body": "Learner Home había evolucionado sin una lógica de navegación clara, dejando a los usuarios sin poder encontrar lo que necesitaban. Lo rediseñé para reducir fricción: menos clics, menos búsqueda, y una experiencia consistente en todos los productos conectados de Kaplan."
     },
     {
-      "type": "image",
-      "image": { "src": "/canvas/projects/kaplan/before.png", "alt": "Kaplan Learner Home antes del rediseño", "width": 1000, "height": 600 },
-      "width": "default"
+      "type": "research-cards",
+      "layout": "horizontal",
+      "cards": [
+        {
+          "title": "El dashboard estaba haciendo el trabajo de la navegación.",
+          "body": "Los usuarios ignoraban el menú y usaban las tarjetas de acceso rápido para llegar a donde necesitaban. La nav se había vuelto irrelevante.",
+          "image": { "src": "/canvas/projects/kaplan/insight-1.png", "alt": "Tarjetas de acceso rápido del dashboard antes del rediseño", "width": 599, "height": 446 }
+        },
+        {
+          "title": "La nav lateral y el menú del avatar compartían secciones clave.",
+          "body": "Encontrar cursos, certificados o configuraciones de cuenta significaba adivinar en qué menú estaban. Browse Catalog sumaba jerarquía innecesaria.",
+          "image": { "src": "/canvas/projects/kaplan/insight-2.png", "alt": "Superposición entre la nav lateral y el menú del avatar", "width": 599, "height": 446 }
+        },
+        {
+          "title": "En desktop, la nav lateral estaba a un tap oculto de distancia.",
+          "body": "La navegación principal estaba detrás de un menú hamburguesa en desktop. La mayoría de los usuarios no lo abría, aunque ahí estaban las acciones que más necesitaban.",
+          "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Menú hamburguesa ocultando la navegación principal en desktop", "width": 599, "height": 446 }
+        }
+      ]
     },
     {
       "type": "section",
-      "label": "ENTREVISTAS A USUARIOS",
-      "title": "Los usuarios decían una cosa y hacían otra.",
-      "body": "Diseñé dos opciones: un layout consolidado que unificaba acciones en una jerarquía clara, y otro incremental que mantenía consistencia con el resto. Antes de comprometernos con el esfuerzo de re-ingeniería, testeé ambas con 7 usuarios para ver si valía la pena."
+      "label": "A/B TESTING",
+      "title": "Una opción para consistencia cross-platform, otra para una jerarquía más limpia.",
+      "body": "Primero simplifiqué la jerarquía para una estructura más clara. Sin embargo, eso creaba una brecha mayor con Atom, donde los usuarios pasan la mayor parte del tiempo, y su equipo tenía otras prioridades antes que un refactor de navegación. Antes de comprometerse, hice un A/B test para ver si valía la pena."
     },
     {
-      "type": "insight",
-      "title": "Los usuarios navegan por quick links. No por la nav principal.",
-      "body": "En ambas opciones, los participantes usaron las tarjetas de la página antes que el menú para completar tareas — confirmando que el layout de página tiene tanto peso navegacional como la nav misma.",
-      "image": { "src": "/canvas/projects/kaplan/insight-1.png", "alt": "Usuario clickeando una tarjeta", "width": 600, "height": 400 }
+      "type": "video",
+      "variant": "desktop",
+      "background": "#ede8dd",
+      "imageSrc": "/canvas/projects/kaplan/ab-test.png"
     },
     {
-      "type": "insight",
-      "title": "La ubicación define si un CTA funciona.",
-      "body": "Mismo label, misma tarea — 72% de tasa de error en la Opción 2 vs. 100% de éxito en la Opción 1. La posición, no el naming, fue el factor decisivo.",
-      "image": { "src": "/canvas/projects/kaplan/insight-2.png", "alt": "Comparación de posición de CTA", "width": 600, "height": 400 },
-      "reverse": true
+      "type": "section",
+      "label": "EL ENFOQUE",
+      "title": "La diferencia entre lo que dicen y lo que hacen los usuarios.",
+      "body": "Elegí el Diseño 2, dándole a cada menú un rol claro: info del estudiante en el avatar, navegación en la nav lateral, con algunos labels actualizados al lenguaje del learner. El 78% dijo preferir el Diseño 1, pero el Diseño 2 funcionó mejor en completitud de tareas:"
     },
     {
-      "type": "insight",
-      "title": "Preferencia y comportamiento fueron en direcciones opuestas.",
-      "body": "78% de los usuarios prefirieron la Opción 2. Pero la Opción 1 los hizo completar más tareas. Decidimos por comportamiento, no por preferencia declarada.",
-      "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Gráfico de preferencia vs. comportamiento", "width": 600, "height": 400 }
-    },
-    {
-      "type": "image",
-      "image": { "src": "/canvas/projects/kaplan/final.jpg", "alt": "Diseño final de Kaplan Learner Home", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "stat-cards",
+      "cards": [
+        { "value": "+30%", "label": "encontró \"Ayuda y Soporte\"", "color": "yellow" },
+        { "value": "+56%", "label": "encontró \"Explorar Catálogo\"", "color": "green" },
+        { "value": "+72%", "label": "encontró \"Pedidos y Seguimiento\"", "color": "pink" }
+      ]
     },
     {
       "type": "next-project",
       "slug": "tacobell",
       "title": "¿Puede una búsqueda del tesoro arreglar un loop de loyalty roto?",
-      "image": { "src": "/canvas/projects/tacobell/cover-thumb.jpg", "alt": "Rediseño de loyalty de Taco Bell", "width": 320, "height": 200 }
+      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "Vista previa del caso Taco Bell", "width": 251, "height": 513 }
     }
   ]
 }

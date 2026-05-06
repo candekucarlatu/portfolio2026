@@ -95,6 +95,7 @@ const Video = z.object({
 
 const ResearchCards = z.object({
   type: z.literal('research-cards'),
+  layout: z.enum(['stacked', 'horizontal']).default('stacked'),
   cards: z
     .array(
       z.object({
