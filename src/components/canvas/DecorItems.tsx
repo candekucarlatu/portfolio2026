@@ -3,10 +3,12 @@
  * Each component is absolutely positioned on the canvas at its design-coord origin.
  *
  * Positions (design coords, 2500×1800 board):
- *   WOW      : left=132,  top=74,   w=153, h=249
- *   Lettering: left=1100, top=148,  w=351, h=301
- *   Gastly   : left=2180, top=113,  w=189, h=257
+ *   WOW      : left=153,  top=74,   w=110, h=212   (Figma 439:12870)
+ *   Lettering: left=1174, top=148,  w=267, h=274   (Figma 439:12844)
+ *   Gastly   : left=2229, top=113,  w=127, h=212   (Figma 439:12821)
  *   Collage  : left=996,  top=1195, w=311, h=384
+ *
+ * Coordinate derivation: board = figma_absolute + (567, 431)
  */
 
 import Image from 'next/image'
@@ -26,16 +28,16 @@ function inset(top: string, right: string, bottom: string, left: string) {
 
 // ─────────────────────────────────────────────
 // WOW STICKER  (Figma node 439:12870)
-// Container: 153 × 249
+// Container: 110 × 212  board: left=153, top=74
 // ─────────────────────────────────────────────
 export function WowDecor() {
   return (
     <div
       aria-hidden
       className="pointer-events-none absolute"
-      style={{ left: 132, top: 74, width: 153, height: 249 }}
+      style={{ left: 153, top: 74, width: 109.958, height: 212 }}
     >
-      {/* Pinza — left=(153-46)/2 ≈ 53.5 */}
+      {/* Pinza — figma(-382,-357) → board(185,74) → rel(32,0) */}
       <Image
         src="/canvas/wow/pinza.png"
         alt=""
@@ -43,20 +45,20 @@ export function WowDecor() {
         height={277}
         quality={90}
         className="absolute select-none"
-        style={{ left: 53.5, top: 0, width: 46, height: 138.5 }}
+        style={{ left: 32, top: 0, width: 46, height: 138.5 }}
         draggable={false}
       />
 
-      {/* Sticker flex container — centers the rotated sticker (128 × 138.435) */}
+      {/* Sticker flex container — figma(-414,-261) → board(153,170) → rel(0,96) */}
       <div
         className="absolute flex items-center justify-center"
-        style={{ left: 0, top: 88, width: 152.626, height: 160.816 }}
+        style={{ left: 0, top: 96, width: 109.958, height: 115.859 }}
       >
         <div
           className="relative flex-none"
           style={{
-            width: 128,
-            height: 138.435,
+            width: 92.217,
+            height: 99.735,
             transform: 'rotate(-11.29deg)',
             filter: 'drop-shadow(4px 4px 2px rgba(0,0,0,0.15))',
           }}
@@ -150,16 +152,16 @@ export function WowDecor() {
 
 // ─────────────────────────────────────────────
 // LETTERING  (Figma node 439:12844)
-// Container: 351 × 301
+// Container: 267 × 274  board: left=1174, top=148
 // ─────────────────────────────────────────────
 export function LetteringDecor() {
   return (
     <div
       aria-hidden
       className="pointer-events-none absolute"
-      style={{ left: 1100, top: 148, width: 351, height: 301 }}
+      style={{ left: 1174, top: 148, width: 266.975, height: 274 }}
     >
-      {/* Pinza — right-of-center at left=230 */}
+      {/* Pinza — figma(763,-283) → board(1330,148) → rel(156,0) */}
       <Image
         src="/canvas/lettering/pinza.png"
         alt=""
@@ -167,20 +169,20 @@ export function LetteringDecor() {
         height={277}
         quality={90}
         className="absolute select-none"
-        style={{ left: 230, top: 0, width: 46, height: 138.5 }}
+        style={{ left: 156, top: 0, width: 46, height: 138.5 }}
         draggable={false}
       />
 
-      {/* Lettering card flex container — centers rotated card */}
+      {/* Lettering card flex container — figma(607,-197) → board(1174,234) → rel(0,86) */}
       <div
         className="absolute flex items-center justify-center"
-        style={{ left: 0, top: 53, width: 351, height: 248 }}
+        style={{ left: 0, top: 86, width: 266.975, height: 188.342 }}
       >
         <div
           className="flex-none"
           style={{
-            width: 329,
-            height: 211,
+            width: 250,
+            height: 160.307,
             transform: 'rotate(6.69deg)',
             boxShadow: '4px 4px 8px 0px rgba(0,0,0,0.15)',
             overflow: 'hidden',
@@ -191,7 +193,7 @@ export function LetteringDecor() {
             alt=""
             width={1024}
             height={657}
-            sizes="329px"
+            sizes="250px"
             quality={90}
             className="h-full w-full object-cover select-none"
             draggable={false}
@@ -204,32 +206,34 @@ export function LetteringDecor() {
 
 // ─────────────────────────────────────────────
 // GASTLY STICKER  (Figma node 439:12821)
-// Container: 189 × 257
+// Container: 127 × 212  board: left=2229, top=113
 // ─────────────────────────────────────────────
 export function GastlyDecor() {
-  // The gastly sticker is a large 617.959 × 559.116 div positioned at
-  // (-247.48, -50.43) within the container, rotated 25.71deg, and clipped
-  // via CSS mask-image to a 137.971px circle at (272.199, 141.382) within
-  // the div. The resulting visible circle center lands at ~(94, 160) in
-  // the 189×257 container (matching the ellipse shadow center).
+  // The gastly sticker is a 337.667×253.25 div inside a 414×375 flex container,
+  // positioned at rel(-165.84, 5.72) within this container. It is rotated 25.71deg
+  // and CSS-masked to a 92.458px circle via the mask SVG.
   const maskStyle: React.CSSProperties = {
     maskImage: 'url(/canvas/gastly/mask.svg)',
     WebkitMaskImage: 'url(/canvas/gastly/mask.svg)',
     maskRepeat: 'no-repeat',
     WebkitMaskRepeat: 'no-repeat',
-    maskPosition: '272.199px 141.382px',
-    WebkitMaskPosition: '272.199px 141.382px',
-    maskSize: '137.971px 137.971px',
-    WebkitMaskSize: '137.971px 137.971px',
+    maskPosition: '182.407px 94.743px',
+    WebkitMaskPosition: '182.407px 94.743px',
+    maskSize: '92.458px 92.458px',
+    WebkitMaskSize: '92.458px 92.458px',
+    maskMode: 'alpha' as const,
+    maskComposite: 'intersect' as const,
+    maskClip: 'no-clip' as const,
+    WebkitMaskComposite: 'source-in' as const,
   }
 
   return (
     <div
       aria-hidden
       className="pointer-events-none absolute"
-      style={{ left: 2180, top: 113, width: 189, height: 257 }}
+      style={{ left: 2229, top: 113, width: 126.695, height: 212 }}
     >
-      {/* Pinza — centered right: left=103 */}
+      {/* Pinza — figma(1716,-318) → board(2283,113) → rel(54,0) */}
       <Image
         src="/canvas/gastly/pinza.png"
         alt=""
@@ -237,42 +241,57 @@ export function GastlyDecor() {
         height={277}
         quality={90}
         className="absolute select-none"
-        style={{ left: 103, top: 0, width: 46, height: 138.5 }}
+        style={{ left: 54, top: 0, width: 46, height: 138.5 }}
         draggable={false}
       />
 
-      {/* Ellipse shadow — SVG circle behind sticker */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/canvas/gastly/ellipse.svg"
-        alt=""
-        className="pointer-events-none absolute select-none"
-        style={{ left: 3.3, top: 72.86, width: 184.128, height: 184.128 }}
-        draggable={false}
-      />
-
-      {/* Gastly sticker — large div, masked to circle, rotated */}
+      {/* Ellipse flex — figma(1664.21,-229.66) → board(2231.21,201.34) → rel(2.21,88.34) */}
       <div
-        className="absolute"
-        style={{
-          left: -247.48,
-          top: -50.43,
-          width: 617.959,
-          height: 559.116,
-          transform: 'rotate(25.71deg)',
-          ...maskStyle,
-        }}
+        className="absolute flex items-center justify-center"
+        style={{ left: 2.21, top: 88.34, width: 123.388, height: 123.388 }}
       >
-        <Image
-          src="/canvas/gastly/sticker.png"
-          alt=""
-          width={800}
-          height={600}
-          sizes="618px"
-          quality={90}
-          className="absolute inset-0 h-full w-full object-cover select-none"
-          draggable={false}
-        />
+        <div className="flex-none" style={{ transform: 'rotate(25.71deg)' }}>
+          <div className="relative" style={{ width: 92.436, height: 92.436 }}>
+            <div style={{ position: 'absolute', inset: '-4.33%' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/canvas/gastly/ellipse.svg"
+                alt=""
+                className="pointer-events-none block h-full w-full select-none"
+                draggable={false}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Gastly sticker — 414×375 flex, inner 337×253 masked to 92px circle */}
+      {/* figma(1496.16,-312.28) → board(2063.16,118.72) → rel(-165.84,5.72) */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: -165.84, top: 5.72, width: 414.107, height: 374.676 }}
+      >
+        <div className="flex-none" style={{ transform: 'rotate(25.71deg)' }}>
+          <div
+            style={{
+              width: 337.667,
+              height: 253.25,
+              position: 'relative',
+              ...maskStyle,
+            }}
+          >
+            <Image
+              src="/canvas/gastly/sticker.png"
+              alt=""
+              width={800}
+              height={600}
+              sizes="338px"
+              quality={90}
+              className="absolute inset-0 h-full w-full object-cover select-none"
+              draggable={false}
+            />
+          </div>
+        </div>
       </div>
     </div>
   )
