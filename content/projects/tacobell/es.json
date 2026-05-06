@@ -9,77 +9,75 @@
     {
       "type": "hero",
       "title": "¿Puede una búsqueda del tesoro arreglar un loop de loyalty roto?",
-      "subtitle": "El programa Rewards de Taco Bell tenía 8M de usuarios activos y un problema de retención. Diseñé una plataforma B2B2C de gaming para darles un motivo para volver.",
+      "subtitle": "El programa Rewards de Taco Bell tenía 8M de usuarios activos pero un problema de retención. Diseñé una plataforma B2B2C de gaming para darles un motivo para volver.",
       "meta": {
         "duration": "Ene–Jul 2025",
-        "team": "CEO · CTO · Product Designer",
-        "role": "Product Designer"
+        "team": "CEO · CTO · Product Designer"
       }
     },
     {
       "type": "section",
       "label": "EL PROBLEMA",
       "title": "29M usuarios descargaron la app de Taco Bell, pero solo el 16% volvió.",
-      "body": "La app debía generar visitas a tienda, pero los usuarios la abandonaban después de su primer taco gratis. Treasure Game$, una empresa de gaming phygital, vio una oportunidad: ¿y si el premio fuera real, valiera la pena perseguirlo con amigos, y te mandara al mundo a buscarlo?"
+      "body": "La app debía generar visitas a tienda y expandir la audiencia de Taco Bell, pero los usuarios la abandonaban después de su primer taco gratis. En Treasure Game$, una empresa de gaming phygital, vimos una oportunidad: ¿y si el premio fuera real, valiera la pena perseguirlo con amigos y familia, y te mandara al mundo a buscarlo?"
     },
     {
       "type": "stat-cards",
       "cards": [
-        { "value": "84%", "label": "de los usuarios deja la app después de su primer taco gratis.", "color": "green" },
-        { "value": "1.9 ★", "label": "en Google Play (uno de los peores ratings de la categoría QSR.)", "color": "orange" },
-        { "value": "“solo otra app de cupones.”", "label": "sentimiento recurrente entre 190K reseñas.", "color": "blue" }
+        { "value": "84%", "label": "de los suscriptores deja la app después de su primer taco gratis.", "color": "purple" },
+        { "value": "1.9 ★", "label": "en Google Play, uno de los peores ratings de la categoría QSR.", "color": "pink" },
+        { "value": "\"solo otra app de cupones.\"", "label": "sentimiento recurrente entre 190K reseñas.", "color": "yellow" }
       ]
     },
     {
       "type": "section",
       "label": "BENCHMARK",
       "title": "Cada QSR que gamificó su app sumó millones en semanas.",
-      "body": "McDonald's Monopoly generó 77M de interacciones digitales, +25% de downloads y +15% de ventas en seis semanas. Burrito Vault de Chipotle sumó 3,5M de plays en 2025. Whopper Detour de Burger King generó 1,5M de downloads en tres días."
-    },
-    {
-      "type": "highlight",
-      "body": "Así nació Golden Taco Treasure Hunt: 10 Golden Tacos valuados en USD 10K cada uno, escondidos en todo el país. Los jugadores avanzan por mundos, niveles y pistas, resolviendo algunas en casa y otras dentro de tiendas Taco Bell, convirtiendo cada local en parte del juego."
+      "body": "McDonald's Monopoly generó 77M de interacciones digitales, +25% de downloads y +10% de ventas en seis semanas. Burrito Vault de Chipotle sumó 3,5M de plays en 2025. Whopper Detour de Burger King generó 1,5M de downloads en nueve días. ¡Así nació Golden Taco Treasure Hunt!"
     },
     {
       "type": "image",
-      "image": { "src": "/canvas/projects/tacobell/cover.jpg", "alt": "Vista general de Treasure Game$ Taco Bell", "width": 1200, "height": 720 },
+      "image": { "src": "/canvas/projects/tacobell/benchmark.png", "alt": "Paconaut — vista general del gameplay de Taco Bell Treasure Hunt", "width": 1180, "height": 664 },
       "width": "wide"
     },
     {
       "type": "section",
       "label": "ENTREVISTAS A USUARIOS",
-      "title": "Lo que nos enseñaron los jugadores de Wish Lamp$.",
-      "body": "Para validar nuestras hipótesis, entrevisté a 9 jugadores nuevos de Wish Lamp$: la treasure hunt insignia de Treasure Games y el proxy más cercano a la futura audiencia de Taco Bell."
+      "title": "Escuchar al proxy más cercano a nuestra futura audiencia de Taco Bell.",
+      "body": "Entrevisté a 9 jugadores nuevos de Wish Lamp$, la treasure hunt insignia de Treasure Game$, para verificar si lo que asumíamos sobre el engagement y la dinámica de equipos era real."
     },
     {
-      "type": "insight",
-      "title": "Onboardear a un jugador significa reclutar a todo un equipo.",
-      "body": "Los jugadores probaban el juego solos primero y recién después de convencerse del valor invitaban a otros. Un onboarding confuso no perdía a un jugador — perdía a todo un equipo antes de formarse.",
-      "image": { "src": "/canvas/projects/tacobell/insight-1.png", "alt": "Pantalla de onboarding", "width": 600, "height": 400 }
+      "type": "callout-list",
+      "items": [
+        {
+          "title": "Cada jugador es un equipo potencial.",
+          "body": "La primera sesión era la única oportunidad de convertir a un jugador en un grupo. Si el onboarding los convencía, invitaban al resto. Si no, seguían jugando solos y el equipo nunca se formaba."
+        },
+        {
+          "title": "Jugar juntos era el punto entero.",
+          "body": "Pensamos que un soporte básico de equipos era suficiente. Las entrevistas mostraron que conectar a través de la distancia, la edad y los horarios ocupados era la razón real por la que la gente jugaba. Eso nos empujó a construir features de equipo profundas desde el día uno."
+        },
+        {
+          "title": "Convertir tiempo pasivo en juego activo.",
+          "body": "Los jugadores reemplazaban el tiempo pasivo de pantalla por Wish Lamp$, pero la retención venía de la mezcla físico-digital. Convertía un hábito pasivo en juego activo y le daba a la gente una razón para hacerlo juntos."
+        }
+      ]
     },
     {
-      "type": "insight",
-      "title": "Los equipos eran una feature. Los jugadores nos dijeron que eran el punto entero.",
-      "body": "Conectar entre estados, generaciones y agendas ocupadas era la razón principal por la que la gente jugaba. Eso nos empujó a lanzar features de equipo profundas desde el día uno.",
-      "image": { "src": "/canvas/projects/tacobell/insight-2.png", "alt": "Pantalla de juego en equipo", "width": 600, "height": 400 },
-      "reverse": true
+      "type": "section",
+      "label": "EL APPROACH",
+      "title": "El MVP tenía un solo trabajo: probar que la hunt generaba visitas reales y sign-ups de loyalty.",
+      "body": "Tres cosas tenían que funcionar desde el día uno: la progresión de pistas, la dinámica de equipos y una lógica de recompensas atada a visitas a tienda y sign-ups de Rewards. Sin datos históricos, incorporamos palancas para ajustar la dificultad y responder cuando las tasas de visitas en tienda caían. El objetivo no era hacerlo perfecto. Era hacerlo funcionar lo suficientemente bien para saber qué era perfecto."
     },
     {
-      "type": "insight",
-      "title": "La competencia no eran otros juegos. Era el sillón.",
-      "body": "Los jugadores cambiaban tiempo pasivo de pantalla por Wish Lamp$. Lo que hizo que el cambio cuajara fue el twist social y físico: algo familiar, hecho para compartir.",
-      "image": { "src": "/canvas/projects/tacobell/insight-3.png", "alt": "Jugadores afuera", "width": 600, "height": 400 }
-    },
-    {
-      "type": "image",
-      "image": { "src": "/canvas/projects/tacobell/final.jpg", "alt": "Pantallas finales de Taco Bell Treasure Hunt", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "video",
+      "background": "#ede5fa"
     },
     {
       "type": "next-project",
       "slug": "scribd",
-      "title": "¿Cómo monetizar una experiencia de lectura sin arruinarla?",
-      "image": { "src": "/canvas/projects/scribd/cover-thumb.jpg", "alt": "Rediseño de documento de Scribd", "width": 320, "height": 200 }
+      "title": "¿Cómo te ganás la atención de un usuario cuando tiene otras diez pestañas abiertas?",
+      "image": { "src": "/canvas/projects/tacobell/next-case.png", "alt": "Vista previa del caso Scribd", "width": 666, "height": 513 }
     }
   ]
 }

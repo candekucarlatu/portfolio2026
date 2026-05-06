@@ -1,7 +1,7 @@
 interface HeroProps {
   title: string
   subtitle: string
-  meta: { duration: string; team: string; role: string }
+  meta: { duration: string; team: string; role?: string }
   metaLabels: { duration: string; team: string; role: string }
 }
 
@@ -9,7 +9,7 @@ export function Hero({ title, subtitle, meta, metaLabels }: HeroProps) {
   const items = [
     { label: metaLabels.duration, value: meta.duration },
     { label: metaLabels.team, value: meta.team },
-    { label: metaLabels.role, value: meta.role },
+    ...(meta.role ? [{ label: metaLabels.role, value: meta.role }] : []),
   ]
   return (
     <header className="mx-auto flex max-w-[640px] flex-col gap-6 px-6 pt-10 md:px-0 md:pt-20">

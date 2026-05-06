@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import type { ProjectCard as ProjectCardData } from '@/lib/content/schema'
 
 interface ScribdCardProps {
@@ -366,39 +366,3 @@ export function ScribdCard({ card, href, ariaLabel }: ScribdCardProps) {
   )
 }
 
-// ── Mobile version (scales to container width) ──────────────────────────────
-export function ScribdCardMobile({ card, href, ariaLabel }: ScribdCardProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [scale, setScale] = useState(1)
-
-  const measure = useCallback(() => {
-    const el = containerRef.current
-    if (!el) return
-    setScale(el.getBoundingClientRect().width / W)
-  }, [])
-
-  useEffect(() => {
-    measure()
-    const observer = new ResizeObserver(measure)
-    if (containerRef.current) observer.observe(containerRef.current)
-    return () => observer.disconnect()
-  }, [measure])
-
-  return (
-    <div ref={containerRef} style={{ position: 'relative', width: '100%', height: H * scale }}>
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: W,
-          height: H,
-          transform: `scale(${scale})`,
-          transformOrigin: 'top left',
-        }}
-      >
-        <Inner card={card} href={href} ariaLabel={ariaLabel} />
-      </div>
-    </div>
-  )
-}

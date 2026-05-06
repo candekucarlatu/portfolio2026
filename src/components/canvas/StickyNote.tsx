@@ -6,6 +6,8 @@ const noteStyles: Record<NoteColor, string> = {
   blue: 'bg-note-blue',
   orange: 'bg-note-orange',
   purple: 'bg-note-purple',
+  pink: 'bg-note-pink',
+  yellow: 'bg-note-yellow',
 }
 
 const lineStyles: Record<NoteColor, string> = {
@@ -13,6 +15,8 @@ const lineStyles: Record<NoteColor, string> = {
   blue: 'bg-note-blue-line',
   orange: 'bg-note-orange-line',
   purple: 'bg-note-purple-line',
+  pink: 'bg-note-pink-line',
+  yellow: 'bg-note-yellow-line',
 }
 
 interface StickyNoteProps {

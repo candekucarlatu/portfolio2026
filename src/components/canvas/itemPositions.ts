@@ -1,4 +1,5 @@
-import type { NoteColor, ProjectSlug } from '@/lib/content/loader'
+import type { NoteColor } from '@/lib/content/schema'
+import type { ProjectSlug } from '@/lib/content/loader'
 
 export const BOARD_WIDTH = 2500
 export const BOARD_HEIGHT = 1800

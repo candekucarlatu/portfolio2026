@@ -27,11 +27,14 @@ interface ViewportSize {
 
 /**
  * Canvas scale for all viewport sizes.
- * Takes the larger ratio of width/1280 and height/1800 so the board always
- * extends beyond both viewport edges — ensuring drag/pan is always meaningful.
- * Clamped to [0.38, 1.0].
+ *
+ * Phone  (<768px):  scale = viewport.width / 480  → board ≈2031px at 390px (Figma ref 463:116)
+ * Tablet (768-1023px): scale = viewport.width / 625 → board ≈3073px at 768px (Figma ref 464:119)
+ * Desktop (≥1024px): max(byWidth, byHeight), clamped to [0.38, 1.0]
  */
 function getScale(viewport: ViewportSize): number {
+  if (viewport.width < 768) return Math.max(0.5, viewport.width / 480)
+  if (viewport.width < 1024) return Math.max(0.8, viewport.width / 625)
   const byWidth = viewport.width / 1280
   const byHeight = viewport.height / 1800
   return Math.min(1, Math.max(0.38, Math.max(byWidth, byHeight)))

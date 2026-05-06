@@ -6,6 +6,8 @@ const noteStyles: Record<NoteColor, string> = {
   blue: 'bg-note-blue',
   orange: 'bg-note-orange',
   purple: 'bg-note-purple',
+  pink: 'bg-note-pink',
+  yellow: 'bg-note-yellow',
 }
 
 interface StatCardsProps {

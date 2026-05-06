@@ -15,6 +15,10 @@
   --color-note-orange-line: #fdbc6f;
   --color-note-purple: #e5dbfc;
   --color-note-purple-line: #4c0299;
+  --color-note-pink: #fcd3c9;
+  --color-note-pink-line: #e05a3a;
+  --color-note-yellow: #fff5b8;
+  --color-note-yellow-line: #d4a017;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-script: var(--font-caveat), cursive;

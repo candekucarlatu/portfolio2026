@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const NoteColor = z.enum(['green', 'blue', 'orange', 'purple'])
+export const NoteColor = z.enum(['green', 'blue', 'orange', 'purple', 'pink', 'yellow'])
 export type NoteColor = z.infer<typeof NoteColor>
 
 export const ProjectImage = z.object({
@@ -18,7 +18,7 @@ const Hero = z.object({
   meta: z.object({
     duration: z.string(),
     team: z.string(),
-    role: z.string(),
+    role: z.string().optional(),
   }),
 })
 
@@ -70,6 +70,25 @@ const NextProject = z.object({
   image: ProjectImage.optional(),
 })
 
+const CalloutList = z.object({
+  type: z.literal('callout-list'),
+  items: z
+    .array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+      }),
+    )
+    .min(1),
+})
+
+const Video = z.object({
+  type: z.literal('video'),
+  src: z.string().optional(),
+  poster: z.string().optional(),
+  background: z.string().optional(),
+})
+
 export const Section = z.discriminatedUnion('type', [
   Hero,
   SectionLabel,
@@ -77,6 +96,8 @@ export const Section = z.discriminatedUnion('type', [
   Highlight,
   ImageBlock,
   Insight,
+  CalloutList,
+  Video,
   NextProject,
 ])
 export type Section = z.infer<typeof Section>

@@ -7,6 +7,8 @@ import { StatCards } from './sections/StatCards'
 import { HighlightBlock } from './sections/HighlightBlock'
 import { ImageBlock } from './sections/ImageBlock'
 import { Insight } from './sections/Insight'
+import { CalloutList } from './sections/CalloutList'
+import { VideoMockup } from './sections/VideoMockup'
 import { NextProject } from './sections/NextProject'
 
 interface CaseStudyProps {
@@ -60,6 +62,17 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                 body={section.body}
                 image={section.image}
                 reverse={section.reverse}
+              />
+            )
+          case 'callout-list':
+            return <CalloutList key={idx} items={section.items} />
+          case 'video':
+            return (
+              <VideoMockup
+                key={idx}
+                src={section.src}
+                poster={section.poster}
+                background={section.background}
               />
             )
           case 'next-project':
