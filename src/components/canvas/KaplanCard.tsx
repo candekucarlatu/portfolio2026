@@ -18,15 +18,22 @@ const W = 695
 const H = 658
 
 // Shared mask for all shelf objects (trapezoid shape, 582×330)
+// mask-mode: alpha — use alpha channel of mask SVG
+// mask-composite: intersect — intersect with element alpha
+// mask-clip: no-clip — allow mask to extend beyond element border-box
 const shelfMask = (pos: string) => ({
   maskImage: 'url(/canvas/kaplan/mask.svg)',
   maskRepeat: 'no-repeat' as const,
   maskPosition: pos,
   maskSize: '582px 330px',
+  maskMode: 'alpha' as const,
+  maskComposite: 'intersect' as const,
+  maskClip: 'no-clip' as const,
   WebkitMaskImage: 'url(/canvas/kaplan/mask.svg)',
   WebkitMaskRepeat: 'no-repeat' as const,
   WebkitMaskPosition: pos,
   WebkitMaskSize: '582px 330px',
+  WebkitMaskComposite: 'source-in' as const,
 })
 
 function Inner({ card, href, ariaLabel }: KaplanCardProps) {
