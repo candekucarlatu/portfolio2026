@@ -38,17 +38,6 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
     >
       {/* ── Z-ORDER: bottom → top ── */}
 
-      {/* 0 ── Shelf composite (single combined image — drop shelf.png to replace) */}
-      {/* Covers the full card bounding box: 695×658, transparent bg shows pegboard */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/canvas/kaplan/shelf.png"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute select-none"
-        style={{ left: 0, top: 0, width: 695, height: 658, maxWidth: 'none', objectFit: 'contain', objectPosition: 'top left' }}
-      />
-
       {/* 1 ── Light-blue sticky note (Evidence 3) */}
       {/* Figma 439:12828: wrapper ~285×192 */}
       <div className="absolute" style={{ left: 43, top: 101, width: 285, height: 192 }}>
@@ -75,10 +64,10 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
             {/* Line 1 — Figma: outer left=24.33 top=50.28 w=255.259 */}
             <div
               className="absolute flex items-center justify-center"
-              style={{ left: 24.33, top: 50.28, width: 255.259, height: 3.53, overflow: 'visible' }}
+              style={{ left: 24.33, top: 50.28, width: 231.34, height: 3.53, overflow: 'visible' }}
             >
               <div style={{ transform: 'rotate(-0.28deg) skewX(-0.62deg)', flexShrink: 0 }}>
-                <div style={{ width: 255.248, height: 2.29, position: 'relative' }}>
+                <div style={{ width: 231.33, height: 2.29, position: 'relative' }}>
                   <div style={{ position: 'absolute', inset: '-43.66% -0.39% -43.68% -0.39%' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -95,10 +84,10 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
             {/* Line 2 — Figma: outer left=22.65 top=75.84 w=248.244 */}
             <div
               className="absolute flex items-center justify-center"
-              style={{ left: 22.65, top: 75.84, width: 248.244, height: 4.296, overflow: 'visible' }}
+              style={{ left: 22.65, top: 75.84, width: 234.7, height: 4.296, overflow: 'visible' }}
             >
               <div style={{ transform: 'rotate(-0.28deg) skewX(-0.62deg)', flexShrink: 0 }}>
-                <div style={{ width: 248.229, height: 3.09, position: 'relative' }}>
+                <div style={{ width: 234.69, height: 3.09, position: 'relative' }}>
                   <div style={{ position: 'absolute', inset: '-32.36% -0.4%' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -135,6 +124,17 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
         className="pointer-events-none absolute object-contain select-none"
         style={{ left: 160, top: 0 }}
         aria-hidden
+      />
+
+      {/* 3 ── Shelf composite — rendered ABOVE note so shelf overlaps note bottom */}
+      {/* Estante group (439:12834): Figma left=1021 top=-63 → container left=0 top=182 */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/kaplan/shelf.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute select-none"
+        style={{ left: 0, top: 182, width: 695, maxWidth: 'none' }}
       />
 
     </Link>

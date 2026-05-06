@@ -39,15 +39,66 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
     >
       {/* ── Z-ORDER: bottom → top ── */}
 
+      {/* 10 ── Poster (illustration pinned to board) */}
+      {/* Figma 439:12795: outer left=-273.81 top=510 w=240.848 h=239.704 → container left=90 top=101 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 90, top: 101, width: 241, height: 240 }}
+      >
+        <div style={{ transform: 'rotate(-2.57deg)', flexShrink: 0 }}>
+          <div
+            style={{
+              width: 231,
+              height: 230,
+              position: 'relative',
+              boxShadow: '4px 4px 8px 0px rgba(0,0,0,0.15)',
+              overflow: 'hidden',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/slideshare/poster.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '125.68%',
+                maxWidth: 'none',
+                objectFit: 'cover',
+                objectPosition: 'top',
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 11 ── Pinza for poster */}
+      {/* Figma 439:12798: left=-228 top=409 → container left=136 top=0 */}
+      <Image
+        src="/canvas/slideshare/pinza.png"
+        alt=""
+        width={46}
+        height={139}
+        sizes="46px"
+        quality={100}
+        className="pointer-events-none absolute object-contain select-none"
+        style={{ left: 136, top: 0 }}
+        aria-hidden
+      />
+
       {/* 1 ── Shelf composite (single combined image — drop shelf.png to replace) */}
-      {/* Covers the full card bounding box: 652×812, transparent bg shows pegboard */}
+      {/* Estante group (450:9289): Figma left=-364 top=769 → container left=0 top=360 */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/canvas/slideshare/shelf.png"
         alt=""
         aria-hidden
         className="pointer-events-none absolute select-none"
-        style={{ left: 0, top: 0, width: 652, height: 812, maxWidth: 'none', objectFit: 'contain', objectPosition: 'top left' }}
+        style={{ left: 0, top: 360, width: 652, maxWidth: 'none' }}
       />
 
       {/* 8 ── Case Study sticky note */}
@@ -73,13 +124,13 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
               {card.title}
             </p>
 
-            {/* Line 1 — Figma: outer left=24.68 top=62.21 w=291.035 */}
+            {/* Line 1 — equal margin: left=24.68, right=24.68, width=318-2×24.68=268.64 */}
             <div
               className="absolute flex items-center justify-center"
-              style={{ left: 24.68, top: 62.21, width: 291.035, height: 3.774, overflow: 'visible' }}
+              style={{ left: 24.68, top: 62.21, width: 268.64, height: 3.774, overflow: 'visible' }}
             >
               <div style={{ transform: 'rotate(-0.29deg) skewX(-0.65deg)', flexShrink: 0 }}>
-                <div style={{ width: 291.024, height: 2.29, position: 'relative' }}>
+                <div style={{ width: 268.63, height: 2.29, position: 'relative' }}>
                   <div style={{ position: 'absolute', inset: '-43.66% -0.34% -43.67% -0.34%' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -93,13 +144,13 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
               </div>
             </div>
 
-            {/* Line 2 — Figma: outer left=22.96 top=87.11 w=292.815 */}
+            {/* Line 2 — equal margin: left=22.96, right=22.96, width=318-2×22.96=272.08 */}
             <div
               className="absolute flex items-center justify-center"
-              style={{ left: 22.96, top: 87.11, width: 292.815, height: 4.584, overflow: 'visible' }}
+              style={{ left: 22.96, top: 87.11, width: 272.08, height: 4.584, overflow: 'visible' }}
             >
               <div style={{ transform: 'rotate(-0.29deg) skewX(-0.65deg)', flexShrink: 0 }}>
-                <div style={{ width: 292.799, height: 3.09, position: 'relative' }}>
+                <div style={{ width: 272.07, height: 3.09, position: 'relative' }}>
                   <div style={{ position: 'absolute', inset: '-32.36% -0.34%' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -158,4 +209,3 @@ export function SlideShareCard({ card, href, ariaLabel }: SlideShareCardProps) {
     </motion.div>
   )
 }
-
