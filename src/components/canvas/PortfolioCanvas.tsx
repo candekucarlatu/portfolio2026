@@ -274,17 +274,6 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           })}
         </motion.div>
 
-        {/* Drag/cursor hint — fades after first interaction */}
-        {!reduceMotion && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: hasInteracted ? 0 : 1 }}
-            transition={{ delay: hasInteracted ? 0 : 1.2, duration: 0.6 }}
-            className="text-ink/55 pointer-events-none fixed inset-x-0 bottom-6 z-40 text-center text-xs tracking-wider uppercase md:bottom-10"
-          >
-            ← {dict.ui.dragHint} →
-          </motion.div>
-        )}
       </div>
   )
 }
