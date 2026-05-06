@@ -14,7 +14,7 @@ interface ProjectSheetProps {
 export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
   const router = useRouter()
   const reduceMotion = useReducedMotion()
-  const isDesktop = useMediaQuery('(min-width: 768px)', true)
+  const isDesktop = useMediaQuery('(min-width: 1024px)', true)
   const [open, setOpen] = useState(true)
   const closingRef = useRef(false)
 
@@ -38,10 +38,10 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
       <AnimatePresence>
         {open && (
           <>
-            {/* Full-screen white backdrop — dims the canvas, closes on click */}
+            {/* Full-screen backdrop — blurs the canvas, closes on click */}
             <motion.div
               key="sheet-backdrop"
-              className="fixed inset-0 z-40 bg-white/70"
+              className="fixed inset-0 z-40 bg-white/70 backdrop-blur-[8px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -50,18 +50,16 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
             />
 
             {/*
-             * Scrollable column — centered at max 720px (≈ 360px side gaps on 1440px screens).
+             * Scrollable column — 360px from each side (explicit left/right).
              * Structure:
              *   - 88px top spacer  → the "air at top" on open; scrolls away as you read
              *   - White card       → fills min 100vh - 88px; slides up on enter
              *   - 88px bottom pad  → the "air at bottom" at end of content
-             *
-             * This gives the Stripe-style: gap at top when opened, full-height while
-             * reading, gap at bottom when you reach the end.
              */}
             <motion.div
               key="sheet-panel"
-              className="canvas-scroll-hidden fixed inset-x-0 inset-y-0 z-50 mx-auto w-full max-w-[720px] overflow-y-auto overscroll-contain"
+              className="canvas-scroll-hidden fixed inset-y-0 z-50 overflow-y-auto overscroll-contain"
+              style={{ left: 360, right: 360 }}
               initial={{ y: reduceMotion ? 0 : '100%' }}
               animate={{ y: 0 }}
               exit={{ y: reduceMotion ? 0 : '100%' }}
