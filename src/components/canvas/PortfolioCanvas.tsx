@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionValue, useReducedMotion } from 'framer-motion'
+import { motion, useMotionValue, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Project } from '@/lib/content/schema'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
@@ -274,6 +274,25 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             )
           })}
         </motion.div>
+
+        {/* Drag-to-explore hint — mobile/tablet only, fades out on first interaction */}
+        <AnimatePresence>
+          {viewport && !isDesktop && !hasInteracted && !reduceMotion && (
+            <motion.div
+              key="drag-hint"
+              className="pointer-events-none absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/60 px-4 py-2.5 text-white backdrop-blur-sm"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 1.2, duration: 0.4, ease: 'easeOut' } }}
+              exit={{ opacity: 0, y: 4, transition: { duration: 0.3, ease: 'easeIn' } }}
+            >
+              {/* Hand / swipe icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 11V6a2 2 0 1 1 4 0v5m0 0V9a2 2 0 1 1 4 0v2m0 0v-1a2 2 0 1 1 4 0v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6v-1a2 2 0 0 1 4 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="font-sans text-sm font-medium tracking-wide">{dict.ui.dragHint}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
   )
