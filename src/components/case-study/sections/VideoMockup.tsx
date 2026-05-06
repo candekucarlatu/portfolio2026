@@ -12,16 +12,18 @@ export function VideoMockup({ src, poster, background = '#ede5fa' }: VideoMockup
         style={{ backgroundColor: background }}
       >
         {src ? (
-          <video
-            src={src}
-            poster={poster}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="object-cover"
-            style={{ width: 280, height: 560, borderRadius: 36 }}
-          />
+          /* Wrapper clips the video to rounded corners — borderRadius on <video> alone doesn't work */
+          <div style={{ width: 280, height: 560, borderRadius: 36, overflow: 'hidden', flexShrink: 0 }}>
+            <video
+              src={src}
+              poster={poster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          </div>
         ) : null}
       </div>
     </section>
