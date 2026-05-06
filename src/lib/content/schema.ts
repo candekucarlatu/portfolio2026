@@ -88,6 +88,20 @@ const Video = z.object({
   src: z.string().optional(),
   poster: z.string().optional(),
   background: z.string().optional(),
+  variant: z.enum(['phone', 'desktop']).default('phone'),
+})
+
+const ResearchCards = z.object({
+  type: z.literal('research-cards'),
+  cards: z
+    .array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+        image: ProjectImage,
+      }),
+    )
+    .min(1),
 })
 
 export const Section = z.discriminatedUnion('type', [
@@ -99,6 +113,7 @@ export const Section = z.discriminatedUnion('type', [
   Insight,
   CalloutList,
   Video,
+  ResearchCards,
   NextProject,
 ])
 export type Section = z.infer<typeof Section>

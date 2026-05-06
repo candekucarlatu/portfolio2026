@@ -8,74 +8,80 @@
   "sections": [
     {
       "type": "hero",
-      "title": "How do you monetize a reading experience without ruining it?",
+      "title": "How do you earn a user's attention when they have other ten tabs open?",
       "subtitle": "Scribd is a global SaaS document platform with 1.8M+ subscribers. I led the redesign of the document page to balance monetization and trust through a scalable layout.",
       "meta": {
-        "duration": "Jan–Sep 2024",
-        "team": "2 Product Designers · UX Researcher · Product Manager · Lead Engineer",
-        "role": "Lead designer"
+        "duration": "Jan–May 2024",
+        "team": "2 Product Designers · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "THE PROBLEM",
-      "title": "For Scribd more ads didn't mean more revenue. It meant fewer readers.",
-      "body": "Scribd let revenue win in some free access, but over time ads and recommendations began to crowd the page. Users needed to evaluate documents quickly and, when something was worth their time, read without distraction. The product needed to ensure engagement and reduce churn to give advertisers an audience worth investing in."
+      "title": "The doc page was difficult to scan and even harder to focus on.",
+      "body": "The typical session is a fast scan: is this relevant, is it credible, is it worth the time? The layout made that harder than it needed to be: the document started too far down and metadata disappeared on scroll. For non-subscribers, ads added friction on top of all of it."
     },
     {
-      "type": "stat-cards",
+      "type": "video",
+      "variant": "desktop",
+      "background": "#ede8dd",
+      "src": "/canvas/projects/scribd/video-problem.mp4"
+    },
+    {
+      "type": "section",
+      "label": "USER TESTING",
+      "title": "Finding out whether persistent metadata actually changed how people read.",
+      "body": "I ran a user testing session to find out whether keeping title, author, ratings, and actions visible helped users multitask and stay oriented without losing their place."
+    },
+    {
+      "type": "research-cards",
       "cards": [
-        { "value": "+15%", "label": "in document scroll depth after the redesign.", "color": "orange" },
-        { "value": "“Where are the books I just read?”", "label": "User feedback after the first round of testing.", "color": "green" },
-        { "value": "“I felt like the doc is interesting & everything else is on the page.”", "label": "Recurring sentiment across user interviews.", "color": "purple" }
+        {
+          "title": "Fullscreen had become a patch for poor readability.",
+          "body": "4 out of 7 users entered fullscreen to compensate for a reading space that felt too constrained.",
+          "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Fullscreen reading mode — before redesign", "width": 599, "height": 446 }
+        },
+        {
+          "title": "Persistent metadata reduced cognitive load.",
+          "body": "6 out of 7 users preferred the persistent layout. Keeping title, author, and ratings in place let them assess relevance without losing context.",
+          "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Document page with persistent metadata", "width": 599, "height": 446 }
+        },
+        {
+          "title": "The recommendations competed with the document.",
+          "body": "6 out of 7 users found recommendations distracting while reading. They wanted to see them after finishing the document, not alongside it.",
+          "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Recommendations column placement", "width": 599, "height": 446 }
+        }
       ]
     },
     {
-      "type": "image",
-      "image": { "src": "/canvas/projects/scribd/cover.jpg", "alt": "Scribd document page redesign", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "section",
+      "label": "SUBSCRIBERS EXPERIENCE",
+      "title": "Built for the quick scan and the deep read.",
+      "body": "On arrival, metadata stays visible so users can evaluate the document without losing context. When they're ready to read, the document takes over: larger reading area, and a collapsible column that removes everything else from view."
+    },
+    {
+      "type": "video",
+      "variant": "desktop",
+      "background": "#e3f4f5",
+      "src": "/canvas/projects/scribd/video-subscribers.mp4"
     },
     {
       "type": "section",
-      "label": "USER FEEDBACK",
-      "title": "The reading experience was the product.",
-      "body": "I reframed the monetization approach: surface ads where they signal value, instead of competing with the document. The team made better trade-offs through weekly testing and ultimately moved metrics in both directions — ads were less intrusive and reading sessions got longer."
+      "label": "NON-SUBSCRIBERS EXPERIENCE",
+      "title": "Making room for ads without losing users in the process.",
+      "body": "Ads and content need clear visual separation to coexist. The vertical format was the one advertisers valued most, and also the one that competed hardest with the reading area. I used the data to find the narrowest width that kept both sides of that equation working."
     },
     {
-      "type": "insight",
-      "title": "Fullscreen was a workaround. Not a feature.",
-      "body": "4 out of 7 users entered fullscreen not to engage more deeply — but to compensate for a reading space that felt too constrained. Fullscreen had become a patch for poor readability.",
-      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Fullscreen reading mode mockup", "width": 600, "height": 400 }
-    },
-    {
-      "type": "insight",
-      "title": "Persistent metadata reduced cognitive load.",
-      "body": "6 out of 7 users preferred always-visible title, author, and ratings. It let them assess relevance without losing context — and increased confidence while browsing.",
-      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Document with persistent metadata", "width": 600, "height": 400 },
-      "reverse": true
-    },
-    {
-      "type": "insight",
-      "title": "The right column competed with the document.",
-      "body": "6 out of 7 users disliked recommendations while reading. They felt forced, took preferred saving them after finishing — not during.",
-      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Recommendation column placement", "width": 600, "height": 400 }
-    },
-    {
-      "type": "section",
-      "label": "AD STRATEGY",
-      "title": "Fewer ads. Better placed. More valuable.",
-      "body": "I partnered with the product and advertising teams to pitch performance and keep any high-impact formats. Vertical ads respected by advertisers were maintained. Ad placements were standardized to reduce visual confusion and prevent ads from competing with core content. The goal was a page where ads felt like part of the layout — not an intrusion on it."
-    },
-    {
-      "type": "image",
-      "image": { "src": "/canvas/projects/scribd/final.jpg", "alt": "Final Scribd document page", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "video",
+      "variant": "desktop",
+      "background": "#e3f4f5",
+      "src": "/canvas/projects/scribd/video-non-subscribers.mp4"
     },
     {
       "type": "next-project",
       "slug": "slideshare",
-      "title": "A reader built for slides but full of documents nobody could read.",
-      "image": { "src": "/canvas/projects/slideshare/cover-thumb.jpg", "alt": "SlideShare reader redesign", "width": 320, "height": 200 }
+      "title": "A platform built for slides that needed to learn how to show documents.",
+      "image": { "src": "/canvas/projects/scribd/next-case.png", "alt": "SlideShare case study preview", "width": 251, "height": 513 }
     }
   ]
 }

@@ -12,12 +12,12 @@ export function Hero({ title, subtitle, meta, metaLabels }: HeroProps) {
     ...(meta.role ? [{ label: metaLabels.role, value: meta.role }] : []),
   ]
   return (
-    <header className="mx-auto flex max-w-[640px] flex-col gap-[24px] px-6 pt-10 md:px-0 md:pt-20">
-      <h1 className="text-ink text-[36px] leading-[1.12] font-bold tracking-[-0.01em] md:text-[52px]">
+    <header className="mx-auto flex max-w-[640px] flex-col gap-[32px] px-6 pt-10 md:px-0 md:pt-20">
+      <h1 className="text-ink text-[36px] leading-[1.15] font-bold tracking-[-0.01em] md:text-[52px]">
         {title}
       </h1>
-      <div className="flex flex-col gap-[16px]">
-        <p className="text-muted text-[16px] leading-[1.6]">{subtitle}</p>
+      <div className="flex flex-col gap-[20px]">
+        <p className="text-muted text-[17px] leading-[1.62]">{subtitle}</p>
         <dl className="text-muted flex flex-wrap gap-x-6 gap-y-1 text-[13px] leading-5">
           {items.map((item) => (
             <div key={item.label} className="flex items-baseline gap-1.5">

@@ -9,6 +9,7 @@ import { ImageBlock } from './sections/ImageBlock'
 import { Insight } from './sections/Insight'
 import { CalloutList } from './sections/CalloutList'
 import { VideoMockup } from './sections/VideoMockup'
+import { ResearchCards } from './sections/ResearchCards'
 import { NextProject } from './sections/NextProject'
 
 interface CaseStudyProps {
@@ -40,7 +41,7 @@ function getTopSpacing(prev: Section | null, curr: Section): string {
   if (p === 'section') {
     if (c === 'stat-cards' || c === 'highlight' || c === 'callout-list' || c === 'insight')
       return 'mt-[48px]'
-    if (c === 'image' || c === 'video') return 'mt-[64px]'
+    if (c === 'image' || c === 'video' || c === 'research-cards') return 'mt-[64px]'
   }
 
   // Between groups: any content block → next section label
@@ -108,8 +109,11 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                   src={section.src}
                   poster={section.poster}
                   background={section.background}
+                  variant={section.variant}
                 />
               )
+            case 'research-cards':
+              return <ResearchCards cards={section.cards} />
             case 'next-project':
               return (
                 <NextProject

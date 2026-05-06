@@ -8,74 +8,80 @@
   "sections": [
     {
       "type": "hero",
-      "title": "¿Cómo monetizar una experiencia de lectura sin arruinarla?",
+      "title": "¿Cómo ganás la atención de un usuario cuando tiene otras diez pestañas abiertas?",
       "subtitle": "Scribd es una plataforma SaaS global de documentos con 1,8M+ suscriptores. Lideré el rediseño de la página de documento para equilibrar monetización y confianza con un layout escalable.",
       "meta": {
-        "duration": "Ene–Sep 2024",
-        "team": "2 Product Designers · UX Researcher · Product Manager · Lead Engineer",
-        "role": "Lead designer"
+        "duration": "Ene–May 2024",
+        "team": "2 Product Designers · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "EL PROBLEMA",
-      "title": "Para Scribd más ads no significaba más revenue. Significaba menos lectores.",
-      "body": "Con el tiempo los ads y recomendaciones empezaron a saturar la página. Los usuarios necesitaban evaluar documentos rápido y, cuando uno valía la pena, leerlo sin distracciones. El producto tenía que sostener engagement y reducir churn para darle a los anunciantes una audiencia que valiera la pena."
+      "title": "La página del documento era difícil de escanear y todavía más difícil de concentrarse en ella.",
+      "body": "La sesión típica es un escaneo rápido: ¿es relevante, es confiable, vale la pena el tiempo? El layout hacía eso más difícil de lo necesario: el documento comenzaba muy abajo y la metadata desaparecía al hacer scroll. Para los no suscriptores, los ads sumaban fricción encima de todo eso."
     },
     {
-      "type": "stat-cards",
+      "type": "video",
+      "variant": "desktop",
+      "background": "#ede8dd",
+      "src": "/canvas/projects/scribd/video-problem.mp4"
+    },
+    {
+      "type": "section",
+      "label": "USER TESTING",
+      "title": "Verificando si la metadata persistente realmente cambiaba cómo la gente leía.",
+      "body": "Realicé una sesión de user testing para saber si mantener título, autor, ratings y acciones siempre visibles ayudaba a los usuarios a hacer multitasking y orientarse sin perder el hilo."
+    },
+    {
+      "type": "research-cards",
       "cards": [
-        { "value": "+15%", "label": "en profundidad de scroll después del rediseño.", "color": "orange" },
-        { "value": "“¿Dónde están los libros que acabo de leer?”", "label": "Feedback recurrente en el primer round de testing.", "color": "green" },
-        { "value": "“Siento que el doc es interesante y todo lo demás compite con él.”", "label": "Sentimiento repetido en las entrevistas de usuarios.", "color": "purple" }
+        {
+          "title": "El fullscreen se había convertido en un parche para la mala legibilidad.",
+          "body": "4 de 7 usuarios entraban al fullscreen para compensar un espacio de lectura que se sentía demasiado apretado.",
+          "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Modo fullscreen — antes del rediseño", "width": 599, "height": 446 }
+        },
+        {
+          "title": "La metadata persistente redujo la carga cognitiva.",
+          "body": "6 de 7 usuarios prefirieron el layout persistente. Mantener título, autor y ratings en su lugar les permitía evaluar relevancia sin perder el contexto.",
+          "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Página de documento con metadata persistente", "width": 599, "height": 446 }
+        },
+        {
+          "title": "Las recomendaciones competían con el documento.",
+          "body": "6 de 7 usuarios encontraban distractivas las recomendaciones mientras leían. Querían verlas después de terminar el documento, no mientras lo leían.",
+          "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 599, "height": 446 }
+        }
       ]
     },
     {
-      "type": "image",
-      "image": { "src": "/canvas/projects/scribd/cover.jpg", "alt": "Rediseño de la página de documento de Scribd", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "section",
+      "label": "EXPERIENCIA DE SUSCRIPTORES",
+      "title": "Diseñada para el escaneo rápido y la lectura profunda.",
+      "body": "Al llegar, la metadata queda visible para que los usuarios puedan evaluar el documento sin perder contexto. Cuando están listos para leer, el documento toma el protagonismo: área de lectura más amplia y una columna colapsable que elimina todo lo demás de la vista."
+    },
+    {
+      "type": "video",
+      "variant": "desktop",
+      "background": "#e3f4f5",
+      "src": "/canvas/projects/scribd/video-subscribers.mp4"
     },
     {
       "type": "section",
-      "label": "USER FEEDBACK",
-      "title": "La experiencia de lectura era el producto.",
-      "body": "Reformulé el enfoque de monetización: mostrar ads donde aporten valor, no donde compitan con el documento. El equipo iteró con tests semanales y movió métricas en ambas direcciones — ads menos intrusivos y sesiones de lectura más largas."
+      "label": "EXPERIENCIA DE NO SUSCRIPTORES",
+      "title": "Hacer lugar para los ads sin perder usuarios en el proceso.",
+      "body": "Los ads y el contenido necesitan una separación visual clara para coexistir. El formato vertical era el que más valoraban los anunciantes, y también el que más competía con el área de lectura. Usé los datos para encontrar el ancho mínimo que mantenía funcionando ambos lados de esa ecuación."
     },
     {
-      "type": "insight",
-      "title": "El fullscreen era un parche. No una feature.",
-      "body": "4 de 7 usuarios usaban fullscreen no para sumergirse, sino para compensar un espacio de lectura que se sentía apretado. Era un workaround para mala legibilidad.",
-      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Mockup de modo fullscreen", "width": 600, "height": 400 }
-    },
-    {
-      "type": "insight",
-      "title": "La metadata persistente bajó la carga cognitiva.",
-      "body": "6 de 7 usuarios preferían título, autor y ratings siempre visibles. Les permitía evaluar relevancia sin perder contexto y subió la confianza al navegar.",
-      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Documento con metadata persistente", "width": 600, "height": 400 },
-      "reverse": true
-    },
-    {
-      "type": "insight",
-      "title": "La columna derecha competía con el documento.",
-      "body": "6 de 7 usuarios rechazaban recomendaciones mientras leían. Se sentían forzadas; preferían guardarlas para después de terminar, no durante.",
-      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 600, "height": 400 }
-    },
-    {
-      "type": "section",
-      "label": "AD STRATEGY",
-      "title": "Menos ads. Mejor ubicados. Más valiosos.",
-      "body": "Trabajé con producto y advertising para alinear performance y formatos de alto impacto. Estandaricé las ubicaciones para reducir confusión visual y evitar que los ads pelearan con el contenido principal. El objetivo: una página donde el ad se sintiera parte del layout, no una intrusión."
-    },
-    {
-      "type": "image",
-      "image": { "src": "/canvas/projects/scribd/final.jpg", "alt": "Página de documento final de Scribd", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "video",
+      "variant": "desktop",
+      "background": "#e3f4f5",
+      "src": "/canvas/projects/scribd/video-non-subscribers.mp4"
     },
     {
       "type": "next-project",
       "slug": "slideshare",
-      "title": "Un reader construido para slides pero lleno de documentos que nadie podía leer.",
-      "image": { "src": "/canvas/projects/slideshare/cover-thumb.jpg", "alt": "Rediseño del reader de SlideShare", "width": 320, "height": 200 }
+      "title": "Una plataforma construida para slides que necesitaba aprender a mostrar documentos.",
+      "image": { "src": "/canvas/projects/scribd/next-case.png", "alt": "Vista previa del caso SlideShare", "width": 251, "height": 513 }
     }
   ]
 }
