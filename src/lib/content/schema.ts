@@ -67,6 +67,7 @@ const NextProject = z.object({
   type: z.literal('next-project'),
   slug: z.string(),
   title: z.string(),
+  cta: z.string().optional(),
   image: ProjectImage.optional(),
 })
 

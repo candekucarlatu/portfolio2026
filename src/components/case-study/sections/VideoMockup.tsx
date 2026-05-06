@@ -8,11 +8,11 @@ export function VideoMockup({ src, poster, background = '#ede5fa' }: VideoMockup
   return (
     <section className="w-full overflow-hidden">
       <div
-        className="relative mx-auto flex h-[320px] w-full items-center justify-center md:h-[520px] lg:h-[664px]"
+        className="relative flex h-[320px] w-full items-center justify-center md:h-[520px] lg:h-[664px]"
         style={{ backgroundColor: background }}
       >
-        {/* iPhone frame */}
-        <div className="relative" style={{ width: 178, height: 361 }}>
+        {/* iPhone frame — 236×481px per Figma 392:98 */}
+        <div className="relative" style={{ width: 236, height: 481 }}>
           {src ? (
             <video
               src={src}
@@ -21,8 +21,8 @@ export function VideoMockup({ src, poster, background = '#ede5fa' }: VideoMockup
               loop
               muted
               playsInline
-              className="absolute rounded-[28px] object-cover"
-              style={{ top: 7, left: 13, width: 152, height: 328 }}
+              className="absolute object-cover"
+              style={{ top: 6, left: 7, width: 222, height: 468, borderRadius: 36 }}
             />
           ) : null}
           {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -24,7 +24,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
     setOpen(false)
     // Wait for exit animation, then navigate back
     window.setTimeout(() => router.back(), reduceMotion ? 0 : isDesktop ? 520 : 280)
-  }, [router, reduceMotion])
+  }, [router, reduceMotion, isDesktop])
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -38,34 +38,51 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
     return (
       <AnimatePresence>
         {open && (
+          // Backdrop overlay — fades in/out
           <motion.div
-            className="bg-paper text-ink fixed inset-0 z-50 flex flex-col"
-            initial={{ y: reduceMotion ? 0 : '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: reduceMotion ? 0 : '100%' }}
-            transition={{
-              duration: reduceMotion ? 0.01 : 0.52,
-              ease: [0.16, 1, 0.3, 1],
-            }}
+            key="sheet-overlay"
+            className="fixed inset-0 z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.25 }}
+            onClick={close}
           >
-            <button
-              type="button"
-              aria-label={closeLabel}
-              onClick={close}
-              className="border-ink/15 bg-paper hover:border-ink/30 hover:bg-cork focus-visible:outline-accent absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-md border text-[#5e22ed] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+            {/* Dim canvas behind */}
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+
+            {/* Panel — slides up from below, gap at top + sides, flush at bottom */}
+            <motion.div
+              className="bg-paper text-ink absolute inset-x-4 bottom-0 top-14 z-10 flex flex-col rounded-t-2xl shadow-2xl overflow-hidden"
+              initial={{ y: reduceMotion ? 0 : '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: reduceMotion ? 0 : '100%' }}
+              transition={{
+                duration: reduceMotion ? 0.01 : 0.52,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-                <path
-                  d="M1 1L13 13M13 1L1 13"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-            <div className="canvas-scroll-hidden flex-1 overflow-y-auto overscroll-contain">
-              {children}
-            </div>
+              <button
+                type="button"
+                aria-label={closeLabel}
+                onClick={close}
+                className="border-ink/15 bg-paper hover:border-ink/30 hover:bg-cork focus-visible:outline-accent absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-md border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+                style={{ color: '#FF3E00' }}
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+                  <path
+                    d="M1 1L13 13M13 1L1 13"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+              <div className="canvas-scroll-hidden flex-1 overflow-y-auto overscroll-contain">
+                {children}
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

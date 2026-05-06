@@ -77,6 +77,7 @@
       "type": "next-project",
       "slug": "scribd",
       "title": "How do you earn a user's attention when they have other ten tabs open?",
+      "cta": "Explore Scribd's redesign →",
       "image": { "src": "/canvas/projects/tacobell/next-case.png", "alt": "Scribd case study preview", "width": 666, "height": 513 }
     }
   ]
