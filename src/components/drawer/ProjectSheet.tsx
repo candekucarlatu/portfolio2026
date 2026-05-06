@@ -127,11 +127,6 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
                 {children}
               </div>
 
-              {/*
-               * Transparent bottom spacer — sits outside bg-paper so the backdrop
-               * shows through here instead of a white rectangle.
-               */}
-              <div className="h-[88px]" />
             </motion.div>
           </>
         )}

@@ -24,7 +24,7 @@
   "ui": {
     "openProject": "Open project",
     "closeProject": "Close",
-    "nextCaseStudy": "Next case study →",
+    "nextCaseStudy": "Next case study",
     "dragHint": "Drag to explore",
     "languageSwitch": "ES",
     "loading": "Loading…",
