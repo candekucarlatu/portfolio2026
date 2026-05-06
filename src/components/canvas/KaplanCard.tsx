@@ -43,7 +43,7 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="focus-visible:outline-accent relative block h-full w-full focus-visible:outline-2 focus-visible:outline-offset-8"
+      className="focus-visible:outline-accent relative block h-full w-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-8"
       onPointerDown={(e) => { dragStartRef.current = { x: e.clientX, y: e.clientY } }}
       onClickCapture={(e) => {
         const s = dragStartRef.current
@@ -213,11 +213,11 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
         />
       </div>
 
-      {/* 7 ── Pencil shadow (lapiz shadow — masked, rotated ~-102deg) */}
+      {/* 7 ── Pencil shadow — clipPath clips at shelf surface (card y=433, container top=268 → 49% from bottom) */}
       {/* Figma flex: left=1511.16 top=22.99 w=109.636 h=321.8 */}
       <div
         className="absolute flex items-center justify-center"
-        style={{ left: 490, top: 268, width: 110, height: 322 }}
+        style={{ left: 490, top: 268, width: 110, height: 322, clipPath: 'inset(0 0 49% 0)' }}
       >
         <div style={{ transform: 'rotate(-102.25deg) skewX(0.16deg)', flexShrink: 0 }}>
           <div
@@ -227,7 +227,6 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
               position: 'relative',
               filter: 'blur(4px)',
               opacity: 0.15,
-              ...shelfMask('-465.156px -85.988px'),
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -242,11 +241,11 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
         </div>
       </div>
 
-      {/* 8 ── Pencil (lapiz — masked, rotated ~-100deg) */}
+      {/* 8 ── Pencil — clipPath clips at shelf surface (card y=433, container top=254 → 44.6% from bottom) */}
       {/* Figma flex: left=1517 top=9 w=95.12 h=322.686 */}
       <div
         className="absolute flex items-center justify-center"
-        style={{ left: 496, top: 254, width: 95, height: 323 }}
+        style={{ left: 496, top: 254, width: 95, height: 323, clipPath: 'inset(0 0 44.6% 0)' }}
       >
         <div style={{ transform: 'rotate(-99.55deg) skewX(0.15deg)', flexShrink: 0 }}>
           <div
@@ -254,7 +253,6 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
               width: 320,
               height: 43,
               position: 'relative',
-              ...shelfMask('-471px -72px'),
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}

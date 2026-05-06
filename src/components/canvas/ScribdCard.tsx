@@ -24,7 +24,7 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="focus-visible:outline-accent relative block h-full w-full focus-visible:outline-2 focus-visible:outline-offset-8"
+      className="focus-visible:outline-accent relative block h-full w-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-8"
       onPointerDown={(e) => { dragStartRef.current = { x: e.clientX, y: e.clientY } }}
       onClickCapture={(e) => {
         const s = dragStartRef.current
@@ -37,21 +37,21 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
     >
       {/* ── Z-ORDER: bottom → top ── */}
 
-      {/* 1 ── Paper 02 shadow */}
-      {/* Figma flex: left=1050.19 top=695.21 w=269.868 h=468.55 */}
+      {/* 1 ── Paper 01 shadow — at bottom so Paper 02 renders on top of it */}
+      {/* Figma flex: left=1056.17 top=681.12 w=330.828 h=494.806 */}
       <div
         className="absolute flex items-center justify-center"
-        style={{ left: 4, top: 161, width: 270, height: 469 }}
+        style={{ left: 10, top: 147, width: 331, height: 495 }}
       >
-        <div style={{ transform: 'rotate(0.99deg)', flexShrink: 0 }}>
+        <div style={{ transform: 'rotate(-7.17deg)', flexShrink: 0 }}>
           <div
             className="bg-black opacity-15"
-            style={{ width: 262, height: 464, filter: 'blur(10px)' }}
+            style={{ width: 275, height: 464, filter: 'blur(10px)' }}
           />
         </div>
       </div>
 
-      {/* 2 ── Paper 02 (back paper, slightly tilted right) */}
+      {/* 3 ── Paper 02 (back paper, slightly tilted right) */}
       {/* Figma flex: left=1046.13 top=692 w=266.622 h=464.363 */}
       <div
         className="absolute flex items-center justify-center"
@@ -78,7 +78,7 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         </div>
       </div>
 
-      {/* 3 ── Bookmark (green Scribd bookmark) */}
+      {/* 4 ── Bookmark (green Scribd bookmark) */}
       {/* Figma flex: left=1087.75 top=877.21 w=108.448 h=319.004 */}
       <div
         className="absolute flex items-center justify-center"
@@ -141,20 +141,6 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         </div>
       </div>
 
-      {/* 5 ── Paper 01 shadow */}
-      {/* Figma flex: left=1056.17 top=681.12 w=330.828 h=494.806 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 10, top: 147, width: 331, height: 495 }}
-      >
-        <div style={{ transform: 'rotate(-7.17deg)', flexShrink: 0 }}>
-          <div
-            className="bg-black opacity-15"
-            style={{ width: 275, height: 464, filter: 'blur(10px)' }}
-          />
-        </div>
-      </div>
-
       {/* 6 ── Paper 01 (front paper with Scribd cover, tilted left) */}
       {/* Figma flex: left=1064.66 top=678.92 w=314.121 h=488.67 */}
       <div
@@ -196,14 +182,14 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
       />
 
       {/* 8 ── Green sticky note (Evidence 1) */}
-      {/* Figma flex: left=1463 top=918 w=270.753 h=220.277 */}
-      <div className="absolute" style={{ left: 417, top: 384, width: 271, height: 220 }}>
+      {/* Figma flex: left=1463 top=918 — inner 305×185 rotated 6.98° → outer 325×221 */}
+      <div className="absolute" style={{ left: 390, top: 384, width: 325, height: 221 }}>
         <div className="flex h-full w-full items-center justify-center">
           <div
             className="relative"
             style={{
-              width: 249,
-              height: 191,
+              width: 305,
+              height: 185,
               backgroundColor: '#d6f5db',
               filter: 'drop-shadow(2px 5px 5px rgba(0,0,0,0.1))',
               transform: 'rotate(6.98deg)',

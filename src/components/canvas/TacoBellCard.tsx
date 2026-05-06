@@ -25,7 +25,7 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="focus-visible:outline-accent relative block h-full w-full focus-visible:outline-2 focus-visible:outline-offset-8"
+      className="focus-visible:outline-accent relative block h-full w-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-8"
       onPointerDown={(e) => { dragStartRef.current = { x: e.clientX, y: e.clientY } }}
       onClickCapture={(e) => {
         const s = dragStartRef.current
@@ -214,52 +214,16 @@ function Inner({ card, href, ariaLabel }: TacoBellCardProps) {
         aria-hidden
       />
 
-      {/* 12 ── Llavero + Gancho (Figma 439:12865) — one unified group */}
-      {/* Wrapper bounding box: MCP left=-220.85 top=-34.97 → container (−25, 322) */}
-      <div className="pointer-events-none absolute" style={{ left: -25, top: 322, width: 162, height: 326 }}>
-        {/* Llavero character with mask — flex-center, rotate(-9.5deg) */}
-        <div className="absolute flex h-full w-full items-center justify-center">
-          <div className="flex-none" style={{ transform: 'rotate(-9.5deg)' }}>
-            <div
-              style={{
-                width: 111.805,
-                height: 312.253,
-                position: 'relative',
-                overflow: 'hidden',
-                maskImage: 'url(/canvas/tacobell/llavero-mask.svg)',
-                WebkitMaskImage: 'url(/canvas/tacobell/llavero-mask.svg)',
-                maskRepeat: 'no-repeat',
-                WebkitMaskRepeat: 'no-repeat',
-                maskPosition: '32.446px 19.967px',
-                WebkitMaskPosition: '32.446px 19.967px',
-                maskSize: '116.804px 298px',
-                WebkitMaskSize: '116.804px 298px',
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/tacobell/llavero.png"
-                alt=""
-                aria-hidden
-                className="pointer-events-none select-none"
-                style={{ position: 'absolute', height: '100%', left: '-46.4%', maxWidth: 'none', top: 0, width: '186.19%' }}
-                draggable={false}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Gancho (clasp) — MCP offset from wrapper: (25.85, 1.97) */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canvas/tacobell/gancho.png"
-          alt=""
-          aria-hidden
-          className="pointer-events-none absolute select-none"
-          style={{ left: 25.85, top: 2, width: 48, height: 49 }}
-          draggable={false}
-        />
-      </div>
+      {/* 12 ── Llavero (Figma 439:12865) */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/tacobell/Llavero.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute select-none"
+        style={{ left: -25, top: 322, width: 162, height: 326, objectFit: 'contain', objectPosition: 'top left' }}
+        draggable={false}
+      />
     </Link>
   )
 }
