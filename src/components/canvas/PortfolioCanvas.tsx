@@ -12,7 +12,6 @@ import { TacoBellCard } from './TacoBellCard'
 import { SlideShareCard } from './SlideShareCard'
 import { ScribdCard } from './ScribdCard'
 import { KaplanCard } from './KaplanCard'
-import { PortfolioMobile } from './PortfolioMobile'
 import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, PROJECTS } from './itemPositions'
 
 interface PortfolioCanvasProps {
@@ -27,12 +26,15 @@ interface ViewportSize {
 }
 
 /**
- * Canvas zoom: 1.0 at ≥1280px, scales linearly down to 0.65 at 768px.
- * Below 768px keeps scale=1 (mobile layout handled separately).
+ * Canvas scale for all viewport sizes.
+ * Takes the larger ratio of width/1280 and height/1800 so the board always
+ * extends beyond both viewport edges — ensuring drag/pan is always meaningful.
+ * Clamped to [0.38, 1.0].
  */
 function getScale(viewport: ViewportSize): number {
-  if (viewport.width < 768) return 1
-  return Math.min(1, Math.max(0.65, viewport.width / 1280))
+  const byWidth = viewport.width / 1280
+  const byHeight = viewport.height / 1800
+  return Math.min(1, Math.max(0.38, Math.max(byWidth, byHeight)))
 }
 
 function getCenteredOffset(viewport: ViewportSize, scale: number) {
@@ -177,10 +179,6 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   // Desktop uses cursor panning; tablet/mobile uses touch drag
   const isDesktop = viewport ? viewport.width >= 1024 : false
   const dragEnabled = !reduceMotion && !isDesktop
-
-  if (viewport && viewport.width < 768) {
-    return <PortfolioMobile projects={projects} dict={dict} locale={locale} />
-  }
 
   return (
       <div
