@@ -78,21 +78,7 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
         </div>
       </div>
 
-      {/* 3 ── Bookmark shadow */}
-      {/* Figma flex: left=1090.44 top=887.38 w=36.01 h=290.727 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 44, top: 353, width: 36, height: 291 }}
-      >
-        <div style={{ transform: 'rotate(-1.2deg)', flexShrink: 0 }}>
-          <div
-            className="bg-black opacity-15"
-            style={{ width: 30, height: 290, filter: 'blur(6px)' }}
-          />
-        </div>
-      </div>
-
-      {/* 4 ── Bookmark (green Scribd bookmark) */}
+      {/* 3 ── Bookmark (green Scribd bookmark) */}
       {/* Figma flex: left=1087.75 top=877.21 w=108.448 h=319.004 */}
       <div
         className="absolute flex items-center justify-center"
@@ -119,7 +105,39 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
               className="pointer-events-none select-none"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover', objectPosition: 'bottom' }}
             />
+            {/* Texture overlay — mix-blend-multiply */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/scribd/bookmark-texture.png"
+              alt=""
+              aria-hidden
+              className="pointer-events-none select-none"
+              style={{
+                position: 'absolute',
+                top: '-0.01%',
+                left: 0,
+                width: '224.79%',
+                height: '100.02%',
+                maxWidth: 'none',
+                mixBlendMode: 'multiply',
+                opacity: 0.7,
+              }}
+            />
           </div>
+        </div>
+      </div>
+
+      {/* 4 ── Bookmark shadow — above bookmark, below Paper 01 */}
+      {/* Figma flex: left=1090.44 top=887.38 w=36.01 h=290.727 */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ left: 44, top: 353, width: 36, height: 291 }}
+      >
+        <div style={{ transform: 'rotate(-1.2deg)', flexShrink: 0 }}>
+          <div
+            className="bg-black opacity-15"
+            style={{ width: 30, height: 290, filter: 'blur(6px)' }}
+          />
         </div>
       </div>
 
@@ -195,37 +213,37 @@ function Inner({ card, href, ariaLabel }: ScribdCardProps) {
             {/* Title — Caveat Bold 18px #1f1a14 line-height:normal */}
             <p
               className="font-script absolute font-bold"
-              style={{ left: 22, top: 33, width: 212, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
+              style={{ left: 22.38, top: 37.23, width: 260.88, fontSize: 18, color: '#1f1a14', lineHeight: 'normal' }}
             >
               {card.title}
             </p>
 
             {/* Line 1 — h=2.29 */}
-            <div className="absolute" style={{ left: 24, top: 52, width: 208, height: 2, overflow: 'visible' }}>
+            <div className="absolute" style={{ left: 24.38, top: 55.5, width: 232.606, height: 2, overflow: 'visible' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/canvas/scribd/linea.svg"
                 alt=""
                 aria-hidden
-                style={{ position: 'absolute', inset: '-43.67% -0.48% -43.68% -0.48%', display: 'block', width: '100%', height: '100%' }}
+                style={{ position: 'absolute', inset: '-43.67% -0.43% -43.68% -0.43%', display: 'block', width: '100%', height: '100%' }}
               />
             </div>
 
             {/* Line 2 — h=3.09 */}
-            <div className="absolute" style={{ left: 23, top: 77, width: 202, height: 3, overflow: 'visible' }}>
+            <div className="absolute" style={{ left: 23.14, top: 81.01, width: 236.314, height: 3, overflow: 'visible' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/canvas/scribd/linea1.svg"
                 alt=""
                 aria-hidden
-                style={{ position: 'absolute', inset: '-32.37% -0.49%', display: 'block', width: '100%', height: '100%' }}
+                style={{ position: 'absolute', inset: '-32.37% -0.42%', display: 'block', width: '100%', height: '100%' }}
               />
             </div>
 
             {/* Subtitle — Caveat Regular 16px #1f1a14 leading-1.35 */}
             <p
               className="font-script absolute font-normal"
-              style={{ left: 19, top: 92, width: 203, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
+              style={{ left: 21.09, top: 100.16, width: 245.63, fontSize: 16, lineHeight: 1.35, color: '#1f1a14' }}
             >
               {card.subtitle}
             </p>
