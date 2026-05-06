@@ -18,20 +18,6 @@ interface SlideShareCardProps {
 const W = 652
 const H = 812
 
-const cuadernoMask = {
-  maskImage: 'url(/canvas/slideshare/cuaderno-mask.svg)',
-  maskRepeat: 'no-repeat' as const,
-  maskPosition: '-20.892px -24.382px',
-  maskSize: '287.085px 311.061px',
-  maskMode: 'alpha' as const,
-  maskComposite: 'intersect' as const,
-  maskClip: 'no-clip' as const,
-  WebkitMaskImage: 'url(/canvas/slideshare/cuaderno-mask.svg)',
-  WebkitMaskRepeat: 'no-repeat' as const,
-  WebkitMaskPosition: '-20.892px -24.382px',
-  WebkitMaskSize: '287.085px 311.061px',
-  WebkitMaskComposite: 'source-in' as const,
-}
 
 function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
   const dragStartRef = useRef<{ x: number; y: number } | null>(null)
@@ -53,79 +39,16 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
     >
       {/* ── Z-ORDER: bottom → top ── */}
 
-      {/* 1 ── Cuaderno (notebook) — BELOW shelf */}
-      {/* Figma flex container: left=-310.66 top=792.82 w=278.977 h=351.891 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 53, top: 384, width: 279, height: 352 }}
-      >
-        <div style={{ transform: 'rotate(-3.84deg)', flexShrink: 0 }}>
-          <div
-            style={{
-              width: 257,
-              height: 335,
-              position: 'relative',
-              ...cuadernoMask,
-            }}
-          >
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/canvas/slideshare/cuaderno-img.png"
-                alt=""
-                aria-hidden
-                className="pointer-events-none select-none"
-                style={{
-                  position: 'absolute',
-                  top: '-12.99%',
-                  left: '-21.63%',
-                  width: '131.98%',
-                  height: '126.44%',
-                  maxWidth: 'none',
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 2 ── Slides (cover + binder clip — single composite asset 779×435) */}
-      {/* Rendered BEFORE the shelf so the estante front lip clips the bottom */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 225, top: 491, width: 358, height: 200 }}
-      >
-        <div style={{ transform: 'rotate(1deg)', flexShrink: 0 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/canvas/slideshare/Slides.png"
-            alt=""
-            aria-hidden
-            className="pointer-events-none select-none"
-            style={{ width: 358, height: 200, maxWidth: 'none', objectFit: 'fill', display: 'block' }}
-          />
-        </div>
-      </div>
-
-      {/* 3 ── Estante shadow */}
-      {/* Figma: left=-286 top=1127 w=527 h=94 */}
-      <div
-        className="absolute bg-black blur-[50px] opacity-20"
-        style={{ left: 78, top: 718, width: 527, height: 94 }}
+      {/* 1 ── Shelf composite (single combined image — drop shelf.png to replace) */}
+      {/* Covers the full card bounding box: 652×812, transparent bg shows pegboard */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/slideshare/shelf.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute select-none"
+        style={{ left: 0, top: 0, width: 652, height: 812, maxWidth: 'none', objectFit: 'contain', objectPosition: 'top left' }}
       />
-
-      {/* 4 ── Estante (shelf) — renders ON TOP of slides+cuaderno to clip their bottoms */}
-      {/* Figma: left=-364 top=990 w=639 h=225 */}
-      <div className="absolute" style={{ left: 0, top: 581, width: 639, height: 225 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canvas/slideshare/estante.png"
-          alt=""
-          aria-hidden
-          className="pointer-events-none select-none"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
-        />
-      </div>
 
       {/* 8 ── Case Study sticky note */}
       {/* Figma 439:12788: inner 318×178 rotated 1.51° → outer ≈324×186, pos left=363 top=262 */}
@@ -212,57 +135,6 @@ function Inner({ card, href, ariaLabel }: SlideShareCardProps) {
         quality={100}
         className="pointer-events-none absolute object-contain select-none"
         style={{ left: 515, top: 158 }}
-        aria-hidden
-      />
-
-      {/* 10 ── Poster (illustration pinned to board) */}
-      {/* Figma flex container: left=-273.81 top=510 w=240.848 h=239.704 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 90, top: 101, width: 241, height: 240 }}
-      >
-        <div style={{ transform: 'rotate(-2.57deg)', flexShrink: 0 }}>
-          <div
-            style={{
-              width: 231,
-              height: 230,
-              position: 'relative',
-              boxShadow: '4px 4px 8px 0px rgba(0,0,0,0.15)',
-              overflow: 'hidden',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/canvas/slideshare/poster.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none select-none"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '125.68%',
-                maxWidth: 'none',
-                objectFit: 'cover',
-                objectPosition: 'top',
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* 11 ── Pinza for poster */}
-      {/* Figma: left=-228 top=409 w=46 h=138.5 → container: left=136 top=0 */}
-      <Image
-        src="/canvas/slideshare/pinza.png"
-        alt=""
-        width={46}
-        height={139}
-        sizes="46px"
-        quality={100}
-        className="pointer-events-none absolute object-contain select-none"
-        style={{ left: 136, top: 0 }}
         aria-hidden
       />
 

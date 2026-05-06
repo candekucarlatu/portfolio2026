@@ -17,24 +17,6 @@ interface KaplanCardProps {
 const W = 695
 const H = 658
 
-// Shared mask for all shelf objects (trapezoid shape, 582×330)
-// mask-mode: alpha — use alpha channel of mask SVG
-// mask-composite: intersect — intersect with element alpha
-// mask-clip: no-clip — allow mask to extend beyond element border-box
-const shelfMask = (pos: string) => ({
-  maskImage: 'url(/canvas/kaplan/mask.svg)',
-  maskRepeat: 'no-repeat' as const,
-  maskPosition: pos,
-  maskSize: '582px 330px',
-  maskMode: 'alpha' as const,
-  maskComposite: 'intersect' as const,
-  maskClip: 'no-clip' as const,
-  WebkitMaskImage: 'url(/canvas/kaplan/mask.svg)',
-  WebkitMaskRepeat: 'no-repeat' as const,
-  WebkitMaskPosition: pos,
-  WebkitMaskSize: '582px 330px',
-  WebkitMaskComposite: 'source-in' as const,
-})
 
 function Inner({ card, href, ariaLabel }: KaplanCardProps) {
   const dragStartRef = useRef<{ x: number; y: number } | null>(null)
@@ -55,6 +37,17 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
       }}
     >
       {/* ── Z-ORDER: bottom → top ── */}
+
+      {/* 0 ── Shelf composite (single combined image — drop shelf.png to replace) */}
+      {/* Covers the full card bounding box: 695×658, transparent bg shows pegboard */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/kaplan/shelf.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute select-none"
+        style={{ left: 0, top: 0, width: 695, height: 658, maxWidth: 'none', objectFit: 'contain', objectPosition: 'top left' }}
+      />
 
       {/* 1 ── Light-blue sticky note (Evidence 3) */}
       {/* Figma 439:12828: wrapper ~285×192 */}
@@ -144,128 +137,6 @@ function Inner({ card, href, ariaLabel }: KaplanCardProps) {
         aria-hidden
       />
 
-      {/* 3 ── Estante shadow */}
-      {/* Figma: left=1074 top=267 w=554 h=134 */}
-      <div
-        className="absolute bg-black opacity-35"
-        style={{ left: 53, top: 512, width: 554, height: 134, filter: 'blur(50px)' }}
-      />
-
-      {/* 4 ── Estante (shelf) */}
-      {/* Figma: left=1021 top=187.6 w=695.195 h=225.404 */}
-      <div className="absolute" style={{ left: 0, top: 433, width: 695, height: 225 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canvas/kaplan/estante.png"
-          alt=""
-          aria-hidden
-          className="pointer-events-none select-none"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
-        />
-      </div>
-
-      {/* 5 ── Notebook (image 19 — masked, slightly rotated) */}
-      {/* Figma flex: left=1290.88 top=-58.36 w=296.796 h=389.355 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 270, top: 187, width: 297, height: 389 }}
-      >
-        <div style={{ transform: 'rotate(-1.64deg)', flexShrink: 0 }}>
-          <div
-            style={{
-              width: 286,
-              height: 381,
-              position: 'relative',
-              ...shelfMask('-244.881px -4.642px'),
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/canvas/kaplan/notebook.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none select-none"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover', objectPosition: 'bottom' }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* 6 ── Certificate (image 21 — masked) */}
-      {/* Figma: absolute left=1073 top=50 w=413 h=276 */}
-      <div
-        className="absolute"
-        style={{
-          left: 52,
-          top: 295,
-          width: 413,
-          height: 276,
-          ...shelfMask('-27px -113px'),
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canvas/kaplan/certificate.png"
-          alt=""
-          aria-hidden
-          className="pointer-events-none select-none"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover', objectPosition: 'bottom' }}
-        />
-      </div>
-
-      {/* 7 ── Pencil shadow — clipPath clips at shelf surface (card y=433, container top=268 → 49% from bottom) */}
-      {/* Figma flex: left=1511.16 top=22.99 w=109.636 h=321.8 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 490, top: 268, width: 110, height: 322, clipPath: 'inset(0 0 49% 0)' }}
-      >
-        <div style={{ transform: 'rotate(-102.25deg) skewX(0.16deg)', flexShrink: 0 }}>
-          <div
-            style={{
-              width: 320,
-              height: 43,
-              position: 'relative',
-              filter: 'blur(4px)',
-              opacity: 0.15,
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/canvas/kaplan/lapiz-shadow.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none select-none"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* 8 ── Pencil — clipPath clips at shelf surface (card y=433, container top=254 → 44.6% from bottom) */}
-      {/* Figma flex: left=1517 top=9 w=95.12 h=322.686 */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 496, top: 254, width: 95, height: 323, clipPath: 'inset(0 0 44.6% 0)' }}
-      >
-        <div style={{ transform: 'rotate(-99.55deg) skewX(0.15deg)', flexShrink: 0 }}>
-          <div
-            style={{
-              width: 320,
-              height: 43,
-              position: 'relative',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/canvas/kaplan/lapiz.png"
-              alt=""
-              aria-hidden
-              className="pointer-events-none select-none"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', maxWidth: 'none', objectFit: 'cover' }}
-            />
-          </div>
-        </div>
-      </div>
     </Link>
   )
 }
