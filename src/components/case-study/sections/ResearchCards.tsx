@@ -33,8 +33,7 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
               {/* Image on left (odd cards) */}
               {!imageRight && (
                 <div
-                  className="relative w-full shrink-0 lg:w-[599px]"
-                  style={{ aspectRatio: '599/446' }}
+                  className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]"
                 >
                   <Image
                     src={card.image.src}
@@ -63,8 +62,7 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
               {/* Image on right (even cards: 0, 2) */}
               {imageRight && (
                 <div
-                  className="relative w-full shrink-0 lg:w-[599px]"
-                  style={{ aspectRatio: '599/446' }}
+                  className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]"
                 >
                   <Image
                     src={card.image.src}
