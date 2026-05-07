@@ -87,14 +87,18 @@ export function NextProject({
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
           /*
-           * Figma: 1440px frame, image at 666×513 fully visible with ~91px
-           * right margin. We replicate the structure (tablet fully shown on
-           * the right half) and let it scale down inside the narrower modal.
+           * Figma: 1440px frame, image at 666×513 fully visible.
+           * -mr-[106px] extends the right area to the section edge so
+           * justify-center places the tablet between the text column and
+           * the actual modal edge, not the padded edge.
+           * max-w-[85%] keeps it from filling the full area, matching
+           * the Figma proportions (666 / 778 ≈ 86%).
            */
-          <div className="flex-1 flex items-center justify-center min-w-0">
+          <div className="flex-1 flex items-center justify-center min-w-0 -mr-[106px]">
             <Link
               href={href}
-              className="block max-w-full"
+              className="block"
+              style={{ maxWidth: '85%' }}
               aria-hidden
               tabIndex={-1}
             >
@@ -103,7 +107,7 @@ export function NextProject({
                 alt={image.alt}
                 width={666}
                 height={513}
-                className="max-w-full h-auto"
+                className="w-full h-auto"
               />
             </Link>
           </div>
