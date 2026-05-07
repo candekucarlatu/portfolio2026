@@ -9,18 +9,18 @@ interface ImageBlockProps {
   variant?: 'framed' | 'plain'
 }
 
-const widths: Record<ImageBlockProps['width'], string> = {
-  default: 'max-w-[640px]',
-  wide: 'max-w-[960px]',
-  full: 'max-w-[1180px]',
+const widthClasses: Record<ImageBlockProps['width'], string> = {
+  default: 'mx-auto max-w-[680px] px-6 md:px-0',
+  wide: 'mx-auto max-w-[960px] px-6 md:px-8',
+  full: 'mx-[56px]',
 }
 
 export function ImageBlock({ image, caption, width, variant = 'framed' }: ImageBlockProps) {
   return (
     <figure
       className={clsx(
-        'mx-auto flex w-full flex-col items-center gap-3 px-6 md:px-8',
-        widths[width],
+        'flex w-auto flex-col items-center gap-3',
+        widthClasses[width],
       )}
     >
       <div
