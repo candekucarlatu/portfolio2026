@@ -72,15 +72,11 @@ export function VideoMockup({
   }
 
   // Phone variant (default)
-  // Figma 392:93: background 1180×664 with mx-[56px], video at 222×468 inside iPhone frame 236×481
-  // Top/bottom padding matches Figma (91px top, 92px bottom = 664px total background height)
-  // The 120px gap to next-project is handled externally by CaseStudy getTopSpacing
-  const FRAME_W = 236
-  const FRAME_H = 481
-  const VIDEO_W = 222
-  const VIDEO_H = 468
-  const VIDEO_OFFSET_X = (FRAME_W - VIDEO_W) / 2
-  const VIDEO_OFFSET_Y = (FRAME_H - VIDEO_H) / 2
+  // iphone-frame.png is natively 252×513. Screen cutout: top 10, left 13, w 225, h 493, r 32.
+  // Using the frame at its native size avoids the scaling mismatch that causes the double-frame.
+  // The 120px gap to next-project is handled externally by CaseStudy getTopSpacing.
+  const FRAME_W = 252
+  const FRAME_H = 513
 
   return (
     <section className="mx-[56px]">
@@ -88,17 +84,17 @@ export function VideoMockup({
         className="relative flex w-full items-center justify-center pt-[91px] pb-[92px]"
         style={{ backgroundColor: background }}
       >
-        {/* Phone container: sized to the frame dimensions */}
+        {/* Phone container at the frame's native size */}
         <div style={{ position: 'relative', width: FRAME_W, height: FRAME_H, flexShrink: 0 }}>
-          {/* Video/content — clipped inside screen area */}
+          {/* Video clipped to the exact screen area of iphone-frame.png */}
           <div
             style={{
               position: 'absolute',
-              top: VIDEO_OFFSET_Y,
-              left: VIDEO_OFFSET_X,
-              width: VIDEO_W,
-              height: VIDEO_H,
-              borderRadius: 36,
+              top: 10,
+              left: 13,
+              width: 225,
+              height: 493,
+              borderRadius: 32,
               overflow: 'hidden',
             }}
           >
@@ -115,14 +111,14 @@ export function VideoMockup({
             ) : null}
           </div>
 
-          {/* iPhone frame — sits on top of the video */}
+          {/* iPhone frame overlay — sits on top of the video */}
           {frameSrc && (
             <Image
               src={frameSrc}
               alt=""
-              fill
-              sizes={`${FRAME_W}px`}
-              className="pointer-events-none select-none object-contain"
+              width={FRAME_W}
+              height={FRAME_H}
+              className="pointer-events-none select-none relative"
               aria-hidden
             />
           )}

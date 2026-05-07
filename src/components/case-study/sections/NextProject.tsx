@@ -56,7 +56,7 @@ export function NextProject({
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
         <div
-          className="self-center relative z-10 flex flex-col gap-5"
+          className="self-center relative z-10 flex flex-col"
           style={{ width: 450, flexShrink: 0 }}
         >
           {/* Tag */}
@@ -66,18 +66,18 @@ export function NextProject({
             </span>
           </div>
 
-          {/* Title */}
-          <Link href={href}>
+          {/* Title — 20px below tag */}
+          <Link href={href} className="mt-[20px]">
             <h3 className="text-ink text-[36px] leading-[1.4] font-bold">
               {title}
             </h3>
           </Link>
 
-          {/* CTA — Caveat script, ink by default, orange on hover */}
+          {/* CTA — 40px below title */}
           {cta && (
             <Link
               href={href}
-              className="font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
+              className="mt-[40px] font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
             >
               {cta}
             </Link>
