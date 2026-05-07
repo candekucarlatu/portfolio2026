@@ -68,7 +68,7 @@ export function NextProject({
 
           {/* Title — 20px below tag */}
           <Link href={href} className="mt-[20px]">
-            <h3 className="text-ink text-[36px] leading-[1.4] font-bold">
+            <h3 className="text-ink text-[32px] leading-[1.4] font-bold">
               {title}
             </h3>
           </Link>
