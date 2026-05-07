@@ -87,36 +87,25 @@ export function NextProject({
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
           /*
-           * Image (666×513) positioned at left: 127 within the right area
-           * = left: 683 from the inner div's left edge (Figma reference).
-           * Overflows right and is clipped by section's overflow-hidden.
+           * Figma: 1440px frame, image at 666×513 fully visible with ~91px
+           * right margin. We replicate the structure (tablet fully shown on
+           * the right half) and let it scale down inside the narrower modal.
            */
-          <div className="relative flex-1">
-            <div
-              className="absolute"
-              style={{
-                left: 127,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: 666,
-                height: 513,
-              }}
+          <div className="flex-1 flex items-center justify-center min-w-0">
+            <Link
+              href={href}
+              className="block max-w-full"
+              aria-hidden
+              tabIndex={-1}
             >
-              <Link
-                href={href}
-                className="relative block w-full h-full"
-                aria-hidden
-                tabIndex={-1}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="666px"
-                  className="object-cover"
-                />
-              </Link>
-            </div>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={666}
+                height={513}
+                className="max-w-full h-auto"
+              />
+            </Link>
           </div>
         )}
 
