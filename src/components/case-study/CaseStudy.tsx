@@ -9,6 +9,7 @@ import { ImageBlock } from './sections/ImageBlock'
 import { Insight } from './sections/Insight'
 import { CalloutList } from './sections/CalloutList'
 import { VideoMockup } from './sections/VideoMockup'
+import { ImageCompare } from './sections/ImageCompare'
 import { ResearchCards } from './sections/ResearchCards'
 import { NextProject } from './sections/NextProject'
 
@@ -41,14 +42,14 @@ function getTopSpacing(prev: Section | null, curr: Section): string {
   if (p === 'section') {
     if (c === 'stat-cards' || c === 'highlight' || c === 'callout-list' || c === 'insight')
       return 'mt-[48px]'
-    if (c === 'image' || c === 'video' || c === 'research-cards') return 'mt-[64px]'
+    if (c === 'image' || c === 'video' || c === 'image-compare' || c === 'research-cards') return 'mt-[64px]'
   }
 
   // Between groups: any content block → next section label
   if (c === 'section') return 'mt-[104px]'
 
-  // Next project lives at the bottom — no extra margin (has its own border-t)
-  if (c === 'next-project') return 'mt-0'
+  // All sections get 120px gap before next-project (gap is outside the background block)
+  if (c === 'next-project') return 'mt-[120px]'
 
   // Default fallback
   return 'mt-[48px]'
@@ -112,6 +113,17 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                   poster={section.poster}
                   background={section.background}
                   variant={section.variant}
+                  frameSrc={section.frameSrc}
+                />
+              )
+            case 'image-compare':
+              return (
+                <ImageCompare
+                  before={section.before}
+                  after={section.after}
+                  background={section.background}
+                  beforeLabel={section.beforeLabel}
+                  afterLabel={section.afterLabel}
                 />
               )
             case 'research-cards':
@@ -123,6 +135,7 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                   title={section.title}
                   cta={section.cta}
                   image={section.image}
+                  imageLayout={section.imageLayout}
                   ctaLabel={dict.ui.nextCaseStudy}
                   locale={locale}
                 />

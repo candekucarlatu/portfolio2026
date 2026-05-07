@@ -6,26 +6,27 @@ interface HeroProps {
 }
 
 export function Hero({ title, subtitle, meta, metaLabels }: HeroProps) {
-  const items = [
-    { label: metaLabels.duration, value: meta.duration },
-    { label: metaLabels.team, value: meta.team },
-    ...(meta.role ? [{ label: metaLabels.role, value: meta.role }] : []),
-  ]
   return (
-    <header className="mx-auto flex max-w-[640px] flex-col gap-[32px] px-6 pt-10 md:px-0 md:pt-20">
+    <header className="ml-[56px] flex max-w-[680px] flex-col gap-[32px] pt-10 md:pt-20">
       <h1 className="text-ink text-[36px] leading-[1.15] font-bold tracking-[-0.01em] md:text-[52px]">
         {title}
       </h1>
       <div className="flex flex-col gap-[20px]">
         <p className="text-muted text-[17px] leading-[1.62]">{subtitle}</p>
-        <dl className="text-muted flex flex-wrap gap-x-6 gap-y-1 text-[13px] leading-5">
-          {items.map((item) => (
-            <div key={item.label} className="flex items-baseline gap-1.5">
-              <dt className="text-ink font-semibold">{item.label}:</dt>
-              <dd>{item.value}</dd>
-            </div>
-          ))}
-        </dl>
+        <p className="text-muted text-[13px] leading-5">
+          <span className="font-semibold">{metaLabels.duration}: </span>
+          {meta.duration}
+          {' · '}
+          <span className="font-semibold">{metaLabels.team}: </span>
+          {meta.team}
+          {meta.role && (
+            <>
+              {' · '}
+              <span className="font-semibold">{metaLabels.role}: </span>
+              {meta.role}
+            </>
+          )}
+        </p>
       </div>
     </header>
   )

@@ -77,7 +77,7 @@ export function NextProject({
           {cta && (
             <Link
               href={href}
-              className="font-script text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
+              className="font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
             >
               {cta}
             </Link>
