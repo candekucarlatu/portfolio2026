@@ -51,7 +51,7 @@ export function NextProject({
        * its text stays vertically centered within the row.
        */}
       <div
-        className="flex px-[106px] py-[88px]"
+        className="flex pl-[56px] pr-[106px] py-[88px]"
         style={{ minHeight: 621 }}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
