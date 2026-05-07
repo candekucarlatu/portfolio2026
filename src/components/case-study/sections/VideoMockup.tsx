@@ -84,46 +84,19 @@ export function VideoMockup({
         className="relative flex w-full items-center justify-center pt-[91px] pb-[92px]"
         style={{ backgroundColor: background }}
       >
-        {/* Phone container at the frame's native size */}
-        <div style={{ position: 'relative', width: FRAME_W, height: FRAME_H, flexShrink: 0 }}>
-          {/* Video fills the full frame container so the phone border in the video
-              aligns with the clip edge. borderRadius 46 matches iPhone outer corner. */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: 252,
-              height: 513,
-              borderRadius: 46,
-              overflow: 'hidden',
-            }}
-          >
-            {src ? (
-              <video
-                src={src}
-                poster={poster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="h-full w-full object-cover"
-              />
-            ) : null}
-          </div>
-
-          {/* iPhone frame overlay — sits on top of the video */}
-          {frameSrc && (
-            <Image
-              src={frameSrc}
-              alt=""
-              width={FRAME_W}
-              height={FRAME_H}
-              className="pointer-events-none select-none relative"
-              aria-hidden
-            />
-          )}
-        </div>
+        {/* Phone container — video fills it directly with object-cover */}
+        {src && (
+          <video
+            src={src}
+            poster={poster}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ width: FRAME_W, height: FRAME_H, borderRadius: 46, flexShrink: 0, display: 'block' }}
+            className="object-cover"
+          />
+        )}
       </div>
     </section>
   )
