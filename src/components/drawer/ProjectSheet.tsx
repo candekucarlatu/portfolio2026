@@ -124,7 +124,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               }}
             >
               {/* bg-paper wrapper — overflow-hidden clips rounded corners, pb gives breathing room at end */}
-              <div className="bg-paper text-ink overflow-hidden pb-[88px]">
+              <div className="bg-paper text-ink overflow-hidden pb-0">
                 {/* Close button — scrolls with content, like Stripe */}
                 <div className="flex justify-end px-4 pt-4">
                   <button
