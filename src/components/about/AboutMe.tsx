@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 
@@ -6,239 +8,146 @@ interface AboutMeProps {
 }
 
 /**
- * About Me page content — Figma 327:558
+ * About Me — Figma 327:558
  *
- * Two sections stacked vertically (matching panel width):
- *  1. Profile  — notebook paper aesthetic, photo collage, bio, links
- *  2. Design Principles — yellow notepad aesthetic, 4 principles
+ * Two sections stacked vertically:
+ *  1. Profile  — white notebook paper (Profile.png), photo collage + bio + links overlaid
+ *  2. Design Principles — yellow notepad (Design Principles.png), 4 principles overlaid
+ *
+ * Plus two decorative images (Decoration 1 + 2) positioned around the sections.
+ *
+ * Text positions are percentage-based, derived from Figma canvas coordinates
+ * normalized to each panel's bounding box.
  */
 export function AboutMe({ dict }: AboutMeProps) {
   const s = dict.aboutSheet
 
   const links = [
-    { label: s.links.email,     value: dict.contact.emailAddress,                href: `mailto:${dict.contact.emailAddress}` },
-    { label: s.links.linkedin,  value: 'linkedin.com/in/candelakucarlatu',        href: dict.contact.linkedinUrl },
-    { label: s.links.instagram, value: '@kucarlatu',                              href: 'https://instagram.com/kucarlatu' },
-    { label: s.links.resume,    value: s.links.resumeValue,                       href: dict.contact.resumeUrl },
+    { label: s.links.email,     value: dict.contact.emailAddress,         href: `mailto:${dict.contact.emailAddress}` },
+    { label: s.links.linkedin,  value: 'linkedin.com/in/candelakucarlatu', href: dict.contact.linkedinUrl },
+    { label: s.links.instagram, value: '@kucarlatu',                       href: 'https://instagram.com/kucarlatu' },
+    { label: s.links.resume,    value: s.links.resumeValue,                href: dict.contact.resumeUrl },
   ]
 
   return (
-    <article className="bg-paper flex flex-col">
+    <article className="bg-paper relative flex flex-col" style={{ overflow: 'visible' }}>
+
+      {/* ── DECORATION 1 — top-right, behind panels ───────────────────── */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/aboutme/sheet/Decoration%201.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute z-0"
+        style={{ right: '-6%', top: '-4%', width: '42%' }}
+      />
 
       {/* ── PROFILE SECTION ─────────────────────────────────────────────── */}
-      <div className="relative w-full overflow-hidden">
-        {/* SVG notebook paper background */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canvas/aboutme/sheet/paper-profile.svg"
+      <div className="relative z-10 w-full">
+        {/* Background — drives container height */}
+        <Image
+          src="/canvas/aboutme/sheet/Profile.png"
           alt=""
           aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full"
-          style={{ objectFit: 'fill' }}
+          width={647}
+          height={801}
+          className="pointer-events-none w-full h-auto"
+          priority
         />
 
-        <div className="relative flex flex-col px-[56px] py-[48px] md:px-[96px] md:py-[64px]">
+        {/* Photo collage — top section of the paper */}
+        <div
+          className="pointer-events-none absolute"
+          style={{ left: '14.9%', top: '6.6%', width: '77.5%' }}
+        >
+          <Image
+            src="/canvas/aboutme/sheet/Collage.png"
+            alt={`${s.collage1} ${s.collage2} ${s.collage3}`}
+            width={493}
+            height={215}
+            className="w-full h-auto"
+          />
+        </div>
 
-          {/* PROFILE label — top */}
-          <p
-            className="mb-[40px] text-center font-medium uppercase tracking-[0.08px] text-[#bfb8b2]"
-            style={{ fontSize: 8 }}
-          >
-            {s.profileLabel}
-          </p>
-
-          {/* Photo collage */}
-          <div className="relative mx-auto mb-[40px] flex items-end gap-4" style={{ height: 220 }}>
-
-            {/* Photo 1 — left, slight CCW tilt */}
-            <div
-              className="relative shrink-0 overflow-hidden shadow-[2px_5px_10px_0px_rgba(0,0,0,0.1)]"
-              style={{ width: 148, height: 186, transform: 'rotate(-1.5deg)', borderRadius: 4 }}
-            >
-              <Image
-                src="/canvas/aboutme/sheet/photo-1.jpg"
-                alt={s.collage2}
-                fill
-                sizes="148px"
-                className="object-cover"
-              />
-              {/* tape top-center */}
-              <div
-                className="pointer-events-none absolute left-1/2 -translate-x-1/2 overflow-hidden"
-                style={{ top: -10, width: 70, height: 25 }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/canvas/aboutme/sheet/tape.png" alt="" aria-hidden className="h-full w-full object-cover" />
-              </div>
-            </div>
-
-            {/* Photo 2 — right, slight CW tilt */}
-            <div className="relative shrink-0" style={{ width: 156, height: 156, transform: 'rotate(1deg)' }}>
-
-              {/* tape top-left corner */}
-              <div
-                className="pointer-events-none absolute overflow-hidden"
-                style={{ top: -8, left: -8, width: 50, height: 20, transform: 'rotate(-28deg)' }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/canvas/aboutme/sheet/tape-2.png" alt="" aria-hidden className="h-full w-full object-cover" />
-              </div>
-
-              {/* "Hey there!" label */}
-              <div
-                className="pointer-events-none absolute z-10"
-                style={{ top: 10, left: -16, transform: 'rotate(-11deg)' }}
-              >
-                <div className="relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/canvas/aboutme/sheet/label-hey.png"
-                    alt=""
-                    aria-hidden
-                    className="absolute inset-0 h-full w-full"
-                    style={{ objectFit: 'fill' }}
-                  />
-                  <p className="font-script relative px-2 py-1 text-[14px] leading-[1.5] text-black">
-                    {s.collage1}
-                  </p>
-                </div>
-              </div>
-
-              {/* Photo */}
-              <div
-                className="overflow-hidden shadow-[2px_5px_10px_0px_rgba(0,0,0,0.1)]"
-                style={{ width: 156, height: 156, borderRadius: 4 }}
-              >
-                <Image
-                  src="/canvas/aboutme/sheet/photo-2.jpg"
-                  alt={s.collage3}
-                  width={156}
-                  height={156}
-                  sizes="156px"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              {/* "I'm Cande" label */}
-              <div
-                className="pointer-events-none absolute z-10"
-                style={{ bottom: 12, left: -20, transform: 'rotate(9deg)' }}
-              >
-                <div className="relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/canvas/aboutme/sheet/label-cande.png"
-                    alt=""
-                    aria-hidden
-                    className="absolute inset-0 h-full w-full"
-                    style={{ objectFit: 'fill' }}
-                  />
-                  <p className="font-script relative px-2 py-1 text-[18px] leading-[1.5] text-black">
-                    {s.collage2}
-                  </p>
-                </div>
-              </div>
-
-              {/* "and Membrillo" label */}
-              <div
-                className="pointer-events-none absolute z-10"
-                style={{ bottom: -14, right: -52, transform: 'rotate(-11deg)' }}
-              >
-                <div className="relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/canvas/aboutme/sheet/label-membrillo.png"
-                    alt=""
-                    aria-hidden
-                    className="absolute inset-0 h-full w-full"
-                    style={{ objectFit: 'fill' }}
-                  />
-                  <p className="font-script relative px-2 py-1 text-[14px] leading-[1.5] text-black">
-                    {s.collage3}
-                  </p>
-                </div>
-              </div>
-
-              {/* tape bottom-right corner */}
-              <div
-                className="pointer-events-none absolute overflow-hidden"
-                style={{ bottom: -8, right: -8, width: 50, height: 20, transform: 'rotate(-28deg)' }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/canvas/aboutme/sheet/tape-2.png" alt="" aria-hidden className="h-full w-full object-cover" />
-              </div>
-            </div>
-          </div>
-
-          {/* Bio text */}
-          <div className="font-script mb-[40px] flex flex-col gap-3 text-[20px] leading-[1.3] text-black">
+        {/* Bio text */}
+        <div
+          className="absolute"
+          style={{ left: '15.2%', top: '35.8%', width: '74%', transform: 'rotate(1deg)' }}
+        >
+          <div className="font-script flex flex-col gap-3 text-[20px] leading-[1.3] text-black">
             <p>{s.bio1}</p>
             <p>{s.bio2}</p>
           </div>
+        </div>
 
-          {/* Links */}
-          <div className="flex flex-col divide-y divide-[#bfb8b2]">
-            {links.map(({ label, value, href }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="flex items-baseline gap-[29px] py-[10px] transition-colors hover:text-[#FF3E00]"
-              >
-                <span
-                  className="text-ink w-[88px] shrink-0 text-[16px] font-semibold leading-[1.25]"
-                >
-                  {label}
-                </span>
-                <span className="font-script text-[20px] leading-[1.5] text-black">
-                  {value}
-                </span>
-              </a>
-            ))}
-          </div>
-
-          {/* PROFILE label — bottom */}
-          <p
-            className="mt-[40px] text-center font-medium uppercase tracking-[0.08px] text-[#bfb8b2]"
-            style={{ fontSize: 8 }}
-          >
-            {s.profileLabel}
-          </p>
+        {/* Links */}
+        <div
+          className="absolute"
+          style={{ left: '8.2%', top: '64%', width: '86.5%', transform: 'rotate(1deg)' }}
+        >
+          {links.map(({ label, value, href }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="flex items-baseline gap-[29px] py-[10px] transition-opacity hover:opacity-70"
+            >
+              <span className="text-ink w-[88px] shrink-0 text-[16px] font-semibold leading-[1.25]">
+                {label}
+              </span>
+              <span className="font-script text-[20px] leading-[1.5] text-black">
+                {value}
+              </span>
+            </a>
+          ))}
         </div>
       </div>
 
+      {/* ── DECORATION 2 — left side, between panels ───────────────────── */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/canvas/aboutme/sheet/Decoration%202.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute z-0"
+        style={{ left: '-5%', top: '53%', width: '40%' }}
+      />
+
       {/* ── DESIGN PRINCIPLES SECTION ───────────────────────────────────── */}
-      <div className="relative w-full overflow-hidden">
-        {/* SVG yellow notepad background */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canvas/aboutme/sheet/paper-principles.svg"
+      <div className="relative z-10 w-full">
+        {/* Background — drives container height */}
+        <Image
+          src="/canvas/aboutme/sheet/Design%20Principles.png"
           alt=""
           aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full"
-          style={{ objectFit: 'fill' }}
+          width={642}
+          height={694}
+          className="pointer-events-none w-full h-auto"
         />
 
-        <div className="relative flex flex-col px-[56px] py-[48px] md:px-[96px] md:py-[64px]">
-
-          <div className="flex flex-col divide-y divide-[#bfb8b2]">
-            {s.principles.map((p, i) => (
-              <div key={i} className="flex flex-col gap-3 py-[24px]">
-                <p className="text-ink text-[16px] font-bold leading-[1.25]">{p.title}</p>
-                <p className="text-muted text-[16px] font-normal leading-[1.65]">{p.body}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* DESIGN PRINCIPLES label — bottom */}
-          <p
-            className="mt-[32px] text-center font-medium uppercase tracking-[0.08px] text-[#bfb8b2]"
-            style={{ fontSize: 8 }}
+        {/* 4 principles, one per notepad row */}
+        {s.principles.map((p, i) => (
+          <div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${10.7 + i * 0.5}%`,
+              top: `${[12.8, 31.2, 49.6, 68][i]}%`,
+              width: '77%',
+              transform: 'rotate(-2deg)',
+            }}
           >
-            {s.principlesLabel}
-          </p>
-        </div>
+            <div className="flex flex-col gap-3">
+              <p className="text-[16px] font-bold leading-[1.25]" style={{ color: '#1f1a14' }}>
+                {p.title}
+              </p>
+              <p className="text-[16px] leading-[1.65]" style={{ color: '#666159' }}>
+                {p.body}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
 
     </article>
