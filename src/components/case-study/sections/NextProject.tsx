@@ -8,25 +8,23 @@ interface NextProjectProps {
   title: string
   cta?: string
   image?: ProjectImage
-  imageLayout?: 'wide' | 'phone'
+  imageLayout?: 'wide' | 'phone' | 'phone-framed'
   ctaLabel: string
   locale: Locale
 }
 
 /**
- * Two layouts (Figma 472:9465):
+ * Three layouts (Figma 472:9465):
  *
- * wide  — landscape tablet/desktop mockup that overflows right.
- *         Flex row: left column 450px fixed + flex-1 right area.
- *         Image (666×513) is absolutely positioned 127px from the
- *         right area's left edge (= 683px from the inner div's left
- *         edge), vertically centered, and overflows into the section's
- *         overflow-hidden clip zone.
+ * wide          — landscape tablet/desktop mockup that overflows right.
+ *                 Flex row: left column 450px + flex-1 right area.
+ *                 Image (666×513) absolutely positioned, overflows right edge.
  *
- * phone — portrait iPhone mockup centered in the right half.
- *         Flex row: left column 450px + flex-1 right area with
- *         flex centering so the phone sits in the middle of the
- *         available space regardless of modal width.
+ * phone         — app screenshot inside iphone-frame.png overlay, centered
+ *                 in the right half.
+ *
+ * phone-framed  — portrait image that already includes the iPhone frame,
+ *                 shown directly without any overlay, centered in right half.
  */
 export function NextProject({
   slug,
@@ -39,20 +37,26 @@ export function NextProject({
 }: NextProjectProps) {
   const href = `/${locale}/work/${slug}`
 
+  // phone-framed uses same padding as phone; wide uses its own
+  const isPhoneVariant = imageLayout === 'phone' || imageLayout === 'phone-framed'
+
   return (
     <section
       className="relative w-full border-t border-dashed overflow-hidden"
       style={{ backgroundColor: '#ede8dd', borderColor: '#bfb8b2' }}
     >
+      {/*
+       * Centering: outer row uses default align-items (stretch) so the right
+       * area fills the full row height. The left column uses self-center so
+       * its text stays vertically centered within the row.
+       */}
       <div
-        className={`flex items-center ${
-          imageLayout === 'phone' ? 'px-[160px]' : 'px-[106px]'
-        } py-[88px]`}
+        className={`flex ${isPhoneVariant ? 'px-[160px]' : 'px-[106px]'} py-[88px]`}
         style={{ minHeight: 621 }}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
         <div
-          className="relative z-10 flex flex-col gap-5"
+          className="self-center relative z-10 flex flex-col gap-5"
           style={{ width: 450, flexShrink: 0 }}
         >
           {/* Tag */}
@@ -83,16 +87,11 @@ export function NextProject({
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
           /*
-           * flex-1 takes all space after the left column.
-           * self-stretch gives it the full height of the flex row so
-           * top: 50% / translateY(-50%) can vertically center the image.
-           *
-           * Image is absolutely positioned at left: 127 within the right
-           * area, which equals left: 683 from the padded inner div — same
-           * as the Figma reference. It overflows to the right and is
-           * clipped by the section's overflow-hidden.
+           * Image (666×513) positioned at left: 127 within the right area
+           * = left: 683 from the inner div's left edge (Figma reference).
+           * Overflows right and is clipped by section's overflow-hidden.
            */
-          <div className="relative flex-1 self-stretch">
+          <div className="relative flex-1">
             <div
               className="absolute"
               style={{
@@ -121,15 +120,9 @@ export function NextProject({
           </div>
         )}
 
-        {/* ── Right area: phone layout ─────────────────────────────────────── */}
+        {/* ── Right area: phone layout (screenshot + frame overlay) ───────── */}
         {image && imageLayout === 'phone' && (
-          /*
-           * flex-1 + flex centering keeps the phone in the middle of the
-           * space to the right of the left column at any modal width.
-           * self-stretch ensures the area is as tall as the left column
-           * so justify-center works correctly.
-           */
-          <div className="flex-1 flex items-center justify-center self-stretch">
+          <div className="flex-1 flex items-center justify-center">
             <Link
               href={href}
               aria-hidden
@@ -149,7 +142,6 @@ export function NextProject({
                   overflow: 'hidden',
                 }}
               >
-                {/* Relative wrapper required by Next.js Image fill */}
                 <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                   <Image
                     src={image.src}
@@ -169,6 +161,26 @@ export function NextProject({
                 height={513}
                 className="pointer-events-none relative select-none"
                 aria-hidden
+              />
+            </Link>
+          </div>
+        )}
+
+        {/* ── Right area: phone-framed (image already includes the frame) ─── */}
+        {image && imageLayout === 'phone-framed' && (
+          /*
+           * The image already contains the iPhone frame — show it directly
+           * at its natural dimensions, centered in the right half.
+           * width/height from the JSON drive the display size.
+           */
+          <div className="flex-1 flex items-center justify-center">
+            <Link href={href} aria-hidden tabIndex={-1}>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width ?? 252}
+                height={image.height ?? 513}
+                className="pointer-events-none select-none"
               />
             </Link>
           </div>

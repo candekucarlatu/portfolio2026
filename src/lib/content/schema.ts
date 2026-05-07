@@ -70,6 +70,12 @@ const NextProject = z.object({
   title: z.string(),
   cta: z.string().optional(),
   image: ProjectImage.optional(),
+  /**
+   * 'wide'          = landscape tablet mockup overflowing right.
+   * 'phone'         = portrait screenshot centered on right, displayed inside iphone-frame.png overlay.
+   * 'phone-framed'  = portrait image that already includes the iPhone frame — shown directly, no overlay.
+   */
+  imageLayout: z.enum(['wide', 'phone', 'phone-framed']).default('wide'),
 })
 
 const CalloutList = z.object({
@@ -91,6 +97,16 @@ const Video = z.object({
   poster: z.string().optional(),
   background: z.string().optional(),
   variant: z.enum(['phone', 'desktop']).default('phone'),
+  frameSrc: z.string().optional(),
+})
+
+const ImageCompare = z.object({
+  type: z.literal('image-compare'),
+  before: ProjectImage,
+  after: ProjectImage,
+  background: z.string().optional(),
+  beforeLabel: z.string().optional(),
+  afterLabel: z.string().optional(),
 })
 
 const ResearchCards = z.object({
@@ -116,6 +132,7 @@ export const Section = z.discriminatedUnion('type', [
   Insight,
   CalloutList,
   Video,
+  ImageCompare,
   ResearchCards,
   NextProject,
 ])
