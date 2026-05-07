@@ -20,6 +20,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
   const sidePadding = isVeryWide ? 360 : isMediumWide ? 120 : 0
   const [open, setOpen] = useState(true)
   const [scrolled, setScrolled] = useState(false)
+  const [atBottom, setAtBottom] = useState(false)
   const closingRef = useRef(false)
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -39,11 +40,22 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
   }, [close])
 
   // Track scroll position to collapse top gap when user scrolls down
+  // and reveal bottom gap when user reaches the end of content
   useEffect(() => {
     if (!isDesktop) return
     const el = panelRef.current
     if (!el) return
-    const handler = () => setScrolled(el.scrollTop > 20)
+    const handler = () => {
+      setScrolled(el.scrollTop > 20)
+      setAtBottom((prev) => {
+        const nearEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 20
+        if (nearEnd) return true
+        // Hysteresis: only unset when well past the end threshold (>150px buffer
+        // absorbs the 128px panel shrink that would otherwise cause oscillation)
+        const farFromEnd = el.scrollTop + el.clientHeight < el.scrollHeight - 150
+        return prev && !farFromEnd
+      })
+    }
     el.addEventListener('scroll', handler, { passive: true })
     return () => el.removeEventListener('scroll', handler)
   }, [isDesktop])
@@ -80,23 +92,28 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               ref={panelRef}
               key="sheet-panel"
               className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain shadow-2xl"
-              style={{ left: sidePadding, right: sidePadding, bottom: 0 }}
-              initial={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
+              style={{ left: sidePadding, right: sidePadding }}
+              initial={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               animate={{
                 top: scrolled ? 0 : 88,
+                bottom: atBottom ? 128 : 0,
                 y: 0,
-                // When scrolled: no corners at all (panel fills edge-to-edge)
-                // When at top: all 4 corners rounded (floating card)
-                // Bottom corners always rounded — visible against the backdrop
-                borderRadius: scrolled ? '0 0 20px 20px' : '20px',
+                // Not scrolled:  all 4 corners rounded (floating card)
+                // Scrolled mid:  all corners straight (panel fills edge-to-edge)
+                // At bottom:     top straight, bottom rounded (lifted floating card)
+                borderRadius: !scrolled ? '20px' : atBottom ? '0 0 20px 20px' : '0px',
               }}
-              exit={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
+              exit={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               transition={{
                 y: {
                   duration: reduceMotion ? 0.01 : 0.52,
                   ease: [0.16, 1, 0.3, 1],
                 },
                 top: {
+                  duration: reduceMotion ? 0.01 : 0.35,
+                  ease: [0.16, 1, 0.3, 1],
+                },
+                bottom: {
                   duration: reduceMotion ? 0.01 : 0.35,
                   ease: [0.16, 1, 0.3, 1],
                 },
@@ -107,7 +124,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               }}
             >
               {/* bg-paper wrapper — overflow-hidden clips rounded corners, pb gives breathing room at end */}
-              <div className="bg-paper text-ink overflow-hidden pb-[128px]">
+              <div className="bg-paper text-ink overflow-hidden pb-[88px]">
                 {/* Close button — scrolls with content, like Stripe */}
                 <div className="flex justify-end px-4 pt-4">
                   <button
