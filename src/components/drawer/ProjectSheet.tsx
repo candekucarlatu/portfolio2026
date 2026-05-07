@@ -80,7 +80,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               ref={panelRef}
               key="sheet-panel"
               className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain shadow-2xl"
-              style={{ left: sidePadding, right: sidePadding, bottom: 128 }}
+              style={{ left: sidePadding, right: sidePadding, bottom: 0 }}
               initial={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               animate={{
                 top: scrolled ? 0 : 88,
@@ -107,7 +107,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               }}
             >
               {/* bg-paper wrapper — overflow-hidden clips rounded corners, pb gives breathing room at end */}
-              <div className="bg-paper text-ink overflow-hidden pb-[88px]">
+              <div className="bg-paper text-ink overflow-hidden pb-[128px]">
                 {/* Close button — scrolls with content, like Stripe */}
                 <div className="flex justify-end px-4 pt-4">
                   <button
