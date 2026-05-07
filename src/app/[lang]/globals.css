@@ -54,6 +54,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overscroll-behavior: none;
+  /* Custom orange cursor — hotspot at the arrow tip (2, 1) */
+  cursor: url('/cursor.svg') 2 1, auto;
 }
 
 body {
