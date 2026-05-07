@@ -60,8 +60,7 @@ export function ImageCompare({
   return (
     <section className="mx-[56px] overflow-hidden">
       <div
-        className="relative flex w-full items-center justify-center"
-        style={{ height }}
+        className={`relative flex w-full items-center justify-center ${height ? 'py-[91px]' : 'h-[664px]'}`}
         style={{ backgroundColor: background }}
       >
         {/* Compare container */}
@@ -69,7 +68,7 @@ export function ImageCompare({
           ref={containerRef}
           className="relative w-[90%] max-w-[848px] select-none overflow-hidden"
           style={{
-            aspectRatio: '848/477',
+            ...(height ? { height } : { aspectRatio: '848/477' }),
             borderRadius: 12,
             border: '5px solid #e8e8e8',
             boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
