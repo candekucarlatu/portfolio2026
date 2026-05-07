@@ -86,15 +86,16 @@ export function VideoMockup({
       >
         {/* Phone container at the frame's native size */}
         <div style={{ position: 'relative', width: FRAME_W, height: FRAME_H, flexShrink: 0 }}>
-          {/* Video clipped to the exact screen area of iphone-frame.png */}
+          {/* Video fills the full frame container so the phone border in the video
+              aligns with the clip edge. borderRadius 46 matches iPhone outer corner. */}
           <div
             style={{
               position: 'absolute',
-              top: 10,
-              left: 13,
-              width: 225,
-              height: 493,
-              borderRadius: 32,
+              top: 0,
+              left: 0,
+              width: 252,
+              height: 513,
+              borderRadius: 46,
               overflow: 'hidden',
             }}
           >
