@@ -15,6 +15,9 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
   const router = useRouter()
   const reduceMotion = useReducedMotion()
   const isDesktop = useMediaQuery('(min-width: 1024px)', true)
+  const isVeryWide = useMediaQuery('(min-width: 1537px)', false)
+  const isMediumWide = useMediaQuery('(min-width: 1251px)', false)
+  const sidePadding = isVeryWide ? 360 : isMediumWide ? 120 : 0
   const [open, setOpen] = useState(true)
   const [scrolled, setScrolled] = useState(false)
   const closingRef = useRef(false)
@@ -77,14 +80,15 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
               ref={panelRef}
               key="sheet-panel"
               className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain shadow-2xl"
-              style={{ left: 360, right: 360, bottom: 0 }}
+              style={{ left: sidePadding, right: sidePadding, bottom: 128 }}
               initial={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               animate={{
                 top: scrolled ? 0 : 88,
                 y: 0,
                 // When scrolled: no corners at all (panel fills edge-to-edge)
                 // When at top: all 4 corners rounded (floating card)
-                borderRadius: scrolled ? '0px' : '20px',
+                // Bottom corners always rounded — visible against the backdrop
+                borderRadius: scrolled ? '0 0 20px 20px' : '20px',
               }}
               exit={{ top: 88, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
               transition={{
@@ -102,8 +106,8 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
                 },
               }}
             >
-              {/* bg-paper wrapper — overflow-hidden ensures no ghost space after last section */}
-              <div className="bg-paper text-ink overflow-hidden">
+              {/* bg-paper wrapper — overflow-hidden clips rounded corners, pb gives breathing room at end */}
+              <div className="bg-paper text-ink overflow-hidden pb-[88px]">
                 {/* Close button — scrolls with content, like Stripe */}
                 <div className="flex justify-end px-4 pt-4">
                   <button
