@@ -49,10 +49,13 @@
       "body": "First, I simplified the hierarchy for a cleaner structure. However, it created a larger gap with Atom, where users spend most of their time, and its team had other priorities than a navigation refactor. Before committing, I ran an A/B test to see if it was worth it."
     },
     {
-      "type": "video",
-      "variant": "desktop",
+      "type": "image-compare",
       "background": "#ede8dd",
-      "imageSrc": "/canvas/projects/kaplan/ab-test.png"
+      "before": { "src": "/canvas/projects/kaplan/design-1.png", "alt": "Kaplan navigation Design 1 — cross-platform consistency" },
+      "after": { "src": "/canvas/projects/kaplan/design-2.png", "alt": "Kaplan navigation Design 2 — cleaner hierarchy" },
+      "beforeLabel": "Design 1",
+      "afterLabel": "Design 2",
+      "height": 977
     },
     {
       "type": "section",
@@ -72,7 +75,9 @@
       "type": "next-project",
       "slug": "tacobell",
       "title": "Can a treasure hunt fix a broken loyalty loop?",
-      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "Taco Bell loyalty redesign preview", "width": 251, "height": 513 }
+      "cta": "Explore the Taco Bell Hunt →",
+      "imageLayout": "phone",
+      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "Taco Bell app on iPhone", "width": 225, "height": 493 }
     }
   ]
 }

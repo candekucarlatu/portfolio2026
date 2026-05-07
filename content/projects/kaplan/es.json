@@ -49,10 +49,13 @@
       "body": "Primero simplifiqué la jerarquía para una estructura más clara. Sin embargo, eso creaba una brecha mayor con Atom, donde los usuarios pasan la mayor parte del tiempo, y su equipo tenía otras prioridades antes que un refactor de navegación. Antes de comprometerse, hice un A/B test para ver si valía la pena."
     },
     {
-      "type": "video",
-      "variant": "desktop",
+      "type": "image-compare",
       "background": "#ede8dd",
-      "imageSrc": "/canvas/projects/kaplan/ab-test.png"
+      "before": { "src": "/canvas/projects/kaplan/design-1.png", "alt": "Navegación Kaplan Diseño 1 — consistencia cross-platform" },
+      "after": { "src": "/canvas/projects/kaplan/design-2.png", "alt": "Navegación Kaplan Diseño 2 — jerarquía más limpia" },
+      "beforeLabel": "Diseño 1",
+      "afterLabel": "Diseño 2",
+      "height": 977
     },
     {
       "type": "section",
@@ -72,7 +75,9 @@
       "type": "next-project",
       "slug": "tacobell",
       "title": "¿Puede una búsqueda del tesoro arreglar un loop de loyalty roto?",
-      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "Vista previa del caso Taco Bell", "width": 251, "height": 513 }
+      "cta": "Explorá la Taco Bell Hunt →",
+      "imageLayout": "phone",
+      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "App Taco Bell en iPhone", "width": 225, "height": 493 }
     }
   ]
 }

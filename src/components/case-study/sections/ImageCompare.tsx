@@ -10,6 +10,7 @@ interface ImageCompareProps {
   background?: string
   beforeLabel?: string
   afterLabel?: string
+  height?: number
 }
 
 export function ImageCompare({
@@ -18,6 +19,7 @@ export function ImageCompare({
   background = '#ede8dd',
   beforeLabel = 'Before',
   afterLabel = 'After',
+  height = 664,
 }: ImageCompareProps) {
   const [position, setPosition] = useState(50)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -58,7 +60,8 @@ export function ImageCompare({
   return (
     <section className="mx-[56px] overflow-hidden">
       <div
-        className="relative flex h-[664px] w-full items-center justify-center"
+        className="relative flex w-full items-center justify-center"
+        style={{ height }}
         style={{ backgroundColor: background }}
       >
         {/* Compare container */}

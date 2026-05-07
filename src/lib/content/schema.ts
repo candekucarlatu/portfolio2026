@@ -107,6 +107,7 @@ const ImageCompare = z.object({
   background: z.string().optional(),
   beforeLabel: z.string().optional(),
   afterLabel: z.string().optional(),
+  height: z.number().int().positive().optional(),
 })
 
 const ResearchCards = z.object({
