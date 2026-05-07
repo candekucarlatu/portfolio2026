@@ -124,10 +124,10 @@ export function ImageCompare({
           </div>
 
           {/* Labels */}
-          <div className="pointer-events-none absolute bottom-3 left-3 rounded-[3px] bg-black/40 px-2 py-[3px] text-[11px] font-semibold uppercase tracking-wide text-white">
+          <div className="pointer-events-none absolute bottom-3 left-3 rounded-[3px] bg-black/70 px-2 py-[3px] text-[11px] font-semibold uppercase tracking-wide text-white">
             {beforeLabel}
           </div>
-          <div className="pointer-events-none absolute right-3 bottom-3 rounded-[3px] bg-black/40 px-2 py-[3px] text-[11px] font-semibold uppercase tracking-wide text-white">
+          <div className="pointer-events-none absolute right-3 bottom-3 rounded-[3px] bg-black/70 px-2 py-[3px] text-[11px] font-semibold uppercase tracking-wide text-white">
             {afterLabel}
           </div>
         </div>
