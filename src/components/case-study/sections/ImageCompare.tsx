@@ -110,7 +110,7 @@ export function ImageCompare({
             {/* Vertical line */}
             <div className="absolute inset-0 bg-[#1f1a14]/60" />
             {/* Handle circle */}
-            <div className="absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#1f1a14]/60 shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+            <div className="absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#1f1a14] shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
               <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden>
                 <path
                   d="M5 1L1 6L5 11M13 1L17 6L13 11"
