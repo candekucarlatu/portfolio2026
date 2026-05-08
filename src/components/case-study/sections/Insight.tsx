@@ -22,13 +22,13 @@ export function Insight({ title, body, image, reverse }: InsightProps) {
       >
         {/* Image on left (reverse=true) */}
         {reverse && (
-          <div className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]">
+          <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
             <Image
               src={image.src}
               alt={image.alt}
-              fill
-              sizes="(min-width: 1024px) 599px, 100vw"
-              className="object-cover"
+              width={image.width ?? 599}
+              height={image.height ?? 446}
+              className="w-full h-auto"
             />
           </div>
         )}
@@ -49,13 +49,13 @@ export function Insight({ title, body, image, reverse }: InsightProps) {
 
         {/* Image on right (reverse=false) */}
         {!reverse && (
-          <div className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]">
+          <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
             <Image
               src={image.src}
               alt={image.alt}
-              fill
-              sizes="(min-width: 1024px) 599px, 100vw"
-              className="object-cover"
+              width={image.width ?? 599}
+              height={image.height ?? 446}
+              className="w-full h-auto"
             />
           </div>
         )}
