@@ -77,7 +77,7 @@ export function NextProject({
 
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
-          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center md:justify-center">
+          <div className="hidden md:flex mt-8 justify-center md:mt-0 md:flex-1 md:items-center md:justify-center">
             <Link href={href} aria-hidden tabIndex={-1} className="block w-full max-w-[666px]">
               <Image
                 src={image.src}
@@ -92,7 +92,7 @@ export function NextProject({
 
         {/* ── Right area: phone layout (screenshot + frame overlay) ───────── */}
         {image && imageLayout === 'phone' && (
-          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center">
+          <div className="hidden md:flex mt-8 justify-center md:mt-0 md:flex-1 md:items-center">
             <Link
               href={href}
               aria-hidden
@@ -135,7 +135,7 @@ export function NextProject({
 
         {/* ── Right area: phone-framed (image already includes the frame) ─── */}
         {image && imageLayout === 'phone-framed' && (
-          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center">
+          <div className="hidden md:flex mt-8 justify-center md:mt-0 md:flex-1 md:items-center">
             <Link href={href} aria-hidden tabIndex={-1} className="block">
               <Image
                 src={image.src}

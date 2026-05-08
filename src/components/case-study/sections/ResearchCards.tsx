@@ -30,47 +30,31 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
               className="bg-white overflow-hidden flex flex-col lg:flex-row lg:items-center"
               style={{ boxShadow: '0px 6px 20px rgba(0,0,0,0.1)' }}
             >
-              {/* Image on left (odd cards) — hidden on mobile */}
-              {!imageRight && (
-                <div className="hidden lg:block w-full shrink-0 overflow-hidden lg:w-[599px]">
-                  <Image
-                    src={card.image.src}
-                    alt={card.image.alt}
-                    width={card.image.width ?? 599}
-                    height={card.image.height ?? 446}
-                    className="w-full h-auto"
-                    style={card.imageEdge ? { transform: 'translateX(-24px)', width: 'calc(100% + 24px)' } : undefined}
-                  />
-                </div>
-              )}
+              {/* Image — always first on mobile; on desktop moves right for even cards */}
+              <div className={`w-full shrink-0 overflow-hidden lg:w-[599px] ${imageRight ? 'lg:order-last' : ''}`}>
+                <Image
+                  src={card.image.src}
+                  alt={card.image.alt}
+                  width={card.image.width ?? 599}
+                  height={card.image.height ?? 446}
+                  className="w-full h-auto"
+                  style={card.imageEdge ? { transform: 'translateX(-24px)', width: 'calc(100% + 24px)' } : undefined}
+                />
+              </div>
 
               {/* Text content */}
               <div
-                className={`flex flex-1 flex-col gap-4 px-6 py-8 lg:gap-5 ${
+                className={`flex flex-1 flex-col gap-3 px-6 py-6 lg:gap-5 ${
                   imageRight
                     ? 'lg:pl-[56px] lg:pr-[40px] lg:py-[40px]'
                     : 'lg:p-[40px]'
                 }`}
               >
-                <h3 className="text-ink text-[20px] leading-[1.4] font-bold lg:text-[24px] lg:text-[28px]">
+                <h3 className="text-ink text-[18px] leading-[1.35] font-bold lg:text-[24px] lg:leading-[1.4] lg:text-[28px]">
                   {card.title}
                 </h3>
-                <p className="text-muted text-[15px] leading-[1.58] lg:text-[16px] lg:text-[18px]">{card.body}</p>
+                <p className="text-muted text-[14px] leading-[1.55] lg:text-[16px] lg:text-[18px]">{card.body}</p>
               </div>
-
-              {/* Image on right (even cards: 0, 2) — hidden on mobile */}
-              {imageRight && (
-                <div className="hidden lg:block w-full shrink-0 overflow-hidden lg:w-[599px]">
-                  <Image
-                    src={card.image.src}
-                    alt={card.image.alt}
-                    width={card.image.width ?? 599}
-                    height={card.image.height ?? 446}
-                    className="w-full h-auto"
-                    style={card.imageEdge ? { transform: 'translateX(-24px)', width: 'calc(100% + 24px)' } : undefined}
-                  />
-                </div>
-              )}
             </div>
           )
         })}
