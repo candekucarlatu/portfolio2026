@@ -1,6 +1,5 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
 import type { NoteColor } from '@/lib/content/schema'
 
 const colorHex: Record<NoteColor, string> = {
@@ -46,75 +45,80 @@ function CardValue({ value }: { value: string }) {
   )
 }
 
-function CardList({ cards }: StatCardsProps) {
+function Card({ card, rotation }: { card: StatCardsProps['cards'][number]; rotation: number }) {
   return (
-    <>
-      {cards.map((card, i) => {
-        const rotation = rotations[i % rotations.length]
-        return (
-          <div key={i} className="flex items-center justify-center"
-            style={{ width: 212, height: 176 }}>
-            <div style={{ transform: `rotate(${rotation}deg)` }}>
-              <div className="relative overflow-hidden"
-                style={{
-                  width: 206, height: 169,
-                  backgroundColor: colorHex[card.color],
-                  boxShadow: '2px 5px 10px 0px rgba(0,0,0,0.1)',
-                }}>
-                <CardValue value={card.value} />
-                <p className="font-script absolute font-normal text-ink"
-                  style={{ fontSize: 16, lineHeight: 1.35, top: 96, left: 19, width: 165 }}>
-                  {card.label}
-                </p>
-              </div>
-            </div>
-          </div>
-        )
-      })}
-    </>
+    <div style={{ transform: `rotate(${rotation}deg)` }}>
+      <div
+        className="relative overflow-hidden"
+        style={{
+          width: 206,
+          height: 169,
+          backgroundColor: colorHex[card.color],
+          boxShadow: '2px 5px 10px 0px rgba(0,0,0,0.1)',
+        }}
+      >
+        <CardValue value={card.value} />
+        <p
+          className="font-script absolute font-normal text-ink"
+          style={{ fontSize: 16, lineHeight: 1.35, top: 96, left: 19, width: 165 }}
+        >
+          {card.label}
+        </p>
+      </div>
+    </div>
   )
 }
 
 export function StatCards({ cards }: StatCardsProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  // Default to 327px (375px viewport − 48px padding) for SSR
-  const [containerW, setContainerW] = useState(327)
-
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const ro = new ResizeObserver(([entry]) => {
-      setContainerW(entry.contentRect.width)
-    })
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [])
-
-  const n = Math.min(cards.length, 4)
-  const gapPx = 8
-  const rawW = n * 212 + (n - 1) * gapPx
-  const scale = Math.min(0.95, containerW / rawW)
-  const scaledH = Math.round(176 * scale)
+  // Card slot is 260×215 (scale ≈ 1.23× the base 212×176 wrapper)
+  const slotW = 260
+  const slotH = 215
+  const gap = 16
 
   return (
-    <section className="mx-auto w-full max-w-[700px] px-6 md:px-0">
-      {/* Mobile: measure container, scale all cards into one row */}
-      <div ref={containerRef} className="md:hidden overflow-hidden flex justify-center"
-        style={{ height: scaledH }}>
-        <div style={{
-          display: 'flex',
-          gap: gapPx,
-          transform: `scale(${scale})`,
-          transformOrigin: 'top center',
-          flexShrink: 0,
-        }}>
-          <CardList cards={cards} />
-        </div>
+    <section className="mx-auto w-full max-w-[700px]">
+      {/* Mobile: horizontal snap carousel — one card centered, adjacent ones peek */}
+      <div
+        className="md:hidden overflow-x-auto flex scrollbar-none"
+        style={{
+          scrollSnapType: 'x mandatory',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          gap,
+          paddingLeft: `calc(50% - ${slotW / 2}px)`,
+          paddingRight: `calc(50% - ${slotW / 2}px)`,
+          paddingBottom: 12,
+        }}
+      >
+        {cards.map((card, i) => (
+          <div
+            key={i}
+            style={{
+              scrollSnapAlign: 'center',
+              flexShrink: 0,
+              width: slotW,
+              height: slotH,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {/* Scale up the base card to fill the slot */}
+            <div style={{ transform: `scale(${slotW / 212})` }}>
+              <Card card={card} rotation={rotations[i % rotations.length]} />
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* Desktop: wrapped layout */}
+      {/* Desktop: wrapped row */}
       <div className="hidden flex-wrap justify-center gap-6 md:flex">
-        <CardList cards={cards} />
+        {cards.map((card, i) => (
+          <div key={i} className="flex items-center justify-center" style={{ width: 212, height: 176 }}>
+            <Card card={card} rotation={rotations[i % rotations.length]} />
+          </div>
+        ))}
       </div>
     </section>
   )

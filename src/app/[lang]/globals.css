@@ -68,6 +68,11 @@ body {
   scrollbar-width: none;
 }
 
+/* Scrollbar hidden utility (stat-cards carousel, etc.) */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
