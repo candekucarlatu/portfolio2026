@@ -77,23 +77,34 @@ export function VideoMockup({
         style={{ backgroundColor: background }}
       >
         {src && (
-          <video
-            src={src}
-            poster={poster}
-            autoPlay
-            loop
-            muted
-            playsInline
+          <div
             style={{
-              width: 280,
-              height: 607,
-              borderRadius: 40,
+              width: 260,
+              height: 565,
+              borderRadius: 44,
               border: '5px solid #e0e0e0',
+              overflow: 'hidden',
               flexShrink: 0,
-              display: 'block',
+              position: 'relative',
             }}
-            className="object-cover"
-          />
+          >
+            <video
+              src={src}
+              poster={poster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'block',
+                transform: 'scale(1.22)',
+                transformOrigin: '50% 50%',
+              }}
+              className="object-cover"
+            />
+          </div>
         )}
       </div>
     </section>
