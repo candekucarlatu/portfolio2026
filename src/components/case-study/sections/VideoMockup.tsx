@@ -73,7 +73,7 @@ export function VideoMockup({
   return (
     <section className="mx-[56px]">
       <div
-        className="flex w-full items-center justify-center py-[92px]"
+        className="flex w-full items-center justify-center py-[98px]"
         style={{ backgroundColor: background }}
       >
         {src && (
