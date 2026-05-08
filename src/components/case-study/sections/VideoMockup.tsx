@@ -31,45 +31,38 @@ export function VideoMockup({
   if (variant === 'desktop') {
     return (
       <section className="mx-[56px]">
-        <div style={{ backgroundColor: background }}>
-          <div className="relative flex h-[664px] w-full items-center justify-center">
-            <div
-              className="overflow-hidden shadow-[12px_12px_20px_0px_rgba(0,0,0,0.1)] w-[90%] max-w-[848px]"
-              style={{
-                borderRadius: 12,
-                border: '5px solid #e8e8e8',
-                aspectRatio: '848/477',
-              }}
-            >
-              {src ? (
-                <video
-                  src={src}
-                  poster={poster}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="h-full w-full object-cover"
-                  style={{
-                    maskImage:
-                      'linear-gradient(to right, transparent 0px, black 10px, black calc(100% - 10px), transparent 100%)',
-                  }}
-                />
-              ) : imageSrc ? (
-                <div className="relative h-full w-full">
-                  <Image
-                    src={imageSrc}
-                    alt=""
-                    fill
-                    sizes="848px"
-                    className="object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="h-full w-full bg-white" />
-              )}
+        <div
+          className="w-full overflow-hidden"
+          style={{
+            borderRadius: 12,
+            border: '5px solid #e8e8e8',
+            aspectRatio: '848/477',
+            boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
+          }}
+        >
+          {src ? (
+            <video
+              src={src}
+              poster={poster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          ) : imageSrc ? (
+            <div className="relative h-full w-full">
+              <Image
+                src={imageSrc}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 1068px, 100vw"
+                className="object-cover"
+              />
             </div>
-          </div>
+          ) : (
+            <div className="h-full w-full bg-white" />
+          )}
         </div>
       </section>
     )
