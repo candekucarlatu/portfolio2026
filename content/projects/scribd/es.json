@@ -37,20 +37,21 @@
       "type": "insight",
       "title": "El fullscreen se había convertido en un parche.",
       "body": "4 de 7 usuarios entraban a fullscreen para compensar un espacio de lectura que se sentía demasiado reducido.",
-      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Modo fullscreen — antes del rediseño", "width": 599, "height": 446 }
+      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Modo fullscreen — antes del rediseño", "width": 599, "height": 446 },
+      "reverse": true
     },
     {
       "type": "insight",
       "title": "La metadata persistente redujo la carga cognitiva.",
       "body": "6 de 7 usuarios prefirieron el nuevo layout. Mantener título, autor y ratings visibles les permitía evaluar relevancia sin perder el hilo de lectura.",
-      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Página de documento con metadata persistente", "width": 599, "height": 446 },
-      "reverse": true
+      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Página de documento con metadata persistente", "width": 599, "height": 446 }
     },
     {
       "type": "insight",
       "title": "Las recomendaciones competían con el contenido.",
       "body": "A 6 de 7 usuarios les distraían las recomendaciones durante la lectura. Preferían descubrir contenido relacionado después de terminar el documento.",
-      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 599, "height": 446 }
+      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 599, "height": 446 },
+      "reverse": true
     },
     {
       "type": "section",
