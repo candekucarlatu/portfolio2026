@@ -83,6 +83,7 @@ export function VideoMockup({
               height: 543,
               borderRadius: 30,
               border: '5px solid #e0e0e0',
+              boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
               overflow: 'hidden',
               flexShrink: 0,
               position: 'relative',
