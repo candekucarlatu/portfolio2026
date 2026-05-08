@@ -20,7 +20,7 @@ interface ResearchCardsProps {
 export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps) {
   if (layout === 'horizontal') {
     return (
-      <section className="mx-[56px] flex flex-col gap-[54px]">
+      <section className="mx-[24px] lg:mx-[56px] flex flex-col gap-8 lg:gap-[54px]">
         {cards.map((card, i) => {
           const imageRight = i % 2 === 0 // 0, 2 → text left / image right; 1 → image left / text right
 
@@ -30,9 +30,9 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
               className="bg-white overflow-hidden flex flex-col lg:flex-row lg:items-center"
               style={{ boxShadow: '0px 6px 20px rgba(0,0,0,0.1)' }}
             >
-              {/* Image on left (odd cards) */}
+              {/* Image on left (odd cards) — hidden on mobile */}
               {!imageRight && (
-                <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
+                <div className="hidden lg:block w-full shrink-0 overflow-hidden lg:w-[599px]">
                   <Image
                     src={card.image.src}
                     alt={card.image.alt}
@@ -46,21 +46,21 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
 
               {/* Text content */}
               <div
-                className={`flex flex-1 flex-col gap-5 p-10 ${
+                className={`flex flex-1 flex-col gap-4 px-6 py-8 lg:gap-5 ${
                   imageRight
                     ? 'lg:pl-[56px] lg:pr-[40px] lg:py-[40px]'
                     : 'lg:p-[40px]'
                 }`}
               >
-                <h3 className="text-ink text-[24px] leading-[1.4] font-bold md:text-[28px]">
+                <h3 className="text-ink text-[20px] leading-[1.4] font-bold lg:text-[24px] lg:text-[28px]">
                   {card.title}
                 </h3>
-                <p className="text-muted text-[16px] leading-[1.58] md:text-[18px]">{card.body}</p>
+                <p className="text-muted text-[15px] leading-[1.58] lg:text-[16px] lg:text-[18px]">{card.body}</p>
               </div>
 
-              {/* Image on right (even cards: 0, 2) */}
+              {/* Image on right (even cards: 0, 2) — hidden on mobile */}
               {imageRight && (
-                <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
+                <div className="hidden lg:block w-full shrink-0 overflow-hidden lg:w-[599px]">
                   <Image
                     src={card.image.src}
                     alt={card.image.alt}

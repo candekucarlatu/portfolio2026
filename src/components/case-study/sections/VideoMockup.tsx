@@ -27,9 +27,35 @@ export function VideoMockup({
 }: VideoMockupProps) {
   if (variant === 'desktop') {
     return (
-      <section className="mx-[56px]">
+      <section className="mx-[24px] lg:mx-[56px]">
+        {/* Mobile: raw video, no frame, no background */}
+        <div className="block lg:hidden overflow-hidden rounded-[12px]">
+          {src ? (
+            <video
+              src={src}
+              poster={poster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto"
+            />
+          ) : imageSrc ? (
+            <div className="relative w-full" style={{ aspectRatio: '820/477' }}>
+              <Image
+                src={imageSrc}
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+          ) : null}
+        </div>
+
+        {/* Desktop: colored background + browser frame */}
         <div
-          className="flex w-full items-center justify-center py-[54px]"
+          className="hidden lg:flex w-full items-center justify-center py-[54px]"
           style={{ backgroundColor: background }}
         >
           <div
