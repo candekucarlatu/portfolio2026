@@ -37,9 +37,6 @@ export function NextProject({
 }: NextProjectProps) {
   const href = `/${locale}/work/${slug}`
 
-  // phone-framed uses same padding as phone; wide uses its own
-  const isPhoneVariant = imageLayout === 'phone' || imageLayout === 'phone-framed'
-
   return (
     <section
       className="relative w-full border-t border-dashed overflow-hidden"
@@ -52,13 +49,9 @@ export function NextProject({
        */}
       <div
         className="flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[88px]"
-        style={{ minHeight: undefined }}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
-        <div
-          className="relative z-10 flex flex-col self-start md:self-center"
-          style={{ width: undefined, flexShrink: 0 }}
-        >
+        <div className="relative z-10 flex flex-col self-start md:self-center">
           {/* Tag */}
           <div className="inline-flex h-[25px] self-start items-center rounded-[2px] bg-white px-[10px]">
             <span className="text-ink text-[11px] font-bold tracking-[0.8px] whitespace-nowrap uppercase">
