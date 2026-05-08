@@ -119,6 +119,7 @@ const ResearchCards = z.object({
         title: z.string(),
         body: z.string(),
         image: ProjectImage,
+        imageEdge: z.boolean().optional(),
       }),
     )
     .min(1),

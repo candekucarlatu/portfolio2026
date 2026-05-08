@@ -38,7 +38,8 @@
         {
           "title": "En desktop, la navegación principal estaba escondida.",
           "body": "La nav lateral vivía detrás de un hamburguer menu. La mayoría de los usuarios nunca lo abría, incluso cuando ahí estaban las acciones más importantes.",
-          "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Menú hamburguesa ocultando la navegación principal en desktop", "width": 599, "height": 446 }
+          "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Menú hamburguesa ocultando la navegación principal en desktop", "width": 599, "height": 446 },
+          "imageEdge": true
         }
       ]
     },

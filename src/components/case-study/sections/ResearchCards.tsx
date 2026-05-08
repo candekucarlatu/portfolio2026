@@ -2,7 +2,7 @@ import Image from 'next/image'
 import type { ProjectImage } from '@/lib/content/schema'
 
 interface ResearchCardsProps {
-  cards: { title: string; body: string; image: ProjectImage }[]
+  cards: { title: string; body: string; image: ProjectImage; imageEdge?: boolean }[]
   layout?: 'stacked' | 'horizontal'
 }
 
@@ -32,15 +32,27 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
             >
               {/* Image on left (odd cards) */}
               {!imageRight && (
-                <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
-                  <Image
-                    src={card.image.src}
-                    alt={card.image.alt}
-                    width={card.image.width ?? 599}
-                    height={card.image.height ?? 446}
-                    className="w-full h-auto"
-                  />
-                </div>
+                card.imageEdge ? (
+                  <div className="relative self-stretch shrink-0 overflow-hidden lg:w-[599px]">
+                    <Image
+                      src={card.image.src}
+                      alt={card.image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 599px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
+                    <Image
+                      src={card.image.src}
+                      alt={card.image.alt}
+                      width={card.image.width ?? 599}
+                      height={card.image.height ?? 446}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                )
               )}
 
               {/* Text content */}
@@ -59,15 +71,27 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
 
               {/* Image on right (even cards: 0, 2) */}
               {imageRight && (
-                <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
-                  <Image
-                    src={card.image.src}
-                    alt={card.image.alt}
-                    width={card.image.width ?? 599}
-                    height={card.image.height ?? 446}
-                    className="w-full h-auto"
-                  />
-                </div>
+                card.imageEdge ? (
+                  <div className="relative self-stretch shrink-0 overflow-hidden lg:w-[599px]">
+                    <Image
+                      src={card.image.src}
+                      alt={card.image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 599px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
+                    <Image
+                      src={card.image.src}
+                      alt={card.image.alt}
+                      width={card.image.width ?? 599}
+                      height={card.image.height ?? 446}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                )
               )}
             </div>
           )

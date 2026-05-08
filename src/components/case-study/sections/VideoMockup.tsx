@@ -79,9 +79,9 @@ export function VideoMockup({
         {src && (
           <div
             style={{
-              width: 250,
-              height: 549,
-              borderRadius: 30,
+              width: 234,
+              height: 489,
+              borderRadius: 32,
               border: '5px solid #e0e0e0',
               boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
               overflow: 'hidden',
@@ -100,8 +100,8 @@ export function VideoMockup({
                 width: '100%',
                 height: '100%',
                 display: 'block',
-                transform: 'scale(1.3) translateY(-12.3px)',
-                transformOrigin: '50% 47%',
+                transform: 'scale(1.35) translateY(-12px)',
+                transformOrigin: '50% 44%',
               }}
               className="object-cover"
             />
