@@ -99,7 +99,7 @@ export function VideoMockup({
                 width: '100%',
                 height: '100%',
                 display: 'block',
-                transform: 'scale(1.3)',
+                transform: 'scale(1.3) translateY(-12.3px)',
                 transformOrigin: '50% 47%',
               }}
               className="object-cover"
