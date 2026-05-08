@@ -51,7 +51,7 @@ export function NextProject({
         className="flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[88px]"
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
-        <div className="relative z-10 flex flex-col self-start md:self-center md:w-[450px] md:shrink-0">
+        <div className={`relative z-10 flex flex-col self-start md:self-center${imageLayout === 'wide' ? ' md:w-[450px] md:shrink-0' : ''}`}>
           {/* Tag */}
           <div className="inline-flex h-[25px] self-start items-center rounded-[2px] bg-white px-[10px]">
             <span className="text-ink text-[11px] font-bold tracking-[0.8px] whitespace-nowrap uppercase">
@@ -156,7 +156,7 @@ export function NextProject({
         {/* ── Right area: phone-framed (image already includes the frame) ─── */}
         {image && imageLayout === 'phone-framed' && (
           <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center">
-            <Link href={href} aria-hidden tabIndex={-1}>
+            <Link href={href} aria-hidden tabIndex={-1} className="block">
               <Image
                 src={image.src}
                 alt={image.alt}
