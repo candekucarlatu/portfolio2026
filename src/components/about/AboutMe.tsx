@@ -17,18 +17,8 @@ interface AboutMeProps {
  * All left/top/width values are % of container width (1440px base).
  * top% values are % of container HEIGHT (= 94.86% × container width ≡ 1366px scale).
  *
- * Figma source coordinates:
- *   Decoration 1   left:785  top:-164  w:535  h:387
- *   Decoration 2   left:155  top:870   w:502  h:332
- *   Profile bbox   left:96   top:48    w:661  h:812   rotate(1deg)  inner:647×801
- *   DP bbox        left:697  top:231   w:666  h:717   rotate(-2deg) inner:642×694
- *   Collage        left:191  top:103   w:493  h:215   rotate(1deg)
- *   Bio text       left:193  top:331   w:471
- *   Links          left:189  top:571   w:406
- *   DP Text 1      left:769  top:359   w:494
- *   DP Text 2      left:774  top:487
- *   DP Text 3      left:778  top:614
- *   DP Text 4      left:783  top:742
+ * Adjusted top positions so Profile is ≈48px from component top and DP bottom
+ * is ≈52px from component bottom (calibrated at 1200px modal width / 1138px height).
  *
  * Z-order (back→front): Decoration 1/2 (z-0) → DP panel+text (z-10) → Profile panel+text (z-20) → Collage+overlay (z-30)
  */
@@ -42,47 +32,46 @@ export function AboutMe({ dict }: AboutMeProps) {
     { label: s.links.resume,    value: s.links.resumeValue,                 href: dict.contact.resumeUrl },
   ]
 
-  // DP text top positions shifted: (figma_y + 164) / 1366
+  // DP text top positions: original (figma_y + 164) / 1366, then shifted +14.09% to match DP panel move
   const dpTexts = [
-    { left: '53.45%', top: '38.28%' }, // (359+164)/1366
-    { left: '53.76%', top: '47.63%' }, // (487+164)/1366
-    { left: '54.07%', top: '57.01%' }, // (614+164)/1366
-    { left: '54.38%', top: '66.39%' }, // (742+164)/1366
+    { left: '53.45%', top: '52%' },
+    { left: '53.76%', top: '62%' },
+    { left: '54.07%', top: '71%' },
+    { left: '54.38%', top: '80%' },
   ]
 
   return (
     /*
      * Outer container: relative, height driven by padding-bottom=94.86%
      * (= 1366/1440 — matches Figma canvas aspect ratio after y-shift).
+     * overflow-hidden clips decorations that bleed past the edges.
      * All children are absolute and scale proportionally with container width.
      */
     <div className="relative w-full overflow-hidden" style={{ paddingBottom: '94.86%' }}>
 
       {/* ── DECORATION 1 — top-right, z behind panels ────────────────── */}
-      {/* Figma: left=785, top=-164 → shifted top=0. w=535 */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/canvas/aboutme/sheet/Decoration%201.png"
         alt="" aria-hidden
         className="pointer-events-none absolute z-0"
-        style={{ left: '54.51%', top: '-4%', width: '37.15%' }}
+        style={{ left: '54.51%', top: '-15%', width: '37.15%' }}
       />
 
       {/* ── DECORATION 2 — bottom-left, below Profile ────────────────── */}
-      {/* Figma: left=155, top=870 → shifted top=1034. w=502 */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/canvas/aboutme/sheet/Decoration%202.png"
         alt="" aria-hidden
         className="pointer-events-none absolute z-0"
-        style={{ left: '10.76%', top: '80%', width: '34.86%' }}
+        style={{ left: '10.76%', top: '83%', width: '34.86%' }}
       />
 
       {/* ── DESIGN PRINCIPLES PANEL — z-10 ───────────────────────────── */}
-      {/* Figma bbox: left=697, top=231 → shifted 395. w=666. rotate(-2deg) */}
+      {/* top: 43% ≈ DP bottom 52px from component bottom at 1200px modal */}
       <div
         className="absolute z-10"
-        style={{ left: '48.40%', top: '28.91%', width: '46.27%' }}
+        style={{ left: '48.40%', top: '43%', width: '46.27%' }}
       >
         <Image
           src="/canvas/aboutme/sheet/Design%20Principles.png"
@@ -118,17 +107,17 @@ export function AboutMe({ dict }: AboutMeProps) {
         </div>
       ))}
 
-      {/* ── PROFILE PANEL — z-20 (above DP, they touch) ─────────────── */}
-      {/* Figma bbox: left=96, top=48 → shifted 212. w=661. rotate(1deg) */}
+      {/* ── PROFILE PANEL — z-20 ─────────────────────────────────────── */}
+      {/* top: 4% ≈ 48px from component top at 1200px modal */}
       <div
         className="absolute z-20"
-        style={{ left: '6.67%', top: '15.52%', width: '45.89%' }}
+        style={{ left: '6.67%', top: '4%', width: '45.89%' }}
       >
         <Image
           src="/canvas/aboutme/sheet/Profile.png"
           alt="" aria-hidden
           width={1294}
-          height={1602}
+          height={1868}
           className="pointer-events-none h-auto w-full"
           style={{ transform: 'rotate(1deg)', transformOrigin: 'top left' }}
           priority
@@ -136,10 +125,10 @@ export function AboutMe({ dict }: AboutMeProps) {
       </div>
 
       {/* ── COLLAGE — z-30 ───────────────────────────────────────────── */}
-      {/* Figma: left=191, top=103 → shifted 267. w=493. rotate(1deg) */}
+      {/* top shifted -11.52% to follow Profile; width +5% per user request */}
       <div
         className="pointer-events-none absolute z-30"
-        style={{ left: '13.26%', top: '19.54%', width: '34.24%', transform: 'rotate(1deg)' }}
+        style={{ left: '13.26%', top: '8%', width: '35.95%', transform: 'rotate(1deg)' }}
       >
         <Image
           src="/canvas/aboutme/sheet/Collage.png"
@@ -151,10 +140,9 @@ export function AboutMe({ dict }: AboutMeProps) {
       </div>
 
       {/* ── BIO TEXT — z-30, rotate(1deg) ────────────────────────────── */}
-      {/* Figma: left=193, top=331 → shifted 495. w=471 */}
       <div
         className="absolute z-30"
-        style={{ left: '13.42%', top: '36.27%', width: '32.71%', transform: 'rotate(1deg)' }}
+        style={{ left: '13.42%', top: '25%', width: '32.71%', transform: 'rotate(1deg)' }}
       >
         <div
           className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
@@ -166,10 +154,9 @@ export function AboutMe({ dict }: AboutMeProps) {
       </div>
 
       {/* ── LINKS — z-30, rotate(1deg) ───────────────────────────────── */}
-      {/* Figma: first item left=189, top=571 → shifted 735. w=406 */}
       <div
         className="absolute z-30"
-        style={{ left: '13.10%', top: '53.85%', width: '28.23%', transform: 'rotate(1deg)' }}
+        style={{ left: '13.10%', top: '42%', width: '28.23%', transform: 'rotate(1deg)' }}
       >
         {links.map(({ label, value, href }) => (
           <a
@@ -177,7 +164,7 @@ export function AboutMe({ dict }: AboutMeProps) {
             href={href}
             target={href.startsWith('http') ? '_blank' : undefined}
             rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="flex items-baseline gap-[6%] py-[2.2%] transition-opacity hover:opacity-70"
+            className="flex items-baseline gap-[6%] py-[2.2%]"
           >
             <span
               className="text-ink shrink-0 font-semibold leading-[1.25]"
@@ -186,7 +173,7 @@ export function AboutMe({ dict }: AboutMeProps) {
               {label}
             </span>
             <span
-              className="font-script text-black"
+              className="font-script text-black transition-colors hover:text-[#FF3E00]"
               style={{ fontSize: 'clamp(9px, 1.4vw, 20px)', lineHeight: 1.5 }}
             >
               {value}
