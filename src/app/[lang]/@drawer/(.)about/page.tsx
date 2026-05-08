@@ -10,7 +10,7 @@ export default async function InterceptedAboutPage({ params }: PageProps<'/[lang
   const dict = await getDictionary(lang)
 
   return (
-    <ProjectSheet closeLabel={dict.ui.closeProject}>
+    <ProjectSheet closeLabel={dict.ui.closeProject} noScroll>
       <AboutMe dict={dict} />
     </ProjectSheet>
   )

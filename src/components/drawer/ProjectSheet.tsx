@@ -9,9 +9,10 @@ import { useMediaQuery } from '@/lib/useMediaQuery'
 interface ProjectSheetProps {
   children: React.ReactNode
   closeLabel: string
+  noScroll?: boolean
 }
 
-export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
+export function ProjectSheet({ children, closeLabel, noScroll = false }: ProjectSheetProps) {
   const router = useRouter()
   const reduceMotion = useReducedMotion()
   const isDesktop = useMediaQuery('(min-width: 1024px)', true)
@@ -42,7 +43,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
   // Track scroll position to collapse top gap when user scrolls down
   // and reveal bottom gap when user reaches the end of content
   useEffect(() => {
-    if (!isDesktop) return
+    if (!isDesktop || noScroll) return
     const el = panelRef.current
     if (!el) return
     const handler = () => {
@@ -91,19 +92,18 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
             <motion.div
               ref={panelRef}
               key="sheet-panel"
-              className="canvas-scroll-hidden fixed z-50 overflow-hidden overflow-y-auto overscroll-contain shadow-2xl"
+              className={`canvas-scroll-hidden fixed z-50 overflow-hidden shadow-2xl${noScroll ? '' : ' overflow-y-auto overscroll-contain'}`}
               style={{ left: sidePadding, right: sidePadding }}
-              initial={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
+              initial={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: noScroll ? '20px 20px 0 0' : '20px' }}
               animate={{
-                top: scrolled ? 0 : 88,
-                bottom: atBottom ? 128 : 0,
+                top: noScroll ? 88 : scrolled ? 0 : 88,
+                bottom: noScroll ? 0 : atBottom ? 128 : 0,
                 y: 0,
-                // Not scrolled:  all 4 corners rounded (floating card)
-                // Scrolled mid:  all corners straight (panel fills edge-to-edge)
-                // At bottom:     top straight, bottom rounded (lifted floating card)
-                borderRadius: !scrolled ? '20px' : atBottom ? '0 0 20px 20px' : '0px',
+                borderRadius: noScroll
+                  ? '20px 20px 0 0'
+                  : !scrolled ? '20px' : atBottom ? '0 0 20px 20px' : '0px',
               }}
-              exit={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: '20px' }}
+              exit={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: noScroll ? '20px 20px 0 0' : '20px' }}
               transition={{
                 y: {
                   duration: reduceMotion ? 0.01 : 0.52,
@@ -123,10 +123,10 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
                 },
               }}
             >
-              {/* bg-paper wrapper — overflow-hidden clips rounded corners, pb gives breathing room at end */}
-              <div className="bg-paper text-ink overflow-hidden pb-0">
-                {/* Close button — scrolls with content, like Stripe */}
-                <div className="flex justify-end px-4 pt-4">
+              {/* bg-paper wrapper */}
+              <div className={`bg-paper text-ink overflow-hidden pb-0${noScroll ? ' flex h-full flex-col' : ''}`}>
+                {/* Close button */}
+                <div className="flex flex-shrink-0 justify-end px-4 pt-4">
                   <button
                     type="button"
                     aria-label={closeLabel}
@@ -145,7 +145,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
                   </button>
                 </div>
 
-                {children}
+                {noScroll ? <div className="flex-1">{children}</div> : children}
               </div>
 
             </motion.div>
@@ -169,7 +169,7 @@ export function ProjectSheet({ children, closeLabel }: ProjectSheetProps) {
         <Drawer.Content className="bg-paper text-ink fixed inset-x-0 bottom-0 z-50 mt-24 flex h-[92vh] flex-col rounded-t-2xl outline-none">
           <Drawer.Title className="sr-only">Project</Drawer.Title>
           <div className="bg-ink/15 mx-auto mt-3 mb-1 h-1.5 w-[44px] flex-shrink-0 rounded-full" />
-          <div className="canvas-scroll-hidden flex-1 overflow-y-auto overscroll-contain">
+          <div className={`flex-1${noScroll ? ' overflow-hidden' : ' canvas-scroll-hidden overflow-y-auto overscroll-contain'}`}>
             {children}
           </div>
         </Drawer.Content>
