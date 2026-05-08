@@ -31,38 +31,40 @@ export function VideoMockup({
   if (variant === 'desktop') {
     return (
       <section className="mx-[56px]">
-        <div
-          className="w-full overflow-hidden"
-          style={{
-            borderRadius: 12,
-            border: '5px solid #e8e8e8',
-            aspectRatio: '848/477',
-            boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
-          }}
-        >
-          {src ? (
-            <video
-              src={src}
-              poster={poster}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="h-full w-full object-cover scale-[1.02]"
-            />
-          ) : imageSrc ? (
-            <div className="relative h-full w-full">
-              <Image
-                src={imageSrc}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 1068px, 100vw"
-                className="object-cover"
+        <div className="flex w-full items-center justify-center py-[54px]" style={{ backgroundColor: background }}>
+          <div
+            className="w-full overflow-hidden"
+            style={{
+              borderRadius: 12,
+              border: '5px solid #e8e8e8',
+              aspectRatio: '848/477',
+              boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
+            }}
+          >
+            {src ? (
+              <video
+                src={src}
+                poster={poster}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-full w-full object-cover scale-[1.02]"
               />
-            </div>
-          ) : (
-            <div className="h-full w-full bg-white" />
-          )}
+            ) : imageSrc ? (
+              <div className="relative h-full w-full">
+                <Image
+                  src={imageSrc}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 1068px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <div className="h-full w-full bg-white" />
+            )}
+          </div>
         </div>
       </section>
     )
