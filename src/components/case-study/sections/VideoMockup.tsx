@@ -30,9 +30,9 @@ export function VideoMockup({
 }: VideoMockupProps) {
   if (variant === 'desktop') {
     return (
-      <section>
+      <section className="mx-[56px]">
         <div
-          className="flex w-full items-center justify-center px-[180px] py-[54px]"
+          className="flex w-full items-center justify-center py-[54px]"
           style={{ backgroundColor: background }}
         >
           <div
@@ -52,7 +52,7 @@ export function VideoMockup({
                 loop
                 muted
                 playsInline
-                className="h-full w-full object-cover scale-[1.03]"
+                className="h-full w-full object-cover scale-[1.01]"
               />
             ) : imageSrc ? (
               <div className="relative h-full w-full">
