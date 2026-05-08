@@ -47,13 +47,7 @@ export function NextProject({
        * area fills the full row height. The left column uses self-center so
        * its text stays vertically centered within the row.
        */}
-      <div
-        className={`flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] ${
-          imageLayout === 'phone-framed'
-            ? 'md:py-[64px] md:min-h-[641px]'
-            : 'md:py-[54px] md:min-h-[621px]'
-        }`}
-      >
+      <div className="flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[54px] md:min-h-[621px]">
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
         <div className="relative z-10 flex flex-col self-start md:self-center md:w-[450px] md:shrink-0">
           {/* Tag */}
