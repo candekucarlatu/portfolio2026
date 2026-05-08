@@ -4,12 +4,12 @@
     "description": "Product designer argentina con 8+ años de experiencia diseñando productos B2C y SaaS, de la estrategia al último píxel."
   },
   "about": {
-    "headline": "Candela es product designer",
-    "body": "con 8+ años de experiencia, diseñando productos B2C y SaaS desde la estrategia hasta el último píxel.",
+    "headline": "Candela es una product designer",
+    "body": "con 8 años de experiencia diseñando productos B2C y SaaS desde la estrategia hasta el último píxel.",
     "bodyLines": [
-      "con 8+ años de experiencia,",
+      "con 8 años de experiencia",
       "diseñando productos B2C y SaaS",
-      "desde la estrategia al último píxel."
+      "desde la estrategia hasta el último píxel."
     ],
     "tagline": "proud dog mom"
   },
@@ -41,8 +41,8 @@
     "collage1": "Hey there!",
     "collage2": "Soy Cande",
     "collage3": "y Membrillo",
-    "bio1": "Soy Product Designer de Buenos Aires con 8+ años de experiencia trabajando end-to-end en productos B2C y SaaS.",
-    "bio2": "Recientemente lideré la estrategia y el diseño de un juego a escala de ciudad en Las Vegas — me uní cuando era solo una idea y lo llevé hasta el final: alineación del equipo, mecánicas del juego, roadmap y diseño visual final. Antes trabajé en Intive en productos que probablemente usaste — Scribd, SlideShare, Kaplan y BlackBerry.",
+    "bio1": "Soy Product Designer, vivo en CABA, con 8 años de experiencia diseñando end-to-end mayormente para productos B2C y Saas. Recientemente lideré la estrategia y el diseño de un juego para la ciudad de Las Vegas.",
+    "bio2": "Empecé cuando era solo una idea y acompañé todo el proceso: desde alinear al equipo y definir las prioridades, definir las mecánicas del juego y el roadmap hasta el diseño visual. Antes trabajé en Intive en productos que probablemente usaste como Scribd, SlideShare, Kaplan y BlackBerry.",
     "links": {
       "email": "Email",
       "linkedin": "Linkedin",
@@ -51,10 +51,10 @@
       "resumeValue": "descargar acá"
     },
     "principles": [
-      { "title": "Usá la investigación para decidir, no para validar.", "body": "Para cuando estoy haciendo un estudio, ya sé qué pregunta estoy respondiendo y qué vamos a hacer con la respuesta." },
-      { "title": "Trabajá end-to-end.", "body": "No porque quiera controlar todo, sino porque el handoff es donde las cosas se rompen." },
-      { "title": "Shipeá para aprender.", "body": "Prefiero shipear algo imperfecto y aprender antes que pasar otro sprint perfeccionando una apuesta que no testeamos." },
-      { "title": "Tratá la eficiencia como un problema de diseño.", "body": "Eso significa usar IA para comprimir la brecha entre decisión y artefacto, darles a los desarrolladores más contexto, menos fricción y menos idas y vueltas." }
+      { "title": "Uso research para tomar decisiones, no para validar ideas.", "body": "Cuando hago una investigación, ya sé qué pregunta necesito responder y qué decisión va a depender de esa respuesta." },
+      { "title": "Trabajo end-to-end.", "body": "No porque quiera controlar todo, sino porque muchas veces el handoff es donde la experiencia empieza a romperse." },
+      { "title": "Shipear también es una herramienta de aprendizaje.", "body": "Prefiero lanzar algo imperfecto y aprender rápido antes que pasar semanas refinando una hipótesis que todavía no fue testeada." },
+      { "title": "Trato la eficiencia como un problema de diseño.", "body": "Eso significa usar IA para acortar la distancia entre una decisión y un artefacto, y darles a los developers más contexto, menos fricción y menos idas y vueltas." }
     ]
   }
 }

@@ -1,25 +1,25 @@
 {
   "slug": "slideshare",
   "card": {
-    "title": "Una plataforma construida para slides que necesitaba aprender a mostrar documentos.",
-    "subtitle": "Un rediseño del lector para que los 70M+ usuarios de SlideShare realmente lean.",
+    "title": "Una plataforma nacida para slides que necesitaba aprender a mostrar documentos.",
+    "subtitle": "Rediseño del lector de SlideShare para que sus 70M+ usuarios lean documentos con más facilidad.",
     "color": "orange"
   },
   "sections": [
     {
       "type": "hero",
-      "title": "Una plataforma construida para slides que necesitaba aprender a mostrar documentos.",
-      "subtitle": "SlideShare es una plataforma UGC global con 70M+ usuarios. Rediseñé el lector de documentos para mejorar la legibilidad en múltiples formatos, aumentando el engagement y los ingresos publicitarios.",
+      "title": "Una plataforma nacida para slides que necesitaba aprender a mostrar documentos.",
+      "subtitle": "SlideShare es una plataforma UGC global con más de 70M de usuarios. Rediseñé la plataforma para mejorar la legibilidad en múltiples formatos, aumentando el engagement y el valor publicitario.",
       "meta": {
-        "duration": "Jul–Sep 2023",
+        "duration": "Julio–Septiembre 2023",
         "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "EL PROBLEMA",
-      "title": "Todo empezó con las presentaciones de slides.",
-      "body": "Pero cuando se trataba de documentos, los usuarios necesitaban un lector que no estorbara: uno que les permitiera evaluar y leer sin distracciones. Para el producto, sesiones más largas y enfocadas significaban más valor publicitario y un layout que por fin pudiera escalar a distintos formatos."
+      "title": "Todo empezó con las presentaciones.",
+      "body": "Aunque los usuarios abrían documentos, la experiencia seguía funcionando para slides: difícil de escanear, incómodo para leer en profundidad y poco flexible para distintos tipos de contenido. Para el negocio, mejorar la lectura significaba sesiones más largas, más engagement y un layout capaz de escalar más allá de las presentaciones."
     },
     {
       "type": "image-compare",
@@ -33,7 +33,7 @@
       "type": "section",
       "label": "EL ENFOQUE",
       "title": "Adaptar el lector a cada formato.",
-      "body": "Redefiní la jerarquía para soportar múltiples formatos alineándome con el sistema de diseño de Scribd, mejorando la orientación en documentos largos. Simplifiqué la interfaz y rebalanceé los ads y las recomendaciones, introduciendo patrones adaptativos según la extensión del documento para mantener el contenido como protagonista sin comprometer los ingresos."
+      "body": "Redefiní la jerarquía visual para soportar distintos formatos y alineé la experiencia con el sistema de diseño de Scribd. El foco estuvo en mejorar orientación, legibilidad y consistencia en documentos largos. Simplifiqué la interfaz y rebalanceé ads y recomendaciones para que acompañaran la lectura en lugar de competir con ella. También introduje patrones adaptativos según la longitud del documento, manteniendo el contenido como protagonista sin comprometer monetización."
     },
     {
       "type": "image",
@@ -45,7 +45,7 @@
       "type": "section",
       "label": "MÉTRICAS DE ÉXITO",
       "title": "Los números se movieron en la dirección correcta.",
-      "body": "Las sesiones de lectura más largas se tradujeron directamente en resultados de negocio. Además, los ingresos publicitarios en desktop crecieron un 7%, impulsados por usuarios que se quedaron el tiempo suficiente para ver más de la página."
+      "body": "Las mejoras en legibilidad y foco se tradujeron en sesiones de lectura más largas y mejores resultados de negocio. Los ingresos publicitarios en desktop crecieron un 7%, impulsados por usuarios que permanecían más tiempo dentro del lector."
     },
     {
       "type": "stat-cards",
@@ -58,8 +58,8 @@
     {
       "type": "next-project",
       "slug": "kaplan",
-      "title": "Darle a Learner Home la estructura de navegación que nunca tuvo.",
-      "cta": "Explorá el rediseño de Kaplan →",
+      "title": "Darle a la navegación de Learner Home la estructura que nunca tuvo.",
+      "cta": "Explorá la reorganización de Kaplan →",
       "imageLayout": "wide",
       "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Vista previa del caso Kaplan", "width": 666, "height": 513 }
     }

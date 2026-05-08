@@ -1,25 +1,25 @@
 {
   "slug": "scribd",
   "card": {
-    "title": "¿Cómo ganás la atención de un usuario cuando tiene otras diez pestañas abiertas?",
-    "subtitle": "Un rediseño de la página de documentos para 1,8M+ suscriptores de Scribd, creado para leer y evaluar contenido sin fricción.",
+    "title": "¿Cómo captás la atención de un usuario con diez tabs abiertas?",
+    "subtitle": "Rediseño de Scribd para mejorar la exploración y lectura profunda de sus 1.8M+ suscriptores.",
     "color": "green"
   },
   "sections": [
     {
       "type": "hero",
-      "title": "¿Cómo ganás la atención de un usuario cuando tiene otras diez pestañas abiertas?",
-      "subtitle": "Scribd es una plataforma SaaS global de documentos con 1,8M+ suscriptores. Lideré el rediseño de la página de documento para equilibrar monetización y confianza con un layout escalable.",
+      "title": "¿Cómo captás la atención de un usuario con diez tabs abiertas?",
+      "subtitle": "Scribd es una plataforma SaaS enfocada en el consumo de documentos y contenido generado por usuarios con 1.8M+ suscriptores. Rediseñé la página principal para equilibrar lectura, monetización y confianza dentro de un layout escalable.",
       "meta": {
-        "duration": "Ene–May 2024",
+        "duration": "Enero–Mayo 2024",
         "team": "2 Product Designers · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "EL PROBLEMA",
-      "title": "La página del documento era difícil de escanear y todavía más difícil de concentrarse en ella.",
-      "body": "La sesión típica es un escaneo rápido: ¿es relevante, es confiable, vale la pena el tiempo? El layout hacía eso más difícil de lo necesario: el documento comenzaba muy abajo y la metadata desaparecía al hacer scroll. Para los no suscriptores, los ads sumaban fricción encima de todo eso."
+      "title": "La página principal era difícil de escanear y todavía más difícil de leer en profundidad.",
+      "body": "La sesión empezaba con una decisión rápida: ¿es relevante?, ¿es confiable?, ¿vale mi tiempo? Pero el layout hacía todo más difícil. El documento empezaba demasiado abajo, la metadata desaparecía al hacer scroll y, para los no suscriptores, los ads sumaban todavía más fricción."
     },
     {
       "type": "video",
@@ -30,33 +30,33 @@
     {
       "type": "section",
       "label": "USER TESTING",
-      "title": "Verificando si la metadata persistente realmente cambiaba cómo la gente leía.",
-      "body": "Realicé una sesión de user testing para saber si mantener título, autor, ratings y acciones siempre visibles ayudaba a los usuarios a hacer multitasking y orientarse sin perder el hilo."
+      "title": "Validar si la metadata persistente realmente cambiaba cómo la gente leía.",
+      "body": "Moderé 7 sesiones de user testing para entender si mantener visibles el título, autor, ratings y acciones mejoraba la experiencia de usuarios que hacían multitasking mientras leían."
     },
     {
       "type": "insight",
-      "title": "El fullscreen se había convertido en un parche para la mala legibilidad.",
-      "body": "4 de 7 usuarios entraban al fullscreen para compensar un espacio de lectura que se sentía demasiado apretado.",
+      "title": "El fullscreen se había convertido en un parche.",
+      "body": "4 de 7 usuarios entraban a fullscreen para compensar un espacio de lectura que se sentía demasiado reducido.",
       "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Modo fullscreen — antes del rediseño", "width": 599, "height": 446 }
     },
     {
       "type": "insight",
       "title": "La metadata persistente redujo la carga cognitiva.",
-      "body": "6 de 7 usuarios prefirieron el layout persistente. Mantener título, autor y ratings en su lugar les permitía evaluar relevancia sin perder el contexto.",
+      "body": "6 de 7 usuarios prefirieron el nuevo layout. Mantener título, autor y ratings visibles les permitía evaluar relevancia sin perder el hilo de lectura.",
       "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Página de documento con metadata persistente", "width": 599, "height": 446 },
       "reverse": true
     },
     {
       "type": "insight",
-      "title": "Las recomendaciones competían con el documento.",
-      "body": "6 de 7 usuarios encontraban distractivas las recomendaciones mientras leían. Querían verlas después de terminar el documento, no mientras lo leían.",
+      "title": "Las recomendaciones competían con el contenido.",
+      "body": "A 6 de 7 usuarios les distraían las recomendaciones durante la lectura. Preferían descubrir contenido relacionado después de terminar el documento.",
       "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 599, "height": 446 }
     },
     {
       "type": "section",
-      "label": "EXPERIENCIA DE SUSCRIPTORES",
-      "title": "Diseñada para el escaneo rápido y la lectura profunda.",
-      "body": "Al llegar, la metadata queda visible para que los usuarios puedan evaluar el documento sin perder contexto. Cuando están listos para leer, el documento toma el protagonismo: área de lectura más amplia y una columna colapsable que elimina todo lo demás de la vista."
+      "label": "SUSCRIPTORES",
+      "title": "Diseñar para el escaneo rápido y la lectura profunda.",
+      "body": "La metadata permanece visible para ayudar a evaluar el documento sin perder contexto. Cuando el usuario decide leer, el documento pasa a ocupar el centro de la experiencia: un área de lectura más amplia y una columna colapsable eliminan distracciones y priorizan el contenido."
     },
     {
       "type": "video",
@@ -66,9 +66,9 @@
     },
     {
       "type": "section",
-      "label": "EXPERIENCIA DE NO SUSCRIPTORES",
+      "label": "NO SUSCRIPTORES",
       "title": "Hacer lugar para los ads sin perder usuarios en el proceso.",
-      "body": "Los ads y el contenido necesitan una separación visual clara para coexistir. El formato vertical era el que más valoraban los anunciantes, y también el que más competía con el área de lectura. Usé los datos para encontrar el ancho mínimo que mantenía funcionando ambos lados de esa ecuación."
+      "body": "Los ads y el contenido necesitaban separaciones visuales claras para poder coexistir. El formato vertical era el más valioso para anunciantes, pero también el que más afectaba la lectura. Analicé analíticas para encontrar el ancho mínimo que mantenía funcionando ambos lados de la experiencia."
     },
     {
       "type": "video",
@@ -79,7 +79,7 @@
     {
       "type": "next-project",
       "slug": "slideshare",
-      "title": "Una plataforma construida para slides que necesitaba aprender a mostrar documentos.",
+      "title": "Una plataforma nacida para slides que necesitaba aprender a mostrar documentos.",
       "cta": "Explorá el rediseño de SlideShare →",
       "imageLayout": "phone-framed",
       "image": { "src": "/canvas/projects/scribd/next-case-2.png", "alt": "App SlideShare en iPhone", "width": 252, "height": 513 }
