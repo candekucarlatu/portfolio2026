@@ -30,14 +30,17 @@ export function VideoMockup({
 }: VideoMockupProps) {
   if (variant === 'desktop') {
     return (
-      <section className="mx-[56px]">
-        <div className="flex w-full items-center justify-center py-[54px]" style={{ backgroundColor: background }}>
+      <section>
+        <div
+          className="flex w-full items-center justify-center px-[180px] py-[54px]"
+          style={{ backgroundColor: background }}
+        >
           <div
             className="w-full overflow-hidden"
             style={{
               borderRadius: 12,
               border: '5px solid #e8e8e8',
-              aspectRatio: '848/477',
+              aspectRatio: '820/477',
               boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
             }}
           >
@@ -49,7 +52,7 @@ export function VideoMockup({
                 loop
                 muted
                 playsInline
-                className="h-full w-full object-cover scale-[1.02]"
+                className="h-full w-full object-cover scale-[1.03]"
               />
             ) : imageSrc ? (
               <div className="relative h-full w-full">
@@ -57,7 +60,7 @@ export function VideoMockup({
                   src={imageSrc}
                   alt=""
                   fill
-                  sizes="(min-width: 1024px) 1068px, 100vw"
+                  sizes="(min-width: 1024px) 820px, 100vw"
                   className="object-cover"
                 />
               </div>
