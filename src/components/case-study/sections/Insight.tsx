@@ -17,8 +17,8 @@ export function Insight({ title, body, image, reverse }: InsightProps) {
   return (
     <section className="mx-[56px]">
       <div
-        className="bg-white overflow-hidden flex flex-col lg:flex-row"
-        style={{ boxShadow: '0px 6px 10px rgba(0,0,0,0.1)' }}
+        className="bg-white overflow-hidden flex flex-col lg:flex-row lg:items-center"
+        style={{ boxShadow: '0px 6px 20px rgba(0,0,0,0.1)' }}
       >
         {/* Image on left (reverse=true) */}
         {reverse && (

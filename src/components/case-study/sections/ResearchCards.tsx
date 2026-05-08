@@ -27,45 +27,45 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
           return (
             <div
               key={i}
-              className="bg-white overflow-hidden flex flex-col lg:flex-row"
-              style={{ boxShadow: '0px 6px 10px rgba(0,0,0,0.1)' }}
+              className="bg-white overflow-hidden flex flex-col lg:flex-row lg:items-center"
+              style={{ boxShadow: '0px 6px 20px rgba(0,0,0,0.1)' }}
             >
               {/* Image on left (odd cards) */}
               {!imageRight && (
-                <div className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]">
+                <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
                   <Image
                     src={card.image.src}
                     alt={card.image.alt}
-                    fill
-                    sizes="(min-width: 1024px) 599px, 100vw"
-                    className="object-cover"
+                    width={card.image.width ?? 599}
+                    height={card.image.height ?? 446}
+                    className="w-full h-auto"
                   />
                 </div>
               )}
 
               {/* Text content */}
               <div
-                className={`flex flex-1 flex-col justify-center gap-5 p-10 ${
+                className={`flex flex-1 flex-col gap-5 p-10 ${
                   imageRight
                     ? 'lg:pl-[56px] lg:pr-[40px] lg:py-[40px]'
                     : 'lg:p-[40px]'
                 }`}
               >
-                <h3 className="text-ink text-[24px] leading-[1.4] font-bold">
+                <h3 className="text-ink text-[24px] leading-[1.4] font-bold md:text-[28px]">
                   {card.title}
                 </h3>
-                <p className="text-muted text-[16px] leading-[1.58]">{card.body}</p>
+                <p className="text-muted text-[16px] leading-[1.58] md:text-[18px]">{card.body}</p>
               </div>
 
               {/* Image on right (even cards: 0, 2) */}
               {imageRight && (
-                <div className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]">
+                <div className="w-full shrink-0 overflow-hidden lg:w-[599px]">
                   <Image
                     src={card.image.src}
                     alt={card.image.alt}
-                    fill
-                    sizes="(min-width: 1024px) 599px, 100vw"
-                    className="object-cover"
+                    width={card.image.width ?? 599}
+                    height={card.image.height ?? 446}
+                    className="w-full h-auto"
                   />
                 </div>
               )}
