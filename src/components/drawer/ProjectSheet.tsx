@@ -124,29 +124,53 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
               }}
             >
               {/* bg-paper wrapper */}
-              <div className={`bg-paper text-ink overflow-hidden pb-0${noScroll ? ' flex h-full flex-col' : ''}`}>
-                {/* Close button */}
-                <div className="flex flex-shrink-0 justify-end px-4 pt-4">
-                  <button
-                    type="button"
-                    aria-label={closeLabel}
-                    onClick={close}
-                    className="flex h-9 w-9 items-center justify-center rounded-md border border-ink/15 bg-paper transition-colors hover:border-ink/30 hover:bg-cork focus-visible:outline-2 focus-visible:outline-offset-2"
-                    style={{ color: '#FF3E00' }}
-                  >
-                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
-                      <path
-                        d="M1 1L13 13M13 1L1 13"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </button>
+              {noScroll ? (
+                <div className="bg-paper text-ink relative h-full overflow-hidden">
+                  {/* Close button floats over content so children fill full height */}
+                  <div className="absolute right-4 top-4 z-50">
+                    <button
+                      type="button"
+                      aria-label={closeLabel}
+                      onClick={close}
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-ink/15 bg-paper transition-colors hover:border-ink/30 hover:bg-cork focus-visible:outline-2 focus-visible:outline-offset-2"
+                      style={{ color: '#FF3E00' }}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+                        <path
+                          d="M1 1L13 13M13 1L1 13"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="h-full">{children}</div>
                 </div>
-
-                {noScroll ? <div className="flex-1">{children}</div> : children}
-              </div>
+              ) : (
+                <div className="bg-paper text-ink overflow-hidden pb-0">
+                  {/* Close button */}
+                  <div className="flex flex-shrink-0 justify-end px-4 pt-4">
+                    <button
+                      type="button"
+                      aria-label={closeLabel}
+                      onClick={close}
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-ink/15 bg-paper transition-colors hover:border-ink/30 hover:bg-cork focus-visible:outline-2 focus-visible:outline-offset-2"
+                      style={{ color: '#FF3E00' }}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+                        <path
+                          d="M1 1L13 13M13 1L1 13"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  {children}
+                </div>
+              )}
 
             </motion.div>
           </>

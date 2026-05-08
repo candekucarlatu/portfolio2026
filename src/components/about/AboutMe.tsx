@@ -45,10 +45,10 @@ export function AboutMe({ dict }: AboutMeProps) {
 
   // DP text positions: figma_y / 1143
   const dpTexts = [
-    { left: '53.45%', top: '31.42%' }, // 359/1143
-    { left: '53.76%', top: '42.61%' }, // 487/1143
-    { left: '54.07%', top: '53.80%' }, // 614/1143
-    { left: '54.38%', top: '64.99%' }, // 742/1143
+    { left: '51.45%', top: '33.52%' },
+    { left: '51.76%', top: '46.99%' },
+    { left: '52.07%', top: '59.58%' },
+    { left: '52.38%', top: '72.87%' },
   ]
 
   return (
@@ -69,10 +69,10 @@ export function AboutMe({ dict }: AboutMeProps) {
       />
 
       {/* ── DESIGN PRINCIPLES PANEL — z-10 ───────────────────────────── */}
-      {/* Figma: left=697, top=231, w=666 → 231/1143=20.21% */}
+      {/* Figma: left=697, top=231, w=666 → 231/1143=20.21% — shifted left 6% + down 24px */}
       <div
         className="absolute z-10"
-        style={{ left: '48.40%', top: '20.21%', width: '46.27%' }}
+        style={{ left: '46.40%', top: '22.31%', width: '46.27%' }}
       >
         <Image
           src="/canvas/aboutme/sheet/Design%20Principles.png"
@@ -129,7 +129,7 @@ export function AboutMe({ dict }: AboutMeProps) {
       {/* Figma: left=184, top=156, w=499 → 156/1143=13.65%, 499/1440=34.65% */}
       <div
         className="pointer-events-none absolute z-30"
-        style={{ left: '12.79%', top: '13.65%', width: '34.65%', transform: 'rotate(1deg)' }}
+        style={{ left: '11.13%', top: '9.50%', width: '38.12%', transform: 'rotate(1deg)' }}
       >
         <Image
           src="/canvas/aboutme/sheet/Collage.png"
@@ -144,7 +144,7 @@ export function AboutMe({ dict }: AboutMeProps) {
       {/* Figma: left=193, top=440 → 440/1143=38.50% */}
       <div
         className="absolute z-30"
-        style={{ left: '13.42%', top: '38.50%', width: '32.71%', transform: 'rotate(1deg)' }}
+        style={{ left: '12.59%', top: '35.70%', width: '32.71%', transform: 'rotate(1deg)' }}
       >
         <div
           className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
@@ -156,18 +156,22 @@ export function AboutMe({ dict }: AboutMeProps) {
       </div>
 
       {/* ── LINKS — z-30, rotate(1deg) ───────────────────────────────── */}
-      {/* Figma: left=192, top=699 → 699/1143=61.17% */}
+      {/* Figma: left=192, top=699 → 699/1143=61.17% — pushed further down */}
       <div
         className="absolute z-30"
-        style={{ left: '13.33%', top: '61.17%', width: '28.46%', transform: 'rotate(1deg)' }}
+        style={{ left: '12.59%', top: '68.60%', width: '28.46%', transform: 'rotate(1deg)' }}
       >
-        {links.map(({ label, value, href }) => (
+        {links.map(({ label, value, href }, i) => (
           <a
             key={label}
             href={href}
             target={href.startsWith('http') ? '_blank' : undefined}
             rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="flex items-baseline gap-[6%] py-[2.2%]"
+            className="flex items-center gap-[6%]"
+            style={{
+              minHeight: 'clamp(30px, 3vw, 44px)',
+              ...(i === 1 || i === links.length - 1 ? { marginTop: '8px' } : i === 2 ? { marginTop: '12px' } : {}),
+            }}
           >
             <span
               className="text-ink shrink-0 font-semibold leading-[1.25]"
