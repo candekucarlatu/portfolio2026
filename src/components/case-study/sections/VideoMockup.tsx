@@ -36,7 +36,7 @@ export function VideoMockup({
           style={{ backgroundColor: background }}
         >
           <div
-            className="w-full overflow-hidden"
+            className="w-full max-w-[820px] overflow-hidden"
             style={{
               borderRadius: 12,
               border: '5px solid #e8e8e8',
