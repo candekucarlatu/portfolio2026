@@ -1,3 +1,6 @@
+'use client'
+
+import { useRef, useEffect, useState } from 'react'
 import type { NoteColor } from '@/lib/content/schema'
 
 const colorHex: Record<NoteColor, string> = {
@@ -9,55 +12,35 @@ const colorHex: Record<NoteColor, string> = {
   orange: '#ffebc9',
 }
 
-// Figma rotations: card 0=+2°, card 1=−2°, card 2=+1°, card 3=−1°
 const rotations = [2, -2, 1, -1]
 
 interface StatCardsProps {
   cards: { value: string; label: string; color: NoteColor }[]
 }
 
-/**
- * Renders the value text for a sticky note card.
- *
- * Rules (from Figma 170:846–855):
- *  - Value with ★ → number at 40px, star at 24px (e.g. "1.9 ★")
- *  - Long value (>8 chars, typically a quote) → 24px, positioned higher (top=24)
- *  - Short stat → 40px (default, top=34)
- */
 function CardValue({ value }: { value: string }) {
-  // Case: "1.9 ★" — split at the star, render star smaller
   if (value.includes('★')) {
     const parts = value.split('★')
     return (
-      <p
-        className="font-script absolute font-bold text-ink"
-        style={{ top: 38, left: 20, lineHeight: 0, fontSize: 0, whiteSpace: 'nowrap' }}
-      >
+      <p className="font-script absolute font-bold text-ink"
+        style={{ top: 38, left: 20, lineHeight: 0, fontSize: 0, whiteSpace: 'nowrap' }}>
         <span style={{ fontSize: 40, lineHeight: 'normal' }}>{parts[0]}</span>
         <span style={{ fontSize: 24, lineHeight: 'normal', fontWeight: 400 }}>★</span>
         {parts[1]}
       </p>
     )
   }
-
-  // Case: long text / quote (e.g. "\"just another coupon app.\"")
   if (value.length > 8) {
     return (
-      <p
-        className="font-script absolute font-bold text-ink"
-        style={{ fontSize: 24, lineHeight: 'normal', top: 24, left: 20, width: 165 }}
-      >
+      <p className="font-script absolute font-bold text-ink"
+        style={{ fontSize: 24, lineHeight: 'normal', top: 24, left: 20, width: 165 }}>
         {value}
       </p>
     )
   }
-
-  // Default: short stat (84%, etc.)
   return (
-    <p
-      className="font-script absolute font-bold text-ink"
-      style={{ fontSize: 40, lineHeight: 'normal', top: 34, left: 20, whiteSpace: 'nowrap' }}
-    >
+    <p className="font-script absolute font-bold text-ink"
+      style={{ fontSize: 40, lineHeight: 'normal', top: 34, left: 20, whiteSpace: 'nowrap' }}>
       {value}
     </p>
   )
@@ -69,27 +52,18 @@ function CardList({ cards }: StatCardsProps) {
       {cards.map((card, i) => {
         const rotation = rotations[i % rotations.length]
         return (
-          <div
-            key={i}
-            className="flex items-center justify-center"
-            style={{ width: 212, height: 176 }}
-          >
+          <div key={i} className="flex items-center justify-center"
+            style={{ width: 212, height: 176 }}>
             <div style={{ transform: `rotate(${rotation}deg)` }}>
-              <div
-                className="relative overflow-hidden"
+              <div className="relative overflow-hidden"
                 style={{
-                  width: 206,
-                  height: 169,
+                  width: 206, height: 169,
                   backgroundColor: colorHex[card.color],
                   boxShadow: '2px 5px 10px 0px rgba(0,0,0,0.1)',
-                }}
-              >
+                }}>
                 <CardValue value={card.value} />
-                {/* Label — Caveat Regular 16px */}
-                <p
-                  className="font-script absolute font-normal text-ink"
-                  style={{ fontSize: 16, lineHeight: 1.35, top: 96, left: 19, width: 165 }}
-                >
+                <p className="font-script absolute font-normal text-ink"
+                  style={{ fontSize: 16, lineHeight: 1.35, top: 96, left: 19, width: 165 }}>
                   {card.label}
                 </p>
               </div>
@@ -102,36 +76,43 @@ function CardList({ cards }: StatCardsProps) {
 }
 
 export function StatCards({ cards }: StatCardsProps) {
-  // Mobile: scale entire row to fit in ~327px (375px - 24px × 2 padding)
-  // Raw row width: n × 212 + (n-1) × 8
+  const containerRef = useRef<HTMLDivElement>(null)
+  // Default to 327px (375px viewport − 48px padding) for SSR
+  const [containerW, setContainerW] = useState(327)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const ro = new ResizeObserver(([entry]) => {
+      setContainerW(entry.contentRect.width)
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
   const n = Math.min(cards.length, 4)
   const gapPx = 8
   const rawW = n * 212 + (n - 1) * gapPx
-  const viewportW = 327
-  const scale = Math.min(0.95, viewportW / rawW)
+  const scale = Math.min(0.95, containerW / rawW)
   const scaledH = Math.round(176 * scale)
 
   return (
     <section className="mx-auto w-full max-w-[700px] px-6 md:px-0">
-      {/* ── Mobile: all cards scaled into a single row ─────────────────── */}
-      <div
-        className="flex justify-center overflow-hidden md:hidden"
-        style={{ height: scaledH }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            gap: gapPx,
-            transform: `scale(${scale})`,
-            transformOrigin: 'top center',
-            flexShrink: 0,
-          }}
-        >
+      {/* Mobile: measure container, scale all cards into one row */}
+      <div ref={containerRef} className="md:hidden overflow-hidden flex justify-center"
+        style={{ height: scaledH }}>
+        <div style={{
+          display: 'flex',
+          gap: gapPx,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top center',
+          flexShrink: 0,
+        }}>
           <CardList cards={cards} />
         </div>
       </div>
 
-      {/* ── Desktop: wrapped layout ─────────────────────────────────────── */}
+      {/* Desktop: wrapped layout */}
       <div className="hidden flex-wrap justify-center gap-6 md:flex">
         <CardList cards={cards} />
       </div>

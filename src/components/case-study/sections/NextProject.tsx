@@ -51,7 +51,7 @@ export function NextProject({
        * its text stays vertically centered within the row.
        */}
       <div
-        className="flex flex-col px-6 py-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[88px]"
+        className="flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[88px]"
         style={{ minHeight: undefined }}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
@@ -68,7 +68,7 @@ export function NextProject({
 
           {/* Title — 20px below tag */}
           <Link href={href} className="mt-[20px]">
-            <h3 className="text-ink text-[32px] leading-[1.4] font-bold">
+            <h3 className="text-ink text-[24px] leading-[1.25] font-bold md:text-[32px] md:leading-[1.4]">
               {title}
             </h3>
           </Link>
@@ -77,7 +77,7 @@ export function NextProject({
           {cta && (
             <Link
               href={href}
-              className="mt-[40px] font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
+              className="mt-[20px] font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00] md:mt-[40px]"
             >
               {cta}
             </Link>

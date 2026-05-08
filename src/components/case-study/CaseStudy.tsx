@@ -49,7 +49,7 @@ function getTopSpacing(prev: Section | null, curr: Section): string {
   if (c === 'section') return 'mt-[32px] md:mt-[104px]'
 
   // All sections get 120px gap before next-project (gap is outside the background block)
-  if (c === 'next-project') return 'mt-[120px]'
+  if (c === 'next-project') return 'mt-[24px] md:mt-[120px]'
 
   // Default fallback
   return 'mt-[48px]'

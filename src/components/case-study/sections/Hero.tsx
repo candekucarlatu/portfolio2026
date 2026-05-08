@@ -12,8 +12,8 @@ export function Hero({ title, subtitle, meta, metaLabels }: HeroProps) {
         {title}
       </h1>
       <div className="flex flex-col gap-[20px]">
-        <p className="text-muted text-[17px] leading-[1.62]">{subtitle}</p>
-        <p className="text-muted text-[16px] leading-5 md:text-[13px]">
+        <p className="text-muted text-[16px] leading-[1.62] md:text-[17px]">{subtitle}</p>
+        <p className="text-muted text-[16px] leading-[1.62] md:text-[13px] md:leading-5">
           <span className="font-semibold">{metaLabels.duration}: </span>
           {meta.duration}
           {' · '}
