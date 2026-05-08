@@ -16,9 +16,9 @@ interface NextProjectProps {
 /**
  * Three layouts (Figma 472:9465):
  *
- * wide          — landscape tablet/desktop mockup that overflows right.
- *                 Flex row: left column 450px + flex-1 right area.
- *                 Image (666×513) absolutely positioned, overflows right edge.
+ * wide          — landscape tablet/desktop mockup.
+ *                 Left column 450px fixed + flex-1 right area with image centered.
+ *                 Section py-[54px] so image has 54px above and below.
  *
  * phone         — app screenshot inside iphone-frame.png overlay, centered
  *                 in the right half.
@@ -48,7 +48,11 @@ export function NextProject({
        * its text stays vertically centered within the row.
        */}
       <div
-        className="flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[88px]"
+        className={`flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] ${
+          imageLayout === 'wide' ? 'md:py-[54px]' :
+          (imageLayout === 'phone' || imageLayout === 'phone-framed') ? 'md:py-[64px]' :
+          'md:py-[88px]'
+        }`}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
         <div className={`relative z-10 flex flex-col self-start md:self-center${imageLayout === 'wide' ? ' md:w-[450px] md:shrink-0' : ''}`}>
@@ -79,9 +83,8 @@ export function NextProject({
 
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
-          <>
-            {/* Mobile: in-flow below text */}
-            <Link href={href} aria-hidden tabIndex={-1} className="mt-8 block md:hidden">
+          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center md:justify-center">
+            <Link href={href} aria-hidden tabIndex={-1} className="block w-full max-w-[666px]">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -90,24 +93,7 @@ export function NextProject({
                 className="w-full h-auto"
               />
             </Link>
-
-            {/* Desktop: absolutely positioned, overflows section bottom */}
-            <Link
-              href={href}
-              aria-hidden
-              tabIndex={-1}
-              className="hidden md:block absolute"
-              style={{ left: 683, top: 53, width: 666, height: 513 }}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={666}
-                height={513}
-                className="h-full w-full object-contain"
-              />
-            </Link>
-          </>
+          </div>
         )}
 
         {/* ── Right area: phone layout (screenshot + frame overlay) ───────── */}
