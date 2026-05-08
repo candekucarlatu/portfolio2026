@@ -10,8 +10,9 @@ interface VideoMockupProps {
 
 /**
  * Phone variant — Figma 488:116 (TacoBell)
- * Portrait video at 221×480, rounded-[32px], border 5px #e0e0e0,
- * centered in a colored background with py-[92px]. No frame overlay.
+ * Portrait video at 234×505, borderRadius 32px, border 5px #e0e0e0,
+ * centered in a colored background with py-[98px]. No frame overlay.
+ * Video scaled 1.35 + translateY(-12px) to crop baked-in device bezels.
  *
  * Desktop variant — Figma 406:9668 (Scribd)
  * Landscape browser-style video at max-w-[820px], rounded-[12px],
@@ -80,7 +81,7 @@ export function VideoMockup({
           <div
             style={{
               width: 234,
-              height: 489,
+              height: 505,
               borderRadius: 32,
               border: '5px solid #e0e0e0',
               boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
