@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import type { NoteColor } from '@/lib/content/schema'
 
 const colorHex: Record<NoteColor, string> = {
@@ -74,11 +75,21 @@ export function StatCards({ cards }: StatCardsProps) {
   const slotW = 260
   const slotH = 215
   const gap = 16
+  const carouselRef = useRef<HTMLDivElement>(null)
+
+  // Start with the middle card centered
+  useEffect(() => {
+    const el = carouselRef.current
+    if (!el) return
+    const middleIndex = Math.floor(cards.length / 2)
+    el.scrollLeft = middleIndex * (slotW + gap)
+  }, [cards.length])
 
   return (
     <section className="mx-auto w-full max-w-[700px]">
       {/* Mobile: horizontal snap carousel — one card centered, adjacent ones peek */}
       <div
+        ref={carouselRef}
         className="md:hidden overflow-x-auto flex scrollbar-none"
         style={{
           scrollSnapType: 'x mandatory',

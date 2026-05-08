@@ -50,10 +50,10 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
                     : 'lg:p-[40px]'
                 }`}
               >
-                <h3 className="text-ink text-[18px] leading-[1.35] font-bold lg:text-[24px] lg:leading-[1.4] lg:text-[28px]">
+                <h3 className="text-ink text-[18px] leading-[1.35] font-bold lg:text-[28px] lg:leading-[1.4]">
                   {card.title}
                 </h3>
-                <p className="text-muted text-[14px] leading-[1.55] lg:text-[16px] lg:text-[18px]">{card.body}</p>
+                <p className="text-muted text-[14px] leading-[1.55] lg:text-[18px]">{card.body}</p>
               </div>
             </div>
           )
