@@ -49,15 +49,13 @@ export function NextProject({
        */}
       <div
         className={`flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] ${
-          imageLayout === 'wide'
-            ? 'md:py-[54px] md:min-h-[621px]'
-            : (imageLayout === 'phone' || imageLayout === 'phone-framed')
+          imageLayout === 'phone-framed'
             ? 'md:py-[64px] md:min-h-[641px]'
-            : 'md:py-[88px]'
+            : 'md:py-[54px] md:min-h-[621px]'
         }`}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
-        <div className={`relative z-10 flex flex-col self-start md:self-center${imageLayout === 'wide' ? ' md:w-[450px] md:shrink-0' : ''}`}>
+        <div className="relative z-10 flex flex-col self-start md:self-center md:w-[450px] md:shrink-0">
           {/* Tag */}
           <div className="inline-flex h-[25px] self-start items-center rounded-[2px] bg-white px-[10px]">
             <span className="text-ink text-[11px] font-bold tracking-[0.8px] whitespace-nowrap uppercase">
