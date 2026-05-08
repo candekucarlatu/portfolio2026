@@ -13,7 +13,7 @@ export function Insight({ title, body, image, reverse }: InsightProps) {
   return (
     <section
       className={clsx(
-        'mx-[56px] grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-10',
+        'mx-0 grid grid-cols-1 items-center gap-6 px-6 md:mx-[56px] md:grid-cols-2 md:gap-10 md:px-0',
         reverse && 'md:[&>*:first-child]:order-2',
       )}
     >

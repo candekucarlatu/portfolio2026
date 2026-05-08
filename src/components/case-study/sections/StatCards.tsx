@@ -63,9 +63,9 @@ function CardValue({ value }: { value: string }) {
   )
 }
 
-export function StatCards({ cards }: StatCardsProps) {
+function CardList({ cards }: StatCardsProps) {
   return (
-    <section className="mx-auto flex w-full max-w-[700px] flex-wrap justify-center gap-6 px-6 md:px-0">
+    <>
       {cards.map((card, i) => {
         const rotation = rotations[i % rotations.length]
         return (
@@ -97,6 +97,44 @@ export function StatCards({ cards }: StatCardsProps) {
           </div>
         )
       })}
+    </>
+  )
+}
+
+export function StatCards({ cards }: StatCardsProps) {
+  // Mobile: scale entire row to fit in ~327px (375px - 24px × 2 padding)
+  // Raw row width: n × 212 + (n-1) × 8
+  const n = Math.min(cards.length, 4)
+  const gapPx = 8
+  const rawW = n * 212 + (n - 1) * gapPx
+  const viewportW = 327
+  const scale = Math.min(0.95, viewportW / rawW)
+  const scaledH = Math.round(176 * scale)
+
+  return (
+    <section className="mx-auto w-full max-w-[700px] px-6 md:px-0">
+      {/* ── Mobile: all cards scaled into a single row ─────────────────── */}
+      <div
+        className="flex justify-center overflow-hidden md:hidden"
+        style={{ height: scaledH }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            gap: gapPx,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top center',
+            flexShrink: 0,
+          }}
+        >
+          <CardList cards={cards} />
+        </div>
+      </div>
+
+      {/* ── Desktop: wrapped layout ─────────────────────────────────────── */}
+      <div className="hidden flex-wrap justify-center gap-6 md:flex">
+        <CardList cards={cards} />
+      </div>
     </section>
   )
 }

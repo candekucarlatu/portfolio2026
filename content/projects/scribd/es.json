@@ -34,24 +34,23 @@
       "body": "Realicé una sesión de user testing para saber si mantener título, autor, ratings y acciones siempre visibles ayudaba a los usuarios a hacer multitasking y orientarse sin perder el hilo."
     },
     {
-      "type": "research-cards",
-      "cards": [
-        {
-          "title": "El fullscreen se había convertido en un parche para la mala legibilidad.",
-          "body": "4 de 7 usuarios entraban al fullscreen para compensar un espacio de lectura que se sentía demasiado apretado.",
-          "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Modo fullscreen — antes del rediseño", "width": 599, "height": 446 }
-        },
-        {
-          "title": "La metadata persistente redujo la carga cognitiva.",
-          "body": "6 de 7 usuarios prefirieron el layout persistente. Mantener título, autor y ratings en su lugar les permitía evaluar relevancia sin perder el contexto.",
-          "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Página de documento con metadata persistente", "width": 599, "height": 446 }
-        },
-        {
-          "title": "Las recomendaciones competían con el documento.",
-          "body": "6 de 7 usuarios encontraban distractivas las recomendaciones mientras leían. Querían verlas después de terminar el documento, no mientras lo leían.",
-          "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 599, "height": 446 }
-        }
-      ]
+      "type": "insight",
+      "title": "El fullscreen se había convertido en un parche para la mala legibilidad.",
+      "body": "4 de 7 usuarios entraban al fullscreen para compensar un espacio de lectura que se sentía demasiado apretado.",
+      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Modo fullscreen — antes del rediseño", "width": 599, "height": 446 }
+    },
+    {
+      "type": "insight",
+      "title": "La metadata persistente redujo la carga cognitiva.",
+      "body": "6 de 7 usuarios prefirieron el layout persistente. Mantener título, autor y ratings en su lugar les permitía evaluar relevancia sin perder el contexto.",
+      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Página de documento con metadata persistente", "width": 599, "height": 446 },
+      "reverse": true
+    },
+    {
+      "type": "insight",
+      "title": "Las recomendaciones competían con el documento.",
+      "body": "6 de 7 usuarios encontraban distractivas las recomendaciones mientras leían. Querían verlas después de terminar el documento, no mientras lo leían.",
+      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Columna de recomendaciones", "width": 599, "height": 446 }
     },
     {
       "type": "section",

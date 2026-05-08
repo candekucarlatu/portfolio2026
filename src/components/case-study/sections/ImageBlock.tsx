@@ -10,9 +10,9 @@ interface ImageBlockProps {
 }
 
 const widthClasses: Record<ImageBlockProps['width'], string> = {
-  default: 'mx-auto max-w-[680px] px-6 md:px-0',
-  wide: 'mx-auto max-w-[960px] px-6 md:px-8',
-  full: 'mx-[56px]',
+  default: 'mx-auto max-w-[680px] px-0 md:px-0',
+  wide: 'mx-auto max-w-[960px] px-0 md:px-8',
+  full: 'mx-0 md:mx-[56px]',
 }
 
 export function ImageBlock({ image, caption, width, variant = 'framed' }: ImageBlockProps) {

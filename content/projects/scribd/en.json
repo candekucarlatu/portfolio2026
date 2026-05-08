@@ -34,24 +34,23 @@
       "body": "I ran a user testing session to find out whether keeping title, author, ratings, and actions visible helped users multitask and stay oriented without losing their place."
     },
     {
-      "type": "research-cards",
-      "cards": [
-        {
-          "title": "Fullscreen had become a patch for poor readability.",
-          "body": "4 out of 7 users entered fullscreen to compensate for a reading space that felt too constrained.",
-          "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Fullscreen reading mode — before redesign", "width": 599, "height": 446 }
-        },
-        {
-          "title": "Persistent metadata reduced cognitive load.",
-          "body": "6 out of 7 users preferred the persistent layout. Keeping title, author, and ratings in place let them assess relevance without losing context.",
-          "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Document page with persistent metadata", "width": 599, "height": 446 }
-        },
-        {
-          "title": "The recommendations competed with the document.",
-          "body": "6 out of 7 users found recommendations distracting while reading. They wanted to see them after finishing the document, not alongside it.",
-          "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Recommendations column placement", "width": 599, "height": 446 }
-        }
-      ]
+      "type": "insight",
+      "title": "Fullscreen had become a patch for poor readability.",
+      "body": "4 out of 7 users entered fullscreen to compensate for a reading space that felt too constrained.",
+      "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Fullscreen reading mode — before redesign", "width": 599, "height": 446 }
+    },
+    {
+      "type": "insight",
+      "title": "Persistent metadata reduced cognitive load.",
+      "body": "6 out of 7 users preferred the persistent layout. Keeping title, author, and ratings in place let them assess relevance without losing context.",
+      "image": { "src": "/canvas/projects/scribd/insight-2.png", "alt": "Document page with persistent metadata", "width": 599, "height": 446 },
+      "reverse": true
+    },
+    {
+      "type": "insight",
+      "title": "The recommendations competed with the document.",
+      "body": "6 out of 7 users found recommendations distracting while reading. They wanted to see them after finishing the document, not alongside it.",
+      "image": { "src": "/canvas/projects/scribd/insight-3.png", "alt": "Recommendations column placement", "width": 599, "height": 446 }
     },
     {
       "type": "section",

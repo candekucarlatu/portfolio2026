@@ -51,13 +51,13 @@ export function NextProject({
        * its text stays vertically centered within the row.
        */}
       <div
-        className="flex pl-[56px] pr-[106px] py-[88px]"
-        style={{ minHeight: 621 }}
+        className="flex flex-col px-6 py-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[88px]"
+        style={{ minHeight: undefined }}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
         <div
-          className="self-center relative z-10 flex flex-col"
-          style={{ width: 450, flexShrink: 0 }}
+          className="relative z-10 flex flex-col self-start md:self-center"
+          style={{ width: undefined, flexShrink: 0 }}
         >
           {/* Tag */}
           <div className="inline-flex h-[25px] self-start items-center rounded-[2px] bg-white px-[10px]">
@@ -86,19 +86,10 @@ export function NextProject({
 
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
-          /*
-           * Figma: 1440px frame, image at 666×513 fully visible.
-           * -mr-[106px] extends the right area to the section edge so
-           * justify-center places the tablet between the text column and
-           * the actual modal edge, not the padded edge.
-           * max-w-[85%] keeps it from filling the full area, matching
-           * the Figma proportions (666 / 778 ≈ 86%).
-           */
-          <div className="flex-1 flex items-center justify-center min-w-0 -mr-[106px]">
+          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center md:-mr-[106px] md:min-w-0">
             <Link
               href={href}
-              className="block"
-              style={{ maxWidth: '85%' }}
+              className="block w-full md:max-w-[85%]"
               aria-hidden
               tabIndex={-1}
             >
@@ -115,7 +106,7 @@ export function NextProject({
 
         {/* ── Right area: phone layout (screenshot + frame overlay) ───────── */}
         {image && imageLayout === 'phone' && (
-          <div className="flex-1 flex items-center justify-center">
+          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center">
             <Link
               href={href}
               aria-hidden
@@ -123,7 +114,6 @@ export function NextProject({
               className="relative block"
               style={{ width: 252, height: 513 }}
             >
-              {/* Inner screen content */}
               <div
                 style={{
                   position: 'absolute',
@@ -145,8 +135,6 @@ export function NextProject({
                   />
                 </div>
               </div>
-
-              {/* iPhone frame overlay */}
               <Image
                 src="/canvas/shared/iphone-frame.png"
                 alt=""
@@ -161,19 +149,14 @@ export function NextProject({
 
         {/* ── Right area: phone-framed (image already includes the frame) ─── */}
         {image && imageLayout === 'phone-framed' && (
-          /*
-           * The image already contains the iPhone frame — show it directly
-           * at its natural dimensions, centered in the right half.
-           * width/height from the JSON drive the display size.
-           */
-          <div className="flex-1 flex items-center justify-center">
+          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center">
             <Link href={href} aria-hidden tabIndex={-1}>
               <Image
                 src={image.src}
                 alt={image.alt}
                 width={image.width ?? 252}
                 height={image.height ?? 513}
-                className="pointer-events-none select-none"
+                className="pointer-events-none select-none max-w-full h-auto"
               />
             </Link>
           </div>
