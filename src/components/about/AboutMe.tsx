@@ -142,7 +142,7 @@ export function AboutMe({ dict }: AboutMeProps) {
       {/* ── BIO TEXT — z-30, rotate(1deg) ────────────────────────────── */}
       <div
         className="absolute z-30"
-        style={{ left: '13.42%', top: '25%', width: '32.71%', transform: 'rotate(1deg)' }}
+        style={{ left: '13.42%', top: '32%', width: '32.71%', transform: 'rotate(1deg)' }}
       >
         <div
           className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
@@ -156,7 +156,7 @@ export function AboutMe({ dict }: AboutMeProps) {
       {/* ── LINKS — z-30, rotate(1deg) ───────────────────────────────── */}
       <div
         className="absolute z-30"
-        style={{ left: '13.10%', top: '42%', width: '28.23%', transform: 'rotate(1deg)' }}
+        style={{ left: '13.10%', top: '51%', width: '28.23%', transform: 'rotate(1deg)' }}
       >
         {links.map(({ label, value, href }) => (
           <a
