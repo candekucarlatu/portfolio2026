@@ -51,7 +51,7 @@ export function NextProject({
         className="flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[88px]"
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
-        <div className="relative z-10 flex flex-col self-start md:self-center">
+        <div className="relative z-10 flex flex-col self-start md:self-center md:w-[450px] md:shrink-0">
           {/* Tag */}
           <div className="inline-flex h-[25px] self-start items-center rounded-[2px] bg-white px-[10px]">
             <span className="text-ink text-[11px] font-bold tracking-[0.8px] whitespace-nowrap uppercase">
@@ -79,13 +79,9 @@ export function NextProject({
 
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
-          <div className="mt-8 flex justify-center md:mt-0 md:flex-1 md:items-center md:-mr-[106px] md:min-w-0">
-            <Link
-              href={href}
-              className="block w-full md:max-w-[85%]"
-              aria-hidden
-              tabIndex={-1}
-            >
+          <>
+            {/* Mobile: in-flow below text */}
+            <Link href={href} aria-hidden tabIndex={-1} className="mt-8 block md:hidden">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -94,7 +90,24 @@ export function NextProject({
                 className="w-full h-auto"
               />
             </Link>
-          </div>
+
+            {/* Desktop: absolutely positioned, overflows section bottom */}
+            <Link
+              href={href}
+              aria-hidden
+              tabIndex={-1}
+              className="hidden md:block absolute"
+              style={{ left: 683, top: 53, width: 666, height: 513 }}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={666}
+                height={513}
+                className="h-full w-full object-contain"
+              />
+            </Link>
+          </>
         )}
 
         {/* ── Right area: phone layout (screenshot + frame overlay) ───────── */}
