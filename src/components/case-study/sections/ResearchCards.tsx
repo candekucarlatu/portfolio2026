@@ -20,26 +20,26 @@ interface ResearchCardsProps {
 export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps) {
   if (layout === 'horizontal') {
     return (
-      <section className="mx-[56px] flex flex-col gap-[54px]">
+      <section className="mx-auto w-full max-w-[1180px] flex flex-col gap-[54px]">
         {cards.map((card, i) => {
           const imageRight = i % 2 === 0 // 0, 2 → text left / image right; 1 → image left / text right
 
           return (
             <div
               key={i}
-              className="bg-white overflow-hidden flex flex-col lg:flex-row"
-              style={{ boxShadow: '0px 6px 10px rgba(0,0,0,0.1)' }}
+              className="bg-white shadow-[0px_6px_20px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col lg:flex-row"
             >
               {/* Image on left (odd cards) */}
               {!imageRight && (
                 <div
-                  className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]"
+                  className="relative w-full overflow-hidden shrink-0 lg:w-1/2"
+                  style={{ aspectRatio: '599/446', borderRadius: 4 }}
                 >
                   <Image
                     src={card.image.src}
                     alt={card.image.alt}
                     fill
-                    sizes="(min-width: 1024px) 599px, 100vw"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-cover"
                   />
                 </div>
@@ -47,28 +47,29 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
 
               {/* Text content */}
               <div
-                className={`flex flex-1 flex-col justify-center gap-5 p-10 ${
+                className={`flex flex-1 flex-col gap-5 p-10 ${
                   imageRight
                     ? 'lg:pl-[56px] lg:pr-[40px] lg:py-[40px]'
                     : 'lg:p-[40px]'
                 }`}
               >
-                <h3 className="text-ink text-[24px] leading-[1.4] font-bold">
+                <h3 className="text-ink text-[22px] leading-[1.4] font-bold md:text-[28px]">
                   {card.title}
                 </h3>
-                <p className="text-muted text-[16px] leading-[1.58]">{card.body}</p>
+                <p className="text-muted text-[18px] leading-[1.58]">{card.body}</p>
               </div>
 
               {/* Image on right (even cards: 0, 2) */}
               {imageRight && (
                 <div
-                  className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]"
+                  className="relative w-full overflow-hidden shrink-0 lg:w-1/2"
+                  style={{ aspectRatio: '599/446', borderRadius: 4 }}
                 >
                   <Image
                     src={card.image.src}
                     alt={card.image.alt}
                     fill
-                    sizes="(min-width: 1024px) 599px, 100vw"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-cover"
                   />
                 </div>
@@ -101,10 +102,10 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
             )}
 
             <div className={imageFirst ? 'flex flex-col gap-5 p-[40px]' : 'flex flex-col gap-5 px-[56px] py-[40px]'}>
-              <h3 className="text-ink text-[24px] leading-[1.4] font-bold">
+              <h3 className="text-ink text-[22px] leading-[1.4] font-bold md:text-[28px]">
                 {card.title}
               </h3>
-              <p className="text-muted text-[16px] leading-[1.58]">{card.body}</p>
+              <p className="text-muted text-[17px] leading-[1.58]">{card.body}</p>
             </div>
 
             {!imageFirst && (
