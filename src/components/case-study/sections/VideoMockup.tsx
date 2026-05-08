@@ -85,9 +85,9 @@ export function VideoMockup({
             muted
             playsInline
             style={{
-              width: 221,
-              height: 480,
-              borderRadius: 32,
+              width: 280,
+              height: 607,
+              borderRadius: 40,
               border: '5px solid #e0e0e0',
               flexShrink: 0,
               display: 'block',
