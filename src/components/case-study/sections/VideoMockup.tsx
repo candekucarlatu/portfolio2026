@@ -28,8 +28,11 @@ export function VideoMockup({
   if (variant === 'desktop') {
     return (
       <section className="mx-[24px] lg:mx-[56px]">
-        {/* Mobile: raw video, no frame, no background */}
-        <div className="block lg:hidden overflow-hidden rounded-[12px]">
+        {/* Mobile: raw video, no frame, no background. Slight crop to hide browser chrome. */}
+        <div
+          className="block lg:hidden overflow-hidden rounded-[12px]"
+          style={{ aspectRatio: '848/440' }}
+        >
           {src ? (
             <video
               src={src}
@@ -38,17 +41,11 @@ export function VideoMockup({
               loop
               muted
               playsInline
-              className="w-full h-auto"
+              className="w-full h-full object-cover object-bottom"
             />
           ) : imageSrc ? (
-            <div className="relative w-full" style={{ aspectRatio: '820/477' }}>
-              <Image
-                src={imageSrc}
-                alt=""
-                fill
-                sizes="100vw"
-                className="object-cover"
-              />
+            <div className="relative w-full h-full">
+              <Image src={imageSrc} alt="" fill sizes="100vw" className="object-cover object-bottom" />
             </div>
           ) : null}
         </div>
