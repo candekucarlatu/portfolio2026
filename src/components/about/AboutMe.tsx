@@ -104,13 +104,13 @@ export function AboutMe({ dict }: AboutMeProps) {
           <div className="flex flex-col gap-[0.5em]">
             <p
               className="font-bold leading-[1.25]"
-              style={{ fontSize: 'clamp(8px, 1.1vw, 16px)', color: '#1f1a14' }}
+              style={{ fontSize: 'clamp(6px, 0.8vw, 12px)', color: '#1f1a14' }}
             >
               {s.principles[i].title}
             </p>
             <p
               className="leading-[1.65]"
-              style={{ fontSize: 'clamp(7px, 1.1vw, 16px)', color: '#666159' }}
+              style={{ fontSize: 'clamp(5px, 0.75vw, 11px)', color: '#666159' }}
             >
               {s.principles[i].body}
             </p>
