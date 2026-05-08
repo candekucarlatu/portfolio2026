@@ -49,9 +49,11 @@ export function NextProject({
        */}
       <div
         className={`flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] ${
-          imageLayout === 'wide' ? 'md:py-[54px]' :
-          (imageLayout === 'phone' || imageLayout === 'phone-framed') ? 'md:py-[64px]' :
-          'md:py-[88px]'
+          imageLayout === 'wide'
+            ? 'md:py-[54px] md:min-h-[621px]'
+            : (imageLayout === 'phone' || imageLayout === 'phone-framed')
+            ? 'md:py-[64px] md:min-h-[641px]'
+            : 'md:py-[88px]'
         }`}
       >
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
