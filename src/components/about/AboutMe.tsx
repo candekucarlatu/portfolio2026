@@ -8,27 +8,20 @@ interface AboutMeProps {
 }
 
 /**
- * About Me — Figma 327:558
+ * About Me — Figma 486:9277
  *
- * Two-column layout adapted from the 1440px Figma canvas.
- *
- * Figma canvas coordinates used for derivation (all @1x logical):
- *   Profile panel      left:96,    top:48,    w:640,  h:791
- *   Design Principles  left:699,   top:235,   w:646,  h:700  (bounding box incl. stars)
- *     └─ Background    left:700,   top:270                    (panel starts 35px below bbox top)
- *   Decoration 1       right side, top:-157   (photos — top-right)
- *   Decoration 2       left:155,   top:870    (cards  — moved to top-left for modal)
+ * Canvas coordinates (1440px wide):
+ *   Profile image      left:96,   top:48,   w:647,  h:801   rotate(1deg)
+ *   Design Principles  left:697,  top:231,  w:642,  h:694   rotate(-2deg)
+ *   Decoration 1       left:785,  top:-164, w:535,  h:387   (top-right)
+ *   Decoration 2       left:155,  top:870,  w:502,  h:332   (bottom → moved to top-left)
+ *   Collage            left:191,  top:103,  w:493,  h:215   rotate(1deg)
  *
  * DP marginTop derivation:
- *   Figma DP offset from Profile top = 270 - 48 = 222px on 640px panel
- *   Panel height = panel_width × 1.236  (791/640 aspect ratio)
- *   marginTop needed = 222/791 × panel_height = 28% × panel_width × 1.236 / 2 ≈ 17% of container width
+ *   Figma DP top offset from Profile top = 231 - 48 = 183px on 801px tall Profile
+ *   = 22.8% of Profile height = 22.8% × 1.237 aspect × 0.5 column ratio ≈ 14% of container width
  *
- * DP text positions are relative to the full Design Principles PNG bounding box (top:235):
- *   Text 1 top = (359 - 235) / 700 = 17.7%
- *   Text 2 top = (487 - 235) / 700 = 35.9%
- *   Text 3 top = (614 - 235) / 700 = 54.2%
- *   Text 4 top = (742 - 235) / 700 = 72.4%
+ * Text % coords are relative to the panel image bounding box.
  */
 export function AboutMe({ dict }: AboutMeProps) {
   const s = dict.aboutSheet
@@ -40,15 +33,20 @@ export function AboutMe({ dict }: AboutMeProps) {
     { label: s.links.resume,    value: s.links.resumeValue,                 href: dict.contact.resumeUrl },
   ]
 
-  // Principle top positions as % of Design Principles PNG bounding-box height
-  // Derived from Figma: text y coords relative to bbox top (235.22)
-  const principlePositions = [17.7, 35.9, 54.2, 72.4] as const
+  // Figma: text y coords relative to DP image top (231)
+  // Text 1: (359-231)/694 = 18.4%
+  // Text 2: (487-231)/694 = 36.9%
+  // Text 3: (614-231)/694 = 55.1%
+  // Text 4: (742-231)/694 = 73.6%
+  const principlePositions = [18.4, 36.9, 55.1, 73.6] as const
+
+  // Text x: (769-697)/642=11.2%, each item shifts +0.7%
+  // Text width: 494/642 = 76.9%
 
   return (
     <div className="relative">
 
       {/* ── DECORATION 2 — top-left, z below panels and X button ─────── */}
-      {/* Moved from bottom to top for modal adaptation per user request  */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/canvas/aboutme/sheet/Decoration%202.png"
@@ -69,12 +67,12 @@ export function AboutMe({ dict }: AboutMeProps) {
       />
 
       {/* ── TWO-COLUMN LAYOUT ─────────────────────────────────────────── */}
-      <div className="relative z-10 flex flex-row items-start justify-center gap-2 px-4 pt-2 pb-10 md:gap-3 md:px-6 md:pt-3 md:pb-14">
+      <div className="relative z-10 flex flex-row items-start justify-center gap-0 px-4 pt-2 pb-10 md:px-6 md:pt-3 md:pb-14">
 
         {/* ── PROFILE PANEL (left) ──────────────────────────────────────── */}
         <div className="relative min-w-0 flex-1" style={{ maxWidth: 647 }}>
 
-          {/* Background — drives this panel's height */}
+          {/* Background PNG — 2x: 1294×1602 → 647×801 logical */}
           <Image
             src="/canvas/aboutme/sheet/Profile.png"
             alt=""
@@ -85,11 +83,11 @@ export function AboutMe({ dict }: AboutMeProps) {
             priority
           />
 
-          {/* Photo collage — top of paper */}
-          {/* Figma: collage left=(191-96)/640=14.8%, top=(100-48)/791=6.6%, w=496/640=77.5% */}
+          {/* Photo collage */}
+          {/* Figma: left=(191-96)/647=14.7%, top=(103-48)/801=6.9%, w=493/647=76.2%, rotate(1deg) */}
           <div
             className="pointer-events-none absolute"
-            style={{ left: '14.8%', top: '6.6%', width: '77.5%' }}
+            style={{ left: '14.7%', top: '6.9%', width: '76.2%', transform: 'rotate(1deg)' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Collage.png"
@@ -101,23 +99,25 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* Bio text */}
-          {/* Figma: left=(193-96)/640=15.2%, top=(331-48)/791=35.8%, rotate(1deg) */}
+          {/* Figma: left=(193-96)/647=15.0%, top=(331-48)/801=35.3%, rotate(1deg) */}
           <div
             className="absolute"
-            style={{ left: '15.2%', top: '35.8%', width: '74%', transform: 'rotate(1deg)' }}
+            style={{ left: '15.0%', top: '35.3%', width: '73%', transform: 'rotate(1deg)' }}
           >
-            <div className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
-              style={{ fontSize: 'clamp(10px, 1.6vw, 20px)' }}>
+            <div
+              className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
+              style={{ fontSize: 'clamp(10px, 1.6vw, 20px)' }}
+            >
               <p>{s.bio1}</p>
               <p>{s.bio2}</p>
             </div>
           </div>
 
           {/* Links */}
-          {/* Figma: left=(148-96)/640=8.2%, top=(554-48)/791=64%, rotate(1deg) */}
+          {/* Figma: top=(571-48)/801=65.3%, left=(188-96)/647=14.2%, rotate(1deg) */}
           <div
             className="absolute"
-            style={{ left: '8.2%', top: '64%', width: '87%', transform: 'rotate(1deg)' }}
+            style={{ left: '8.2%', top: '65.3%', width: '87%', transform: 'rotate(1deg)' }}
           >
             {links.map(({ label, value, href }) => (
               <a
@@ -145,10 +145,10 @@ export function AboutMe({ dict }: AboutMeProps) {
         </div>
 
         {/* ── DESIGN PRINCIPLES PANEL (right) ──────────────────────────── */}
-        {/* marginTop 17% ≈ Figma DP vertical offset (222px) scaled to container */}
-        <div className="relative min-w-0 flex-1" style={{ maxWidth: 642, marginTop: '17%' }}>
+        {/* marginTop: 14% ≈ Figma DP offset (183px) scaled to container width */}
+        <div className="relative min-w-0 flex-1" style={{ maxWidth: 642, marginTop: '14%' }}>
 
-          {/* Background — drives this panel's height (includes stars at top) */}
+          {/* Background PNG — 2x: 1285×1389 → 642×694 logical */}
           <Image
             src="/canvas/aboutme/sheet/Design%20Principles.png"
             alt=""
@@ -158,15 +158,15 @@ export function AboutMe({ dict }: AboutMeProps) {
             className="pointer-events-none h-auto w-full"
           />
 
-          {/* 4 principles — text positioned relative to full PNG bounding box */}
+          {/* 4 principles */}
           {s.principles.map((p, i) => (
             <div
               key={i}
               className="absolute"
               style={{
-                left: `${10.8 + i * 0.7}%`,
+                left: `${11.2 + i * 0.7}%`,
                 top: `${principlePositions[i]}%`,
-                width: '76.4%',
+                width: '76.9%',
                 transform: 'rotate(-2deg)',
               }}
             >
