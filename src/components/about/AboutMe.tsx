@@ -56,7 +56,7 @@ export function AboutMe({ dict }: AboutMeProps) {
      * (= 1366/1440 — matches Figma canvas aspect ratio after y-shift).
      * All children are absolute and scale proportionally with container width.
      */
-    <div className="relative w-full" style={{ paddingBottom: '94.86%' }}>
+    <div className="relative w-full overflow-hidden" style={{ paddingBottom: '94.86%' }}>
 
       {/* ── DECORATION 1 — top-right, z behind panels ────────────────── */}
       {/* Figma: left=785, top=-164 → shifted top=0. w=535 */}
