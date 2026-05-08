@@ -6,19 +6,16 @@ interface VideoMockupProps {
   poster?: string
   background?: string
   variant?: 'phone' | 'desktop'
-  /** Optional PNG frame to overlay on the phone video (e.g. an iPhone shell asset). */
-  frameSrc?: string
 }
 
 /**
- * Phone variant — Figma 392:86 (TacoBell)
- * Portrait video at 222×468 with rounded-36, centered in a colored background.
- * If frameSrc is provided, an iPhone frame PNG is layered on top.
- * 120px of bottom padding is included inside the background section.
+ * Phone variant — Figma 488:116 (TacoBell)
+ * Portrait video at 221×480, rounded-[32px], border 5px #e0e0e0,
+ * centered in a colored background with py-[92px]. No frame overlay.
  *
- * Desktop variant — Figma 360:128 (Scribd / SlideShare)
- * Landscape browser-style image/video at up to 848px wide, rounded-12,
- * centered in a 664px-tall colored background.
+ * Desktop variant — Figma 406:9668 (Scribd)
+ * Landscape browser-style video at max-w-[820px], rounded-[12px],
+ * centered in a colored background with py-[54px].
  */
 export function VideoMockup({
   src,
@@ -26,7 +23,6 @@ export function VideoMockup({
   poster,
   background = '#ede5fa',
   variant = 'phone',
-  frameSrc,
 }: VideoMockupProps) {
   if (variant === 'desktop') {
     return (
@@ -73,20 +69,13 @@ export function VideoMockup({
     )
   }
 
-  // Phone variant (default)
-  // iphone-frame.png is natively 252×513. Screen cutout: top 10, left 13, w 225, h 493, r 32.
-  // Using the frame at its native size avoids the scaling mismatch that causes the double-frame.
-  // The 120px gap to next-project is handled externally by CaseStudy getTopSpacing.
-  const FRAME_W = 252
-  const FRAME_H = 513
-
+  // Phone variant (default) — Figma 488:116
   return (
     <section className="mx-[56px]">
       <div
-        className="relative flex w-full items-center justify-center pt-[91px] pb-[92px]"
+        className="flex w-full items-center justify-center py-[92px]"
         style={{ backgroundColor: background }}
       >
-        {/* Phone container — video fills it directly with object-cover */}
         {src && (
           <video
             src={src}
@@ -95,7 +84,14 @@ export function VideoMockup({
             loop
             muted
             playsInline
-            style={{ width: FRAME_W, height: FRAME_H, borderRadius: 46, flexShrink: 0, display: 'block' }}
+            style={{
+              width: 221,
+              height: 480,
+              borderRadius: 32,
+              border: '5px solid #e0e0e0',
+              flexShrink: 0,
+              display: 'block',
+            }}
             className="object-cover"
           />
         )}
