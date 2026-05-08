@@ -65,7 +65,7 @@ export function AboutMe({ dict }: AboutMeProps) {
         src="/canvas/aboutme/sheet/Decoration%201.png"
         alt="" aria-hidden
         className="pointer-events-none absolute z-0"
-        style={{ left: '54.51%', top: '0%', width: '37.15%' }}
+        style={{ left: '54.51%', top: '-4%', width: '37.15%' }}
       />
 
       {/* ── DECORATION 2 — bottom-left, below Profile ────────────────── */}
@@ -75,7 +75,7 @@ export function AboutMe({ dict }: AboutMeProps) {
         src="/canvas/aboutme/sheet/Decoration%202.png"
         alt="" aria-hidden
         className="pointer-events-none absolute z-0"
-        style={{ left: '10.76%', top: '75.69%', width: '34.86%' }}
+        style={{ left: '10.76%', top: '80%', width: '34.86%' }}
       />
 
       {/* ── DESIGN PRINCIPLES PANEL — z-10 ───────────────────────────── */}
@@ -104,13 +104,13 @@ export function AboutMe({ dict }: AboutMeProps) {
           <div className="flex flex-col gap-[0.5em]">
             <p
               className="font-bold leading-[1.25]"
-              style={{ fontSize: 'clamp(6px, 0.8vw, 12px)', color: '#1f1a14' }}
+              style={{ fontSize: 'clamp(8px, 1.1vw, 16px)', color: '#1f1a14' }}
             >
               {s.principles[i].title}
             </p>
             <p
               className="leading-[1.65]"
-              style={{ fontSize: 'clamp(5px, 0.75vw, 11px)', color: '#666159' }}
+              style={{ fontSize: 'clamp(7px, 1.1vw, 16px)', color: '#666159' }}
             >
               {s.principles[i].body}
             </p>
