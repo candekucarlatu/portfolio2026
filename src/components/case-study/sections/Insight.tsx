@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import clsx from 'clsx'
 import type { ProjectImage } from '@/lib/content/schema'
 
 interface InsightProps {
@@ -9,28 +8,57 @@ interface InsightProps {
   reverse?: boolean
 }
 
+/**
+ * Insight card — matches ResearchCards horizontal layout (Figma 358:9101).
+ * White card with drop-shadow. reverse=false → text left / image right;
+ * reverse=true → image left / text right. Stacks on mobile.
+ */
 export function Insight({ title, body, image, reverse }: InsightProps) {
   return (
-    <section
-      className={clsx(
-        'mx-0 grid grid-cols-1 items-center gap-6 px-6 md:mx-[56px] md:grid-cols-2 md:gap-10 md:px-0',
-        reverse && 'md:[&>*:first-child]:order-2',
-      )}
-    >
-      <div className="flex flex-col gap-3">
-        <h3 className="text-ink text-[22px] leading-[1.25] font-bold tracking-[-0.005em] md:text-[28px]">
-          {title}
-        </h3>
-        <p className="text-muted text-[16px] leading-[1.6] md:text-[17px]">{body}</p>
-      </div>
-      <div className="bg-cork relative aspect-[3/2] w-full overflow-hidden rounded-md">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          sizes="(min-width: 768px) 480px, 100vw"
-          className="object-cover"
-        />
+    <section className="mx-[56px]">
+      <div
+        className="bg-white overflow-hidden flex flex-col lg:flex-row"
+        style={{ boxShadow: '0px 6px 10px rgba(0,0,0,0.1)' }}
+      >
+        {/* Image on left (reverse=true) */}
+        {reverse && (
+          <div className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 599px, 100vw"
+              className="object-cover"
+            />
+          </div>
+        )}
+
+        {/* Text content */}
+        <div
+          className={`flex flex-1 flex-col justify-center gap-5 p-10 ${
+            !reverse
+              ? 'lg:pl-[56px] lg:pr-[40px] lg:py-[40px]'
+              : 'lg:p-[40px]'
+          }`}
+        >
+          <h3 className="text-ink text-[24px] leading-[1.4] font-bold">
+            {title}
+          </h3>
+          <p className="text-muted text-[16px] leading-[1.58]">{body}</p>
+        </div>
+
+        {/* Image on right (reverse=false) */}
+        {!reverse && (
+          <div className="relative min-h-[260px] w-full shrink-0 lg:min-h-0 lg:w-[599px]">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 599px, 100vw"
+              className="object-cover"
+            />
+          </div>
+        )}
       </div>
     </section>
   )

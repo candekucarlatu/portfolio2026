@@ -50,6 +50,10 @@ export function VideoMockup({
                   muted
                   playsInline
                   className="h-full w-full object-cover"
+                  style={{
+                    maskImage:
+                      'linear-gradient(to right, transparent 0px, black 10px, black calc(100% - 10px), transparent 100%)',
+                  }}
                 />
               ) : imageSrc ? (
                 <div className="relative h-full w-full">
