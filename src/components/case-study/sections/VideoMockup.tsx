@@ -79,8 +79,8 @@ export function VideoMockup({
         {src && (
           <div
             style={{
-              width: 260,
-              height: 565,
+              width: 250,
+              height: 543,
               borderRadius: 30,
               border: '5px solid #e0e0e0',
               overflow: 'hidden',
