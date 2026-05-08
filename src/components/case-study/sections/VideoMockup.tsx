@@ -80,7 +80,7 @@ export function VideoMockup({
           <div
             style={{
               width: 250,
-              height: 543,
+              height: 549,
               borderRadius: 30,
               border: '5px solid #e0e0e0',
               boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
