@@ -38,7 +38,8 @@
     {
       "type": "image",
       "image": { "src": "/canvas/projects/tacobell/benchmark.png", "alt": "Paconaut — Taco Bell Treasure Hunt gameplay overview", "width": 1180, "height": 664 },
-      "width": "full"
+      "width": "full",
+      "variant": "plain"
     },
     {
       "type": "section",
