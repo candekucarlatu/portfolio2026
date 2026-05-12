@@ -40,7 +40,8 @@ function getTopSpacing(prev: Section | null, curr: Section): string {
 
   // Inside a section group: section label → its content
   if (p === 'section') {
-    if (c === 'stat-cards' || c === 'highlight' || c === 'callout-list' || c === 'insight')
+    if (c === 'callout-list') return 'mt-[20px] md:mt-[48px]'
+    if (c === 'stat-cards' || c === 'highlight' || c === 'insight')
       return 'mt-[40px] md:mt-[48px]'
     if (c === 'image' || c === 'video' || c === 'image-compare' || c === 'research-cards') return 'mt-[20px] md:mt-[64px]'
   }
