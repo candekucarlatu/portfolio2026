@@ -29,7 +29,7 @@ export function ImageCompare({
   const move = useCallback((clientX: number) => {
     // Use whichever container is currently visible
     const el =
-      typeof window !== 'undefined' && window.innerWidth < 1024
+      typeof window !== 'undefined' && window.innerWidth < 768
         ? mobileRef.current
         : desktopRef.current
     if (!el) return
@@ -103,7 +103,7 @@ export function ImageCompare({
       {/* Mobile: no background, full-width slider */}
       <div
         ref={mobileRef}
-        className="relative w-full select-none overflow-hidden lg:hidden"
+        className="relative w-full select-none overflow-hidden md:hidden"
         style={{ aspectRatio: '848/477', borderRadius: 12, cursor: 'ew-resize' }}
         onMouseDown={onMouseDown}
         onTouchMove={onTouchMove}
@@ -113,7 +113,7 @@ export function ImageCompare({
 
       {/* Desktop: colored background with slider */}
       <div
-        className={`hidden lg:flex relative w-full items-center justify-center ${height != null ? 'py-[91px]' : 'h-[664px]'}`}
+        className={`hidden md:flex relative w-full items-center justify-center ${height != null ? 'py-[91px]' : 'h-[664px]'}`}
         style={{ backgroundColor: background }}
       >
         <div
