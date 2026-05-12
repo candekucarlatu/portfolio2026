@@ -93,11 +93,13 @@ export function VideoMockup({
     )
   }
 
-  // Phone variant (default) — Figma 488:116
+  // Phone variant (default) — Figma 488:116 / 495:292
+  // Mobile: no side margins, 16px top/bottom so background fills full width.
+  // Desktop: 56px side margins, 98px top/bottom.
   return (
-    <section className="mx-[56px]">
+    <section className="lg:mx-[56px]">
       <div
-        className="flex w-full items-center justify-center py-[98px]"
+        className="flex w-full items-center justify-center py-[16px] lg:py-[98px]"
         style={{ backgroundColor: background }}
       >
         {src && (
