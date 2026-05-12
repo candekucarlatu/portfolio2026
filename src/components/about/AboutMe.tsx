@@ -169,9 +169,141 @@ export function AboutMe({ dict }: AboutMeProps) {
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════
+          TABLET LAYOUT — scrollable, Figma 537:9856
+          Canvas 834×1700. Profile top (+1°) → DP bottom (−2°). No Decoration 1.
+          Text: Inter 16px / Caveat 20px fixed. All positions as % of canvas.
+          ══════════════════════════════════════════════════════════════════ */}
+      <div className="overflow-x-hidden overflow-y-auto hidden md:block lg:hidden">
+        <div
+          className="relative w-full overflow-hidden"
+          style={{ aspectRatio: '834 / 1700' }}
+        >
+
+          {/* ── Profile background ─────────────────────────────────────── */}
+          <div
+            className="pointer-events-none absolute"
+            style={{ left: '10.2%', top: '2.35%', width: '77.6%', transform: 'rotate(1deg)', transformOrigin: 'top center' }}
+          >
+            <Image
+              src="/canvas/aboutme/sheet/Profile.png"
+              alt="" aria-hidden
+              width={1294} height={1868}
+              className="h-auto w-full"
+              priority
+            />
+          </div>
+
+          {/* ── Collage ────────────────────────────────────────────────── */}
+          <div
+            className="pointer-events-none absolute"
+            style={{ left: '20.5%', top: '8.53%', width: '62.6%', transform: 'rotate(1deg)' }}
+          >
+            <Image
+              src="/canvas/aboutme/sheet/Collage.png"
+              alt={`${s.collage1} ${s.collage2} ${s.collage3}`}
+              width={986} height={430}
+              className="h-auto w-full"
+            />
+          </div>
+
+          {/* ── Bio text ───────────────────────────────────────────────── */}
+          <div
+            className="absolute"
+            style={{ left: '22.8%', top: '25.74%', width: '56.8%', transform: 'rotate(1deg)' }}
+          >
+            <div
+              className="font-script flex flex-col gap-[12px] text-black"
+              style={{ fontSize: 20, lineHeight: 1.3 }}
+            >
+              <p>{s.bio1}</p>
+              <p>{s.bio2}</p>
+            </div>
+          </div>
+
+          {/* ── Links — each anchored to its Figma Y position ──────────
+               Canvas Y: Email=700, Linkedin=763, Instagram=825, Resume=890
+               topPct = Y / 1700. Left unified at ~22.5% of canvas.        */}
+          {[
+            { topPct: '41.2%',  labelW: 54, gap: 63 },  // Email      y=700
+            { topPct: '44.86%', labelW: 88, gap: 29 },  // Linkedin   y=763
+            { topPct: '48.5%',  labelW: 88, gap: 29 },  // Instagram  y=825
+            { topPct: '52.33%', labelW: 88, gap: 29 },  // Resume     y=890
+          ].map(({ topPct, labelW, gap }, i) => {
+            const { label, value, href } = links[i]
+            return (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="absolute flex items-center"
+                style={{ left: '22.5%', top: topPct, transform: 'rotate(1deg)' }}
+              >
+                <span
+                  className="shrink-0 font-semibold text-ink"
+                  style={{ fontSize: 16, width: labelW }}
+                >
+                  {label}
+                </span>
+                <span
+                  className="font-script text-black transition-colors hover:text-[#FF3E00]"
+                  style={{ fontSize: 20, lineHeight: 1.5, marginLeft: gap }}
+                >
+                  {value}
+                </span>
+              </a>
+            )
+          })}
+
+          {/* ── Design Principles background ───────────────────────────── */}
+          <div
+            className="pointer-events-none absolute"
+            style={{ left: '10.07%', top: '54.53%', width: '77.0%', transform: 'rotate(-2deg)', transformOrigin: 'top left' }}
+          >
+            <Image
+              src="/canvas/aboutme/sheet/Design%20Principles.png"
+              alt="" aria-hidden
+              width={1285} height={1389}
+              className="h-auto w-full"
+            />
+          </div>
+
+          {/* ── Design Principles texts ─────────────────────────────────── */}
+          {[
+            { left: '18.78%', top: '62.06%' },  // Use research
+            { left: '19.31%', top: '69.59%' },  // Work end-to-end
+            { left: '19.85%', top: '77.12%' },  // Ship to learn
+            { left: '20.39%', top: '84.64%' },  // Treat efficiency
+          ].map((pos, i) => (
+            <div
+              key={i}
+              className="absolute"
+              style={{ left: pos.left, top: pos.top, width: '59.26%', transform: 'rotate(-2deg)' }}
+            >
+              <div className="flex flex-col" style={{ gap: 12 }}>
+                <p
+                  className="font-bold leading-[1.25]"
+                  style={{ fontSize: 16, color: '#1f1a14' }}
+                >
+                  {s.principles[i].title}
+                </p>
+                <p
+                  className="leading-[1.65]"
+                  style={{ fontSize: 16, color: '#666159' }}
+                >
+                  {s.principles[i].body}
+                </p>
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════════════════════════
           DESKTOP LAYOUT — absolute-positioned canvas (unchanged)
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="relative hidden h-full w-full overflow-hidden md:block">
+      <div className="relative hidden h-full w-full overflow-hidden lg:block">
 
         {/* ── DECORATION 1 — top-right ────────────────────────────────────── */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
