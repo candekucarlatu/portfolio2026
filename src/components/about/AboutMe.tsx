@@ -34,131 +34,133 @@ export function AboutMe({ dict }: AboutMeProps) {
     { left: '52.38%', top: '72.87%' },
   ]
 
-  // DP text positions relative to the DP PNG (used on mobile)
-  // PNG is 1285×1389. Panel content area starts ~24% from each edge.
-  // Positions derived from Figma panel-relative coords.
-  const dpTextsMobile = [
-    { left: '34%', top: '29%' },
-    { left: '34%', top: '45%' },
-    { left: '34%', top: '61%' },
-    { left: '34%', top: '76%' },
-  ]
-
   return (
     <>
       {/* ══════════════════════════════════════════════════════════════════
-          MOBILE LAYOUT — stacked cards, full-width images
+          MOBILE LAYOUT — single absolute-positioned canvas, Figma 502:158
+          Canvas 390×1063. All elements positioned as % of canvas size.
+          Rotations: Profile −1°, DP +2°, Collage −1°, Bio −1°, Links −1°, DP texts +2°
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="flex h-full flex-col overflow-y-auto md:hidden">
+      <div className="overflow-x-hidden overflow-y-auto md:hidden">
+        <div
+          className="relative w-full overflow-hidden"
+          style={{ aspectRatio: '390 / 1063' }}
+        >
 
-        {/* ── Profile card ───────────────────────────────────────────────── */}
-        <div className="relative w-full flex-shrink-0">
-          {/* Profile.png fills the card */}
-          <Image
-            src="/canvas/aboutme/sheet/Profile.png"
-            alt=""
-            aria-hidden
-            width={1294}
-            height={1868}
-            className="pointer-events-none h-auto w-full"
-            priority
-          />
-
-          {/* Collage — absolute over profile */}
+          {/* ── Profile background ─────────────────────────────────────── */}
           <div
             className="pointer-events-none absolute"
-            style={{ top: '5%', left: '4%', right: '4%', transform: 'rotate(1deg)' }}
+            style={{ left: '1.7%', top: '2.7%', width: '98.4%', transform: 'rotate(-1deg)', transformOrigin: 'top center' }}
           >
             <Image
-              src="/canvas/aboutme/sheet/Collage.png"
-              alt={`${s.collage1} ${s.collage2} ${s.collage3}`}
-              width={986}
-              height={430}
+              src="/canvas/aboutme/sheet/Profile.png"
+              alt="" aria-hidden
+              width={1294} height={1868}
+              className="h-auto w-full"
+              priority
+            />
+          </div>
+
+          {/* ── Design Principles background ───────────────────────────── */}
+          <div
+            className="pointer-events-none absolute"
+            style={{ left: '0.5%', top: '53.3%', width: '113.2%', transform: 'rotate(2deg)', transformOrigin: 'top left' }}
+          >
+            <Image
+              src="/canvas/aboutme/sheet/Design%20Principles.png"
+              alt="" aria-hidden
+              width={1285} height={1389}
               className="h-auto w-full"
             />
           </div>
 
-          {/* Bio text */}
+          {/* ── Collage ────────────────────────────────────────────────── */}
+          <div
+            className="pointer-events-none absolute"
+            style={{ left: '11.9%', top: '1.5%', width: '80.3%', transform: 'rotate(-1deg)' }}
+          >
+            <Image
+              src="/canvas/aboutme/sheet/Collage.png"
+              alt={`${s.collage1} ${s.collage2} ${s.collage3}`}
+              width={986} height={430}
+              className="h-auto w-full"
+            />
+          </div>
+
+          {/* ── Bio text ───────────────────────────────────────────────── */}
           <div
             className="absolute"
-            style={{ top: '40%', left: '8%', right: '8%', transform: 'rotate(1deg)' }}
+            style={{ left: '14.8%', top: '15.5%', width: '72.8%', transform: 'rotate(-1deg)' }}
           >
             <div
               className="font-script flex flex-col gap-[0.5em] leading-[1.4] text-black"
-              style={{ fontSize: 'clamp(11px, 3.5vw, 16px)' }}
+              style={{ fontSize: '4.1vw' }}
             >
               <p>{s.bio1}</p>
               <p>{s.bio2}</p>
             </div>
           </div>
 
-          {/* Links */}
+          {/* ── Links ──────────────────────────────────────────────────── */}
           <div
-            className="absolute"
-            style={{ top: '65%', left: '8%', right: '8%', transform: 'rotate(1deg)' }}
+            className="absolute flex flex-col"
+            style={{ left: '13.4%', top: '39.6%', width: '75.1%', gap: '2.3vw', transform: 'rotate(-1deg)' }}
           >
-            {links.map(({ label, value, href }, i) => (
+            {links.map(({ label, value, href }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="flex items-center gap-3 py-[1.5%]"
-                style={i === 1 || i === links.length - 1 ? { marginTop: 6 } : i === 2 ? { marginTop: 10 } : undefined}
+                className="flex items-center"
+                style={{ gap: '3vw' }}
               >
                 <span
                   className="text-ink shrink-0 font-semibold"
-                  style={{ fontSize: 'clamp(9px, 2.8vw, 13px)', width: '28%' }}
+                  style={{ fontSize: '3.08vw', width: '28%' }}
                 >
                   {label}
                 </span>
                 <span
                   className="font-script text-black transition-colors hover:text-[#FF3E00]"
-                  style={{ fontSize: 'clamp(10px, 3.2vw, 15px)', lineHeight: 1.4 }}
+                  style={{ fontSize: '4.1vw', lineHeight: 1.3 }}
                 >
                   {value}
                 </span>
               </a>
             ))}
           </div>
-        </div>
 
-        {/* ── Design Principles card ──────────────────────────────────────── */}
-        <div className="relative w-full flex-shrink-0">
-          <Image
-            src="/canvas/aboutme/sheet/Design%20Principles.png"
-            alt=""
-            aria-hidden
-            width={1285}
-            height={1389}
-            className="pointer-events-none h-auto w-full"
-            style={{ transform: 'rotate(-1deg)', transformOrigin: 'center center' }}
-          />
-
-          {dpTextsMobile.map((pos, i) => (
+          {/* ── Design Principles texts ─────────────────────────────────── */}
+          {[
+            { left: '10.8%', top: '60.2%' },
+            { left: '11.3%', top: '68.9%' },
+            { left: '11.8%', top: '77.2%' },
+            { left: '13.1%', top: '85.8%' },
+          ].map((pos, i) => (
             <div
               key={i}
               className="absolute"
-              style={{ left: pos.left, top: pos.top, width: '52%', transform: 'rotate(-2deg)' }}
+              style={{ left: pos.left, top: pos.top, width: '84.9%', transform: 'rotate(2deg)' }}
             >
-              <div className="flex flex-col gap-[0.3em]">
+              <div className="flex flex-col gap-[0.25em]">
                 <p
                   className="font-bold leading-[1.2]"
-                  style={{ fontSize: 'clamp(9px, 2.8vw, 14px)', color: '#1f1a14' }}
+                  style={{ fontSize: '3.59vw', color: '#1f1a14' }}
                 >
                   {s.principles[i].title}
                 </p>
                 <p
                   className="leading-[1.5]"
-                  style={{ fontSize: 'clamp(8px, 2.5vw, 12px)', color: '#666159' }}
+                  style={{ fontSize: '3.08vw', color: '#666159' }}
                 >
                   {s.principles[i].body}
                 </p>
               </div>
             </div>
           ))}
-        </div>
 
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════
