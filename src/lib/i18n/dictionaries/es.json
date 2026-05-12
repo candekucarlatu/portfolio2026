@@ -53,7 +53,7 @@
     "principles": [
       { "title": "Uso research para tomar decisiones.", "body": "Cada investigación responde una pregunta concreta y guía una decisión específica." },
       { "title": "Trabajo end-to-end.", "body": "No para controlar sino porque muchas veces el handoff es donde la experiencia empieza a romperse." },
-      { "title": "Shipear también es una herramienta de aprendizaje.", "body": "Prefiero lanzar algo imperfecto y aprender rápido antes que pasar semanas refinando un diseño en Figma." },
+      { "title": "Shipear también es una herramienta de aprendizaje.", "body": "Prefiero lanzar algo imperfecto y aprender rápido antes que discutir un diseño en Figma." },
       { "title": "Trato la eficiencia como un problema de diseño.", "body": "Eso significa usar IA para acortar la distancia entre una decisión y un artefacto, y darles a los developers más contexto, menos fricción y menos idas y vueltas." }
     ]
   }
