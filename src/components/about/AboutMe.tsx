@@ -101,19 +101,24 @@ export function AboutMe({ dict }: AboutMeProps) {
             </div>
           </div>
 
-          {/* ── Links ──────────────────────────────────────────────────── */}
-          <div
-            className="absolute flex flex-col"
-            style={{ left: '13.4%', top: '39.6%', width: '75.1%', gap: '2.3vw', transform: 'rotate(-1deg)' }}
-          >
-            {links.map(({ label, value, href }) => (
+          {/* ── Links — each anchored to its exact Figma Y position ──────
+               Canvas Y values: Email=421, Linkedin=456, Instagram=493, Resume=528
+               topPct = Y / 1063. Left=52/390=13.3%, width=293/390=75.1%. ──── */}
+          {[
+            { topPct: '39.6%' }, // Email      y=421
+            { topPct: '42.9%' }, // Linkedin   y=456
+            { topPct: '46.4%' }, // Instagram  y=493
+            { topPct: '49.7%' }, // Resume     y=528
+          ].map(({ topPct }, i) => {
+            const { label, value, href } = links[i]
+            return (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="flex items-center"
-                style={{ gap: '3vw' }}
+                className="absolute flex items-center"
+                style={{ left: '13.3%', top: topPct, width: '75.1%', gap: '3vw', transform: 'rotate(-1deg)' }}
               >
                 <span
                   className="text-ink shrink-0 font-semibold"
@@ -128,8 +133,8 @@ export function AboutMe({ dict }: AboutMeProps) {
                   {value}
                 </span>
               </a>
-            ))}
-          </div>
+            )
+          })}
 
           {/* ── Design Principles texts ─────────────────────────────────── */}
           {[
