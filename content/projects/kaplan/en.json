@@ -78,7 +78,8 @@
       "title": "Can a treasure hunt fix a broken loyalty loop?",
       "cta": "Explore Taco Bell's game →",
       "imageLayout": "phone",
-      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "Taco Bell app on iPhone", "width": 225, "height": 493 }
+      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "Taco Bell app on iPhone", "width": 225, "height": 493 },
+      "mobileImage": { "src": "/canvas/projects/kaplan/next-case-mobile.png", "alt": "Taco Bell app on iPhone", "width": 684, "height": 636 }
     }
   ]
 }

@@ -78,7 +78,8 @@
       "title": "¿Puede una búsqueda del tesoro mejorar la retención?",
       "cta": "Explorá el juego de Taco Bell →",
       "imageLayout": "phone",
-      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "App Taco Bell en iPhone", "width": 225, "height": 493 }
+      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "App Taco Bell en iPhone", "width": 225, "height": 493 },
+      "mobileImage": { "src": "/canvas/projects/kaplan/next-case-mobile.png", "alt": "App Taco Bell en iPhone", "width": 684, "height": 636 }
     }
   ]
 }
