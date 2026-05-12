@@ -53,7 +53,7 @@ export function NextProject({
        */}
       <div className="flex flex-col pt-[32px] px-[24px] pb-[24px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[54px] md:min-h-[621px]">
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
-        <div className="relative z-10 flex flex-col self-start md:self-center md:w-[450px] md:shrink-0">
+        <div className="relative z-10 flex flex-col self-start md:w-[450px] md:shrink-0">
           {/* Tag */}
           <div className="inline-flex h-[25px] self-start items-center rounded-[2px] bg-white px-[10px]">
             <span className="text-ink text-[11px] font-bold tracking-[0.8px] whitespace-nowrap uppercase">
