@@ -43,11 +43,11 @@ export function NextProject({
       style={{ backgroundColor: '#ede8dd', borderColor: '#bfb8b2' }}
     >
       {/*
-       * Centering: outer row uses default align-items (stretch) so the right
-       * area fills the full row height. The left column uses self-center so
-       * its text stays vertically centered within the row.
+       * Mobile  (Figma 496:343 / 496:357):
+       *   pt-[32px] px-[24px] pb-[24px]; tag → title 16px; title → image 24px; no CTA.
+       * Desktop: left column (tag + title + CTA) + right column (image), min-h 621px.
        */}
-      <div className="flex flex-col px-6 pt-[24px] pb-[48px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[54px] md:min-h-[621px]">
+      <div className="flex flex-col pt-[32px] px-[24px] pb-[24px] md:flex-row md:pl-[56px] md:pr-[106px] md:py-[54px] md:min-h-[621px]">
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
         <div className="relative z-10 flex flex-col self-start md:self-center md:w-[450px] md:shrink-0">
           {/* Tag */}
@@ -57,23 +57,36 @@ export function NextProject({
             </span>
           </div>
 
-          {/* Title — 20px below tag */}
-          <Link href={href} className="mt-[20px]">
+          {/* Title — 16px below tag on mobile, 20px on desktop */}
+          <Link href={href} className="mt-[16px] md:mt-[20px]">
             <h3 className="text-ink text-[24px] leading-[1.25] font-bold md:text-[32px] md:leading-[1.4]">
               {title}
             </h3>
           </Link>
 
-          {/* CTA — 40px below title */}
+          {/* CTA — hidden on mobile, 40px below title on desktop */}
           {cta && (
             <Link
               href={href}
-              className="mt-[20px] font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00] md:mt-[40px]"
+              className="hidden md:block mt-[40px] font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
             >
               {cta}
             </Link>
           )}
         </div>
+
+        {/* ── Mobile image — shown on mobile only, below title ─────────────── */}
+        {image && (
+          <Link href={href} aria-hidden tabIndex={-1} className="md:hidden mt-[24px] block w-full">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={image.width ?? 666}
+              height={image.height ?? 513}
+              className="w-full h-auto"
+            />
+          </Link>
+        )}
 
         {/* ── Right area: wide layout ──────────────────────────────────────── */}
         {image && imageLayout === 'wide' && (
