@@ -1,8 +1,8 @@
 {
   "slug": "slideshare",
   "card": {
-    "title": "Una plataforma nacida para slides que necesitaba aprender a mostrar documentos.",
-    "subtitle": "Rediseño del lector de SlideShare para que sus 70M+ usuarios lean documentos con más facilidad.",
+    "title": "Una plataforma de slides tuvo que aprender a mostrar documentos.",
+    "subtitle": "Rediseño de SlideShare para mejorar la legibilidad de sus 70M+ usuarios.",
     "color": "orange"
   },
   "sections": [
@@ -52,7 +52,7 @@
       "cards": [
         { "value": "+10%", "label": "Lectura ≥1 min. en desktop.", "color": "green" },
         { "value": "+10%", "label": "Lectura ≥5 min. en mobile.", "color": "pink" },
-        { "value": "+30%", "label": "Intentos de descarga en mobile.", "color": "blue" }
+        { "value": "+30%", "label": "Descargas en mobile.", "color": "blue" }
       ]
     },
     {

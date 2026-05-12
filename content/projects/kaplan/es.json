@@ -31,8 +31,8 @@
           "image": { "src": "/canvas/projects/kaplan/insight-1.png", "alt": "Tarjetas de acceso rápido del dashboard antes del rediseño", "width": 599, "height": 446 }
         },
         {
-          "title": "La información estaba dividida entre múltiples menús.",
-          "body": "La nav lateral y el menú del avatar compartían secciones importantes. Encontrar cursos, certificados o configuraciones implicaba adivinar dónde estaba cada cosa. Además, Browse Catalog agregaba un nivel extra de complejidad que no era necesaria.",
+          "title": "Demasiados menús, poca claridad.",
+          "body": "Cursos, certificados y configuraciones estaban repartidos entre la nav lateral y el avatar. Browse Catalog sumaba complejidad innecesaria.",
           "image": { "src": "/canvas/projects/kaplan/insight-2.png", "alt": "Superposición entre la nav lateral y el menú del avatar", "width": 599, "height": 446 }
         },
         {
@@ -46,8 +46,8 @@
     {
       "type": "section",
       "label": "A/B TESTING",
-      "title": "Una opción para la consistencia cross-platform, otra para una jerarquía más limpia.",
-      "body": "Primero simplifiqué la arquitectura para crear una estructura más limpia. Pero eso aumentaba la diferencia con Atom, la plataforma donde los usuarios pasaban la mayor parte del tiempo, y su equipo no tenía un rediseño de la navegación entre las prioridades. Antes de avanzar, hice un A/B test para entender si el cambio realmente mejoraba la experiencia."
+      "title": "Una opción para consistencia, otra para una jerarquía más limpia.",
+      "body": "Primero simplifiqué la arquitectura, pero ese cambio aumentaba la diferencia con Atom, la plataforma donde los usuarios pasaban la mayor parte del tiempo. Como su equipo no tenía un rediseño de la navegación entre las prioridades, hice un A/B test para entender si el cambio realmente mejoraba la experiencia."
     },
     {
       "type": "image-compare",
@@ -69,7 +69,7 @@
       "cards": [
         { "value": "+30%", "label": "encontró \"Ayuda y Soporte\"", "color": "yellow" },
         { "value": "+56%", "label": "encontró \"Explorar Catálogo\"", "color": "green" },
-        { "value": "+72%", "label": "encontró \"Pedidos y Seguimiento\"", "color": "pink" }
+        { "value": "+72%", "label": "encontró \"Seguimiento\"", "color": "pink" }
       ]
     },
     {

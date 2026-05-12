@@ -5,11 +5,11 @@
   },
   "about": {
     "headline": "Candela es una product designer",
-    "body": "con 8 años de experiencia diseñando productos B2C y SaaS desde la estrategia hasta el último píxel.",
+    "body": "con 8 años de experiencia diseñando productos B2C y SaaS desde la estrategia hasta la UI.",
     "bodyLines": [
       "con 8 años de experiencia",
       "diseñando productos B2C y SaaS",
-      "desde la estrategia hasta el último píxel."
+      "desde la estrategia hasta la UI."
     ],
     "tagline": "proud dog mom"
   },
@@ -42,7 +42,7 @@
     "collage2": "Soy Cande",
     "collage3": "y Membrillo",
     "bio1": "Soy Product Designer, vivo en CABA, con 8 años de experiencia diseñando end-to-end mayormente para productos B2C y Saas. Recientemente lideré la estrategia y el diseño de un juego para la ciudad de Las Vegas.",
-    "bio2": "Empecé cuando era solo una idea y acompañé todo el proceso: desde alinear al equipo y definir las prioridades, definir las mecánicas del juego y el roadmap hasta el diseño visual. Antes trabajé en Intive en productos que probablemente usaste como Scribd, SlideShare, Kaplan y BlackBerry.",
+    "bio2": "Desde la idea inicial hasta definir las prioridades, las mecánicas del juego, el roadmap y el diseño visual. Antes trabajé en Intive en productos que probablemente usaste como Scribd, SlideShare, Kaplan y BlackBerry.",
     "links": {
       "email": "Email",
       "linkedin": "Linkedin",
@@ -51,9 +51,9 @@
       "resumeValue": "descargar acá"
     },
     "principles": [
-      { "title": "Uso research para tomar decisiones, no para validar ideas.", "body": "Cuando hago una investigación, ya sé qué pregunta necesito responder y qué decisión va a depender de esa respuesta." },
-      { "title": "Trabajo end-to-end.", "body": "No porque quiera controlar todo, sino porque muchas veces el handoff es donde la experiencia empieza a romperse." },
-      { "title": "Shipear también es una herramienta de aprendizaje.", "body": "Prefiero lanzar algo imperfecto y aprender rápido antes que pasar semanas refinando una hipótesis que todavía no fue testeada." },
+      { "title": "Uso research para tomar decisiones.", "body": "Cada investigación responde una pregunta concreta y guía una decisión específica." },
+      { "title": "Trabajo end-to-end.", "body": "No para controlar sino porque muchas veces el handoff es donde la experiencia empieza a romperse." },
+      { "title": "Shipear también es una herramienta de aprendizaje.", "body": "Prefiero lanzar algo imperfecto y aprender rápido antes que pasar semanas refinando un diseño en Figma." },
       { "title": "Trato la eficiencia como un problema de diseño.", "body": "Eso significa usar IA para acortar la distancia entre una decisión y un artefacto, y darles a los developers más contexto, menos fricción y menos idas y vueltas." }
     ]
   }

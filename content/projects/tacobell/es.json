@@ -24,15 +24,15 @@
     {
       "type": "stat-cards",
       "cards": [
-        { "value": "84%", "label": "de los usuarios abandonaba la app después de obtener su primer taco gratis.", "color": "purple" },
-        { "value": "1.9 ★", "label": "en Google Play, uno de los ratings más bajos dentro de la categoría QSR.", "color": "pink" },
-        { "value": "\"Otra app de cupones.\"", "label": "Una frase que aparecía una y otra vez entre más de 190K reseñas.", "color": "yellow" }
+        { "value": "84%", "label": "abandona la app después de su primer taco gratis.", "color": "purple" },
+        { "value": "1.9 ★", "label": "en Google Play, uno de los peores ratings entre QSR.", "color": "pink" },
+        { "value": "\"Otra app de cupones.\"", "label": "comentario recurrente entre 190K reseñas.", "color": "yellow" }
       ]
     },
     {
       "type": "section",
       "label": "BENCHMARK",
-      "title": "Cada QSR que gamificó su app consiguió millones de interacciones en pocas semanas.",
+      "title": "Cada QSR que gamificó su app consiguió millones en pocas semanas.",
       "body": "McDonald's Monopoly generó 77M de interacciones digitales, aumentó un 25% las descargas de la app y un 10% las ventas en solo seis semanas. Burrito Vault de Chipotle sumó 3,5M de usuarios en 2025. Whopper Detour de Burger King consiguió 1,5M de descargas en nueve días. Con esos antecedentes empezamos a definir el concepto de Golden Taco."
     },
     {

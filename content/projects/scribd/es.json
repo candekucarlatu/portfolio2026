@@ -31,12 +31,12 @@
       "type": "section",
       "label": "USER TESTING",
       "title": "Validar si la metadata persistente realmente cambiaba cómo la gente leía.",
-      "body": "Moderé 7 sesiones de user testing para entender si mantener visibles el título, autor, ratings y acciones mejoraba la experiencia de usuarios que hacían multitasking mientras leían."
+      "body": "Moderé 7 sesiones de user testing para entender si mantener visibles el título, autor, ratings y acciones mejoraba la experiencia de usuarios que hacían multitasking."
     },
     {
       "type": "insight",
       "title": "El fullscreen se había convertido en un parche.",
-      "body": "4 de 7 usuarios entraban a fullscreen para compensar un espacio de lectura que se sentía demasiado reducido.",
+      "body": "4 de 7 usuarios entraban a fullscreen para compensar un espacio de lectura que se sentía reducido.",
       "image": { "src": "/canvas/projects/scribd/insight-1.png", "alt": "Modo fullscreen — antes del rediseño", "width": 599, "height": 446 },
       "reverse": true
     },
