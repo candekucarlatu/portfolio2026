@@ -30,7 +30,7 @@ export function VideoMockup({
       <section className="mx-[24px] lg:mx-[56px]">
         {/* Mobile: raw video, no frame, no background. Scale up slightly to crop browser chrome edge pixels. */}
         <div
-          className="block lg:hidden overflow-hidden rounded-[12px]"
+          className="block md:hidden overflow-hidden rounded-[12px]"
           style={{ aspectRatio: '848/440' }}
         >
           {src ? (
@@ -52,7 +52,7 @@ export function VideoMockup({
 
         {/* Desktop: colored background + browser frame */}
         <div
-          className="hidden lg:flex w-full items-center justify-center py-[54px]"
+          className="hidden md:flex w-full items-center justify-center py-[54px]"
           style={{ backgroundColor: background }}
         >
           <div
@@ -100,14 +100,14 @@ export function VideoMockup({
   return (
     <section className="mx-[24px] lg:mx-[56px]">
       <div
-        className="flex w-full items-center justify-center py-[16px] lg:py-[98px]"
+        className="flex w-full items-center justify-center py-[16px] md:py-[98px]"
         style={{ backgroundColor: background }}
       >
         {src && (
           <>
             {/* Mobile phone — 125×257 (Figma 495:273) */}
             <div
-              className="lg:hidden"
+              className="md:hidden"
               style={{
                 width: 125,
                 height: 257,
@@ -139,7 +139,7 @@ export function VideoMockup({
 
             {/* Desktop phone — 234×505 */}
             <div
-              className="hidden lg:block"
+              className="hidden md:block"
               style={{
                 width: 234,
                 height: 505,
