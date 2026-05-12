@@ -71,9 +71,9 @@ function Card({ card, rotation }: { card: StatCardsProps['cards'][number]; rotat
 }
 
 export function StatCards({ cards }: StatCardsProps) {
-  // Card slot is 260×215 (scale ≈ 1.23× the base 212×176 wrapper)
-  const slotW = 260
-  const slotH = 215
+  // Card slot matches Figma 493:217: 180×148px (scale ≈ 0.85× the base 212×176 wrapper)
+  const slotW = 180
+  const slotH = 148
   const gap = 16
   const carouselRef = useRef<HTMLDivElement>(null)
 
