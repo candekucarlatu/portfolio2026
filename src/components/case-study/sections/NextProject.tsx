@@ -71,11 +71,11 @@ export function NextProject({
             </h3>
           </Link>
 
-          {/* CTA — hidden on mobile, 40px below title on desktop */}
+          {/* CTA — hidden on mobile, 24px below title on tablet, 40px on desktop */}
           {cta && (
             <Link
               href={href}
-              className="hidden md:block mt-[40px] font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
+              className="hidden md:block md:mt-[24px] lg:mt-[40px] font-script font-bold text-ink text-[22px] leading-[1.3] transition-colors hover:text-[#FF3E00]"
             >
               {cta}
             </Link>
@@ -113,32 +113,27 @@ export function NextProject({
         )}
 
         {/* ── Right area: phone layout (screenshot + frame overlay) ───────── */}
+        {/* Tablet: 142×289, ml-[96px] gap from left column (Figma 537:9828)   */}
+        {/* Desktop: 252×513, flex-1 centered                                  */}
         {image && imageLayout === 'phone' && (
-          <div className="hidden md:flex mt-8 justify-center md:mt-0 md:flex-1 md:items-center">
+          <div className="hidden md:flex md:ml-[96px] md:self-center md:shrink-0 lg:ml-0 lg:flex-1 lg:justify-center">
             <Link
               href={href}
               aria-hidden
               tabIndex={-1}
-              className="relative block"
-              style={{ width: 252, height: 513 }}
+              className="relative block md:w-[142px] md:h-[289px] lg:w-[252px] lg:h-[513px]"
             >
+              {/* Screenshot positioned as % so it scales at both 142×289 and 252×513 */}
               <div
-                style={{
-                  position: 'absolute',
-                  top: 10,
-                  left: 13,
-                  width: 225,
-                  height: 493,
-                  borderRadius: 32,
-                  overflow: 'hidden',
-                }}
+                className="pointer-events-none absolute overflow-hidden md:rounded-[18px] lg:rounded-[32px]"
+                style={{ top: '1.95%', left: '5.16%', width: '89.3%', height: '96.1%' }}
               >
                 <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
-                    sizes="225px"
+                    sizes="(min-width: 1024px) 225px, 127px"
                     className="object-cover"
                   />
                 </div>
@@ -148,7 +143,7 @@ export function NextProject({
                 alt=""
                 width={252}
                 height={513}
-                className="pointer-events-none relative select-none"
+                className="pointer-events-none relative select-none h-full w-full"
                 aria-hidden
               />
             </Link>
@@ -156,15 +151,17 @@ export function NextProject({
         )}
 
         {/* ── Right area: phone-framed (image already includes the frame) ─── */}
+        {/* Tablet: 142px wide (scales height proportionally), ml-[96px] gap  */}
+        {/* Desktop: original dimensions, flex-1 centered                      */}
         {image && imageLayout === 'phone-framed' && (
-          <div className="hidden md:flex mt-8 justify-center md:mt-0 md:flex-1 md:items-center">
+          <div className="hidden md:flex md:ml-[96px] md:self-center md:shrink-0 lg:ml-0 lg:flex-1 lg:justify-center">
             <Link href={href} aria-hidden tabIndex={-1} className="block">
               <Image
                 src={image.src}
                 alt={image.alt}
                 width={image.width ?? 252}
                 height={image.height ?? 513}
-                className="pointer-events-none select-none max-w-full h-auto"
+                className="pointer-events-none select-none h-auto md:w-[142px] lg:w-auto lg:max-w-full"
               />
             </Link>
           </div>
