@@ -52,11 +52,11 @@ export function VideoMockup({
 
         {/* Desktop: colored background + browser frame */}
         <div
-          className="hidden md:flex w-full items-center justify-center py-[54px]"
+          className="hidden md:flex w-full items-center justify-center py-[40px] lg:py-[54px]"
           style={{ backgroundColor: background }}
         >
           <div
-            className="w-full max-w-[820px] overflow-hidden"
+            className="md:w-[90%] lg:w-full max-w-[820px] overflow-hidden"
             style={{
               borderRadius: 12,
               border: '5px solid #e8e8e8',

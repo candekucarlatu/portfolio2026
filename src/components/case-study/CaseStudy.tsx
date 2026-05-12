@@ -46,6 +46,9 @@ function getTopSpacing(prev: Section | null, curr: Section): string {
     if (c === 'image' || c === 'video' || c === 'image-compare' || c === 'research-cards') return 'mt-[20px] md:mt-[40px] lg:mt-[64px]'
   }
 
+  // Consecutive insights: tighter gap on tablet
+  if (p === 'insight' && c === 'insight') return 'mt-[40px] md:mt-[24px] lg:mt-[48px]'
+
   // Between groups: any content block → next section label
   if (c === 'section') return 'mt-[40px] md:mt-[48px] lg:mt-[104px]'
 

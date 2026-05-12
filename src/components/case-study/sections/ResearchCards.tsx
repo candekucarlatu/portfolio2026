@@ -20,15 +20,14 @@ interface ResearchCardsProps {
 export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps) {
   if (layout === 'horizontal') {
     return (
-      <section className="mx-[24px] lg:mx-[56px] flex flex-col gap-8 md:gap-[32px] lg:gap-[54px]">
+      <section className="mx-[24px] lg:mx-[56px] flex flex-col gap-8 md:gap-[24px] lg:gap-[54px]">
         {cards.map((card, i) => {
           const imageRight = i % 2 === 0 // 0, 2 → text left / image right; 1 → image left / text right
 
           return (
             <div
               key={i}
-              className="bg-white overflow-hidden flex flex-col md:flex-row md:items-center"
-              style={{ boxShadow: '0px 6px 20px rgba(0,0,0,0.1)' }}
+              className="bg-white overflow-hidden flex flex-col md:flex-row md:items-center shadow-[0px_6px_20px_rgba(0,0,0,0.1)] md:shadow-none lg:shadow-[0px_6px_20px_rgba(0,0,0,0.1)]"
             >
               {/* Image — always first on mobile; on tablet+ moves right for even cards */}
               <div className={`w-full shrink-0 overflow-hidden md:w-1/2 lg:w-[599px] ${imageRight ? 'md:order-last' : ''}`}>
