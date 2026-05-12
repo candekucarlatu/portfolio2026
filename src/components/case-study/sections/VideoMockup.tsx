@@ -93,45 +93,82 @@ export function VideoMockup({
     )
   }
 
-  // Phone variant (default) — Figma 488:116 / 495:292
-  // Mobile: no side margins, 16px top/bottom so background fills full width.
-  // Desktop: 56px side margins, 98px top/bottom.
+  // Phone variant (default) — Figma 488:116 / 495:273
+  // Mobile: 24px side margins, 16px top/bottom, phone 125×257px.
+  // Desktop: 56px side margins, 98px top/bottom, phone 234×505px.
+  // Two separate phone divs so each breakpoint gets its own size + transform.
   return (
-    <section className="lg:mx-[56px]">
+    <section className="mx-[24px] lg:mx-[56px]">
       <div
         className="flex w-full items-center justify-center py-[16px] lg:py-[98px]"
         style={{ backgroundColor: background }}
       >
         {src && (
-          <div
-            style={{
-              width: 234,
-              height: 505,
-              borderRadius: 32,
-              border: '5px solid #e0e0e0',
-              boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
-              overflow: 'hidden',
-              flexShrink: 0,
-              position: 'relative',
-            }}
-          >
-            <video
-              src={src}
-              poster={poster}
-              autoPlay
-              loop
-              muted
-              playsInline
+          <>
+            {/* Mobile phone — 125×257 (Figma 495:273) */}
+            <div
+              className="lg:hidden"
               style={{
-                width: '100%',
-                height: '100%',
-                display: 'block',
-                transform: 'scale(1.35) translateY(-12px)',
-                transformOrigin: '50% 44%',
+                width: 125,
+                height: 257,
+                borderRadius: 17,
+                border: '3px solid #e0e0e0',
+                boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
+                overflow: 'hidden',
+                flexShrink: 0,
+                position: 'relative',
               }}
-              className="object-cover"
-            />
-          </div>
+            >
+              <video
+                src={src}
+                poster={poster}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'block',
+                  transform: 'scale(1.35) translateY(-6px)',
+                  transformOrigin: '50% 44%',
+                }}
+                className="object-cover"
+              />
+            </div>
+
+            {/* Desktop phone — 234×505 */}
+            <div
+              className="hidden lg:block"
+              style={{
+                width: 234,
+                height: 505,
+                borderRadius: 32,
+                border: '5px solid #e0e0e0',
+                boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
+                overflow: 'hidden',
+                flexShrink: 0,
+                position: 'relative',
+              }}
+            >
+              <video
+                src={src}
+                poster={poster}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'block',
+                  transform: 'scale(1.35) translateY(-12px)',
+                  transformOrigin: '50% 44%',
+                }}
+                className="object-cover"
+              />
+            </div>
+          </>
         )}
       </div>
     </section>
