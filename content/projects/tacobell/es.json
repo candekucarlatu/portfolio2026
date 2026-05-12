@@ -81,6 +81,7 @@
       "title": "¿Cómo captás la atención de un usuario con diez tabs abiertas?",
       "cta": "Explorá el rediseño de Scribd →",
       "imageLayout": "wide",
+      "mobileImageGap": 32,
       "image": { "src": "/canvas/projects/tacobell/next-case.png", "alt": "Vista previa del caso Scribd", "width": 666, "height": 513 }
     }
   ]

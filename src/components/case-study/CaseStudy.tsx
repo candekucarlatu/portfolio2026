@@ -139,6 +139,7 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                   image={section.image}
                   imageLayout={section.imageLayout}
                   mobileImage={section.mobileImage}
+                  mobileImageGap={section.mobileImageGap}
                   ctaLabel={dict.ui.nextCaseStudy}
                   locale={locale}
                 />

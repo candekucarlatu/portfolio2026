@@ -78,6 +78,8 @@ const NextProject = z.object({
   imageLayout: z.enum(['wide', 'phone', 'phone-framed']).default('wide'),
   /** Separate image shown only on mobile (below the title). Falls back to `image` if not set. */
   mobileImage: ProjectImage.optional(),
+  /** Gap (px) between the title and the mobile image. Defaults to 24. */
+  mobileImageGap: z.number().optional(),
 })
 
 const CalloutList = z.object({

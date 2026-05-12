@@ -11,6 +11,8 @@ interface NextProjectProps {
   imageLayout?: 'wide' | 'phone' | 'phone-framed'
   /** Separate image for mobile only. Falls back to `image` when not provided. */
   mobileImage?: ProjectImage
+  /** Gap (px) between title and mobile image. Defaults to 24. */
+  mobileImageGap?: number
   ctaLabel: string
   locale: Locale
 }
@@ -35,6 +37,7 @@ export function NextProject({
   image,
   imageLayout = 'wide',
   mobileImage,
+  mobileImageGap = 24,
   ctaLabel,
   locale,
 }: NextProjectProps) {
@@ -81,7 +84,7 @@ export function NextProject({
 
         {/* ── Mobile image — shown on mobile only, below title ─────────────── */}
         {mobileImg && (
-          <Link href={href} aria-hidden tabIndex={-1} className="md:hidden mt-[24px] block w-full">
+          <Link href={href} aria-hidden tabIndex={-1} className="md:hidden block w-full" style={{ marginTop: mobileImageGap }}>
             <Image
               src={mobileImg.src}
               alt={mobileImg.alt}

@@ -61,6 +61,7 @@
       "title": "Giving Learner Home's navigation the structure it never had.",
       "cta": "Explore Kaplan's reorganization →",
       "imageLayout": "wide",
+      "mobileImageGap": 32,
       "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Kaplan case study preview", "width": 666, "height": 513 }
     }
   ]
