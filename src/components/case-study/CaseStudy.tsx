@@ -36,21 +36,21 @@ function getTopSpacing(prev: Section | null, curr: Section): string {
   const c = curr.type
 
   // Hero → first section group
-  if (p === 'hero') return 'mt-[40px] md:mt-[88px]'
+  if (p === 'hero') return 'mt-[40px] md:mt-[48px] lg:mt-[88px]'
 
   // Inside a section group: section label → its content
   if (p === 'section') {
     if (c === 'callout-list') return 'mt-[20px] md:mt-[48px]'
     if (c === 'stat-cards' || c === 'highlight' || c === 'insight')
       return 'mt-[40px] md:mt-[48px]'
-    if (c === 'image' || c === 'video' || c === 'image-compare' || c === 'research-cards') return 'mt-[20px] md:mt-[64px]'
+    if (c === 'image' || c === 'video' || c === 'image-compare' || c === 'research-cards') return 'mt-[20px] md:mt-[40px] lg:mt-[64px]'
   }
 
   // Between groups: any content block → next section label
-  if (c === 'section') return 'mt-[40px] md:mt-[104px]'
+  if (c === 'section') return 'mt-[40px] md:mt-[48px] lg:mt-[104px]'
 
   // All sections get 120px gap before next-project (gap is outside the background block)
-  if (c === 'next-project') return 'mt-[40px] md:mt-[120px]'
+  if (c === 'next-project') return 'mt-[40px] md:mt-[48px] lg:mt-[120px]'
 
   // Default fallback
   return 'mt-[40px] md:mt-[48px]'
