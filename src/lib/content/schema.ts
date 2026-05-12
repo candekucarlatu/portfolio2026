@@ -76,6 +76,8 @@ const NextProject = z.object({
    * 'phone-framed'  = portrait image that already includes the iPhone frame — shown directly, no overlay.
    */
   imageLayout: z.enum(['wide', 'phone', 'phone-framed']).default('wide'),
+  /** Separate image shown only on mobile (below the title). Falls back to `image` if not set. */
+  mobileImage: ProjectImage.optional(),
 })
 
 const CalloutList = z.object({

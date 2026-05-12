@@ -9,6 +9,8 @@ interface NextProjectProps {
   cta?: string
   image?: ProjectImage
   imageLayout?: 'wide' | 'phone' | 'phone-framed'
+  /** Separate image for mobile only. Falls back to `image` when not provided. */
+  mobileImage?: ProjectImage
   ctaLabel: string
   locale: Locale
 }
@@ -32,9 +34,11 @@ export function NextProject({
   cta,
   image,
   imageLayout = 'wide',
+  mobileImage,
   ctaLabel,
   locale,
 }: NextProjectProps) {
+  const mobileImg = mobileImage ?? image
   const href = `/${locale}/work/${slug}`
 
   return (
@@ -76,13 +80,13 @@ export function NextProject({
         </div>
 
         {/* ── Mobile image — shown on mobile only, below title ─────────────── */}
-        {image && (
+        {mobileImg && (
           <Link href={href} aria-hidden tabIndex={-1} className="md:hidden mt-[24px] block w-full">
             <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width ?? 666}
-              height={image.height ?? 513}
+              src={mobileImg.src}
+              alt={mobileImg.alt}
+              width={mobileImg.width ?? 666}
+              height={mobileImg.height ?? 513}
               className="w-full h-auto"
             />
           </Link>
