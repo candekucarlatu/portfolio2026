@@ -86,7 +86,7 @@ body {
 }
 
 /* 1440px breakpoint utilities — used by AboutMe XL layout */
-@media (width >= 1440px) {
-  .wide\:flex  { display: flex;  }
-  .wide\:hidden { display: none; }
+@media (min-width: 1440px) {
+  .at-wide-flex   { display: flex !important; }
+  .at-wide-hidden { display: none !important; }
 }
