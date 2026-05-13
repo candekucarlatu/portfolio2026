@@ -31,10 +31,10 @@ export function AboutMe({ dict }: AboutMeProps) {
 
   // ── Desktop XL positions (canvas 1440×1010) ─────────────────────────────
   const xlDpTexts = [
-    { left: '53.45%', top: '33.80%' },  // Use research   — Figma wrapper top 35.55%, text centered ↑2%
-    { left: '53.76%', top: '46.50%' },  // Work end-to-end — Figma 48.22% ↑1.7%
-    { left: '54.06%', top: '59.20%' },  // Ship to learn   — Figma 60.88% ↑1.7%
-    { left: '54.37%', top: '73.55%' },  // Treat efficiency — unchanged
+    { left: '53.45%', top: '35.55%' },  // Use research   — Figma 769.65/1440, 359.1/1010
+    { left: '53.76%', top: '48.22%' },  // Work end-to-end
+    { left: '54.06%', top: '60.88%' },  // Ship to learn
+    { left: '54.37%', top: '73.55%' },  // Treat efficiency
   ]
 
   // Desktop XL link rows (canvas 1440×1010, rotate +1deg)
@@ -425,7 +425,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           {/* Figma: left=193.27/1440=13.42%, top=440/1010=43.56%, width=471/1440=32.71% */}
           <div
             className="absolute z-30"
-            style={{ left: '13.42%', top: '41.00%', width: '32.71%', transform: 'rotate(1deg)' }}
+            style={{ left: '13.42%', top: '43.56%', width: '32.71%', transform: 'rotate(1deg)' }}
           >
             <div
               className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
