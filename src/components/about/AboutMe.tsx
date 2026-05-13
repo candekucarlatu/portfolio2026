@@ -155,12 +155,13 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Design Principles texts ──────────────────────────────────── */}
-          {/* Figma tops corrected: 628.54/1063, 721/1063, 809/1063, 901/1063 */}
+          {/* Figma tops (wrapper): 628.54/1063, 721/1063, 809/1063, 901/1063  */}
+          {/* −1.3% to account for Figma's items-center offset inside wrapper  */}
           {[
-            { left: '10.8%', top: '59.13%' },  // Use research    y=628.54
-            { left: '11.3%', top: '67.83%' },  // Work end-to-end y=721
-            { left: '11.8%', top: '76.11%' },  // Ship to learn   y=809
-            { left: '13.1%', top: '84.76%' },  // Treat efficiency y=901
+            { left: '10.8%', top: '57.83%' },  // Use research    y=628.54 − 1.3%
+            { left: '11.3%', top: '66.53%' },  // Work end-to-end y=721
+            { left: '11.8%', top: '74.81%' },  // Ship to learn   y=809
+            { left: '13.1%', top: '83.46%' },  // Treat efficiency y=901
           ].map((pos, i) => (
             <div
               key={i}
@@ -233,7 +234,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           >
             <div
               className="font-script flex flex-col text-black"
-              style={{ fontSize: '2.4vw', gap: '1.44vw', lineHeight: 1.3 }}
+              style={{ fontSize: 20, gap: 12, lineHeight: 1.3 }}
             >
               <p>{s.bio1}</p>
               <p>{s.bio2}</p>
@@ -241,12 +242,12 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Links ───────────────────────────────────────────────────── */}
-          {/* Figma: Email labelW=54px=6.47vw gap=63px=7.55vw / others labelW=88px=10.55vw gap=29px=3.48vw */}
+          {/* Figma: Email labelW=54px gap=63px / others labelW=88px gap=29px */}
           {[
-            { topPct: '41.2%',  labelW: '6.47vw',  valGap: '7.55vw' },   // Email      y=700
-            { topPct: '44.86%', labelW: '10.55vw', valGap: '3.48vw' },   // Linkedin   y=763
-            { topPct: '48.5%',  labelW: '10.55vw', valGap: '3.48vw' },   // Instagram  y=825
-            { topPct: '52.33%', labelW: '10.55vw', valGap: '3.48vw' },   // Resume     y=890
+            { topPct: '41.2%',  labelW: 54, valGap: 63 },   // Email      y=700
+            { topPct: '44.86%', labelW: 88, valGap: 29 },   // Linkedin   y=763
+            { topPct: '48.5%',  labelW: 88, valGap: 29 },   // Instagram  y=825
+            { topPct: '52.33%', labelW: 88, valGap: 29 },   // Resume     y=890
           ].map(({ topPct, labelW, valGap }, i) => {
             const { label, value, href } = links[i]
             return (
@@ -260,13 +261,13 @@ export function AboutMe({ dict }: AboutMeProps) {
               >
                 <span
                   className="shrink-0 font-semibold text-ink"
-                  style={{ fontSize: '1.92vw', width: labelW }}
+                  style={{ fontSize: 16, width: labelW }}
                 >
                   {label}
                 </span>
                 <span
                   className="font-script text-black transition-colors hover:text-[#FF3E00]"
-                  style={{ fontSize: '2.4vw', lineHeight: 1.5, marginLeft: valGap }}
+                  style={{ fontSize: 20, lineHeight: 1.5, marginLeft: valGap }}
                 >
                   {value}
                 </span>
@@ -288,27 +289,29 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Design Principles texts ──────────────────────────────────── */}
+          {/* Figma tops (wrapper): 62.06/69.59/77.12/84.64%             */}
+          {/* −1% to account for Figma's items-center offset in wrapper  */}
           {[
-            { left: '18.78%', top: '62.06%' },  // Use research
-            { left: '19.31%', top: '69.59%' },  // Work end-to-end
-            { left: '19.85%', top: '77.12%' },  // Ship to learn
-            { left: '20.39%', top: '84.64%' },  // Treat efficiency
+            { left: '18.78%', top: '61.06%' },  // Use research
+            { left: '19.31%', top: '68.59%' },  // Work end-to-end
+            { left: '19.85%', top: '76.12%' },  // Ship to learn
+            { left: '20.39%', top: '83.64%' },  // Treat efficiency
           ].map((pos, i) => (
             <div
               key={i}
               className="absolute"
               style={{ left: pos.left, top: pos.top, width: '59.26%', transform: 'rotate(-2deg)' }}
             >
-              <div className="flex flex-col" style={{ gap: '1.44vw' }}>
+              <div className="flex flex-col" style={{ gap: 12 }}>
                 <p
                   className="font-bold leading-[1.25]"
-                  style={{ fontSize: '1.92vw', color: '#1f1a14' }}
+                  style={{ fontSize: 16, color: '#1f1a14' }}
                 >
                   {s.principles[i].title}
                 </p>
                 <p
                   className="leading-[1.65]"
-                  style={{ fontSize: '1.92vw', color: '#666159' }}
+                  style={{ fontSize: 16, color: '#666159' }}
                 >
                   {s.principles[i].body}
                 </p>
