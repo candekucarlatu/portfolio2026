@@ -54,7 +54,8 @@ export function NextProject({
        *   pt-[32px] px-[24px] pb-[24px]; tag → title 16px; title → image 24px; no CTA.
        * Desktop: left column (tag + title + CTA) + right column (image), min-h 621px.
        */}
-      <div className="flex flex-col pt-[32px] px-[24px] pb-[24px] md:flex-row md:p-[40px] lg:pl-[56px] lg:pr-[106px] lg:py-[54px] lg:min-h-[621px]">
+      {/* md:px-[24px] keeps 40+450+96+142+40=768px sum safe — 24px gives 32px buffer at 768px */}
+      <div className="flex flex-col pt-[32px] px-[24px] pb-[24px] md:flex-row md:px-[24px] md:py-[40px] lg:pl-[56px] lg:pr-[106px] lg:py-[54px] lg:min-h-[621px]">
         {/* ── Left column: tag + title + CTA ──────────────────────────────── */}
         <div className="relative z-10 flex flex-col self-start md:self-center md:w-[450px] md:shrink-0 lg:self-start">
           {/* Tag */}
