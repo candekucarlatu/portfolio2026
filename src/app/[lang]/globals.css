@@ -31,8 +31,6 @@
 
   --animate-board-fade-in: board-fade-in 1200ms cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Custom breakpoints */
-  --breakpoint-wide: 1440px;
 }
 
 @keyframes board-fade-in {
@@ -85,4 +83,10 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* 1440px breakpoint utilities — used by AboutMe XL layout */
+@media (width >= 1440px) {
+  .wide\:flex  { display: flex;  }
+  .wide\:hidden { display: none; }
 }
