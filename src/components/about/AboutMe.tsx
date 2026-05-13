@@ -196,8 +196,8 @@ export function AboutMe({ dict }: AboutMeProps) {
           ══════════════════════════════════════════════════════════════════ */}
       <div className="overflow-x-hidden overflow-y-auto hidden md:block at-wide-hidden lg:h-full">
         <div
-          className="relative w-full max-w-[834px] mx-auto overflow-hidden"
-          style={{ aspectRatio: '834 / 1700' }}
+          className="relative w-full overflow-hidden"
+          style={{ aspectRatio: '834 / 1700', maxWidth: 834, marginLeft: 'auto', marginRight: 'auto' }}
         >
 
           {/* ── Profile background ──────────────────────────────────────── */}
