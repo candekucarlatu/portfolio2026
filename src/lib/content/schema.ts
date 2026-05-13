@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const NoteColor = z.enum(['green', 'blue', 'orange', 'purple'])
+export const NoteColor = z.enum(['green', 'blue', 'orange', 'purple', 'pink', 'yellow'])
 export type NoteColor = z.infer<typeof NoteColor>
 
 export const ProjectImage = z.object({
@@ -18,7 +18,7 @@ const Hero = z.object({
   meta: z.object({
     duration: z.string(),
     team: z.string(),
-    role: z.string(),
+    role: z.string().optional(),
   }),
 })
 
@@ -53,6 +53,7 @@ const ImageBlock = z.object({
   image: ProjectImage,
   caption: z.string().optional(),
   width: z.enum(['default', 'wide', 'full']).default('default'),
+  variant: z.enum(['framed', 'plain']).default('framed'),
 })
 
 const Insight = z.object({
@@ -67,7 +68,65 @@ const NextProject = z.object({
   type: z.literal('next-project'),
   slug: z.string(),
   title: z.string(),
+  cta: z.string().optional(),
   image: ProjectImage.optional(),
+  /**
+   * 'wide'          = landscape tablet mockup overflowing right.
+   * 'phone'         = portrait screenshot centered on right, displayed inside iphone-frame.png overlay.
+   * 'phone-framed'  = portrait image that already includes the iPhone frame — shown directly, no overlay.
+   */
+  imageLayout: z.enum(['wide', 'phone', 'phone-framed']).default('wide'),
+  /** Separate image shown only on mobile (below the title). Falls back to `image` if not set. */
+  mobileImage: ProjectImage.optional(),
+  /** Gap (px) between the title and the mobile image. Defaults to 24. */
+  mobileImageGap: z.number().optional(),
+})
+
+const CalloutList = z.object({
+  type: z.literal('callout-list'),
+  items: z
+    .array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+      }),
+    )
+    .min(1),
+})
+
+const Video = z.object({
+  type: z.literal('video'),
+  src: z.string().optional(),
+  imageSrc: z.string().optional(),
+  poster: z.string().optional(),
+  background: z.string().optional(),
+  variant: z.enum(['phone', 'desktop']).default('phone'),
+  frameSrc: z.string().optional(),
+})
+
+const ImageCompare = z.object({
+  type: z.literal('image-compare'),
+  before: ProjectImage,
+  after: ProjectImage,
+  background: z.string().optional(),
+  beforeLabel: z.string().optional(),
+  afterLabel: z.string().optional(),
+  height: z.number().int().positive().optional(),
+})
+
+const ResearchCards = z.object({
+  type: z.literal('research-cards'),
+  layout: z.enum(['stacked', 'horizontal']).default('stacked'),
+  cards: z
+    .array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+        image: ProjectImage,
+        imageEdge: z.boolean().optional(),
+      }),
+    )
+    .min(1),
 })
 
 export const Section = z.discriminatedUnion('type', [
@@ -77,6 +136,10 @@ export const Section = z.discriminatedUnion('type', [
   Highlight,
   ImageBlock,
   Insight,
+  CalloutList,
+  Video,
+  ImageCompare,
+  ResearchCards,
   NextProject,
 ])
 export type Section = z.infer<typeof Section>

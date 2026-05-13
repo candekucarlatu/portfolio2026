@@ -9,77 +9,80 @@
     {
       "type": "hero",
       "title": "Can a treasure hunt fix a broken loyalty loop?",
-      "subtitle": "Taco Bell's Rewards program had 8M active users and a retention problem. I designed a B2B2C gaming platform to give users a reason to come back.",
+      "subtitle": "Taco Bell's Rewards program had 8M active users but a retention problem. I designed a B2B2C gaming platform to give users a reason to come back.",
       "meta": {
         "duration": "Jan–July 2025",
-        "team": "CEO · CTO · Product Designer",
-        "role": "Product Designer"
+        "team": "CEO · CTO · Product Designer"
       }
     },
     {
       "type": "section",
       "label": "THE PROBLEM",
       "title": "29M users downloaded Taco Bell's app, but only 16% came back for more.",
-      "body": "The app was supposed to drive store visits but the users left after their first free taco. Treasure Game$, a phygital gaming company, saw an opportunity: what if the reward was a real prize worth chasing with friends, one that sent you into the world to find it?"
+      "body": "The app was supposed to drive store visits and expand Taco Bell's audience, but users left after their first free taco. At Treasure Game$, a phygital gaming company, we saw an opportunity: what if the reward was a real prize worth chasing with friends and family, one that sent you out into the world to find it?"
     },
     {
       "type": "stat-cards",
       "cards": [
-        { "value": "84%", "label": "of subscribers churn after their first free taco.", "color": "green" },
-        { "value": "1.9 ★", "label": "on Google Play (one of the lowest scores in the QSR category.)", "color": "orange" },
-        { "value": "“just another coupon app.”", "label": "recurring sentiment across 190K reviews.", "color": "blue" }
+        { "value": "84%", "label": "of subscribers churn after their first free taco.", "color": "purple" },
+        { "value": "1.9 ★", "label": "on Google Play, one of the lowest in the QSR category.", "color": "pink" },
+        { "value": "\"just another coupon app.\"", "label": "recurring sentiment across 190K reviews.", "color": "yellow" }
       ]
     },
     {
       "type": "section",
       "label": "BENCHMARK",
       "title": "Every QSR that gamified their app pulled millions in weeks.",
-      "body": "McDonald's Monopoly drove 77M digital interactions, a 25% spike in app downloads, and a +15% sales lift in six weeks. Chipotle's Burrito Vault pulled 3.5M plays in 2025. Burger King's Whopper Detour drove 1.5M app downloads in three days."
-    },
-    {
-      "type": "highlight",
-      "body": "That's how the Golden Taco Treasure Hunt came to life: 10 Golden Tacos worth $10K each, hidden across the country. Players move through worlds, levels, and clues, solving some at home and others inside Taco Bell stores, turning every location into part of the game."
+      "body": "McDonald's Monopoly drove 77M digital interactions, a 25% spike in app downloads, and a +10% sales lift in six weeks. Chipotle's Burrito Vault pulled 3.5M plays in 2025. Burger King's Whopper Detour drove 1.5M app downloads in nine days. That's how the Golden Taco Treasure Hunt came to life!"
     },
     {
       "type": "image",
-      "image": { "src": "/canvas/projects/tacobell/cover.jpg", "alt": "Taco Bell Treasure Game$ overview", "width": 1200, "height": 720 },
-      "width": "wide"
+      "image": { "src": "/canvas/projects/tacobell/benchmark.png", "alt": "Paconaut — Taco Bell Treasure Hunt gameplay overview", "width": 1180, "height": 664 },
+      "width": "full",
+      "variant": "plain"
     },
     {
       "type": "section",
       "label": "USER INTERVIEWS",
-      "title": "What Wish Lamp$ players taught us.",
-      "body": "To validate our assumptions, I interviewed 9 first-time players of Wish Lamp$: Treasure Games's flagship treasure hunt and the closest proxy to our future Taco Bell audience."
+      "title": "Listening to the closest proxy to our future Taco Bell audience.",
+      "body": "I interviewed 9 first-time players of Wish Lamp$, Treasure Game's flagship treasure hunt, to find out if what we assumed about engagement and team dynamics actually held up."
     },
     {
-      "type": "insight",
-      "title": "Onboarding one player means recruiting a whole team.",
-      "body": "Players tried the game solo first and only invited others once convinced of the value. A confusing onboarding didn't just lose one player — it prevented an entire team from forming.",
-      "image": { "src": "/canvas/projects/tacobell/insight-1.png", "alt": "Onboarding screen", "width": 600, "height": 400 }
+      "type": "callout-list",
+      "items": [
+        {
+          "title": "Every player is a potential team.",
+          "body": "The first session was the only chance to turn one player into a group. If the onboarding convinced them, they invited the rest. If it didn't, they kept playing solo and the team never formed."
+        },
+        {
+          "title": "Playing together was the whole point.",
+          "body": "We thought basic team support was enough. Interviews showed bonding across distance, age, and busy schedules was the real reason people played. That pushed us to build deeper team features from day one."
+        },
+        {
+          "title": "Turning passive time into active play.",
+          "body": "Players replaced solo screen time with Wish Lamp$, but retention came from the physical-digital mix. It turned a passive habit into active play and gave people a reason to do it together."
+        }
+      ]
     },
     {
-      "type": "insight",
-      "title": "Teams felt like a feature. Players told us they were the whole point.",
-      "body": "Bonding across states, generations, and busy schedules was the core reason people played at all. This pushed us to ship deeper team features from day one.",
-      "image": { "src": "/canvas/projects/tacobell/insight-2.png", "alt": "Team gameplay screen", "width": 600, "height": 400 },
-      "reverse": true
+      "type": "section",
+      "label": "THE APPROACH",
+      "title": "The MVP had one job: prove the hunt drove real visits and real loyalty sign-ups.",
+      "body": "Three things had to work from day one: clue progression, team dynamics, and a reward logic tied to store visits and Rewards sign-ups. With no historical data, we built in levers to tune difficulty and respond when in-store visit rates dropped. The goal wasn't to get it perfect. It was to get it running well enough to know what perfect looked like."
     },
     {
-      "type": "insight",
-      "title": "The competition wasn't other games. It was the couch.",
-      "body": "Players mostly swapped passive screen time for Wish Lamp$. What made the switch stick was the social and physical twist: something familiar, made worth sharing.",
-      "image": { "src": "/canvas/projects/tacobell/insight-3.png", "alt": "Players outdoors", "width": 600, "height": 400 }
-    },
-    {
-      "type": "image",
-      "image": { "src": "/canvas/projects/tacobell/final.jpg", "alt": "Final Taco Bell Treasure Hunt screens", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "video",
+      "src": "/canvas/projects/tacobell/main-flow.mp4",
+      "background": "#ede5fa"
     },
     {
       "type": "next-project",
       "slug": "scribd",
-      "title": "How do you monetize a reading experience without ruining it?",
-      "image": { "src": "/canvas/projects/scribd/cover-thumb.jpg", "alt": "Scribd document redesign", "width": 320, "height": 200 }
+      "title": "How do you earn a user's attention when they have other ten tabs open?",
+      "cta": "Explore Scribd's redesign →",
+      "imageLayout": "wide",
+      "mobileImageGap": 32,
+      "image": { "src": "/canvas/projects/tacobell/next-case.png", "alt": "Scribd case study preview", "width": 666, "height": 513 }
     }
   ]
 }

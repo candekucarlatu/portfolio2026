@@ -1,25 +1,30 @@
 {
   "site": {
-    "title": "Candela Kucar Latu — Product Designer",
+    "title": "Candela Kucar Latú",
     "description": "Product designer argentina con 8+ años de experiencia diseñando productos B2C y SaaS, de la estrategia al último píxel."
   },
   "about": {
-    "headline": "Candela es product designer",
-    "body": "con 8+ años de experiencia, diseñando productos B2C y SaaS desde la estrategia hasta el último píxel.",
+    "headline": "Candela es una product designer",
+    "body": "con 8 años de experiencia diseñando productos B2C y SaaS desde la estrategia hasta la UI.",
+    "bodyLines": [
+      "con 8 años de experiencia",
+      "diseñando productos B2C y SaaS",
+      "desde la estrategia hasta la UI."
+    ],
     "tagline": "proud dog mom"
   },
   "contact": {
     "linkedin": "LinkedIn",
-    "linkedinUrl": "https://www.linkedin.com/in/candela-kucar-latu/",
+    "linkedinUrl": "https://www.linkedin.com/in/candelakucarlatu/",
     "email": "Email",
-    "emailAddress": "candelakucarlatu@gmail.com",
+    "emailAddress": "kucarlatu@gmail.com",
     "resume": "CV",
-    "resumeUrl": "/candela-kucar-latu-cv.pdf"
+    "resumeUrl": "https://drive.google.com/file/d/1i4nv2Zsg-Btw9daRdVLRPW-Ryv2jaPY6/view?usp=sharing"
   },
   "ui": {
     "openProject": "Ver proyecto",
     "closeProject": "Cerrar",
-    "nextCaseStudy": "Próximo caso →",
+    "nextCaseStudy": "Próximo caso",
     "dragHint": "Arrastrá para explorar",
     "languageSwitch": "EN",
     "loading": "Cargando…",
@@ -29,5 +34,27 @@
     "duration": "Duración",
     "team": "Equipo",
     "role": "Rol"
+  },
+  "aboutSheet": {
+    "profileLabel": "PERFIL",
+    "principlesLabel": "PRINCIPIOS DE DISEÑO",
+    "collage1": "Hey there!",
+    "collage2": "Soy Cande",
+    "collage3": "y Membrillo",
+    "bio1": "Soy Product Designer, vivo en CABA, con 8 años de experiencia diseñando end-to-end mayormente para productos B2C y Saas. Recientemente lideré la estrategia y el diseño de un juego para la ciudad de Las Vegas.",
+    "bio2": "Desde la idea inicial hasta definir las prioridades, las mecánicas del juego, el roadmap y el diseño visual. Antes trabajé en Intive en productos que probablemente usaste como Scribd, SlideShare, Kaplan y BlackBerry.",
+    "links": {
+      "email": "Email",
+      "linkedin": "Linkedin",
+      "instagram": "Instagram",
+      "resume": "CV",
+      "resumeValue": "descargar acá"
+    },
+    "principles": [
+      { "title": "Uso research para tomar decisiones.", "body": "Cada investigación responde una pregunta concreta y guía una decisión específica." },
+      { "title": "Trabajo end-to-end.", "body": "No para controlar sino porque muchas veces el handoff es donde la experiencia empieza a romperse." },
+      { "title": "Shipear también es una herramienta de aprendizaje.", "body": "Prefiero lanzar algo imperfecto y aprender rápido antes que discutir un diseño en Figma." },
+      { "title": "Trato la eficiencia como un problema de diseño.", "body": "Eso significa usar IA para acortar la distancia entre una decisión y un artefacto, y darles a los developers más contexto, menos fricción y menos idas y vueltas." }
+    ]
   }
 }

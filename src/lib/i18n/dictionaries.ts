@@ -1,13 +1,15 @@
 import 'server-only'
 import type { Locale } from './config'
 
-const loaders = {
-  es: () => import('./dictionaries/es.json').then((m) => m.default),
-  en: () => import('./dictionaries/en.json').then((m) => m.default),
-} satisfies Record<Locale, () => Promise<unknown>>
+const esLoader = () => import('./dictionaries/es.json').then((m) => m.default)
 
-export type Dictionary = Awaited<ReturnType<(typeof loaders)['es']>>
+export type Dictionary = Awaited<ReturnType<typeof esLoader>>
+
+const loaders: Record<Locale, () => Promise<Dictionary>> = {
+  es: esLoader,
+  en: () => import('./dictionaries/en.json').then((m) => m.default as Dictionary),
+}
 
 export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
-  return (await loaders[locale]()) as Dictionary
+  return loaders[locale]()
 }

@@ -1,62 +1,68 @@
 {
   "slug": "slideshare",
   "card": {
-    "title": "Un reader hecho para slides pero lleno de documentos que nadie podía leer.",
-    "subtitle": "Rediseño del reader para que los 30M+ de slides y documentos de SlideShare sean realmente legibles.",
+    "title": "Una plataforma de slides tuvo que aprender a mostrar documentos.",
+    "subtitle": "Rediseño de SlideShare para mejorar la legibilidad de sus 70M+ usuarios.",
     "color": "orange"
   },
   "sections": [
     {
       "type": "hero",
-      "title": "Un reader hecho para slides pero lleno de documentos que nadie podía leer.",
-      "subtitle": "SlideShare es una plataforma UGC global con 70M+ usuarios, originalmente construida para presentaciones. Rediseñé el reader de documentos para mejorar la legibilidad en múltiples formatos, aumentando engagement y revenue por ads.",
+      "title": "Una plataforma nacida para slides que necesitaba aprender a mostrar documentos.",
+      "subtitle": "SlideShare es una plataforma UGC global con más de 70M de usuarios. Rediseñé la plataforma para mejorar la legibilidad en múltiples formatos, aumentando el engagement y el valor publicitario.",
       "meta": {
-        "duration": "Jul–Sep 2023",
-        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer",
-        "role": "Product Designer"
+        "duration": "Julio–Septiembre 2023",
+        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "EL PROBLEMA",
-      "title": "El reader de SlideShare no estaba hecho para leer documentos. Para nada.",
-      "body": "Los usuarios necesitaban un reader que se hiciera invisible: que les dejara evaluar documentos rápido y leer sin distracciones. Para el producto, sesiones más largas y enfocadas significaban más valor publicitario y un layout que finalmente escalara entre formatos."
+      "title": "Todo empezó con las presentaciones.",
+      "body": "Aunque los usuarios abrían documentos, la experiencia seguía funcionando para slides: difícil de escanear, incómodo para leer en profundidad y poco flexible para distintos tipos de contenido. Para el negocio, mejorar la lectura significaba sesiones más largas, más engagement y un layout capaz de escalar más allá de las presentaciones."
     },
     {
-      "type": "image",
-      "image": { "src": "/canvas/projects/slideshare/before.png", "alt": "Reader de SlideShare antes del rediseño", "width": 1100, "height": 600 },
-      "width": "default"
+      "type": "image-compare",
+      "background": "#ede8dd",
+      "before": { "src": "/canvas/projects/slideshare/before.png", "alt": "Lector de SlideShare — antes del rediseño" },
+      "after": { "src": "/canvas/projects/slideshare/after.png", "alt": "Lector de SlideShare — después del rediseño" },
+      "beforeLabel": "Antes",
+      "afterLabel": "Después"
     },
     {
       "type": "section",
       "label": "EL ENFOQUE",
-      "title": "Expandir el modelo de lectura — no solo el layout.",
-      "body": "Redefiní la jerarquía visual para soportar múltiples formatos y alinearla con el design system de Scribd. Simplifiqué la interfaz alrededor y rebalanceé ads y recomendaciones — manteniendo al documento como protagonista sin comprometer revenue."
+      "title": "Adaptar el lector a cada formato.",
+      "body": "Redefiní la jerarquía visual para soportar distintos formatos y alineé la experiencia con el sistema de diseño de Scribd. El foco estuvo en mejorar orientación, legibilidad y consistencia en documentos largos. Simplifiqué la interfaz y rebalanceé ads y recomendaciones para que acompañaran la lectura en lugar de competir con ella. También introduje patrones adaptativos según la longitud del documento, manteniendo el contenido como protagonista sin comprometer monetización."
     },
     {
       "type": "image",
-      "image": { "src": "/canvas/projects/slideshare/hero.jpg", "alt": "Reader rediseñado de SlideShare en una laptop", "width": 1440, "height": 720 },
-      "width": "full"
+      "image": { "src": "/canvas/projects/slideshare/approach-photo.jpg", "alt": "Lector rediseñado de SlideShare en una laptop", "width": 1180, "height": 664 },
+      "width": "full",
+      "variant": "plain"
     },
     {
       "type": "section",
-      "label": "MEASURING IMPACT",
+      "label": "MÉTRICAS DE ÉXITO",
       "title": "Los números se movieron en la dirección correcta.",
-      "body": "Los usuarios se quedaron más después de remover fricción. Mobile-first focused sessions en pantallas chicas. Los usuarios profundizaron en los documentos. Se quedaron lo suficiente para leer offline."
+      "body": "Las mejoras en legibilidad y foco se tradujeron en sesiones de lectura más largas y mejores resultados de negocio. Los ingresos publicitarios en desktop crecieron un 7%, impulsados por usuarios que permanecían más tiempo dentro del lector."
     },
     {
       "type": "stat-cards",
       "cards": [
-        { "value": "Saturado", "label": "Recomendaciones, metadata, ads y acciones competían por el espacio.", "color": "purple" },
-        { "value": "Rígido", "label": "El reader no se adaptaba a distintos formatos.", "color": "orange" },
-        { "value": "Sin foco", "label": "Elementos compitiendo y un modelo rígido hacían la lectura compleja.", "color": "green" }
+        { "value": "+10%", "label": "Lectura ≥1 min. en desktop.", "color": "green" },
+        { "value": "+10%", "label": "Lectura ≥5 min. en mobile.", "color": "pink" },
+        { "value": "+30%", "label": "Descargas en mobile.", "color": "blue" }
       ]
     },
     {
       "type": "next-project",
       "slug": "kaplan",
-      "title": "¿Cómo navegar entre lo que dicen y lo que hacen los usuarios?",
-      "image": { "src": "/canvas/projects/kaplan/cover-thumb.jpg", "alt": "Rediseño de navegación de Kaplan", "width": 320, "height": 200 }
+      "title": "Darle a la navegación de Learner Home la estructura que nunca tuvo.",
+      "cta": "Explorá la reorganización de Kaplan →",
+      "imageLayout": "wide",
+      "mobileImageGap": 32,
+      "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Vista previa del caso Kaplan", "width": 666, "height": 513 }
     }
   ]
 }

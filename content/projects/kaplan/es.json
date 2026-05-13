@@ -1,67 +1,85 @@
 {
   "slug": "kaplan",
   "card": {
-    "title": "¿Cómo navegar entre lo que dicen y lo que hacen los usuarios?",
-    "subtitle": "Simplifiqué la navegación de Learner Home para reducir fricción y alinear la experiencia entre plataformas.",
+    "title": "Haciendo que navegar Learner Home sea más simple.",
+    "subtitle": "Simplificación de la navegación para reducir fricción y unificar la experiencia entre plataformas.",
     "color": "blue"
   },
   "sections": [
     {
       "type": "hero",
-      "title": "¿Cómo navegar entre lo que dicen y lo que hacen los usuarios?",
-      "subtitle": "Kaplan es una empresa global de servicios educativos. Simplifiqué la navegación de Learner Home para reducir fricción y alinear la experiencia entre plataformas.",
+      "title": "Haciendo que navegar Learner Home sea más simple.",
+      "subtitle": "Kaplan es una empresa global de educación con productos B2C y B2B. Simplifiqué la navegación de Learner Home para reducir fricción y alinear la experiencia entre plataformas.",
       "meta": {
-        "duration": "Oct–Dic 2022",
-        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer",
-        "role": "Product Designer"
+        "duration": "Oct–Dic 2023",
+        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "EL PROBLEMA",
-      "title": "Learner Home tenía demasiadas formas de llegar a cualquier lado. Ninguna obvia.",
-      "body": "Learner Home estaba saturado de menús superpuestos, funcionalidad duplicada y jerarquías poco claras. Acciones críticas estaban escondidas detrás de un hamburguesa, y la experiencia entre plataformas no acompañaba el acceso a cursos, certificados y configuraciones. La navegación había crecido orgánicamente — y se notaba."
+      "title": "La navegación había crecido sin una estructura clara.",
+      "body": "Learner Home había evolucionado sin una lógica de navegación clara. Entre menús duplicados y jerarquías inconsistentes, encontrar accesos clave se volvía innecesariamente difícil. El objetivo era simplificar la experiencia y unificarla entre plataformas."
     },
     {
-      "type": "image",
-      "image": { "src": "/canvas/projects/kaplan/before.png", "alt": "Kaplan Learner Home antes del rediseño", "width": 1000, "height": 600 },
-      "width": "default"
+      "type": "research-cards",
+      "layout": "horizontal",
+      "cards": [
+        {
+          "title": "El dashboard estaba reemplazando a la navegación.",
+          "body": "Los usuarios ignoraban el menú y usaban los quick-links del dashboard para moverse por la plataforma. La navegación principal había dejado de cumplir su función.",
+          "image": { "src": "/canvas/projects/kaplan/insight-1.png", "alt": "Tarjetas de acceso rápido del dashboard antes del rediseño", "width": 599, "height": 446 }
+        },
+        {
+          "title": "Demasiados menús, poca claridad.",
+          "body": "Cursos, certificados y configuraciones estaban repartidos entre la nav lateral y el avatar. Browse Catalog sumaba complejidad innecesaria.",
+          "image": { "src": "/canvas/projects/kaplan/insight-2.png", "alt": "Superposición entre la nav lateral y el menú del avatar", "width": 599, "height": 446 }
+        },
+        {
+          "title": "En desktop, la navegación principal estaba escondida.",
+          "body": "La nav lateral vivía detrás de un hamburguer menu. La mayoría de los usuarios nunca lo abría, incluso cuando ahí estaban las acciones más importantes.",
+          "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Menú hamburguesa ocultando la navegación principal en desktop", "width": 599, "height": 446 },
+          "imageEdge": true
+        }
+      ]
     },
     {
       "type": "section",
-      "label": "ENTREVISTAS A USUARIOS",
-      "title": "Los usuarios decían una cosa y hacían otra.",
-      "body": "Diseñé dos opciones: un layout consolidado que unificaba acciones en una jerarquía clara, y otro incremental que mantenía consistencia con el resto. Antes de comprometernos con el esfuerzo de re-ingeniería, testeé ambas con 7 usuarios para ver si valía la pena."
+      "label": "A/B TESTING",
+      "title": "Una opción para consistencia, otra para una jerarquía más limpia.",
+      "body": "Primero simplifiqué la arquitectura, pero ese cambio aumentaba la diferencia con Atom, la plataforma donde los usuarios pasaban la mayor parte del tiempo. Como su equipo no tenía un rediseño de la navegación entre las prioridades, hice un A/B test para entender si el cambio realmente mejoraba la experiencia."
     },
     {
-      "type": "insight",
-      "title": "Los usuarios navegan por quick links. No por la nav principal.",
-      "body": "En ambas opciones, los participantes usaron las tarjetas de la página antes que el menú para completar tareas — confirmando que el layout de página tiene tanto peso navegacional como la nav misma.",
-      "image": { "src": "/canvas/projects/kaplan/insight-1.png", "alt": "Usuario clickeando una tarjeta", "width": 600, "height": 400 }
+      "type": "image-compare",
+      "background": "#ede8dd",
+      "before": { "src": "/canvas/projects/kaplan/design-1.png", "alt": "Navegación Kaplan Diseño 1 — consistencia cross-platform" },
+      "after": { "src": "/canvas/projects/kaplan/design-2.png", "alt": "Navegación Kaplan Diseño 2 — jerarquía más limpia" },
+      "beforeLabel": "Diseño 1",
+      "afterLabel": "Diseño 2",
+      "height": 563
     },
     {
-      "type": "insight",
-      "title": "La ubicación define si un CTA funciona.",
-      "body": "Mismo label, misma tarea — 72% de tasa de error en la Opción 2 vs. 100% de éxito en la Opción 1. La posición, no el naming, fue el factor decisivo.",
-      "image": { "src": "/canvas/projects/kaplan/insight-2.png", "alt": "Comparación de posición de CTA", "width": 600, "height": 400 },
-      "reverse": true
+      "type": "section",
+      "label": "EL ENFOQUE",
+      "title": "La diferencia entre lo que los usuarios dicen y lo que realmente hacen.",
+      "body": "Elegí el Diseño 2, asignándole a cada menú un rol claro: la información del estudiante en el avatar y la navegación de la plataforma en la sidebar. También actualicé labels para alinearlos con el lenguaje de los usuarios. Aunque el 78% dijo preferir el Diseño 1, el Diseño 2 tuvo mejores resultados de usabilidad:"
     },
     {
-      "type": "insight",
-      "title": "Preferencia y comportamiento fueron en direcciones opuestas.",
-      "body": "78% de los usuarios prefirieron la Opción 2. Pero la Opción 1 los hizo completar más tareas. Decidimos por comportamiento, no por preferencia declarada.",
-      "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Gráfico de preferencia vs. comportamiento", "width": 600, "height": 400 }
-    },
-    {
-      "type": "image",
-      "image": { "src": "/canvas/projects/kaplan/final.jpg", "alt": "Diseño final de Kaplan Learner Home", "width": 1200, "height": 720 },
-      "width": "wide"
+      "type": "stat-cards",
+      "cards": [
+        { "value": "+30%", "label": "encontró \"Ayuda y Soporte\"", "color": "yellow" },
+        { "value": "+56%", "label": "encontró \"Explorar Catálogo\"", "color": "green" },
+        { "value": "+72%", "label": "encontró \"Seguimiento\"", "color": "pink" }
+      ]
     },
     {
       "type": "next-project",
       "slug": "tacobell",
-      "title": "¿Puede una búsqueda del tesoro arreglar un loop de loyalty roto?",
-      "image": { "src": "/canvas/projects/tacobell/cover-thumb.jpg", "alt": "Rediseño de loyalty de Taco Bell", "width": 320, "height": 200 }
+      "title": "¿Puede una búsqueda del tesoro mejorar la retención?",
+      "cta": "Explorá el juego de Taco Bell →",
+      "imageLayout": "phone",
+      "image": { "src": "/canvas/projects/kaplan/next-case.png", "alt": "App Taco Bell en iPhone", "width": 225, "height": 493 },
+      "mobileImage": { "src": "/canvas/projects/kaplan/next-case-mobile.png", "alt": "App Taco Bell en iPhone", "width": 684, "height": 636 }
     }
   ]
 }

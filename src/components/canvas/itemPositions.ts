@@ -1,4 +1,5 @@
-import type { NoteColor, ProjectSlug } from '@/lib/content/loader'
+import type { NoteColor } from '@/lib/content/schema'
+import type { ProjectSlug } from '@/lib/content/loader'
 
 export const BOARD_WIDTH = 2500
 export const BOARD_HEIGHT = 1800
@@ -9,6 +10,8 @@ export type DecorItem = {
   id: string
   src: string
   alt: string
+  /** Parallax depth: 0 = flat on board, higher = floats further above */
+  depth?: number
 } & Rect
 
 export type ProjectItem = {
@@ -58,6 +61,7 @@ export const DECOR: readonly DecorItem[] = [
     y: 74,
     w: 153,
     h: 249,
+    depth: 2.5,
   },
   {
     id: 'lettering',
@@ -67,6 +71,7 @@ export const DECOR: readonly DecorItem[] = [
     y: 148,
     w: 351,
     h: 301,
+    depth: 0.6,
   },
   {
     id: 'gastly',
@@ -76,6 +81,7 @@ export const DECOR: readonly DecorItem[] = [
     y: 113,
     w: 189,
     h: 257,
+    depth: 2.5,
   },
   {
     id: 'collage',
@@ -85,5 +91,6 @@ export const DECOR: readonly DecorItem[] = [
     y: 1195,
     w: 311,
     h: 384,
+    depth: 0.4,
   },
 ] as const

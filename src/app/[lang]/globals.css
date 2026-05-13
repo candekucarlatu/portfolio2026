@@ -15,6 +15,10 @@
   --color-note-orange-line: #fdbc6f;
   --color-note-purple: #e5dbfc;
   --color-note-purple-line: #4c0299;
+  --color-note-pink: #fcd3c9;
+  --color-note-pink-line: #e05a3a;
+  --color-note-yellow: #fff5b8;
+  --color-note-yellow-line: #d4a017;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-script: var(--font-caveat), cursive;
@@ -26,6 +30,7 @@
   --radius-card: 11px;
 
   --animate-board-fade-in: board-fade-in 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+
 }
 
 @keyframes board-fade-in {
@@ -64,6 +69,11 @@ body {
   scrollbar-width: none;
 }
 
+/* Scrollbar hidden utility (stat-cards carousel, etc.) */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -73,4 +83,10 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* 1440px breakpoint utilities — used by AboutMe XL layout */
+@media (min-width: 1440px) {
+  .at-wide-flex   { display: flex !important; }
+  .at-wide-hidden { display: none !important; }
 }

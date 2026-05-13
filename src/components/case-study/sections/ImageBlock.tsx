@@ -6,23 +6,29 @@ interface ImageBlockProps {
   image: ProjectImage
   caption?: string
   width: 'default' | 'wide' | 'full'
+  variant?: 'framed' | 'plain'
 }
 
-const widths: Record<ImageBlockProps['width'], string> = {
-  default: 'max-w-[640px]',
-  wide: 'max-w-[960px]',
-  full: 'max-w-[1200px]',
+const widthClasses: Record<ImageBlockProps['width'], string> = {
+  default: 'mx-auto max-w-[680px] px-6 md:px-0',
+  wide: 'mx-auto max-w-[960px] px-6 md:px-8',
+  full: 'px-6 md:px-0 md:mx-[24px] lg:mx-[56px]',
 }
 
-export function ImageBlock({ image, caption, width }: ImageBlockProps) {
+export function ImageBlock({ image, caption, width, variant = 'framed' }: ImageBlockProps) {
   return (
     <figure
       className={clsx(
-        'mx-auto flex w-full flex-col items-center gap-3 px-6 md:px-8',
-        widths[width],
+        'flex w-auto flex-col items-center gap-3',
+        widthClasses[width],
       )}
     >
-      <div className="bg-cork relative w-full overflow-hidden rounded-lg">
+      <div
+        className={clsx(
+          'relative w-full overflow-hidden',
+          variant === 'framed' && 'bg-cork rounded-lg',
+        )}
+      >
         <Image
           src={image.src}
           alt={image.alt}

@@ -1,62 +1,68 @@
 {
   "slug": "slideshare",
   "card": {
-    "title": "A reader built for slides but full of documents nobody could read.",
-    "subtitle": "A reader redesign to make SlideShare's 30M+ slides and documents actually readable.",
+    "title": "A platform built for slides that needed to learn how to show documents.",
+    "subtitle": "A reader redesign to make SlideShare's 70M+ users actually read.",
     "color": "orange"
   },
   "sections": [
     {
       "type": "hero",
-      "title": "A reader built for slides but full of documents nobody could read.",
-      "subtitle": "SlideShare is a global UGC platform with 70M+ users, originally built around slide presentations. I redesigned the document reader to improve readability across multiple formats — increasing engagement and ad revenue.",
+      "title": "A platform built for slides that needed to learn how to show documents.",
+      "subtitle": "SlideShare is a global UGC platform with 70M+ users. I redesigned the document reader to improve readability across multiple formats increasing engagement and ad revenue.",
       "meta": {
         "duration": "July–Sep 2023",
-        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer",
-        "role": "Product Designer"
+        "team": "Product Designer · UX Researcher · Product Manager · Lead Engineer"
       }
     },
     {
       "type": "section",
       "label": "THE PROBLEM",
-      "title": "SlideShare's reader wasn't built for reading documents. At all.",
-      "body": "Users needed a reader that got out of the way: one that let them evaluate documents quickly and read without distraction. For the product, longer and more focused sessions meant more ad value and a layout that could finally scale across formats."
+      "title": "It all started with slide presentations.",
+      "body": "But when it came to documents, users needed a reader that got out of the way: one that let them evaluate and read without distraction. For the product, longer, more focused sessions meant more ad value and a layout that could finally scale across formats."
     },
     {
-      "type": "image",
-      "image": { "src": "/canvas/projects/slideshare/before.png", "alt": "SlideShare reader before the redesign", "width": 1100, "height": 600 },
-      "width": "default"
+      "type": "image-compare",
+      "background": "#ede8dd",
+      "before": { "src": "/canvas/projects/slideshare/before.png", "alt": "SlideShare document reader — before redesign" },
+      "after": { "src": "/canvas/projects/slideshare/after.png", "alt": "SlideShare document reader — after redesign" },
+      "beforeLabel": "Before",
+      "afterLabel": "After"
     },
     {
       "type": "section",
       "label": "THE APPROACH",
-      "title": "Expanding the reading model — not just the layout.",
-      "body": "I redefined the visual hierarchy to support multiple formats and align with Scribd's design system. I simplified the surrounding interface and rebalanced ads and recommendations — keeping the document central without compromising revenue."
+      "title": "Adapting the reader for every format.",
+      "body": "I redefined the hierarchy to support multiple formats while aligning with Scribd's design system, improving orientation in longer documents. I simplified the interface and rebalanced ads and recommendations, introducing adaptive patterns based on document length to keep content central without compromising revenue."
     },
     {
       "type": "image",
-      "image": { "src": "/canvas/projects/slideshare/hero.jpg", "alt": "SlideShare redesigned reader on a laptop", "width": 1440, "height": 720 },
-      "width": "full"
+      "image": { "src": "/canvas/projects/slideshare/approach-photo.jpg", "alt": "SlideShare redesigned reader on a laptop", "width": 1180, "height": 664 },
+      "width": "full",
+      "variant": "plain"
     },
     {
       "type": "section",
-      "label": "MEASURING IMPACT",
+      "label": "SUCCESS MEASURES",
       "title": "The numbers moved in the right direction.",
-      "body": "Users stayed longer after removing friction. Mobile-first focused sessions on smaller screens. Users went deeper into documents. Users stayed long enough to read offline."
+      "body": "Longer reading sessions translated directly into business outcomes. Also ad revenue on desktop grew 7%, driven by users who stayed long enough to see more of the page."
     },
     {
       "type": "stat-cards",
       "cards": [
-        { "value": "Cluttered", "label": "Recommendations, metadata, ads, and actions competed for space.", "color": "purple" },
-        { "value": "Rigid", "label": "The reader had no way to adapt to different formats.", "color": "orange" },
-        { "value": "Unfocused", "label": "Competing elements and a rigid model made reading complex.", "color": "green" }
+        { "value": "+10%", "label": "Reading ≥1 min. on desktop.", "color": "green" },
+        { "value": "+10%", "label": "Reading ≥5 min. on mobile.", "color": "pink" },
+        { "value": "+30%", "label": "Download attempts on mobile.", "color": "blue" }
       ]
     },
     {
       "type": "next-project",
       "slug": "kaplan",
-      "title": "How do you navigate between what users say and what users do?",
-      "image": { "src": "/canvas/projects/kaplan/cover-thumb.jpg", "alt": "Kaplan navigation redesign", "width": 320, "height": 200 }
+      "title": "Giving Learner Home's navigation the structure it never had.",
+      "cta": "Explore Kaplan's reorganization →",
+      "imageLayout": "wide",
+      "mobileImageGap": 32,
+      "image": { "src": "/canvas/projects/slideshare/next-case.png", "alt": "Kaplan case study preview", "width": 666, "height": 513 }
     }
   ]
 }
