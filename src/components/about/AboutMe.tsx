@@ -194,7 +194,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           Fonts in vw so text scales proportionally as canvas grows.
           (2.4vw = 20px at 834px; 1.92vw = 16px at 834px)
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="overflow-x-hidden overflow-y-auto hidden md:block 3xl:hidden lg:h-full">
+      <div className="overflow-x-hidden overflow-y-auto hidden md:block wide:hidden lg:h-full">
         <div
           className="relative w-full max-w-[834px] mx-auto overflow-hidden"
           style={{ aspectRatio: '834 / 1700' }}
@@ -328,7 +328,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           Figma 502:9600. Side-by-side Profile (left) + DP (right).
           When viewport is taller than 1010px the canvas floats in the middle.
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="hidden 3xl:flex h-full w-full items-center overflow-hidden">
+      <div className="hidden wide:flex h-full w-full items-center overflow-hidden">
         <div
           className="relative w-full"
           style={{ aspectRatio: '1440 / 1010' }}

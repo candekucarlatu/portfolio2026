@@ -32,7 +32,7 @@
   --animate-board-fade-in: board-fade-in 1200ms cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Custom breakpoints */
-  --breakpoint-3xl: 1440px;
+  --breakpoint-wide: 1440px;
 }
 
 @keyframes board-fade-in {
