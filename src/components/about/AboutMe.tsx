@@ -194,7 +194,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           Fonts in vw so text scales proportionally as canvas grows.
           (2.4vw = 20px at 834px; 1.92vw = 16px at 834px)
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="overflow-x-hidden overflow-y-auto hidden md:block min-[1440px]:hidden">
+      <div className="overflow-x-hidden overflow-y-auto hidden md:block 3xl:hidden lg:h-full">
         <div
           className="relative w-full overflow-hidden"
           style={{ aspectRatio: '834 / 1700' }}
@@ -234,7 +234,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           >
             <div
               className="font-script flex flex-col text-black"
-              style={{ fontSize: 20, gap: 12, lineHeight: 1.3 }}
+              style={{ fontSize: 'max(20px, 2.4vw)', gap: 'max(12px, 1.44vw)', lineHeight: 1.3 }}
             >
               <p>{s.bio1}</p>
               <p>{s.bio2}</p>
@@ -261,13 +261,13 @@ export function AboutMe({ dict }: AboutMeProps) {
               >
                 <span
                   className="shrink-0 font-semibold text-ink"
-                  style={{ fontSize: 16, width: labelW }}
+                  style={{ fontSize: 'max(16px, 1.92vw)', width: labelW }}
                 >
                   {label}
                 </span>
                 <span
                   className="font-script text-black transition-colors hover:text-[#FF3E00]"
-                  style={{ fontSize: 20, lineHeight: 1.5, marginLeft: valGap }}
+                  style={{ fontSize: 'max(20px, 2.4vw)', lineHeight: 1.5, marginLeft: valGap }}
                 >
                   {value}
                 </span>
@@ -302,16 +302,16 @@ export function AboutMe({ dict }: AboutMeProps) {
               className="absolute"
               style={{ left: pos.left, top: pos.top, width: '59.26%', transform: 'rotate(-2deg)' }}
             >
-              <div className="flex flex-col" style={{ gap: 12 }}>
+              <div className="flex flex-col" style={{ gap: 'max(12px, 1.44vw)' }}>
                 <p
                   className="font-bold leading-[1.25]"
-                  style={{ fontSize: 16, color: '#1f1a14' }}
+                  style={{ fontSize: 'max(16px, 1.92vw)', color: '#1f1a14' }}
                 >
                   {s.principles[i].title}
                 </p>
                 <p
                   className="leading-[1.65]"
-                  style={{ fontSize: 16, color: '#666159' }}
+                  style={{ fontSize: 'max(16px, 1.92vw)', color: '#666159' }}
                 >
                   {s.principles[i].body}
                 </p>
@@ -328,7 +328,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           Figma 502:9600. Side-by-side Profile (left) + DP (right).
           When viewport is taller than 1010px the canvas floats in the middle.
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="hidden min-[1440px]:flex h-full w-full items-center overflow-hidden">
+      <div className="hidden 3xl:flex h-full w-full items-center overflow-hidden">
         <div
           className="relative w-full"
           style={{ aspectRatio: '1440 / 1010' }}
