@@ -31,10 +31,10 @@ export function AboutMe({ dict }: AboutMeProps) {
 
   // ── Desktop XL positions (canvas 1440×1010) ─────────────────────────────
   const xlDpTexts = [
-    { left: '53.45%', top: '35.55%' },  // Use research   — Figma 769.65/1440, 359.1/1010
-    { left: '53.76%', top: '48.22%' },  // Work end-to-end
-    { left: '54.06%', top: '60.88%' },  // Ship to learn
-    { left: '54.37%', top: '73.55%' },  // Treat efficiency
+    { left: '53.45%', top: '33.80%' },  // Use research   — Figma wrapper top 35.55%, text centered ↑2%
+    { left: '53.76%', top: '46.50%' },  // Work end-to-end — Figma 48.22% ↑1.7%
+    { left: '54.06%', top: '59.20%' },  // Ship to learn   — Figma 60.88% ↑1.7%
+    { left: '54.37%', top: '73.55%' },  // Treat efficiency — unchanged
   ]
 
   // Desktop XL link rows (canvas 1440×1010, rotate +1deg)
@@ -328,20 +328,26 @@ export function AboutMe({ dict }: AboutMeProps) {
           Figma 502:9600. Side-by-side Profile (left) + DP (right).
           When viewport is taller than 1010px the canvas floats in the middle.
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="hidden at-wide-flex h-full w-full items-center overflow-hidden">
+      <div className="hidden at-wide-flex h-full w-full items-center justify-center overflow-hidden">
         <div
-          className="relative w-full"
-          style={{ aspectRatio: '1440 / 1010' }}
+          className="relative shrink-0"
+          style={{ aspectRatio: '1440 / 1010', height: '100%', maxHeight: '1010px', maxWidth: '100%' }}
         >
 
-          {/* ── DECORATION 1 — top-right ──────────────────────────────────── */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/canvas/aboutme/sheet/Decoration%201.png"
-            alt="" aria-hidden
-            className="pointer-events-none absolute z-0"
-            style={{ left: '54.51%', top: '0%', width: '37.15%' }}
-          />
+          {/* ── DECORATION 1 — clipping wrapper, image peeks from top edge ─── */}
+          {/* Figma: container h=223/1010=22.08%, image h=173.54% container, top=−73.54% */}
+          <div
+            className="pointer-events-none absolute z-0 overflow-hidden"
+            style={{ left: '54.51%', top: '0%', width: '37.15%', height: '22.08%' }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/canvas/aboutme/sheet/Decoration%201.png"
+              alt="" aria-hidden
+              className="absolute w-full"
+              style={{ height: '173.54%', top: '-73.54%', left: 0 }}
+            />
+          </div>
 
           {/* ── DESIGN PRINCIPLES PANEL — z-10 ──────────────────────────── */}
           {/* Figma: left=697/1440=48.40%, top=231/1010=22.87%, width=46.27% */}
@@ -419,7 +425,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           {/* Figma: left=193.27/1440=13.42%, top=440/1010=43.56%, width=471/1440=32.71% */}
           <div
             className="absolute z-30"
-            style={{ left: '13.42%', top: '43.56%', width: '32.71%', transform: 'rotate(1deg)' }}
+            style={{ left: '13.42%', top: '41.00%', width: '32.71%', transform: 'rotate(1deg)' }}
           >
             <div
               className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
