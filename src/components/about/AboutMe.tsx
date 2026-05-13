@@ -94,7 +94,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           >
             <div
               className="font-script flex flex-col gap-[0.5em] leading-[1.4] text-black"
-              style={{ fontSize: '4.1vw' }}
+              style={{ fontSize: 'clamp(12px, 4.1vw, 16px)' }}
             >
               <p>{s.bio1}</p>
               <p>{s.bio2}</p>
@@ -118,17 +118,17 @@ export function AboutMe({ dict }: AboutMeProps) {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="absolute flex items-center"
-                style={{ left: '13.3%', top: topPct, width: '75.1%', gap: '3vw', transform: 'rotate(-1deg)' }}
+                style={{ left: '13.3%', top: topPct, width: '75.1%', gap: 'clamp(8px, 3vw, 12px)', transform: 'rotate(-1deg)' }}
               >
                 <span
                   className="text-ink shrink-0 font-semibold"
-                  style={{ fontSize: '3.08vw', width: '28%' }}
+                  style={{ fontSize: 'clamp(9px, 3.08vw, 12px)', width: '28%' }}
                 >
                   {label}
                 </span>
                 <span
                   className="font-script text-black transition-colors hover:text-[#FF3E00]"
-                  style={{ fontSize: '4.1vw', lineHeight: 1.3 }}
+                  style={{ fontSize: 'clamp(12px, 4.1vw, 16px)', lineHeight: 1.3 }}
                 >
                   {value}
                 </span>
@@ -151,13 +151,13 @@ export function AboutMe({ dict }: AboutMeProps) {
               <div className="flex flex-col gap-[0.25em]">
                 <p
                   className="font-bold leading-[1.2]"
-                  style={{ fontSize: '3.59vw', color: '#1f1a14' }}
+                  style={{ fontSize: 'clamp(10px, 3.59vw, 14px)', color: '#1f1a14' }}
                 >
                   {s.principles[i].title}
                 </p>
                 <p
                   className="leading-[1.5]"
-                  style={{ fontSize: '3.08vw', color: '#666159' }}
+                  style={{ fontSize: 'clamp(9px, 3.08vw, 12px)', color: '#666159' }}
                 >
                   {s.principles[i].body}
                 </p>
