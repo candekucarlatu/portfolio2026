@@ -28,7 +28,8 @@
     "dragHint": "Arrastrá para explorar",
     "languageSwitch": "EN",
     "loading": "Cargando…",
-    "backHome": "Volver al inicio"
+    "backHome": "Volver al inicio",
+    "resetLayout": "Volver al original"
   },
   "meta": {
     "duration": "Duración",

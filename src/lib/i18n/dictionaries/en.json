@@ -28,7 +28,8 @@
     "dragHint": "Drag to explore",
     "languageSwitch": "ES",
     "loading": "Loading…",
-    "backHome": "Back home"
+    "backHome": "Back home",
+    "resetLayout": "Reset layout"
   },
   "meta": {
     "duration": "Duration",

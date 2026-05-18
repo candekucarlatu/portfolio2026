@@ -1,0 +1,60 @@
+{
+  "slug": "tacobell",
+  "items": [
+    {
+      "id": "kiosk",
+      "src": "/canvas/projects/tacobell/items/kiosk.png",
+      "x": 669,
+      "y": 169,
+      "w": 227,
+      "h": 253,
+      "anchor": {
+        "x": 149,
+        "y": -95
+      },
+      "zIndex": 2,
+      "pin": true
+    },
+    {
+      "id": "sticky",
+      "src": "/canvas/projects/tacobell/items/sticky.png",
+      "x": 444,
+      "y": 359,
+      "w": 275,
+      "h": 218,
+      "anchor": {
+        "x": 109,
+        "y": -91
+      },
+      "zIndex": 3,
+      "pin": true
+    },
+    {
+      "id": "paconaut",
+      "src": "/canvas/projects/tacobell/items/paconaut.png",
+      "x": 667,
+      "y": 493,
+      "w": 246,
+      "h": 281,
+      "anchor": {
+        "x": 113,
+        "y": -72
+      },
+      "zIndex": 2,
+      "pin": true
+    },
+    {
+      "id": "llavero",
+      "src": "/canvas/projects/tacobell/items/llavero.png",
+      "x": 372,
+      "y": 427,
+      "w": 124,
+      "h": 316,
+      "anchor": {
+        "x": 62,
+        "y": 0
+      },
+      "zIndex": 1
+    }
+  ]
+}

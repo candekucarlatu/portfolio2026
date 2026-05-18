@@ -1,0 +1,61 @@
+{
+  "slug": "decor",
+  "items": [
+    {
+      "id": "wow",
+      "src": "/canvas/decor/items/wow.png",
+      "x": 132,
+      "y": 187,
+      "w": 153,
+      "h": 162,
+      "anchor": {
+        "x": 76,
+        "y": -113
+      },
+      "zIndex": 1,
+      "pin": true
+    },
+    {
+      "id": "lettering",
+      "src": "/canvas/decor/items/lettering.png",
+      "x": 1116,
+      "y": 193,
+      "w": 368,
+      "h": 264,
+      "anchor": {
+        "x": 237,
+        "y": -45
+      },
+      "zIndex": 1,
+      "pin": true
+    },
+    {
+      "id": "gastly",
+      "src": "/canvas/decor/items/gastly.png",
+      "x": 2263,
+      "y": 202,
+      "w": 146,
+      "h": 147,
+      "anchor": {
+        "x": 43,
+        "y": -89
+      },
+      "zIndex": 1,
+      "pin": true
+    },
+    {
+      "id": "collage",
+      "src": "/canvas/decor/items/collage.png",
+      "x": 988,
+      "y": 1324,
+      "w": 328,
+      "h": 326,
+      "anchor": {
+        "x": 173,
+        "y": -108
+      },
+      "zIndex": 1,
+      "pin": true
+    }
+  ]
+}

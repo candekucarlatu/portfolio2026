@@ -1,0 +1,59 @@
+{
+  "slug": "aboutme",
+  "items": [
+    {
+      "id": "photo",
+      "src": "/canvas/projects/aboutme/items/photo.png",
+      "x": 1014,
+      "y": 739,
+      "w": 284,
+      "h": 316,
+      "anchor": {
+        "x": 124,
+        "y": -77
+      },
+      "zIndex": 2,
+      "pin": true
+    },
+    {
+      "id": "paper",
+      "src": "/canvas/projects/aboutme/items/paper.png",
+      "x": 1200,
+      "y": 688,
+      "w": 410,
+      "h": 356,
+      "anchor": {
+        "x": 172,
+        "y": -63
+      },
+      "zIndex": 3,
+      "pin": true,
+      "links": [
+        {
+          "href": "https://www.linkedin.com/in/candelakucarlatu/",
+          "x": 78,
+          "y": 278,
+          "w": 75,
+          "h": 35,
+          "ariaLabel": "LinkedIn"
+        },
+        {
+          "href": "mailto:kucarlatu@gmail.com",
+          "x": 159,
+          "y": 255,
+          "w": 75,
+          "h": 35,
+          "ariaLabel": "Email"
+        },
+        {
+          "href": "https://drive.google.com/file/d/1CwPjslGrG5DXbfcUhOlyEc3Zfjueu6SE/view?usp=sharing",
+          "x": 223,
+          "y": 237,
+          "w": 80,
+          "h": 35,
+          "ariaLabel": "Resume"
+        }
+      ]
+    }
+  ]
+}

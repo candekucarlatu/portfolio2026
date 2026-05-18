@@ -1,18 +1,39 @@
 'use client'
 
 import { motion, useMotionValue, useReducedMotion, AnimatePresence } from 'framer-motion'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import type { Project } from '@/lib/content/schema'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 import type { Locale } from '@/lib/i18n/config'
 import { AboutMeCard } from './AboutMeCard'
+import { CanvasItem } from './CanvasItem'
 import { WowDecor, LetteringDecor, GastlyDecor, CollageDecor } from './DecorItems'
+import { Pegboard } from './Pegboard'
 import { ProjectCard } from './ProjectCard'
+import { ResetLayoutButton } from './ResetLayoutButton'
 import { TacoBellCard } from './TacoBellCard'
 import { SlideShareCard } from './SlideShareCard'
 import { ScribdCard } from './ScribdCard'
 import { KaplanCard } from './KaplanCard'
 import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, PROJECTS } from './itemPositions'
+import { useCanvasLayout } from '@/lib/canvas/useCanvasLayout'
+import { CanvasLayoutSchema, type CanvasLayout } from '@/lib/canvas/manifest'
+import tacobellLayoutRaw from '../../../content/canvas-layout/tacobell.json'
+import kaplanLayoutRaw from '../../../content/canvas-layout/kaplan.json'
+import slideshareLayoutRaw from '../../../content/canvas-layout/slideshare.json'
+import scribdLayoutRaw from '../../../content/canvas-layout/scribd.json'
+import decorLayoutRaw from '../../../content/canvas-layout/decor.json'
+import aboutmeLayoutRaw from '../../../content/canvas-layout/aboutme.json'
+
+const CANVAS_LAYOUTS: Record<string, CanvasLayout> = {
+  tacobell: CanvasLayoutSchema.parse(tacobellLayoutRaw),
+  kaplan: CanvasLayoutSchema.parse(kaplanLayoutRaw),
+  slideshare: CanvasLayoutSchema.parse(slideshareLayoutRaw),
+  scribd: CanvasLayoutSchema.parse(scribdLayoutRaw),
+}
+
+const DECOR_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(decorLayoutRaw)
+const ABOUTME_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(aboutmeLayoutRaw)
 
 interface PortfolioCanvasProps {
   projects: Project[]
@@ -26,18 +47,13 @@ interface ViewportSize {
 }
 
 /**
- * Canvas scale for all viewport sizes.
- *
- * Phone  (<768px):  scale = viewport.width / 480  → board ≈2031px at 390px (Figma ref 463:116)
- * Tablet (768-1023px): scale = viewport.width / 625 → board ≈3073px at 768px (Figma ref 464:119)
- * Desktop (≥1024px): max(byWidth, byHeight), clamped to [0.38, 1.0]
+ * Canvas scale is FIXED at 1 for all viewport sizes.
+ * Items keep their natural size — only the scroll/pan offset changes per viewport
+ * to keep the About Me area centered initially. The user explicitly requested this:
+ * no resize across viewports, only repositioning.
  */
-function getScale(viewport: ViewportSize): number {
-  if (viewport.width < 768) return Math.max(0.5, viewport.width / 480)
-  if (viewport.width < 1024) return Math.max(0.8, viewport.width / 625)
-  const byWidth = viewport.width / 1280
-  const byHeight = viewport.height / 1800
-  return Math.min(1, Math.max(0.38, Math.max(byWidth, byHeight)))
+function getScale(_viewport: ViewportSize): number {
+  return 1
 }
 
 function getCenteredOffset(viewport: ViewportSize, scale: number) {
@@ -84,6 +100,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   const cursorRef = useRef({ x: 0, y: 0 })
   // Whether cursor is currently inside the container (don't pan when outside)
   const cursorInsideRef = useRef(false)
+  // Suppresses canvas pan while a sub-item is being dragged
+  const itemDragRef = useRef(false)
 
   useEffect(() => {
     const measure = () => {
@@ -140,7 +158,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
     let rafId: number
 
     const tick = () => {
-      if (cursorInsideRef.current) {
+      if (cursorInsideRef.current && !itemDragRef.current) {
         const { x: cx, y: cy } = cursorRef.current
         const vx = edgePanVelocity(cx, viewport.width, EDGE_ZONE, MAX_SPEED)
         const vy = edgePanVelocity(cy, viewport.height, EDGE_ZONE, MAX_SPEED)
@@ -177,6 +195,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   }, [])
 
   const projectMap = new Map(projects.map((p) => [p.slug, p]))
+  const { getPosition, setPosition, reset, hasCustomLayout } = useCanvasLayout()
   const scale = viewport ? getScale(viewport) : 1
   const constraints = viewport ? getDragConstraints(viewport, scale) : undefined
   // Desktop uses cursor panning; tablet/mobile uses touch drag
@@ -204,25 +223,70 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             transformOrigin: '0% 0%',
             width: BOARD_WIDTH,
             height: BOARD_HEIGHT,
-            backgroundImage: 'url(/canvas/bg-pegboard-tile.png)',
-            backgroundSize: '305px 232px',
-            backgroundRepeat: 'repeat',
           }}
           className={`motion-safe:animate-board-fade-in absolute top-0 left-0 will-change-transform ${
             dragEnabled ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'
           }`}
         >
-          {/* Decorative elements — static, no parallax */}
-          <WowDecor />
-          <LetteringDecor />
-          <GastlyDecor />
-          <CollageDecor />
+          <Pegboard />
 
-          <AboutMeCard dict={dict} locale={locale} />
+          {/* Decor items — draggable with CSS pin, no click navigation */}
+          {DECOR_LAYOUT.items.map((subItem) => (
+            <CanvasItem
+              key={`decor-${subItem.id}`}
+              item={subItem}
+              slug="decor"
+              ariaLabel={subItem.id}
+              position={getPosition('decor', subItem.id)}
+              onPositionChange={(pos) => setPosition('decor', subItem.id, pos)}
+              onDragStateChange={(dragging) => {
+                itemDragRef.current = dragging
+              }}
+            />
+          ))}
+
+          {/* About Me — single composite item with CSS pin */}
+          {ABOUTME_LAYOUT.items.map((subItem) => (
+            <CanvasItem
+              key={`aboutme-${subItem.id}`}
+              item={subItem}
+              slug="aboutme"
+              href={`/${locale}/about`}
+              ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
+              position={getPosition('aboutme', subItem.id)}
+              onPositionChange={(pos) => setPosition('aboutme', subItem.id, pos)}
+              onDragStateChange={(dragging) => {
+                itemDragRef.current = dragging
+              }}
+            />
+          ))}
 
           {PROJECTS.map((item) => {
             const project = projectMap.get(item.slug)
             if (!project) return null
+            const layout = CANVAS_LAYOUTS[item.slug]
+            if (layout) {
+              const href = `/${locale}/work/${item.slug}`
+              const ariaLabel = `${dict.ui.openProject}: ${project.card.title}`
+              return (
+                <Fragment key={item.slug}>
+                  {layout.items.map((subItem) => (
+                    <CanvasItem
+                      key={subItem.id}
+                      item={subItem}
+                      slug={item.slug}
+                      href={href}
+                      ariaLabel={ariaLabel}
+                      position={getPosition(item.slug, subItem.id)}
+                      onPositionChange={(pos) => setPosition(item.slug, subItem.id, pos)}
+                      onDragStateChange={(dragging) => {
+                        itemDragRef.current = dragging
+                      }}
+                    />
+                  ))}
+                </Fragment>
+              )
+            }
             if (item.slug === 'tacobell') {
               return (
                 <TacoBellCard
@@ -274,6 +338,12 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             )
           })}
         </motion.div>
+
+        <ResetLayoutButton
+          visible={hasCustomLayout}
+          onReset={reset}
+          label={dict.ui.resetLayout ?? 'Reset layout'}
+        />
 
         {/* Drag-to-explore hint — mobile/tablet only, fades out on first interaction */}
         <AnimatePresence>

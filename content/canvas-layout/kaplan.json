@@ -1,0 +1,32 @@
+{
+  "slug": "kaplan",
+  "items": [
+    {
+      "id": "shelf",
+      "src": "/canvas/projects/kaplan/items/shelf.png",
+      "x": 1559,
+      "y": 355,
+      "w": 754,
+      "h": 560,
+      "anchor": {
+        "x": 377,
+        "y": 42
+      },
+      "zIndex": 1
+    },
+    {
+      "id": "evidence",
+      "src": "/canvas/projects/kaplan/items/evidence.png",
+      "x": 1627,
+      "y": 278,
+      "w": 303,
+      "h": 210,
+      "anchor": {
+        "x": 144,
+        "y": -92
+      },
+      "zIndex": 3,
+      "pin": true
+    }
+  ]
+}

@@ -90,3 +90,10 @@ body {
   .at-wide-flex   { display: flex !important; }
   .at-wide-hidden { display: none !important; }
 }
+
+/* Clickable link overlays inside canvas items (About Me Paper).
+   Multiply-blend the accent color on hover so the underlying PNG text tints orange. */
+.canvas-link:hover {
+  background-color: var(--color-accent);
+}
+

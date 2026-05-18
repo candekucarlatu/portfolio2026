@@ -1,0 +1,47 @@
+{
+  "slug": "scribd",
+  "items": [
+    {
+      "id": "shelf",
+      "src": "/canvas/projects/scribd/items/shelf.png",
+      "x": 1928,
+      "y": 1036,
+      "w": 239,
+      "h": 328,
+      "anchor": {
+        "x": 148,
+        "y": -71
+      },
+      "zIndex": 1,
+      "pin": true
+    },
+    {
+      "id": "papers",
+      "src": "/canvas/projects/scribd/items/papers.png",
+      "x": 1595,
+      "y": 1086,
+      "w": 377,
+      "h": 547,
+      "anchor": {
+        "x": 173,
+        "y": -52
+      },
+      "zIndex": 2,
+      "pin": true
+    },
+    {
+      "id": "sticky",
+      "src": "/canvas/projects/scribd/items/sticky.png",
+      "x": 2043,
+      "y": 1339,
+      "w": 291,
+      "h": 241,
+      "anchor": {
+        "x": 187,
+        "y": -70
+      },
+      "zIndex": 3,
+      "pin": true
+    }
+  ]
+}
