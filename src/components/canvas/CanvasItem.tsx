@@ -191,11 +191,7 @@ export function CanvasItem({
             top: pngTopInWrapper + link.y,
             width: link.w,
             height: link.h,
-            zIndex: 2,
             cursor: 'pointer',
-            mixBlendMode: 'screen',
-            backgroundColor: 'transparent',
-            transition: 'background-color 0.18s ease',
           }}
         />
       ))}

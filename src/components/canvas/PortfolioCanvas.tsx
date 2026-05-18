@@ -216,6 +216,9 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           dragMomentum
           dragTransition={{ power: 0.18, timeConstant: 320, bounceStiffness: 280, bounceDamping: 28 }}
           onDragStart={handleDragStart}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: viewport ? 1 : 0 }}
+          transition={{ opacity: { duration: 0.5, ease: 'easeOut', delay: 0.1 } }}
           style={{
             x,
             y,
@@ -224,7 +227,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             width: BOARD_WIDTH,
             height: BOARD_HEIGHT,
           }}
-          className={`motion-safe:animate-board-fade-in absolute top-0 left-0 will-change-transform ${
+          className={`absolute top-0 left-0 will-change-transform ${
             dragEnabled ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'
           }`}
         >

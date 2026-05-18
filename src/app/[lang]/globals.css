@@ -92,7 +92,13 @@ body {
 }
 
 /* Clickable link overlays inside canvas items (About Me Paper).
-   Multiply-blend the accent color on hover so the underlying PNG text tints orange. */
+   On hover, fill with the accent color using `lighten` so dark PNG glyphs
+   tint to orange while the light paper underneath stays the same. */
+.canvas-link {
+  background-color: transparent;
+  mix-blend-mode: lighten;
+  transition: background-color 0.18s ease;
+}
 .canvas-link:hover {
   background-color: var(--color-accent);
 }
