@@ -81,8 +81,8 @@ export function CanvasItem({
         const dy = offsetY.get()
         onDragStateChange?.(false)
         if (!draggedRef.current) {
-          animate(offsetX, 0, { type: 'spring', stiffness: 320, damping: 28, mass: 0.6 })
-          animate(offsetY, 0, { type: 'spring', stiffness: 320, damping: 28, mass: 0.6 })
+          animate(offsetX, 0, { duration: 0.25, ease: [0.16, 1, 0.3, 1] })
+          animate(offsetY, 0, { duration: 0.25, ease: [0.16, 1, 0.3, 1] })
           return
         }
         const newBaseX = baseX + dx
@@ -92,15 +92,13 @@ export function CanvasItem({
         const hole = getNearestHole(anchorX, anchorY)
         const snappedX = hole.x - item.anchor.x
         const snappedY = hole.y - item.anchor.y
-        // Compensate offset so visual stays put when base jumps to snappedX/Y,
-        // then spring-animate offset to 0 → smooth slide into the hole.
         const baseShiftX = snappedX - baseX
         const baseShiftY = snappedY - baseY
         offsetX.set(dx - baseShiftX)
         offsetY.set(dy - baseShiftY)
         onPositionChange({ x: snappedX, y: snappedY })
-        animate(offsetX, 0, { type: 'spring', stiffness: 260, damping: 24, mass: 0.7 })
-        animate(offsetY, 0, { type: 'spring', stiffness: 260, damping: 24, mass: 0.7 })
+        animate(offsetX, 0, { duration: 0.28, ease: [0.16, 1, 0.3, 1] })
+        animate(offsetY, 0, { duration: 0.28, ease: [0.16, 1, 0.3, 1] })
       }}
       onTap={() => {
         if (!draggedRef.current && href) {
@@ -138,7 +136,7 @@ export function CanvasItem({
         rotate: item.rotation,
         transformOrigin: `${item.anchor.x}px ${pinTopInWrapper + 4}px`,
       }}
-      className="touch-none cursor-grab focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 active:cursor-grabbing"
+      className={`touch-none ${href ? 'cursor-pointer' : 'cursor-grab'} focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 active:cursor-grabbing`}
     >
       {item.pin && (
         <div
