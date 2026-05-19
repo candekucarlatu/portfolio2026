@@ -196,7 +196,7 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
           className="fixed inset-0 z-40 backdrop-blur-[4px]"
           style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,62,0,0.28) 100%)' }}
         />
-        <Drawer.Content className="bg-paper text-ink fixed inset-x-0 bottom-6 z-50 mt-24 flex h-[92vh] flex-col rounded-t-2xl outline-none">
+        <Drawer.Content className="bg-paper text-ink fixed inset-x-0 bottom-0 z-50 mt-24 flex h-[calc(100dvh-24px)] flex-col rounded-t-2xl outline-none">
           <Drawer.Title className="sr-only">Project</Drawer.Title>
           <div className="flex-shrink-0 pt-4" />
           {/* noScroll is a desktop-only concept — mobile always scrolls */}
