@@ -326,14 +326,15 @@ export function AboutMe({ dict }: AboutMeProps) {
 
       {/* ══════════════════════════════════════════════════════════════════
           DESKTOP XL LAYOUT — 1440px+
-          Canvas 1440×1010, centered vertically in the container.
+          Canvas 1440×1010, width-driven: fills the available panel width
+          (up to 1440px) and derives height from aspect ratio.
           Figma 502:9600. Side-by-side Profile (left) + DP (right).
-          When viewport is taller than 1010px the canvas floats in the middle.
+          Fonts use cqw so they scale proportionally with the canvas width.
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="hidden at-wide-flex h-full w-full items-center justify-center overflow-hidden">
+      <div className="hidden at-wide-flex h-full w-full items-start justify-center overflow-hidden">
         <div
-          className="relative shrink-0"
-          style={{ aspectRatio: '1440 / 1010', height: '100%', maxHeight: '1010px', maxWidth: '100%' }}
+          className="relative shrink-0 xl-canvas"
+          style={{ aspectRatio: '1440 / 1010', width: '100%', maxWidth: '1440px' }}
         >
 
           {/* ── DECORATION 1 ─────────────────────────────────────────────────── */}
@@ -376,16 +377,16 @@ export function AboutMe({ dict }: AboutMeProps) {
               className="absolute z-10"
               style={{ left: pos.left, top: pos.top, width: '34.32%', transform: 'rotate(-2deg)' }}
             >
-              <div className="flex flex-col" style={{ gap: 'clamp(8px, 0.83vw, 12px)' }}>
+              <div className="flex flex-col" style={{ gap: 'clamp(8px, 0.83cqw, 12px)' }}>
                 <p
                   className="font-bold leading-[1.25]"
-                  style={{ fontSize: 'clamp(8px, 1.1vw, 16px)', color: '#1f1a14' }}
+                  style={{ fontSize: 'clamp(8px, 1.1cqw, 16px)', color: '#1f1a14' }}
                 >
                   {s.principles[i].title}
                 </p>
                 <p
                   className="leading-[1.65]"
-                  style={{ fontSize: 'clamp(8px, 1.1vw, 16px)', color: '#666159' }}
+                  style={{ fontSize: 'clamp(8px, 1.1cqw, 16px)', color: '#666159' }}
                 >
                   {s.principles[i].body}
                 </p>
@@ -434,7 +435,7 @@ export function AboutMe({ dict }: AboutMeProps) {
           >
             <div
               className="font-script flex flex-col gap-[0.6em] leading-[1.3] text-black"
-              style={{ fontSize: 'clamp(10px, 1.4vw, 20px)' }}
+              style={{ fontSize: 'clamp(10px, 1.4cqw, 20px)' }}
             >
               <p>{s.bio1}</p>
               <p>{s.bio2}</p>
@@ -457,13 +458,13 @@ export function AboutMe({ dict }: AboutMeProps) {
               >
                 <span
                   className="shrink-0 font-semibold text-ink leading-[1.25]"
-                  style={{ fontSize: 'clamp(8px, 1.1vw, 16px)', width: labelW }}
+                  style={{ fontSize: 'clamp(8px, 1.1cqw, 16px)', width: labelW }}
                 >
                   {label}
                 </span>
                 <span
                   className="font-script text-black transition-colors hover:text-[#FF3E00]"
-                  style={{ fontSize: 'clamp(9px, 1.4vw, 20px)', lineHeight: 1.5, marginLeft: gap }}
+                  style={{ fontSize: 'clamp(9px, 1.4cqw, 20px)', lineHeight: 1.5, marginLeft: gap }}
                 >
                   {value}
                 </span>

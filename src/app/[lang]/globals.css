@@ -93,6 +93,11 @@ body {
   .at-wide-overflow-hidden { overflow: hidden; }
 }
 
+/* XL canvas: enables cqw font units (container query width) */
+.xl-canvas {
+  container-type: inline-size;
+}
+
 /* Clickable link overlays inside canvas items (About Me Paper).
    On hover, fill with the accent color using `lighten` so dark PNG glyphs
    tint to orange while the light paper underneath stays the same. */
