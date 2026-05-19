@@ -20,10 +20,10 @@
       "src": "/canvas/decor/items/lettering.png",
       "x": 1116,
       "y": 193,
-      "w": 368,
-      "h": 264,
+      "w": 294,
+      "h": 211,
       "anchor": {
-        "x": 237,
+        "x": 189,
         "y": -45
       },
       "zIndex": 1,
