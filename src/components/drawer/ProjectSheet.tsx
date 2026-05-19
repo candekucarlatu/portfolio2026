@@ -18,10 +18,9 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
   const isDesktop = useMediaQuery('(min-width: 1024px)', true)
   const isVeryWide = useMediaQuery('(min-width: 1537px)', false)
   const isMediumWide = useMediaQuery('(min-width: 1251px)', false)
-  const isAtWide = useMediaQuery('(min-width: 1440px)', false)
-  // noScroll only applies at ≥1440px (AboutMe fixed side-by-side layout).
+  // noScroll only applies at ≥1537px (AboutMe fixed side-by-side layout).
   // Below that, About Me scrolls just like a case study modal.
-  const effectiveNoScroll = noScroll && isAtWide
+  const effectiveNoScroll = noScroll && isVeryWide
   const sidePadding = isVeryWide ? 360 : isMediumWide ? 120 : 0
   const [open, setOpen] = useState(true)
   const [scrolled, setScrolled] = useState(false)
