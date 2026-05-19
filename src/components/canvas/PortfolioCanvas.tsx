@@ -66,13 +66,12 @@ interface ViewportSize {
 }
 
 /**
- * Canvas scale is FIXED at 1 for all viewport sizes.
- * Items keep their natural size — only the scroll/pan offset changes per viewport
- * to keep the About Me area centered initially. The user explicitly requested this:
- * no resize across viewports, only repositioning.
+ * Canvas scale: 1 on desktop (≥1024px), 0.81 on mobile/tablet (<1024px).
+ * 0.81 matches the Figma "Home mobile" reference frame (2031/2500 board width ratio).
+ * Only the scroll/pan offset changes to keep About Me centered on load.
  */
-function getScale(_viewport: ViewportSize): number {
-  return 1
+function getScale(viewport: ViewportSize): number {
+  return viewport.width < 1024 ? 0.81 : 1
 }
 
 function getCenteredOffset(viewport: ViewportSize, scale: number) {
