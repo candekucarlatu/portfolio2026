@@ -21,6 +21,8 @@ interface CanvasItemProps {
   onPositionChange: (pos: { x: number; y: number }) => void
   /** Called when drag starts (true) or ends (false) so the parent can pause edge-pan. */
   onDragStateChange?: (dragging: boolean) => void
+  /** Whether this item can be individually dragged. False on mobile so canvas pan works freely. */
+  itemDragEnabled?: boolean
 }
 
 export function CanvasItem({
@@ -30,6 +32,7 @@ export function CanvasItem({
   position,
   onPositionChange,
   onDragStateChange,
+  itemDragEnabled = true,
 }: CanvasItemProps) {
   const router = useRouter()
 
@@ -65,7 +68,7 @@ export function CanvasItem({
       role={href ? 'link' : undefined}
       tabIndex={href ? 0 : undefined}
       aria-label={ariaLabel}
-      drag
+      drag={itemDragEnabled}
       dragMomentum={false}
       dragElastic={0}
       onPointerDownCapture={() => {
