@@ -29,6 +29,8 @@ export const CanvasItemSchema = z.object({
     .array(
       z.object({
         href: z.string(),
+        /** Locale-specific override for the href (e.g. Spanish CV URL). Falls back to `href`. */
+        hrefEs: z.string().optional(),
         x: z.number(),
         y: z.number(),
         w: z.number().positive(),

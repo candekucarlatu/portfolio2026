@@ -18,6 +18,10 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
   const isDesktop = useMediaQuery('(min-width: 1024px)', true)
   const isVeryWide = useMediaQuery('(min-width: 1537px)', false)
   const isMediumWide = useMediaQuery('(min-width: 1251px)', false)
+  const isAtWide = useMediaQuery('(min-width: 1440px)', false)
+  // noScroll only applies at ≥1440px (AboutMe fixed side-by-side layout).
+  // Below that, About Me scrolls just like a case study modal.
+  const effectiveNoScroll = noScroll && isAtWide
   const sidePadding = isVeryWide ? 360 : isMediumWide ? 120 : 0
   const [open, setOpen] = useState(true)
   const [scrolled, setScrolled] = useState(false)
@@ -43,7 +47,7 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
   // Track scroll position to collapse top gap when user scrolls down
   // and reveal bottom gap when user reaches the end of content
   useEffect(() => {
-    if (!isDesktop || noScroll) return
+    if (!isDesktop || effectiveNoScroll) return
     const el = panelRef.current
     if (!el) return
     const handler = () => {
@@ -92,18 +96,18 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
             <motion.div
               ref={panelRef}
               key="sheet-panel"
-              className={`canvas-scroll-hidden fixed z-50 overflow-hidden shadow-2xl${noScroll ? '' : ' overflow-y-auto overscroll-contain'}`}
+              className={`canvas-scroll-hidden fixed z-50 overflow-hidden shadow-2xl${effectiveNoScroll ? '' : ' overflow-y-auto overscroll-contain'}`}
               style={{ left: sidePadding, right: sidePadding }}
-              initial={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: noScroll ? '20px 20px 0 0' : '20px' }}
+              initial={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: effectiveNoScroll ? '20px 20px 0 0' : '20px' }}
               animate={{
-                top: noScroll ? 88 : scrolled ? 0 : 88,
-                bottom: noScroll ? 0 : atBottom ? 128 : 0,
+                top: effectiveNoScroll ? 88 : scrolled ? 0 : 88,
+                bottom: effectiveNoScroll ? 0 : atBottom ? 128 : 0,
                 y: 0,
-                borderRadius: noScroll
+                borderRadius: effectiveNoScroll
                   ? '20px 20px 0 0'
                   : !scrolled ? '20px' : atBottom ? '0 0 20px 20px' : '0px',
               }}
-              exit={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: noScroll ? '20px 20px 0 0' : '20px' }}
+              exit={{ top: 88, bottom: 0, y: reduceMotion ? 0 : '100%', borderRadius: effectiveNoScroll ? '20px 20px 0 0' : '20px' }}
               transition={{
                 y: {
                   duration: reduceMotion ? 0.01 : 0.52,
@@ -124,7 +128,7 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
               }}
             >
               {/* bg-paper wrapper */}
-              {noScroll ? (
+              {effectiveNoScroll ? (
                 <div className="bg-paper text-ink relative h-full overflow-y-auto canvas-scroll-hidden overscroll-contain">
                   {/* Close button floats over content so children fill full height */}
                   <div className="absolute right-4 top-4 z-50">

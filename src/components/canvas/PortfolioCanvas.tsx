@@ -44,6 +44,16 @@ function localizeSrc(src: string, locale: string): string {
   return src.replace('-en.png', `-${locale}.png`)
 }
 
+/** Replaces each link's href with its locale-specific override when available. */
+function localizeLinks(
+  links: CanvasItem['links'],
+  locale: string,
+): CanvasItem['links'] {
+  if (!links) return links
+  if (locale === 'en') return links
+  return links.map((l) => ({ ...l, href: l.hrefEs ?? l.href }))
+}
+
 interface PortfolioCanvasProps {
   projects: Project[]
   dict: Dictionary
@@ -261,7 +271,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           {ABOUTME_LAYOUT.items.map((subItem) => (
             <CanvasItem
               key={`aboutme-${subItem.id}`}
-              item={{ ...subItem, src: localizeSrc(subItem.src, locale) }}
+              item={{ ...subItem, src: localizeSrc(subItem.src, locale), links: localizeLinks(subItem.links, locale) }}
               slug="aboutme"
               href={subItem.links ? undefined : `/${locale}/about`}
               ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
