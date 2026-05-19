@@ -5,13 +5,11 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import type { Project } from '@/lib/content/schema'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 import type { Locale } from '@/lib/i18n/config'
-import { AboutMeCard } from './AboutMeCard'
 import { CanvasItem } from './CanvasItem'
 import { WowDecor, LetteringDecor, GastlyDecor, CollageDecor } from './DecorItems'
 import { Pegboard } from './Pegboard'
 import { ProjectCard } from './ProjectCard'
 import { ResetLayoutButton } from './ResetLayoutButton'
-import { StickyNote } from './StickyNote'
 import { TacoBellCard } from './TacoBellCard'
 import { SlideShareCard } from './SlideShareCard'
 import { ScribdCard } from './ScribdCard'
@@ -37,16 +35,13 @@ const DECOR_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(decorLayoutRaw)
 const ABOUTME_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(aboutmeLayoutRaw)
 
 /**
- * Which PNG item in each project layout is the sticky note (text baked in English).
- * For `en` we render this PNG normally (preserving friend's hover/drag behaviour).
- * For other locales we filter it out and render an HTML <StickyNote> with translated
- * text in its place (no drag, but hover lift via CSS still works).
+ * Replaces the `-en.png` suffix with the current locale so every sticky and
+ * About Me paper automatically loads the right language variant.
+ * Non-locale-suffixed images (shelf, kiosk, etc.) are returned unchanged.
  */
-const STICKY_PNG_ID_BY_SLUG: Record<string, string> = {
-  scribd: 'sticky',
-  slideshare: 'sticky',
-  tacobell: 'sticky',
-  kaplan: 'evidence',
+function localizeSrc(src: string, locale: string): string {
+  if (locale === 'en') return src
+  return src.replace('-en.png', `-${locale}.png`)
 }
 
 interface PortfolioCanvasProps {
@@ -262,25 +257,21 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             />
           ))}
 
-          {/* About Me — locale-aware:
-              EN  → friend's PNG composite via CanvasItem (full hover/drag behaviour)
-              ES  → HTML AboutMeCard with translated text (hover lift only, no drag) */}
-          {locale === 'en'
-            ? ABOUTME_LAYOUT.items.map((subItem) => (
-                <CanvasItem
-                  key={`aboutme-${subItem.id}`}
-                  item={subItem}
-                  slug="aboutme"
-                  href={`/${locale}/about`}
-                  ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
-                  position={getPosition('aboutme', subItem.id)}
-                  onPositionChange={(pos) => setPosition('aboutme', subItem.id, pos)}
-                  onDragStateChange={(dragging) => {
-                    itemDragRef.current = dragging
-                  }}
-                />
-              ))
-            : <AboutMeCard dict={dict} locale={locale} />}
+          {/* About Me — same PNG composite for all locales, paper src swapped per locale */}
+          {ABOUTME_LAYOUT.items.map((subItem) => (
+            <CanvasItem
+              key={`aboutme-${subItem.id}`}
+              item={{ ...subItem, src: localizeSrc(subItem.src, locale) }}
+              slug="aboutme"
+              href={`/${locale}/about`}
+              ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
+              position={getPosition('aboutme', subItem.id)}
+              onPositionChange={(pos) => setPosition('aboutme', subItem.id, pos)}
+              onDragStateChange={(dragging) => {
+                itemDragRef.current = dragging
+              }}
+            />
+          ))}
 
           {PROJECTS.map((item) => {
             const project = projectMap.get(item.slug)
@@ -289,19 +280,12 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             if (layout) {
               const href = `/${locale}/work/${item.slug}`
               const ariaLabel = `${dict.ui.openProject}: ${project.card.title}`
-              const stickyId = STICKY_PNG_ID_BY_SLUG[item.slug]
-              // EN: render every PNG (including the sticky with English text baked in).
-              // Other locales: drop the sticky PNG and overlay an HTML <StickyNote> in its place.
-              const itemsToRender =
-                locale === 'en'
-                  ? layout.items
-                  : layout.items.filter((i) => i.id !== stickyId)
               return (
                 <Fragment key={item.slug}>
-                  {itemsToRender.map((subItem) => (
+                  {layout.items.map((subItem) => (
                     <CanvasItem
                       key={subItem.id}
-                      item={subItem}
+                      item={{ ...subItem, src: localizeSrc(subItem.src, locale) }}
                       slug={item.slug}
                       href={href}
                       ariaLabel={ariaLabel}
@@ -312,47 +296,6 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       }}
                     />
                   ))}
-                  {locale !== 'en' && (
-                    <a
-                      href={href}
-                      aria-label={ariaLabel}
-                      className="canvas-item absolute touch-none"
-                      style={{
-                        left: item.note.x,
-                        top: item.note.y,
-                        width: item.note.w,
-                        height: item.note.h,
-                        transform: `rotate(${item.note.rotation}deg)`,
-                        '--item-z': 4,
-                      } as React.CSSProperties}
-                      onPointerDown={(e) => e.stopPropagation()}
-                    >
-                      {/* CSS pinza — matches the one CanvasItem draws for pinned PNG items.
-                          Rendered BEFORE the note so the note covers the pinza body, leaving
-                          only the head visible above the note (like a real thumbtack). */}
-                      <div
-                        aria-hidden
-                        style={{
-                          position: 'absolute',
-                          left: '50%',
-                          top: -90,
-                          marginLeft: -14,
-                          width: 28,
-                          height: 139,
-                          borderRadius: 999,
-                          background: 'linear-gradient(to right, #eeedea 89%, #f6f5ef 103.59%)',
-                          boxShadow:
-                            '4px 2px 8px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(214, 208, 198, 0.6)',
-                          zIndex: 1,
-                        }}
-                      />
-                      <StickyNote
-                        title={project.card.title}
-                        subtitle={project.card.subtitle}
-                        color={item.note.color}
-                      />
-                    </a>
-                  )}
                 </Fragment>
               )
             }
