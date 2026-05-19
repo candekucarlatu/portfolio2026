@@ -28,30 +28,31 @@
         "y": -63
       },
       "zIndex": 3,
+      "rotation": -16,
       "pin": true,
       "links": [
         {
           "href": "https://www.linkedin.com/in/candelakucarlatu/",
-          "x": 78,
-          "y": 268,
-          "w": 80,
-          "h": 50,
+          "x": 79,
+          "y": 261,
+          "w": 69,
+          "h": 59,
           "ariaLabel": "LinkedIn"
         },
         {
           "href": "mailto:kucarlatu@gmail.com",
-          "x": 165,
-          "y": 245,
-          "w": 55,
-          "h": 50,
+          "x": 160,
+          "y": 238,
+          "w": 69,
+          "h": 59,
           "ariaLabel": "Email"
         },
         {
           "href": "https://drive.google.com/file/d/1CwPjslGrG5DXbfcUhOlyEc3Zfjueu6SE/view?usp=sharing",
-          "x": 225,
-          "y": 222,
-          "w": 95,
-          "h": 50,
+          "x": 224,
+          "y": 218,
+          "w": 77,
+          "h": 61,
           "ariaLabel": "Resume"
         }
       ]
