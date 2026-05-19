@@ -15,6 +15,20 @@
       "zIndex": 1
     },
     {
+      "id": "sticky",
+      "src": "/canvas/projects/slideshare/items/sticky.png",
+      "x": 596,
+      "y": 1086,
+      "w": 275,
+      "h": 218,
+      "anchor": {
+        "x": 145,
+        "y": -88
+      },
+      "zIndex": 4,
+      "pin": true
+    },
+    {
       "id": "poster",
       "src": "/canvas/projects/slideshare/items/poster.png",
       "x": 285,

@@ -16,6 +16,20 @@
       "pin": true
     },
     {
+      "id": "sticky",
+      "src": "/canvas/projects/tacobell/items/sticky.png",
+      "x": 444,
+      "y": 359,
+      "w": 275,
+      "h": 218,
+      "anchor": {
+        "x": 109,
+        "y": -91
+      },
+      "zIndex": 3,
+      "pin": true
+    },
+    {
       "id": "paconaut",
       "src": "/canvas/projects/tacobell/items/paconaut.png",
       "x": 667,

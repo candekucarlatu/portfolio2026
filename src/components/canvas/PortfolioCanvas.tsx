@@ -24,6 +24,7 @@ import kaplanLayoutRaw from '../../../content/canvas-layout/kaplan.json'
 import slideshareLayoutRaw from '../../../content/canvas-layout/slideshare.json'
 import scribdLayoutRaw from '../../../content/canvas-layout/scribd.json'
 import decorLayoutRaw from '../../../content/canvas-layout/decor.json'
+import aboutmeLayoutRaw from '../../../content/canvas-layout/aboutme.json'
 
 const CANVAS_LAYOUTS: Record<string, CanvasLayout> = {
   tacobell: CanvasLayoutSchema.parse(tacobellLayoutRaw),
@@ -33,6 +34,20 @@ const CANVAS_LAYOUTS: Record<string, CanvasLayout> = {
 }
 
 const DECOR_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(decorLayoutRaw)
+const ABOUTME_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(aboutmeLayoutRaw)
+
+/**
+ * Which PNG item in each project layout is the sticky note (text baked in English).
+ * For `en` we render this PNG normally (preserving friend's hover/drag behaviour).
+ * For other locales we filter it out and render an HTML <StickyNote> with translated
+ * text in its place (no drag, but hover lift via CSS still works).
+ */
+const STICKY_PNG_ID_BY_SLUG: Record<string, string> = {
+  scribd: 'sticky',
+  slideshare: 'sticky',
+  tacobell: 'sticky',
+  kaplan: 'evidence',
+}
 
 interface PortfolioCanvasProps {
   projects: Project[]
@@ -247,8 +262,25 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             />
           ))}
 
-          {/* About Me — HTML card with translatable text */}
-          <AboutMeCard dict={dict} locale={locale} />
+          {/* About Me — locale-aware:
+              EN  → friend's PNG composite via CanvasItem (full hover/drag behaviour)
+              ES  → HTML AboutMeCard with translated text (hover lift only, no drag) */}
+          {locale === 'en'
+            ? ABOUTME_LAYOUT.items.map((subItem) => (
+                <CanvasItem
+                  key={`aboutme-${subItem.id}`}
+                  item={subItem}
+                  slug="aboutme"
+                  href={`/${locale}/about`}
+                  ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
+                  position={getPosition('aboutme', subItem.id)}
+                  onPositionChange={(pos) => setPosition('aboutme', subItem.id, pos)}
+                  onDragStateChange={(dragging) => {
+                    itemDragRef.current = dragging
+                  }}
+                />
+              ))
+            : <AboutMeCard dict={dict} locale={locale} />}
 
           {PROJECTS.map((item) => {
             const project = projectMap.get(item.slug)
@@ -257,9 +289,16 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             if (layout) {
               const href = `/${locale}/work/${item.slug}`
               const ariaLabel = `${dict.ui.openProject}: ${project.card.title}`
+              const stickyId = STICKY_PNG_ID_BY_SLUG[item.slug]
+              // EN: render every PNG (including the sticky with English text baked in).
+              // Other locales: drop the sticky PNG and overlay an HTML <StickyNote> in its place.
+              const itemsToRender =
+                locale === 'en'
+                  ? layout.items
+                  : layout.items.filter((i) => i.id !== stickyId)
               return (
                 <Fragment key={item.slug}>
-                  {layout.items.map((subItem) => (
+                  {itemsToRender.map((subItem) => (
                     <CanvasItem
                       key={subItem.id}
                       item={subItem}
@@ -273,27 +312,28 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       }}
                     />
                   ))}
-                  {/* HTML sticky note — locale-aware title + subtitle */}
-                  <a
-                    href={href}
-                    aria-label={ariaLabel}
-                    className="canvas-item absolute touch-none"
-                    style={{
-                      left: item.note.x,
-                      top: item.note.y,
-                      width: item.note.w,
-                      height: item.note.h,
-                      transform: `rotate(${item.note.rotation}deg)`,
-                      '--item-z': 4,
-                    } as React.CSSProperties}
-                    onPointerDown={(e) => e.stopPropagation()}
-                  >
-                    <StickyNote
-                      title={project.card.title}
-                      subtitle={project.card.subtitle}
-                      color={item.note.color}
-                    />
-                  </a>
+                  {locale !== 'en' && (
+                    <a
+                      href={href}
+                      aria-label={ariaLabel}
+                      className="canvas-item absolute touch-none"
+                      style={{
+                        left: item.note.x,
+                        top: item.note.y,
+                        width: item.note.w,
+                        height: item.note.h,
+                        transform: `rotate(${item.note.rotation}deg)`,
+                        '--item-z': 4,
+                      } as React.CSSProperties}
+                      onPointerDown={(e) => e.stopPropagation()}
+                    >
+                      <StickyNote
+                        title={project.card.title}
+                        subtitle={project.card.subtitle}
+                        color={item.note.color}
+                      />
+                    </a>
+                  )}
                 </Fragment>
               )
             }
