@@ -16,7 +16,7 @@ import { ScribdCard } from './ScribdCard'
 import { KaplanCard } from './KaplanCard'
 import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, PROJECTS } from './itemPositions'
 import { useCanvasLayout } from '@/lib/canvas/useCanvasLayout'
-import { CanvasLayoutSchema, type CanvasLayout } from '@/lib/canvas/manifest'
+import { CanvasLayoutSchema, type CanvasLayout, type CanvasItem as CanvasItemData } from '@/lib/canvas/manifest'
 import tacobellLayoutRaw from '../../../content/canvas-layout/tacobell.json'
 import kaplanLayoutRaw from '../../../content/canvas-layout/kaplan.json'
 import slideshareLayoutRaw from '../../../content/canvas-layout/slideshare.json'
@@ -46,9 +46,9 @@ function localizeSrc(src: string, locale: string): string {
 
 /** Replaces each link's href with its locale-specific override when available. */
 function localizeLinks(
-  links: CanvasItem['links'],
+  links: CanvasItemData['links'],
   locale: string,
-): CanvasItem['links'] {
+): CanvasItemData['links'] {
   if (!links) return links
   if (locale === 'en') return links
   return links.map((l) => ({ ...l, href: l.hrefEs ?? l.href }))
