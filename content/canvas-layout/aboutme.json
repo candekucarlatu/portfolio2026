@@ -4,13 +4,13 @@
     {
       "id": "photo",
       "src": "/canvas/projects/aboutme/items/photo-2.png",
-      "x": 425,
-      "y": 372,
+      "x": 1014,
+      "y": 739,
       "w": 231,
       "h": 266,
       "anchor": {
-        "x": 133,
-        "y": -111
+        "x": 116,
+        "y": -77
       },
       "zIndex": 2,
       "rotation": 9.11,
@@ -19,12 +19,12 @@
     {
       "id": "paper",
       "src": "/canvas/projects/aboutme/items/paper-en.png",
-      "x": 575,
-      "y": 287,
+      "x": 1200,
+      "y": 688,
       "w": 350,
       "h": 270,
       "anchor": {
-        "x": 172,
+        "x": 147,
         "y": -63
       },
       "zIndex": 3,
@@ -32,26 +32,26 @@
       "links": [
         {
           "href": "https://www.linkedin.com/in/candelakucarlatu/",
-          "x": 79,
-          "y": 261,
-          "w": 69,
-          "h": 59,
+          "x": 78,
+          "y": 268,
+          "w": 80,
+          "h": 50,
           "ariaLabel": "LinkedIn"
         },
         {
           "href": "mailto:kucarlatu@gmail.com",
-          "x": 160,
-          "y": 238,
-          "w": 69,
-          "h": 59,
+          "x": 165,
+          "y": 245,
+          "w": 55,
+          "h": 50,
           "ariaLabel": "Email"
         },
         {
           "href": "https://drive.google.com/file/d/1CwPjslGrG5DXbfcUhOlyEc3Zfjueu6SE/view?usp=sharing",
-          "x": 224,
-          "y": 218,
-          "w": 77,
-          "h": 61,
+          "x": 225,
+          "y": 222,
+          "w": 95,
+          "h": 50,
           "ariaLabel": "Resume"
         }
       ]

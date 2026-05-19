@@ -32,13 +32,13 @@
     {
       "id": "sticky",
       "src": "/canvas/projects/scribd/items/sticky-en.png",
-      "x": 1457,
-      "y": 917,
+      "x": 2043,
+      "y": 1339,
       "w": 339,
       "h": 225,
       "anchor": {
-        "x": 206,
-        "y": -79
+        "x": 218,
+        "y": -115
       },
       "zIndex": 3,
       "rotation": 6.98,
