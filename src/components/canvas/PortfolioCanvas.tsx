@@ -277,15 +277,15 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                   <a
                     href={href}
                     aria-label={ariaLabel}
-                    className="absolute touch-none"
+                    className="canvas-item absolute touch-none"
                     style={{
                       left: item.note.x,
                       top: item.note.y,
                       width: item.note.w,
                       height: item.note.h,
                       transform: `rotate(${item.note.rotation}deg)`,
-                      zIndex: 4,
-                    }}
+                      '--item-z': 4,
+                    } as React.CSSProperties}
                     onPointerDown={(e) => e.stopPropagation()}
                   >
                     <StickyNote

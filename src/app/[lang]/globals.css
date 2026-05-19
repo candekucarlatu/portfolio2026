@@ -110,3 +110,13 @@ body {
   background-color: var(--color-accent);
 }
 
+/* Canvas items: z-index elevation on hover via CSS (more reliable than React state
+   because the browser tracks cursor position natively, with no JS event lag or
+   drag-capture interference). Base z-index is set via --item-z custom property. */
+.canvas-item {
+  z-index: var(--item-z, 1);
+}
+.canvas-item:hover {
+  z-index: 50;
+}
+

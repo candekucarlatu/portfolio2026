@@ -3,12 +3,12 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { animate, motion, useMotionValue } from 'framer-motion'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef } from 'react'
 import type { CanvasItem as CanvasItemData } from '@/lib/canvas/manifest'
 import { getNearestHole } from './pegboardGrid'
 
-const PIN_W = 32
-const PIN_H = 140
+const PIN_W = 46
+const PIN_H = 139
 
 interface CanvasItemProps {
   item: CanvasItemData
@@ -55,7 +55,6 @@ export function CanvasItem({
   const offsetX = useMotionValue(0)
   const offsetY = useMotionValue(0)
   const draggedRef = useRef(false)
-  const [hovered, setHovered] = useState(false)
 
   // motion.div spans the wrapper bounds, but is positioned by PNG top-left.
   // Use negative top offset for items with pin above PNG.
@@ -111,8 +110,6 @@ export function CanvasItem({
           router.push(href)
         }
       }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
       whileHover={
         item.pin && !item.links
           ? {
@@ -132,11 +129,11 @@ export function CanvasItem({
         height: wrapperHeight,
         x: offsetX,
         y: offsetY,
-        zIndex: hovered ? 50 : item.zIndex,
+        '--item-z': item.zIndex,
         rotate: item.rotation,
         transformOrigin: `${item.anchor.x}px ${pinTopInWrapper + 4}px`,
-      }}
-      className={`touch-none ${href ? 'cursor-pointer' : 'cursor-grab'} focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 active:cursor-grabbing`}
+      } as React.CSSProperties}
+      className={`canvas-item touch-none ${href ? 'cursor-pointer' : 'cursor-grab'} focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 active:cursor-grabbing`}
     >
       {item.pin && (
         <div
