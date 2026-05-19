@@ -4,13 +4,13 @@
     {
       "id": "shelf",
       "src": "/canvas/projects/scribd/items/shelf.png",
-      "x": 1928,
-      "y": 1036,
-      "w": 239,
-      "h": 328,
+      "x": 1888,
+      "y": 996,
+      "w": 319,
+      "h": 408,
       "anchor": {
-        "x": 148,
-        "y": -71
+        "x": 188,
+        "y": -31
       },
       "zIndex": 1,
       "pin": true
@@ -18,13 +18,13 @@
     {
       "id": "papers",
       "src": "/canvas/projects/scribd/items/papers.png",
-      "x": 1595,
-      "y": 1086,
-      "w": 377,
-      "h": 547,
+      "x": 1552,
+      "y": 1043,
+      "w": 463,
+      "h": 633,
       "anchor": {
-        "x": 173,
-        "y": -52
+        "x": 216,
+        "y": -9
       },
       "zIndex": 2,
       "pin": true

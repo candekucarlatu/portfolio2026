@@ -4,13 +4,13 @@
     {
       "id": "shelf-group",
       "src": "/canvas/projects/slideshare/items/shelf-group.png",
-      "x": 159,
-      "y": 1187,
-      "w": 727,
-      "h": 528,
+      "x": 119,
+      "y": 1147,
+      "w": 807,
+      "h": 608,
       "anchor": {
-        "x": 364,
-        "y": 38
+        "x": 404,
+        "y": 78
       },
       "zIndex": 1
     },
