@@ -35,9 +35,9 @@ export function StickyNote({ title, subtitle, color, className }: StickyNoteProp
         className,
       )}
     >
-      <h3 className="font-script text-[18px] leading-[1.15] font-bold tracking-tight">{title}</h3>
+      <h3 className="font-script text-[22px] leading-[1.05] font-bold tracking-tight">{title}</h3>
       <div className="relative flex-1">
-        <p className="font-script text-[15px] leading-[1.35] font-normal">{subtitle}</p>
+        <p className="font-script text-[18px] leading-[1.2] font-normal">{subtitle}</p>
         <div
           className={clsx('absolute inset-x-0 -bottom-1 h-px opacity-30', lineStyles[color])}
           aria-hidden
