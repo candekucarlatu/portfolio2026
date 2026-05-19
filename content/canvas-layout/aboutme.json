@@ -20,7 +20,7 @@
       "id": "paper",
       "src": "/canvas/projects/aboutme/items/paper-en.png",
       "x": 1200,
-      "y": 688,
+      "y": 730,
       "w": 350,
       "h": 270,
       "anchor": {
@@ -28,27 +28,28 @@
         "y": -63
       },
       "zIndex": 3,
+      "rotation": -16,
       "pin": true,
       "links": [
         {
           "href": "https://www.linkedin.com/in/candelakucarlatu/",
-          "x": 79,
-          "y": 261,
+          "x": 14,
+          "y": 217,
           "w": 69,
           "h": 59,
           "ariaLabel": "LinkedIn"
         },
         {
           "href": "mailto:kucarlatu@gmail.com",
-          "x": 160,
-          "y": 238,
+          "x": 97,
+          "y": 217,
           "w": 69,
           "h": 59,
           "ariaLabel": "Email"
         },
         {
           "href": "https://drive.google.com/file/d/1CwPjslGrG5DXbfcUhOlyEc3Zfjueu6SE/view?usp=sharing",
-          "x": 224,
+          "x": 163,
           "y": 218,
           "w": 77,
           "h": 61,
