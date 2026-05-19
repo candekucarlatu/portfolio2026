@@ -4,13 +4,13 @@
     {
       "id": "shelf",
       "src": "/canvas/projects/kaplan/items/shelf.png",
-      "x": 1519,
-      "y": 315,
-      "w": 834,
-      "h": 640,
+      "x": 1559,
+      "y": 355,
+      "w": 754,
+      "h": 560,
       "anchor": {
-        "x": 417,
-        "y": 82
+        "x": 377,
+        "y": 42
       },
       "zIndex": 1
     },

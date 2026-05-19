@@ -18,37 +18,37 @@
     {
       "id": "paper",
       "src": "/canvas/projects/aboutme/items/paper.png",
-      "x": 1160,
-      "y": 648,
-      "w": 490,
-      "h": 436,
+      "x": 1200,
+      "y": 688,
+      "w": 410,
+      "h": 356,
       "anchor": {
-        "x": 212,
-        "y": -23
+        "x": 172,
+        "y": -63
       },
       "zIndex": 3,
       "pin": true,
       "links": [
         {
           "href": "https://www.linkedin.com/in/candelakucarlatu/",
-          "x": 118,
-          "y": 308,
+          "x": 78,
+          "y": 268,
           "w": 80,
           "h": 50,
           "ariaLabel": "LinkedIn"
         },
         {
           "href": "mailto:kucarlatu@gmail.com",
-          "x": 205,
-          "y": 285,
+          "x": 165,
+          "y": 245,
           "w": 55,
           "h": 50,
           "ariaLabel": "Email"
         },
         {
           "href": "https://drive.google.com/file/d/1CwPjslGrG5DXbfcUhOlyEc3Zfjueu6SE/view?usp=sharing",
-          "x": 265,
-          "y": 262,
+          "x": 225,
+          "y": 222,
           "w": 95,
           "h": 50,
           "ariaLabel": "Resume"
