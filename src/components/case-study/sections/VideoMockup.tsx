@@ -6,6 +6,7 @@ interface VideoMockupProps {
   poster?: string
   background?: string
   variant?: 'phone' | 'desktop'
+  frameSrc?: string
 }
 
 /**

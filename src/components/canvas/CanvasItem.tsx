@@ -132,7 +132,7 @@ export function CanvasItem({
         '--item-z': item.zIndex,
         rotate: item.rotation,
         transformOrigin: `${item.anchor.x}px ${pinTopInWrapper + 4}px`,
-      } as React.CSSProperties}
+      } as unknown as React.CSSProperties}
       className={`canvas-item touch-none ${href ? 'cursor-pointer' : 'cursor-grab'} focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 active:cursor-grabbing`}
     >
       {item.pin && (
