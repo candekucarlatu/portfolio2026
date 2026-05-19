@@ -151,10 +151,17 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
                   <div className="h-full">{children}</div>
                 </div>
               ) : (
-                <div className={`bg-paper text-ink overflow-hidden pb-0${noScroll ? ' relative' : ''}`}>
-                  {/* Close button — absolute when noScroll (About Me) so content fills from the top,
-                      in-flow for case studies where the hero section starts naturally below */}
-                  <div className={noScroll ? 'absolute right-4 top-4 z-50' : 'flex flex-shrink-0 justify-end px-4 pt-4'}>
+                /* For noScroll (About Me) we omit overflow-hidden so sticky works.
+                   About Me manages its own horizontal overflow internally.
+                   For case studies we keep overflow-hidden (same as before). */
+                <div className={`bg-paper text-ink pb-0${noScroll ? '' : ' overflow-hidden'}`}>
+                  {/* Close button:
+                      - noScroll (About Me): sticky so it stays visible while scrolling,
+                        with -mb-[52px] so the canvas starts at the panel top (no 52px gap).
+                      - case studies: in-flow, same as before. */}
+                  <div className={noScroll
+                    ? 'sticky top-0 z-[60] flex justify-end px-4 pt-4 -mb-[52px]'
+                    : 'flex flex-shrink-0 justify-end px-4 pt-4'}>
                     <button
                       type="button"
                       aria-label={closeLabel}
