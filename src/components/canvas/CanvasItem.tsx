@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { animate, motion, useMotionValue } from 'framer-motion'
 import { useMemo, useRef } from 'react'
@@ -190,9 +191,21 @@ export function CanvasItem({
             width: link.w,
             height: link.h,
             cursor: 'pointer',
+            zIndex: 2,
           }}
         />
       ))}
+      {/* On mobile (itemDragEnabled=false), use a real Link so Next.js
+          intercepts the navigation and shows the drawer instead of the
+          standalone page. Link hotspots above (z-index:2) take priority. */}
+      {!itemDragEnabled && href && (
+        <Link
+          href={href}
+          aria-hidden
+          tabIndex={-1}
+          style={{ position: 'absolute', inset: 0, zIndex: 1 }}
+        />
+      )}
     </motion.div>
   )
 }
