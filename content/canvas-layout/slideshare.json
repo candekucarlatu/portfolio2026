@@ -19,10 +19,10 @@
       "src": "/canvas/projects/slideshare/items/sticky-en.png",
       "x": 596,
       "y": 1086,
-      "w": 275,
-      "h": 218,
+      "w": 361,
+      "h": 212,
       "anchor": {
-        "x": 145,
+        "x": 190,
         "y": -88
       },
       "zIndex": 4,

@@ -34,10 +34,10 @@
       "src": "/canvas/projects/scribd/items/sticky-en.png",
       "x": 2043,
       "y": 1339,
-      "w": 291,
-      "h": 241,
+      "w": 339,
+      "h": 225,
       "anchor": {
-        "x": 187,
+        "x": 218,
         "y": -70
       },
       "zIndex": 3,

@@ -19,10 +19,10 @@
       "src": "/canvas/projects/kaplan/items/sticky-en.png",
       "x": 1627,
       "y": 278,
-      "w": 303,
-      "h": 210,
+      "w": 324,
+      "h": 208,
       "anchor": {
-        "x": 144,
+        "x": 154,
         "y": -92
       },
       "zIndex": 3,

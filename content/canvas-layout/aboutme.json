@@ -6,10 +6,10 @@
       "src": "/canvas/projects/aboutme/items/photo.png",
       "x": 1014,
       "y": 739,
-      "w": 284,
-      "h": 316,
+      "w": 271,
+      "h": 324,
       "anchor": {
-        "x": 124,
+        "x": 118,
         "y": -77
       },
       "zIndex": 3,
@@ -20,10 +20,10 @@
       "src": "/canvas/projects/aboutme/items/paper-en.png",
       "x": 1200,
       "y": 688,
-      "w": 410,
-      "h": 356,
+      "w": 350,
+      "h": 270,
       "anchor": {
-        "x": 172,
+        "x": 147,
         "y": -63
       },
       "zIndex": 2,

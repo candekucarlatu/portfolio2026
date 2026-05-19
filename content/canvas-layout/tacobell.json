@@ -20,10 +20,10 @@
       "src": "/canvas/projects/tacobell/items/sticky-en.png",
       "x": 444,
       "y": 359,
-      "w": 275,
-      "h": 218,
+      "w": 334,
+      "h": 216,
       "anchor": {
-        "x": 109,
+        "x": 132,
         "y": -91
       },
       "zIndex": 3,
