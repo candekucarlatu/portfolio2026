@@ -1,13 +1,9 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/lib/i18n/config'
 
-function pickLocale(request: NextRequest): Locale {
-  const header = request.headers.get('accept-language') ?? ''
-  const candidates = header.split(',').map((part) => part.split(';')[0].trim().toLowerCase())
-  for (const candidate of candidates) {
-    const base = candidate.split('-')[0]
-    if ((LOCALES as readonly string[]).includes(base)) return base as Locale
-  }
+function pickLocale(_request: NextRequest): Locale {
+  // Always default to English regardless of browser language.
+  // Visitors can switch to Spanish via the language toggle.
   return DEFAULT_LOCALE
 }
 
