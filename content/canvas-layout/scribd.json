@@ -29,19 +29,5 @@
       "zIndex": 2,
       "pin": true
     },
-    {
-      "id": "sticky",
-      "src": "/canvas/projects/scribd/items/sticky.png",
-      "x": 2043,
-      "y": 1339,
-      "w": 291,
-      "h": 241,
-      "anchor": {
-        "x": 187,
-        "y": -70
-      },
-      "zIndex": 3,
-      "pin": true
-    }
   ]
 }
