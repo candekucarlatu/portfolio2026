@@ -12,7 +12,7 @@
         "x": 149,
         "y": -95
       },
-      "zIndex": 2,
+      "zIndex": 4,
       "pin": true
     },
     {
@@ -26,7 +26,8 @@
         "x": 132,
         "y": -91
       },
-      "zIndex": 3,
+      "zIndex": 2,
+      "rotation": 1.51,
       "pin": true
     },
     {
@@ -40,7 +41,7 @@
         "x": 113,
         "y": -72
       },
-      "zIndex": 2,
+      "zIndex": 3,
       "pin": true
     },
     {
