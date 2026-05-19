@@ -14,19 +14,5 @@
       },
       "zIndex": 1
     },
-    {
-      "id": "evidence",
-      "src": "/canvas/projects/kaplan/items/evidence.png",
-      "x": 1627,
-      "y": 278,
-      "w": 303,
-      "h": 210,
-      "anchor": {
-        "x": 144,
-        "y": -92
-      },
-      "zIndex": 3,
-      "pin": true
-    }
   ]
 }

@@ -7,7 +7,7 @@ import { useMemo, useRef } from 'react'
 import type { CanvasItem as CanvasItemData } from '@/lib/canvas/manifest'
 import { getNearestHole } from './pegboardGrid'
 
-const PIN_W = 46
+const PIN_W = 28
 const PIN_H = 139
 
 interface CanvasItemProps {
