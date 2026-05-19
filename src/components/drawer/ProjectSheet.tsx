@@ -125,7 +125,7 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
             >
               {/* bg-paper wrapper */}
               {noScroll ? (
-                <div className="bg-paper text-ink relative h-full overflow-hidden">
+                <div className="bg-paper text-ink relative h-full overflow-y-auto canvas-scroll-hidden overscroll-contain">
                   {/* Close button floats over content so children fill full height */}
                   <div className="absolute right-4 top-4 z-50">
                     <button
