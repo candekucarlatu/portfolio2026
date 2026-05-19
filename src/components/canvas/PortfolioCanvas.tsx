@@ -216,9 +216,9 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   const { getPosition, setPosition, reset, hasCustomLayout } = useCanvasLayout()
   const scale = viewport ? getScale(viewport) : 1
   const constraints = viewport ? getDragConstraints(viewport, scale) : undefined
-  // Desktop uses cursor panning; tablet/mobile uses touch drag
+  // Desktop uses cursor panning; mobile/tablet has no drag (canvas is static)
   const isDesktop = viewport ? viewport.width >= 1024 : false
-  const dragEnabled = !reduceMotion && !isDesktop
+  const dragEnabled = false
 
   return (
       <div
