@@ -5,21 +5,21 @@
       "id": "photo",
       "src": "/canvas/projects/aboutme/items/photo-2.png",
       "x": 1014,
-      "y": 739,
-      "w": 231,
-      "h": 266,
+      "y": 700,
+      "w": 295,
+      "h": 340,
       "anchor": {
-        "x": 116,
-        "y": -77
+        "x": 148,
+        "y": -55
       },
       "zIndex": 2,
-      "rotation": 9.11,
+      "rotation": 4,
       "pin": true
     },
     {
       "id": "paper",
       "src": "/canvas/projects/aboutme/items/paper-en.png",
-      "x": 1087,
+      "x": 1209,
       "y": 764,
       "w": 350,
       "h": 270,
@@ -28,7 +28,7 @@
         "y": -83
       },
       "zIndex": 3,
-      "rotation": -16,
+      "rotation": -12,
       "pin": true,
       "links": [
         {
