@@ -327,6 +327,25 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       } as React.CSSProperties}
                       onPointerDown={(e) => e.stopPropagation()}
                     >
+                      {/* CSS pinza — matches the one CanvasItem draws for pinned PNG items.
+                          Rendered BEFORE the note so the note covers the pinza body, leaving
+                          only the head visible above the note (like a real thumbtack). */}
+                      <div
+                        aria-hidden
+                        style={{
+                          position: 'absolute',
+                          left: '50%',
+                          top: -90,
+                          marginLeft: -14,
+                          width: 28,
+                          height: 139,
+                          borderRadius: 999,
+                          background: 'linear-gradient(to right, #eeedea 89%, #f6f5ef 103.59%)',
+                          boxShadow:
+                            '4px 2px 8px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(214, 208, 198, 0.6)',
+                          zIndex: 1,
+                        }}
+                      />
                       <StickyNote
                         title={project.card.title}
                         subtitle={project.card.subtitle}
