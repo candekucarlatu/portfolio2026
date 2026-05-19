@@ -273,7 +273,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
               key={`aboutme-${subItem.id}`}
               item={{ ...subItem, src: localizeSrc(subItem.src, locale), links: localizeLinks(subItem.links, locale) }}
               slug="aboutme"
-              href={subItem.links ? undefined : `/${locale}/about`}
+              href={isDesktop ? (subItem.links ? undefined : `/${locale}/about`) : `/${locale}/about`}
               ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
               position={getPosition('aboutme', subItem.id)}
               onPositionChange={(pos) => setPosition('aboutme', subItem.id, pos)}

@@ -116,7 +116,10 @@ body {
 .canvas-item {
   z-index: var(--item-z, 1);
 }
-.canvas-item:hover {
-  z-index: 50;
+/* Only elevate z-index on hover for pointer devices (not touch) */
+@media (hover: hover) {
+  .canvas-item:hover {
+    z-index: 50;
+  }
 }
 
