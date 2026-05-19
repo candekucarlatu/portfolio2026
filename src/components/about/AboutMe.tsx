@@ -336,18 +336,20 @@ export function AboutMe({ dict }: AboutMeProps) {
           style={{ aspectRatio: '1440 / 1010', height: '100%', maxHeight: '1010px', maxWidth: '100%' }}
         >
 
-          {/* ── DECORATION 1 — clipping wrapper, image peeks from top edge ─── */}
-          {/* Figma: container h=223/1010=22.08%, image h=173.54% container, top=−73.54% */}
+          {/* ── DECORATION 1 ─────────────────────────────────────────────────── */}
+          {/* Figma: left=785/1440=54.51%, top=0, w=535/1440=37.15%, h=223/1010=22.08% */}
+          {/* Image is 1070×446 (2× retina → 535×223 at 1×). Container aspect ratio   */}
+          {/* = (37.15% × canvas_w) / (22.08% × canvas_h) = always 2.4:1 (=1070/446). */}
+          {/* w-full h-full fills without deformation at any scale.                    */}
           <div
-            className="pointer-events-none absolute z-0 overflow-hidden"
+            className="pointer-events-none absolute z-0"
             style={{ left: '54.51%', top: '0%', width: '37.15%', height: '22.08%' }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/canvas/aboutme/sheet/Decoration%201.png"
               alt="" aria-hidden
-              className="absolute w-full"
-              style={{ height: '173.54%', top: '-73.54%', left: 0 }}
+              className="w-full h-full"
             />
           </div>
 
