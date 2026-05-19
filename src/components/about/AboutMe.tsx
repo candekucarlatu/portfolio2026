@@ -201,9 +201,11 @@ export function AboutMe({ dict }: AboutMeProps) {
         >
 
           {/* ── Profile background ──────────────────────────────────────── */}
+          {/* Figma: wrapper left=85px, width=663.2px → image (647px) centered */}
+          {/* image left = 85 + (663.2−647)/2 = 93.1px = 11.16% of 834px      */}
           <div
             className="pointer-events-none absolute"
-            style={{ left: '10.2%', top: '2.35%', width: '77.6%', transform: 'rotate(1deg)', transformOrigin: 'top center' }}
+            style={{ left: '11.16%', top: '2.35%', width: '77.6%', transform: 'rotate(1deg)', transformOrigin: 'top center' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Profile.png"
@@ -390,10 +392,11 @@ export function AboutMe({ dict }: AboutMeProps) {
           ))}
 
           {/* ── PROFILE PANEL — z-20 ─────────────────────────────────────── */}
-          {/* Figma: left=87.9/1440=6.10%, top=42.42/1010=4.20%, width=647/1440=44.93% */}
+          {/* Figma: wrapper left=87.9px, width=663.2px → image (647px) centered */}
+          {/* image left = 87.9 + (663.2−647)/2 = 96px = 6.67% of 1440px       */}
           <div
             className="absolute z-20"
-            style={{ left: '6.10%', top: '4.20%', width: '44.93%' }}
+            style={{ left: '6.67%', top: '4.20%', width: '44.93%' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Profile.png"
