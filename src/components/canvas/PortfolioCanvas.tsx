@@ -305,6 +305,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       onDragStateChange={(dragging) => {
                         itemDragRef.current = dragging
                       }}
+                      itemDragEnabled={isDesktop}
                     />
                   ))}
                 </Fragment>
