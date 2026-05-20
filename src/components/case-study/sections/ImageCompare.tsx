@@ -115,12 +115,12 @@ export function ImageCompare({
         className={`hidden md:flex relative w-full items-center justify-center py-[40px] ${height != null ? 'lg:py-[91px]' : 'lg:py-0 lg:h-[664px]'}`}
         style={{ backgroundColor: background }}
       >
-        {/* Tablet slider (md to lg): always aspect-ratio, fixes fixed-height layouts */}
+        {/* Tablet slider (md to lg): respects height prop when provided, otherwise aspect-ratio */}
         <div
           ref={tabletRef}
           className="relative w-[90%] max-w-[848px] select-none overflow-hidden lg:hidden"
           style={{
-            aspectRatio: '848/477',
+            ...(height != null ? { height } : { aspectRatio: '848/477' }),
             borderRadius: 12,
             border: '5px solid #e8e8e8',
             boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',

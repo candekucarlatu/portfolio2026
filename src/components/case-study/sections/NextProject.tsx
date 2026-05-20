@@ -114,10 +114,9 @@ export function NextProject({
         )}
 
         {/* ── Right area: phone layout (screenshot + frame overlay) ───────── */}
-        {/* Tablet: 142×289, ml-[96px] gap from left column (Figma 537:9828)   */}
-        {/* Desktop: 252×513, flex-1 centered                                  */}
+        {/* Tablet + Desktop: flex-1 centered in right half                    */}
         {image && imageLayout === 'phone' && (
-          <div className="hidden md:flex md:ml-[96px] md:self-center md:shrink-0 lg:ml-0 lg:flex-1 lg:justify-center">
+          <div className="hidden md:flex md:flex-1 md:self-center md:justify-center lg:justify-center">
             <Link
               href={href}
               aria-hidden
@@ -152,10 +151,9 @@ export function NextProject({
         )}
 
         {/* ── Right area: phone-framed (image already includes the frame) ─── */}
-        {/* Tablet: 142px wide (scales height proportionally), ml-[96px] gap  */}
-        {/* Desktop: original dimensions, flex-1 centered                      */}
+        {/* Tablet + Desktop: flex-1 centered in right half                    */}
         {image && imageLayout === 'phone-framed' && (
-          <div className="hidden md:flex md:ml-[96px] md:self-center md:shrink-0 lg:ml-0 lg:flex-1 lg:justify-center">
+          <div className="hidden md:flex md:flex-1 md:self-center md:justify-center lg:justify-center">
             <Link href={href} aria-hidden tabIndex={-1} className="block">
               <Image
                 src={image.src}
