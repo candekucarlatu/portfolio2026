@@ -49,7 +49,7 @@ export function VideoMockup({
           className="relative block md:hidden overflow-hidden rounded-[12px]"
           style={{
             aspectRatio: '848/440',
-            border: '5px solid #e8e8e8',
+            border: '3px solid #e8e8e8',
           }}
         >
           {src ? (
