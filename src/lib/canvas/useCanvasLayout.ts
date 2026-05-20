@@ -37,7 +37,11 @@ function keyFor(slug: string, itemId: string) {
 }
 
 export function useCanvasLayout() {
-  const [layout, setLayout] = useState<LayoutMap>(() => readStored())
+  const [layout, setLayout] = useState<LayoutMap>({})
+
+  useEffect(() => {
+    setLayout(readStored())
+  }, [])
 
   useEffect(() => {
     writeStored(layout)
