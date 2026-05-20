@@ -98,7 +98,7 @@ export function ImageCompare({
   )
 
   return (
-    <section className="mx-[24px] overflow-hidden lg:mx-[56px]">
+    <section className="mx-[24px] md:overflow-hidden lg:mx-[56px]">
       {/* Mobile: no background, full-width slider */}
       <div
         ref={mobileRef}
