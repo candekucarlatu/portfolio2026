@@ -50,7 +50,6 @@ export function VideoMockup({
           style={{
             aspectRatio: '848/440',
             border: '5px solid #e8e8e8',
-            boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
           }}
         >
           {src ? (
