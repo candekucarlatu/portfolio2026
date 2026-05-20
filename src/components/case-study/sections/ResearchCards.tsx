@@ -36,8 +36,7 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
                   alt={card.image.alt}
                   width={card.image.width ?? 599}
                   height={card.image.height ?? 446}
-                  className="w-full h-auto"
-                  style={card.imageEdge ? { transform: 'translateX(-24px)', width: 'calc(100% + 24px)' } : undefined}
+                  className="w-full h-auto block"
                 />
               </div>
 
