@@ -99,15 +99,17 @@ export function ImageCompare({
 
   return (
     <section className="mx-[24px] md:overflow-hidden lg:mx-[56px]">
-      {/* Mobile: no background, full-width slider */}
-      <div
-        ref={mobileRef}
-        className="relative w-full select-none overflow-hidden md:hidden"
-        style={{ aspectRatio: '848/477', borderRadius: 12, border: '5px solid #e8e8e8', boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)', cursor: 'ew-resize' }}
-        onMouseDown={onMouseDown}
-        onTouchMove={onTouchMove}
-      >
-        {sliderContent('mobile')}
+      {/* Mobile: external border wrapper so the border doesn't eat into the image area */}
+      <div className="block md:hidden" style={{ borderRadius: 12, border: '5px solid #e8e8e8' }}>
+        <div
+          ref={mobileRef}
+          className="relative w-full select-none overflow-hidden"
+          style={{ aspectRatio: '848/477', borderRadius: 7, cursor: 'ew-resize' }}
+          onMouseDown={onMouseDown}
+          onTouchMove={onTouchMove}
+        >
+          {sliderContent('mobile')}
+        </div>
       </div>
 
       {/* Tablet + Desktop: colored background with slider */}

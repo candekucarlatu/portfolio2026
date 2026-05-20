@@ -44,41 +44,40 @@ export function VideoMockup({
   if (variant === 'desktop') {
     return (
       <section className="mx-[24px] lg:mx-[56px]">
-        {/* Mobile: border + shadow + tap-to-fullscreen */}
-        <div
-          className="relative block md:hidden overflow-hidden rounded-[12px]"
-          style={{
-            aspectRatio: '848/440',
-            border: '3px solid #e8e8e8',
-          }}
-        >
-          {src ? (
-            <video
-              ref={videoRef}
-              src={src}
-              poster={poster}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover object-bottom scale-[1.04]"
-            />
-          ) : imageSrc ? (
-            <div className="relative w-full h-full scale-[1.04]">
-              <Image src={imageSrc} alt="" fill sizes="100vw" className="object-cover object-bottom" />
-            </div>
-          ) : null}
-          {src && (
-            <button
-              onClick={enterFullscreen}
-              className="absolute right-2 bottom-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50"
-              aria-label="Ver en pantalla completa"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-                <path d="M10 2h4v4M6 2H2v4M2 10v4h4M14 10v4h-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          )}
+        {/* Mobile: external border wrapper so the border doesn't eat into the video area */}
+        <div className="block md:hidden" style={{ borderRadius: 12, border: '3px solid #e8e8e8' }}>
+          <div
+            className="relative overflow-hidden"
+            style={{ aspectRatio: '848/440', borderRadius: 9 }}
+          >
+            {src ? (
+              <video
+                ref={videoRef}
+                src={src}
+                poster={poster}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover object-bottom scale-[1.04]"
+              />
+            ) : imageSrc ? (
+              <div className="relative w-full h-full scale-[1.04]">
+                <Image src={imageSrc} alt="" fill sizes="100vw" className="object-cover object-bottom" />
+              </div>
+            ) : null}
+            {src && (
+              <button
+                onClick={enterFullscreen}
+                className="absolute right-2 bottom-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50"
+                aria-label="Ver en pantalla completa"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+                  <path d="M10 2h4v4M6 2H2v4M2 10v4h4M14 10v4h-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Desktop: colored background + browser frame */}
