@@ -38,8 +38,7 @@
         {
           "title": "On desktop, the side nav was one hidden tap away.",
           "body": "Primary navigation lived behind a hamburger menu on desktop. Most users didn't open it, even though it held the actions they needed most.",
-          "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Desktop hamburger menu hiding primary navigation", "width": 599, "height": 446 },
-          "imageEdge": true
+          "image": { "src": "/canvas/projects/kaplan/insight-3.png", "alt": "Desktop hamburger menu hiding primary navigation", "width": 599, "height": 446 }
         }
       ]
     },
