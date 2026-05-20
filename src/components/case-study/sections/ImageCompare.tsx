@@ -103,7 +103,7 @@ export function ImageCompare({
       <div
         ref={mobileRef}
         className="relative w-full select-none overflow-hidden md:hidden"
-        style={{ aspectRatio: '848/477', borderRadius: 12, cursor: 'ew-resize' }}
+        style={{ aspectRatio: '848/477', borderRadius: 12, border: '5px solid #e8e8e8', boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)', cursor: 'ew-resize' }}
         onMouseDown={onMouseDown}
         onTouchMove={onTouchMove}
       >
