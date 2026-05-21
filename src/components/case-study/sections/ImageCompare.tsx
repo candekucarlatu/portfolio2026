@@ -114,7 +114,7 @@ export function ImageCompare({
 
       {/* Tablet + Desktop: colored background with slider */}
       <div
-        className={`hidden md:flex relative w-full items-center justify-center py-[40px] ${height != null ? 'lg:py-[91px]' : 'lg:py-0 lg:h-[664px]'}`}
+        className={`hidden md:flex relative w-full items-center justify-center py-[40px] ${height != null ? 'lg:py-[73px]' : 'lg:py-0 lg:h-[664px]'}`}
         style={{ backgroundColor: background }}
       >
         {/* Tablet slider (md to lg): respects height prop when provided, otherwise aspect-ratio */}

@@ -30,7 +30,7 @@ export function ResearchCards({ cards, layout = 'stacked' }: ResearchCardsProps)
               className="bg-white overflow-hidden flex flex-col md:flex-row md:items-center lg:shadow-[0px_6px_20px_rgba(0,0,0,0.1)]"
             >
               {/* Image — always first on mobile; on tablet+ moves right for even cards */}
-              <div className={`w-full shrink-0 overflow-hidden md:w-1/2 lg:w-[599px] ${imageRight ? 'md:order-last' : ''}`}>
+              <div className={`w-full shrink-0 overflow-hidden md:w-1/2 xl:w-[599px] ${imageRight ? 'md:order-last' : ''}`}>
                 <Image
                   src={card.image.src}
                   alt={card.image.alt}

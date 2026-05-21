@@ -15,7 +15,7 @@ interface ProjectSheetProps {
 export function ProjectSheet({ children, closeLabel, noScroll = false }: ProjectSheetProps) {
   const router = useRouter()
   const reduceMotion = useReducedMotion()
-  const isDesktop = useMediaQuery('(min-width: 1024px)', true)
+  const isDesktop = useMediaQuery('(min-width: 1025px)', true)
   const isVeryWide = useMediaQuery('(min-width: 1537px)', false)
   const isMediumWide = useMediaQuery('(min-width: 1251px)', false)
   // noScroll only applies at ≥1537px (AboutMe fixed side-by-side layout).
@@ -225,7 +225,7 @@ export function ProjectSheet({ children, closeLabel, noScroll = false }: Project
         />
         <Drawer.Content className="bg-paper text-ink fixed inset-x-0 bottom-0 z-50 mt-24 flex h-[calc(100dvh-64px)] flex-col rounded-t-2xl outline-none">
           <Drawer.Title className="sr-only">Project</Drawer.Title>
-          <div className="bg-ink/15 mx-auto mt-3 mb-1 h-1.5 w-[44px] flex-shrink-0 rounded-full" />
+          <div className="bg-ink/15 mx-auto mt-3 mb-1 h-1.5 w-[44px] flex-shrink-0 rounded-[2px]" />
           {/* noScroll is a desktop-only concept — mobile always scrolls */}
           <div className="canvas-scroll-hidden flex-1 overflow-y-auto overscroll-contain">
             {children}

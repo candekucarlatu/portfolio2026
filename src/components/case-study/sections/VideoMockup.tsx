@@ -167,12 +167,12 @@ export function VideoMockup({
               />
             </div>
 
-            {/* Desktop phone — 234×505 */}
+            {/* Desktop phone — 234×560 (Figma 392:96: 205×452 mockup; +height to show full app content incl. bottom nav) */}
             <div
               className="hidden md:block"
               style={{
                 width: 234,
-                height: 505,
+                height: 560,
                 borderRadius: 32,
                 border: '5px solid #e0e0e0',
                 boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',

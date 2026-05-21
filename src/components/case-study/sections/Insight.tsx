@@ -24,7 +24,7 @@ export function Insight({ title, body, image, reverse }: InsightProps) {
         className="bg-white overflow-hidden flex flex-col md:flex-row md:items-center lg:shadow-[0px_6px_20px_rgba(0,0,0,0.1)]"
       >
         {/* Image — always first on mobile; on tablet+ moves right when reverse=false */}
-        <div className={`w-full shrink-0 overflow-hidden md:w-1/2 lg:w-[599px] ${!reverse ? 'md:order-last' : ''}`}>
+        <div className={`w-full shrink-0 overflow-hidden md:w-1/2 xl:w-[599px] ${!reverse ? 'md:order-last' : ''}`}>
           <Image
             src={image.src}
             alt={image.alt}

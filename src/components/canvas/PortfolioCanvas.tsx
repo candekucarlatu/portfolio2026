@@ -66,9 +66,10 @@ interface ViewportSize {
 }
 
 /**
- * Canvas scale: 1 on desktop (≥1024px), 0.81 on mobile/tablet (<1024px).
+ * Canvas scale: 1 on iPad/desktop (≥1024px), 0.81 on mobile/tablet (<1024px).
  * 0.81 matches the Figma "Home mobile" reference frame (2031/2500 board width ratio).
- * Only the scroll/pan offset changes to keep About Me centered on load.
+ * At exactly 1024px (iPad): scale=1 + drag interaction (not cursor panning).
+ * At >1024px: scale=1 + cursor/edge panning (desktop).
  */
 function getScale(viewport: ViewportSize): number {
   return viewport.width < 1024 ? 0.81 : 1
@@ -164,9 +165,9 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
     return () => el.removeEventListener('wheel', handleWheel)
   }, [viewport, x, y])
 
-  // Edge-proximity cursor panning — desktop only (≥1024px), disabled with reduceMotion
+  // Edge-proximity cursor panning — desktop only (>1024px), disabled with reduceMotion
   useEffect(() => {
-    if (!viewport || viewport.width < 1024 || reduceMotion) return
+    if (!viewport || viewport.width <= 1024 || reduceMotion) return
 
     const scale = getScale(viewport)
     const constraints = getDragConstraints(viewport, scale)
@@ -216,8 +217,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   const { getPosition, setPosition, reset, hasCustomLayout } = useCanvasLayout()
   const scale = viewport ? getScale(viewport) : 1
   const constraints = viewport ? getDragConstraints(viewport, scale) : undefined
-  // Desktop uses cursor panning; tablet/mobile uses touch drag to pan the canvas
-  const isDesktop = viewport ? viewport.width >= 1024 : false
+  // Desktop uses cursor panning; tablet/mobile/1024px uses touch drag to pan the canvas
+  const isDesktop = viewport ? viewport.width > 1024 : false
   const dragEnabled = !reduceMotion && !isDesktop
 
   return (

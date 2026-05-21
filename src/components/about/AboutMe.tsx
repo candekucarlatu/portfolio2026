@@ -60,11 +60,10 @@ export function AboutMe({ dict }: AboutMeProps) {
         >
 
           {/* ── Profile background ──────────────────────────────────────── */}
-          {/* Figma: wrapper left=−3.16px, w=393.552px → image (383.93px)  */}
-          {/* centered ⟹ image left = (−3.16 + (393.552−383.93)/2) = 1.65px */}
+          {/* Figma 502:9733: x=6.5 (1.67%), y=28.7 (2.70%), w=383.9 (98.44%), rot=-1 */}
           <div
             className="pointer-events-none absolute"
-            style={{ left: '0.42%', top: '2.7%', width: '98.4%', transform: 'rotate(1deg)', transformOrigin: 'top center' }}
+            style={{ left: '1.67%', top: '2.70%', width: '98.44%', transform: 'rotate(1deg)' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Profile.png"
@@ -76,10 +75,10 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Collage ─────────────────────────────────────────────────── */}
-          {/* Figma: wrapper left=43.9px → image left=43.9+(315.46−313.14)/2=45.1px=11.55% */}
+          {/* Figma 506:9743: x=46.3 (11.87%), y=16 (1.51%), w=313.1 (80.28%), rot=-1 */}
           <div
             className="pointer-events-none absolute"
-            style={{ left: '11.55%', top: '1.5%', width: '80.3%', transform: 'rotate(1deg)' }}
+            style={{ left: '11.87%', top: '1.51%', width: '80.28%', transform: 'rotate(1deg)' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Collage.png"
@@ -90,10 +89,10 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Bio text ────────────────────────────────────────────────── */}
-          {/* Figma: left=54px=13.85%, top=165px=15.52% */}
+          {/* Figma 506:9744: x=57.9 (14.85%), y=165 (15.52%), w=283.7 (72.74%), rot=-1 */}
           <div
             className="absolute"
-            style={{ left: '13.85%', top: '15.5%', width: '72.8%', transform: 'rotate(1deg)' }}
+            style={{ left: '14.85%', top: '15.52%', width: '72.74%', transform: 'rotate(1deg)' }}
           >
             <div
               className="font-script flex flex-col text-black"
@@ -122,7 +121,7 @@ export function AboutMe({ dict }: AboutMeProps) {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="absolute flex items-center"
-                style={{ left: '13.3%', top: topPct, transform: 'rotate(1deg)' }}
+                style={{ left: '13.44%', top: topPct, transform: 'rotate(1deg)' }}
               >
                 <span
                   className="shrink-0 font-semibold text-ink"
@@ -197,15 +196,14 @@ export function AboutMe({ dict }: AboutMeProps) {
       <div className="overflow-x-hidden overflow-y-auto hidden md:block at-wide-hidden lg:h-full">
         <div
           className="relative w-full overflow-hidden"
-          style={{ aspectRatio: '834 / 1700', maxWidth: 834, marginLeft: 'auto', marginRight: 'auto' }}
+          style={{ aspectRatio: '834 / 1684', maxWidth: 834, marginLeft: 'auto', marginRight: 'auto' }}
         >
 
           {/* ── Profile background ──────────────────────────────────────── */}
-          {/* Figma: wrapper left=85px, width=663.2px → image (647px) centered */}
-          {/* image left = 85 + (663.2−647)/2 = 93.1px = 11.16% of 834px      */}
+          {/* Figma 537:9897: x=101.3 (12.15%), y=40 (2.38%), w=647 (77.60%), rot=-1 */}
           <div
             className="pointer-events-none absolute"
-            style={{ left: '11.16%', top: '2.35%', width: '77.6%', transform: 'rotate(1deg)', transformOrigin: 'top center' }}
+            style={{ left: '12.15%', top: '2.38%', width: '77.60%', transform: 'rotate(1deg)' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Profile.png"
@@ -217,9 +215,10 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Collage ─────────────────────────────────────────────────── */}
+          {/* Figma 537:9914: x=175.1 (21.00%), y=145 (8.61%), w=519 (62.23%), rot=-1 */}
           <div
             className="pointer-events-none absolute"
-            style={{ left: '20.5%', top: '8.53%', width: '62.6%', transform: 'rotate(1deg)' }}
+            style={{ left: '21.00%', top: '8.61%', width: '62.23%', transform: 'rotate(1deg)' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Collage.png"
@@ -230,9 +229,10 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Bio text ────────────────────────────────────────────────── */}
+          {/* Figma 537:9911: x=193.8 (23.24%), y=437.6 (25.99%), w=471 (56.47%), rot=-1 */}
           <div
             className="absolute"
-            style={{ left: '22.8%', top: '25.74%', width: '56.8%', transform: 'rotate(1deg)' }}
+            style={{ left: '23.24%', top: '25.99%', width: '56.47%', transform: 'rotate(1deg)' }}
           >
             <div
               className="font-script flex flex-col text-black"
@@ -245,12 +245,13 @@ export function AboutMe({ dict }: AboutMeProps) {
 
           {/* ── Links ───────────────────────────────────────────────────── */}
           {/* Figma: Email labelW=54px gap=63px / others labelW=88px gap=29px */}
+          {/* Individual x positions from Figma 537:9908/9905/9902/9899       */}
           {[
-            { topPct: '41.2%',  labelW: 54, valGap: 63 },   // Email      y=700
-            { topPct: '44.86%', labelW: 88, valGap: 29 },   // Linkedin   y=763
-            { topPct: '48.5%',  labelW: 88, valGap: 29 },   // Instagram  y=825
-            { topPct: '52.33%', labelW: 88, valGap: 29 },   // Resume     y=890
-          ].map(({ topPct, labelW, valGap }, i) => {
+            { leftPct: '22.73%', topPct: '41.60%', labelW: 54, valGap: 63 },  // Email   x=189.6 y=700.6
+            { leftPct: '22.60%', topPct: '45.28%', labelW: 88, valGap: 29 },  // Linkedin x=188.5 y=762.6
+            { leftPct: '22.47%', topPct: '48.97%', labelW: 88, valGap: 29 },  // Instagram x=187.4 y=824.6
+            { leftPct: '22.34%', topPct: '52.82%', labelW: 88, valGap: 29 },  // Resume  x=186.3 y=889.5
+          ].map(({ leftPct, topPct, labelW, valGap }, i) => {
             const { label, value, href } = links[i]
             return (
               <a
@@ -259,7 +260,7 @@ export function AboutMe({ dict }: AboutMeProps) {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="absolute flex items-center"
-                style={{ left: '22.5%', top: topPct, transform: 'rotate(1deg)' }}
+                style={{ left: leftPct, top: topPct, transform: 'rotate(1deg)' }}
               >
                 <span
                   className="shrink-0 font-semibold text-ink"
@@ -278,9 +279,10 @@ export function AboutMe({ dict }: AboutMeProps) {
           })}
 
           {/* ── Design Principles background ────────────────────────────── */}
+          {/* Figma 537:9915: x=84 (10.07%), y=949.4 (56.38%), w=642.5 (77.04%), rot=2 */}
           <div
             className="pointer-events-none absolute"
-            style={{ left: '10.07%', top: '54.53%', width: '77.0%', transform: 'rotate(-2deg)', transformOrigin: 'top left' }}
+            style={{ left: '10.07%', top: '56.38%', width: '77.04%', transform: 'rotate(-2deg)', transformOrigin: 'top left' }}
           >
             <Image
               src="/canvas/aboutme/sheet/Design%20Principles.png"
@@ -291,13 +293,12 @@ export function AboutMe({ dict }: AboutMeProps) {
           </div>
 
           {/* ── Design Principles texts ──────────────────────────────────── */}
-          {/* Figma tops (wrapper): 62.06/69.59/77.12/84.64%             */}
-          {/* −1% to account for Figma's items-center offset in wrapper  */}
+          {/* Figma 537:9926/9923/9920/9917: absolute positions in 834×1684 frame */}
           {[
-            { left: '18.78%', top: '61.06%' },  // Use research
-            { left: '19.31%', top: '68.59%' },  // Work end-to-end
-            { left: '19.85%', top: '76.12%' },  // Ship to learn
-            { left: '20.39%', top: '83.64%' },  // Treat efficiency
+            { left: '18.79%', top: '63.68%' },  // Text 1: x=156.7 y=1072.3
+            { left: '19.32%', top: '71.28%' },  // Text 2: x=161.1 y=1200.3
+            { left: '19.86%', top: '78.87%' },  // Text 3: x=165.6 y=1328.2
+            { left: '20.40%', top: '86.47%' },  // Text 4: x=170.1 y=1456.1
           ].map((pos, i) => (
             <div
               key={i}
