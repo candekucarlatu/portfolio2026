@@ -88,45 +88,36 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: taco shell, narrow top / wide bottom ──────────────────
+  // ── burst — TacoBell: wide landscape taco shell shape ───────────────────────
   if (shape === 'burst') {
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 130, height: 114 }}>
+        <div style={{ position: 'relative', width: 152, height: 100 }}>
           <svg
-            viewBox="0 0 120 104"
+            viewBox="0 0 152 100"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
             aria-hidden="true"
           >
-            {/* Outer taco shell: narrow point at top, wide opening at bottom */}
+            {/* Wide landscape taco shell — elongated oval, 1.6:1 ratio */}
             <path
-              d="M 7,70 C 7,88 20,99 34,99 L 86,99 C 100,99 113,88 113,70 C 113,36 90,5 60,5 C 30,5 7,36 7,70 Z"
+              d="M 10,50 C 10,22 32,7 76,7 C 120,7 142,22 142,50 C 142,78 120,93 76,93 C 32,93 10,78 10,50 Z"
               fill={color}
             />
-            {/* Inner white outline — same shape inset ~7px, like Scribd/Kaplan inner ring */}
+            {/* Inner white ring — same language as Scribd/Kaplan */}
             <path
-              d="M 13,69 C 13,84 24,92 36,92 L 84,92 C 96,92 107,84 107,69 C 107,38 86,12 60,12 C 34,12 13,38 13,69 Z"
+              d="M 19,50 C 19,28 39,16 76,16 C 113,16 133,28 133,50 C 133,72 113,84 76,84 C 39,84 19,72 19,50 Z"
               fill="none"
               stroke="rgba(255,255,255,0.55)"
-              strokeWidth="1.8"
-            />
-            {/* Fold arch near the bottom — dark, marks the taco crease */}
-            <path
-              d="M 20,72 C 20,84 28,91 39,91 L 81,91 C 92,91 100,84 100,72"
-              fill="none"
-              stroke="rgba(0,0,0,0.22)"
-              strokeWidth="3"
-              strokeLinecap="round"
+              strokeWidth="2"
             />
           </svg>
-          {/* Text centered in the wide middle zone, above the fold crease */}
+          {/* Text fully centered inside the shape */}
           <div style={{
             ...txt,
             position: 'absolute',
-            left: 0, right: 0,
-            top: 14, bottom: 28,
+            inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '0 20px',
+            padding: '8px 26px',
           }}>
             {label}
           </div>
