@@ -4,6 +4,7 @@ import { isLocale, LOCALES } from '@/lib/i18n/config'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 import { getProject, isProjectSlug, PROJECT_SLUGS } from '@/lib/content/loader'
 import { CaseStudy } from '@/components/case-study/CaseStudy'
+import { VisitedTracker } from '@/components/canvas/VisitedTracker'
 
 export async function generateStaticParams() {
   return LOCALES.flatMap((lang) => PROJECT_SLUGS.map((slug) => ({ lang, slug })))
@@ -24,6 +25,7 @@ export default async function StandaloneWorkPage({ params }: PageProps<'/[lang]/
       >
         ← {dict.ui.backHome}
       </Link>
+      <VisitedTracker slug={slug} />
       <CaseStudy project={project} dict={dict} locale={lang} />
     </main>
   )
