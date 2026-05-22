@@ -135,8 +135,8 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
           background: color,
           borderRadius: '50%',
           border: '2.5px solid rgba(255,255,255,0.85)',
-          width: 178,
-          height: 112,
+          width: 152,
+          height: 96,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxSizing: 'border-box',
           position: 'relative',
@@ -149,7 +149,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
             border: '1.5px solid rgba(255,255,255,0.4)',
             pointerEvents: 'none',
           }} />
-          <div style={{ ...txt, fontSize: 12, position: 'relative', padding: '0 18px' }}>{label}</div>
+          <div style={{ ...txt, fontSize: 13, position: 'relative' }}>{label}</div>
         </div>
       </div>
     )
