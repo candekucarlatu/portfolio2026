@@ -32,7 +32,7 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
   }, [pathname, current, target])
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex items-center gap-5 md:top-6 md:right-6">
+    <div className="fixed top-4 right-4 z-50 flex items-center gap-4 md:top-6 md:right-6">
       {/* Reset layout — animates in/out, appears to the left of the lang switch */}
       <AnimatePresence>
         {hasCustomLayout && (
