@@ -55,7 +55,7 @@
       "after": { "src": "/canvas/projects/kaplan/design-2.png", "alt": "Kaplan navigation Design 2 — cleaner hierarchy" },
       "beforeLabel": "Design 1",
       "afterLabel": "Design 2",
-      "height": 518
+      "imageAspectRatio": "2360/1568"
     },
     {
       "type": "section",

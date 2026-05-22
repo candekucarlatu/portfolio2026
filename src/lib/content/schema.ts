@@ -112,6 +112,7 @@ const ImageCompare = z.object({
   beforeLabel: z.string().optional(),
   afterLabel: z.string().optional(),
   height: z.number().int().positive().optional(),
+  imageAspectRatio: z.string().optional(),
 })
 
 const ResearchCards = z.object({

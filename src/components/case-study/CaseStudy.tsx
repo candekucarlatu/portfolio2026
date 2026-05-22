@@ -129,6 +129,7 @@ export function CaseStudy({ project, dict, locale }: CaseStudyProps) {
                   beforeLabel={section.beforeLabel}
                   afterLabel={section.afterLabel}
                   height={section.height}
+                  imageAspectRatio={section.imageAspectRatio}
                 />
               )
             case 'research-cards':

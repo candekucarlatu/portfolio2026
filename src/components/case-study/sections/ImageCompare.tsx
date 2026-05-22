@@ -11,6 +11,7 @@ interface ImageCompareProps {
   beforeLabel?: string
   afterLabel?: string
   height?: number
+  imageAspectRatio?: string
 }
 
 export function ImageCompare({
@@ -20,6 +21,7 @@ export function ImageCompare({
   beforeLabel = 'Before',
   afterLabel = 'After',
   height,
+  imageAspectRatio,
 }: ImageCompareProps) {
   const [position, setPosition] = useState(50)
   const mobileRef = useRef<HTMLDivElement>(null)
@@ -104,7 +106,7 @@ export function ImageCompare({
         <div
           ref={mobileRef}
           className="relative w-full select-none overflow-hidden"
-          style={{ aspectRatio: '848/477', borderRadius: 7, cursor: 'ew-resize' }}
+          style={{ aspectRatio: imageAspectRatio ?? '848/477', borderRadius: 7, cursor: 'ew-resize' }}
           onMouseDown={onMouseDown}
           onTouchMove={onTouchMove}
         >
@@ -114,15 +116,15 @@ export function ImageCompare({
 
       {/* Tablet + Desktop: colored background with slider */}
       <div
-        className={`hidden md:flex relative w-full items-center justify-center py-[40px] ${height != null ? 'lg:py-[73px]' : 'lg:py-0 lg:h-[664px]'}`}
+        className={`hidden md:flex relative w-full items-center justify-center py-[40px] ${(height != null || imageAspectRatio != null) ? 'md:py-[78px]' : 'lg:py-0 lg:h-[664px]'}`}
         style={{ backgroundColor: background }}
       >
-        {/* Tablet slider (md to lg): respects height prop when provided, otherwise aspect-ratio */}
+        {/* Tablet slider (md to lg) */}
         <div
           ref={tabletRef}
           className="relative w-[90%] max-w-[848px] select-none overflow-hidden lg:hidden"
           style={{
-            ...(height != null ? { height } : { aspectRatio: '848/477' }),
+            ...(height != null ? { height } : { aspectRatio: imageAspectRatio ?? '848/477' }),
             borderRadius: 12,
             border: '5px solid #e8e8e8',
             boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
@@ -134,12 +136,12 @@ export function ImageCompare({
           {sliderContent('desktop')}
         </div>
 
-        {/* Desktop slider (lg+): uses height prop when provided */}
+        {/* Desktop slider (lg+) */}
         <div
           ref={desktopRef}
           className="relative w-[90%] max-w-[848px] select-none overflow-hidden hidden lg:block"
           style={{
-            ...(height != null ? { height } : { aspectRatio: '848/477' }),
+            ...(height != null ? { height } : { aspectRatio: imageAspectRatio ?? '848/477' }),
             borderRadius: 12,
             border: '5px solid #e8e8e8',
             boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',

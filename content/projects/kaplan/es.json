@@ -55,7 +55,7 @@
       "after": { "src": "/canvas/projects/kaplan/design-2.png", "alt": "Navegación Kaplan Diseño 2 — jerarquía más limpia" },
       "beforeLabel": "Diseño 1",
       "afterLabel": "Diseño 2",
-      "height": 518
+      "imageAspectRatio": "2360/1568"
     },
     {
       "type": "section",
