@@ -36,7 +36,7 @@ function stampPath(w: number, h: number, r: number): string {
   for (let i = 0; i < sidCount; i++) {
     const cy = r + sidGap * (i + 0.5)
     s.push(`L ${w - r},${cy - r}`)
-    s.push(`A ${r},${r} 0 0,0 ${w - r},${cy + r}`)
+    s.push(`A ${r},${r} 0 0,1 ${w - r},${cy + r}`)
   }
 
   // ── Bottom edge: going LEFT at y=h-r, bumps DOWN (outward) ───────────────
@@ -44,7 +44,7 @@ function stampPath(w: number, h: number, r: number): string {
   for (let i = topCount - 1; i >= 0; i--) {
     const cx = r + topGap * (i + 0.5)
     s.push(`L ${cx + r},${h - r}`)
-    s.push(`A ${r},${r} 0 0,0 ${cx - r},${h - r}`)
+    s.push(`A ${r},${r} 0 0,1 ${cx - r},${h - r}`)
   }
 
   // ── Left edge: going UP at x=r, bumps LEFT (outward) ─────────────────────
@@ -213,14 +213,16 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
   }
 
   // ── badge — About Me: postage stamp shape ────────────────────────────────────
-  // White perforated outer body + orange inner rect — 1:1 based on reference image
-  const SW = 110, SH = 128, NR = 5  // stamp width/height, notch radius
-  const inset = NR + 4              // orange body inset from outer edge
+  // White perforated outer silhouette + orange inner rect — matches reference image.
+  // r=8 makes bumps clearly visible; inset=16 gives a generous white border area.
+  // No white drop-shadow here — the white SVG base IS the border, glow would blur bumps.
+  const SW = 112, SH = 134, NR = 8   // stamp width/height, notch radius
+  const inset = 16                    // orange body inset — defines white border width
   const bodyX = inset, bodyY = inset
   const bodyW = SW - inset * 2, bodyH = SH - inset * 2
   const path = stampPath(SW, SH, NR)
   return (
-    <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
+    <div style={{ filter: shadow }}>
       <div style={{ position: 'relative', width: SW, height: SH }}>
         {/* SVG: white perforated silhouette + orange body */}
         <svg
@@ -231,7 +233,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
           <path d={path} fill="#fff" />
           <rect x={bodyX} y={bodyY} width={bodyW} height={bodyH} fill={color} />
         </svg>
-        {/* Text centered inside the orange area */}
+        {/* Text flex-centered inside the orange area */}
         <div style={{
           position: 'absolute',
           left: bodyX,
