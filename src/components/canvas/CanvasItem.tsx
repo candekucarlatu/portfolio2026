@@ -304,8 +304,6 @@ export function CanvasItem({
         '--item-z': item.zIndex,
         rotate: item.rotation,
         transformOrigin: `${item.anchor.x}px ${pinTopInWrapper + 4}px`,
-        filter: visited && grayscaleOnVisit ? 'grayscale(1)' : undefined,
-        transition: 'filter 0.5s ease',
       } as unknown as React.CSSProperties}
       className={`canvas-item touch-none ${href ? 'cursor-pointer' : 'cursor-grab'} focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 active:cursor-grabbing`}
     >
@@ -341,6 +339,8 @@ export function CanvasItem({
           height: item.h,
           pointerEvents: 'none',
           userSelect: 'none',
+          filter: visited && grayscaleOnVisit ? 'grayscale(1)' : undefined,
+          transition: 'filter 0.5s ease',
         }}
         draggable={false}
         priority
