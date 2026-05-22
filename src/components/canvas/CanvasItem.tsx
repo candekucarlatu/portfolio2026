@@ -12,22 +12,32 @@ const PIN_W = 28
 const PIN_H = 139
 
 // ─── Scalloped-circle (seal) SVG path ────────────────────────────────────────
-// Places n equidistant points on a circle of radius R; each adjacent pair is
-// connected by an outward arc of radius r (sweep=0 = bumps away from centre).
-// This produces perfectly uniform scallops — no polygon irregularities.
-function sealSvgPath(cx: number, cy: number, R: number, r: number, n: number): string {
-  const pts = Array.from({ length: n }, (_, i) => {
-    const a = (2 * Math.PI * i) / n - Math.PI / 2
-    return [cx + R * Math.cos(a), cy + R * Math.sin(a)] as const
-  })
-  const arc = ([x, y]: readonly [number, number]) =>
-    `A ${r},${r} 0 0,0 ${x.toFixed(2)},${y.toFixed(2)}`
-  return [
-    `M ${pts[0][0].toFixed(2)},${pts[0][1].toFixed(2)}`,
-    ...pts.slice(1).map(arc),
-    arc(pts[0]),
-    'Z',
-  ].join(' ')
+// 2n alternating valley (Ri) and peak (Ro) points connected by cubic bezier
+// curves whose control points are aligned to the CW tangent at each point.
+// This produces smooth, rounded scallops with no sharp cusps.
+function sealSvgPath(cx: number, cy: number, Ri: number, Ro: number, n: number): string {
+  const pts: Array<{ x: number; y: number; a: number }> = []
+  for (let i = 0; i < n; i++) {
+    const va = (2 * Math.PI * i) / n - Math.PI / 2       // valley angle
+    const pa = va + Math.PI / n                            // peak angle (midpoint)
+    pts.push({ x: cx + Ri * Math.cos(va), y: cy + Ri * Math.sin(va), a: va })
+    pts.push({ x: cx + Ro * Math.cos(pa), y: cy + Ro * Math.sin(pa), a: pa })
+  }
+  const N = pts.length
+  const segs: string[] = [`M ${pts[0].x.toFixed(2)},${pts[0].y.toFixed(2)}`]
+  for (let i = 0; i < N; i++) {
+    const p = pts[i]
+    const q = pts[(i + 1) % N]
+    const dist = Math.sqrt((q.x - p.x) ** 2 + (q.y - p.y) ** 2)
+    const k = dist * 0.45
+    // CW tangent at angle a = (-sin(a), cos(a))
+    const cp1x = p.x - Math.sin(p.a) * k
+    const cp1y = p.y + Math.cos(p.a) * k
+    const cp2x = q.x + Math.sin(q.a) * k
+    const cp2y = q.y - Math.cos(q.a) * k
+    segs.push(`C ${cp1x.toFixed(2)},${cp1y.toFixed(2)} ${cp2x.toFixed(2)},${cp2y.toFixed(2)} ${q.x.toFixed(2)},${q.y.toFixed(2)}`)
+  }
+  return segs.join(' ') + ' Z'
 }
 
 // ─── Stamp perforated-edge path ───────────────────────────────────────────────
@@ -108,30 +118,33 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: convex dome, taller to fit 2-line label ──────────────
-  // ry=65 gives a dome height of ~93px (ratio ~1.6:1 width:height).
-  // sweep=1 (CW) → arc goes UP from (6,100) to (154,100).
+  // ── burst — TacoBell: dome/taco shape via CSS border-radius ─────────────────
+  // CSS border-radius '80px 80px 0 0' on a 160×80 div = perfect semicircle top.
+  // Text is always inside the container — no SVG arc geometry issues.
   if (shape === 'burst') {
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 160, height: 106 }}>
-          <svg
-            viewBox="0 0 160 106"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
-            aria-hidden="true"
-          >
-            {/* Shell — convex arch, flat base */}
-            <path d="M 6,100 A 82,65 0 0,1 154,100 Z" fill={color} />
-            {/* Inner ring — ~10px inset all around */}
-            <path d="M 18,90 A 70,52 0 0,1 142,90 Z"
-              fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
-          </svg>
+        <div style={{
+          position: 'relative',
+          width: 160,
+          height: 80,
+          backgroundColor: color,
+          borderRadius: '80px 80px 0 0',
+        }}>
+          {/* Inner ring */}
+          <div style={{
+            position: 'absolute',
+            top: 10, left: 10, right: 10, bottom: 0,
+            borderRadius: '70px 70px 0 0',
+            border: '2px solid rgba(0,0,0,0.22)',
+            pointerEvents: 'none',
+          }} />
           <div style={{
             ...txt,
             position: 'absolute',
             inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '12px 26px 8px',
+            padding: '8px 22px',
           }}>
             {label}
           </div>
@@ -195,12 +208,12 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     )
   }
 
-  // ── seal — SlideShare: mathematically uniform scalloped circle ──────────────
-  // 20 equidistant points on R=50, each pair connected by arc r=9 (sweep=0 =
-  // outward bump). All 20 scallops are identical — no polygon irregularities.
+  // ── seal — SlideShare: smooth bezier scalloped circle ──────────────────────
+  // 2n alternating valley/peak points connected by bezier curves with tangent-
+  // aligned control points → smooth rounded scallops, no sharp cusps.
   if (shape === 'seal') {
-    const W = 120, H = 120, cx = 60, cy = 60
-    const sPath = sealSvgPath(cx, cy, 50, 9, 20)
+    const W = 136, H = 136, cx = 68, cy = 68
+    const sPath = sealSvgPath(cx, cy, 55, 61, 20)
     return (
       <div style={{ filter: shadow, position: 'relative' }}>
         <svg
@@ -208,9 +221,11 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
           style={{ display: 'block' }}
           aria-hidden="true"
         >
+          {/* White outer border — matches Kaplan/Scribd */}
+          <path d={sPath} fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="3" />
           <path d={sPath} fill={color} />
-          {/* Inner concentric ring */}
-          <circle cx={cx} cy={cy} r={40} fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
+          {/* Inner ring — pushed closer to edge for more text breathing room */}
+          <circle cx={cx} cy={cy} r={50} fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
         </svg>
         <div style={{
           ...txt,
@@ -218,7 +233,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
           top: 0, left: 0,
           width: W, height: H,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '22px',
+          padding: '14px',
         }}>
           {label}
         </div>
@@ -295,6 +310,8 @@ interface CanvasItemProps {
   grayscaleOnVisit?: boolean
   /** Vertical position of the sticker as a fraction of item height (default 0.28). */
   stickerTopRatio?: number
+  /** Horizontal offset of the sticker in px from center (positive = right). Default 0. */
+  stickerXOffset?: number
   /** Whether we're on desktop (≥1025px). Controls chip visibility. */
   isDesktop?: boolean
   /** Called on desktop hover with label + cursor client coords. */
@@ -319,6 +336,7 @@ export function CanvasItem({
   stickerShape,
   grayscaleOnVisit = false,
   stickerTopRatio = 0.28,
+  stickerXOffset = 0,
   isDesktop = false,
   onChipHover,
   onChipHoverMove,
@@ -496,7 +514,7 @@ export function CanvasItem({
               position: 'absolute',
               top: pngTopInWrapper + Math.round(item.h * stickerTopRatio),
               left: '50%',
-              translateX: '-50%',
+              translateX: `calc(-50% + ${stickerXOffset}px)`,
               pointerEvents: 'none',
               zIndex: 10,
             }}

@@ -422,6 +422,13 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       visitedLabel={isES ? 'YA VI ESTE CASO\nDE ESTUDIO' : "I'VE SEEN THIS\nCASE STUDY"}
                       stickerShape={STICKER_SHAPE[item.slug]}
                       grayscaleOnVisit={subItem.stickerItem}
+                      stickerTopRatio={
+                        item.slug === 'slideshare' && subItem.id === 'sticky' ? 0.14 : undefined
+                      }
+                      stickerXOffset={
+                        // SlideShare: move seal to right side of sticky (sticky w=361, sticker w=128)
+                        item.slug === 'slideshare' && subItem.id === 'sticky' ? 90 : undefined
+                      }
                       isDesktop={isDesktop}
                       onChipHover={handleChipHover}
                       onChipHoverEnd={handleChipHoverEnd}
