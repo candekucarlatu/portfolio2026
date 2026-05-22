@@ -131,10 +131,10 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
           backgroundColor: color,
           borderRadius: '80px 80px 0 0',
         }}>
-          {/* Inner ring */}
+          {/* Inner ring — equal 10px inset all sides */}
           <div style={{
             position: 'absolute',
-            top: 10, left: 10, right: 10, bottom: 0,
+            top: 10, left: 10, right: 10, bottom: 10,
             borderRadius: '70px 70px 0 0',
             border: '2px solid rgba(0,0,0,0.22)',
             pointerEvents: 'none',
@@ -144,7 +144,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
             position: 'absolute',
             inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '8px 22px',
+            padding: '10px 22px 0',
           }}>
             {label}
           </div>
