@@ -88,37 +88,30 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: taco shell silhouette ──────────────────────────────────
-  // Top is concave (the open rim), sides flare outward, bottom is a tight fold.
+  // ── burst — TacoBell: half-ellipse taco dome with flat bottom ───────────────
+  // Uses SVG arc (A) not bezier — guarantees a clean dome, not a bucket shape.
+  // M x,y A rx,ry 0 0,0 x2,y closes with straight line = flat-bottom dome.
   if (shape === 'burst') {
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 160, height: 108 }}>
+        <div style={{ position: 'relative', width: 160, height: 92 }}>
           <svg
-            viewBox="0 0 160 108"
+            viewBox="0 0 160 92"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
             aria-hidden="true"
           >
-            {/* Outer shape: concave top rim → sides flare out → tight bottom fold */}
-            <path
-              d="M 14,24 Q 80,42 146,24 C 160,52 154,84 130,94 C 106,102 54,102 30,94 C 6,84 0,52 14,24 Z"
-              fill={color}
-            />
-            {/* Inner white ring — inset ~9px all around */}
-            <path
-              d="M 22,30 Q 80,46 138,30 C 150,54 145,80 123,89 C 100,96 60,96 37,89 C 15,80 10,54 22,30 Z"
-              fill="none"
-              stroke="rgba(255,255,255,0.55)"
-              strokeWidth="2"
-            />
+            {/* Half-ellipse: arc from bottom-left to bottom-right curving UP, Z closes flat */}
+            <path d="M 6,84 A 74,80 0 0,0 154,84 Z" fill={color} />
+            {/* Inner dark ring — same style as Scribd, inset ~9px */}
+            <path d="M 15,81 A 65,71 0 0,0 145,81 Z"
+              fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
           </svg>
-          {/* Text centered — sits in the wide belly of the shape */}
           <div style={{
             ...txt,
             position: 'absolute',
             inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '12px 24px 8px',
+            padding: '4px 22px 16px',
           }}>
             {label}
           </div>
@@ -146,7 +139,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
             position: 'absolute',
             inset: 8,
             borderRadius: '50%',
-            border: '1.5px solid rgba(255,255,255,0.4)',
+            border: '1.5px solid rgba(0,0,0,0.2)',
             pointerEvents: 'none',
           }} />
           <div style={{ ...txt, fontSize: 13, position: 'relative', padding: '0 22px', whiteSpace: 'pre-line' }}>{label}</div>
