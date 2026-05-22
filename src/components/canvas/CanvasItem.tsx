@@ -88,36 +88,37 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: wide landscape taco shell shape ───────────────────────
+  // ── burst — TacoBell: taco shell silhouette ──────────────────────────────────
+  // Top is concave (the open rim), sides flare outward, bottom is a tight fold.
   if (shape === 'burst') {
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 152, height: 100 }}>
+        <div style={{ position: 'relative', width: 160, height: 108 }}>
           <svg
-            viewBox="0 0 152 100"
+            viewBox="0 0 160 108"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
             aria-hidden="true"
           >
-            {/* Wide landscape taco shell — elongated oval, 1.6:1 ratio */}
+            {/* Outer shape: concave top rim → sides flare out → tight bottom fold */}
             <path
-              d="M 10,50 C 10,22 32,7 76,7 C 120,7 142,22 142,50 C 142,78 120,93 76,93 C 32,93 10,78 10,50 Z"
+              d="M 14,24 Q 80,42 146,24 C 160,52 154,84 130,94 C 106,102 54,102 30,94 C 6,84 0,52 14,24 Z"
               fill={color}
             />
-            {/* Inner white ring — same language as Scribd/Kaplan */}
+            {/* Inner white ring — inset ~9px all around */}
             <path
-              d="M 19,50 C 19,28 39,16 76,16 C 113,16 133,28 133,50 C 133,72 113,84 76,84 C 39,84 19,72 19,50 Z"
+              d="M 22,30 Q 80,46 138,30 C 150,54 145,80 123,89 C 100,96 60,96 37,89 C 15,80 10,54 22,30 Z"
               fill="none"
               stroke="rgba(255,255,255,0.55)"
               strokeWidth="2"
             />
           </svg>
-          {/* Text fully centered inside the shape */}
+          {/* Text centered — sits in the wide belly of the shape */}
           <div style={{
             ...txt,
             position: 'absolute',
             inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '8px 26px',
+            padding: '12px 24px 8px',
           }}>
             {label}
           </div>
