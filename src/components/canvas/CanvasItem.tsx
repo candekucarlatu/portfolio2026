@@ -24,10 +24,13 @@ const STICKER_META: Record<StickerShape, { rotation: number }> = {
 
 function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }) {
   const O = '#f2612e'
-  const base: React.CSSProperties = {
+  // Shadow applied on a wrapper so it works with clip-path shapes too
+  const wrapperShadow = 'drop-shadow(2px 3px 7px rgba(0,0,0,0.32))'
+  const txt: React.CSSProperties = {
     fontFamily: 'var(--font-caveat), cursive',
     fontWeight: 700,
-    lineHeight: 1.2,
+    fontSize: 13,
+    lineHeight: 1.25,
     color: '#fff',
     textAlign: 'center',
     pointerEvents: 'none',
@@ -35,86 +38,101 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
   }
 
   if (shape === 'burst') {
-    // 16-point jagged starburst — energetic, TacoBell
+    // For clip-path shapes: stacked white drop-shadows create the border glow
+    const clipPath = 'polygon(50% 0%, 54% 16%, 63% 5%, 65% 22%, 76% 13%, 74% 30%, 88% 25%, 82% 41%, 99% 42%, 89% 55%, 100% 62%, 87% 67%, 95% 77%, 80% 78%, 84% 91%, 69% 88%, 68% 100%, 55% 92%, 50% 100%, 45% 92%, 32% 100%, 31% 88%, 16% 91%, 20% 78%, 5% 77%, 13% 67%, 0% 62%, 11% 55%, 1% 42%, 18% 41%, 12% 25%, 26% 30%, 24% 13%, 35% 22%, 37% 5%, 46% 16%)'
     return (
-      <div style={{
-        ...base,
-        width: 112, height: 112,
-        background: O,
-        clipPath: 'polygon(50% 0%, 54% 16%, 63% 5%, 65% 22%, 76% 13%, 74% 30%, 88% 25%, 82% 41%, 99% 42%, 89% 55%, 100% 62%, 87% 67%, 95% 77%, 80% 78%, 84% 91%, 69% 88%, 68% 100%, 55% 92%, 50% 100%, 45% 92%, 32% 100%, 31% 88%, 16% 91%, 20% 78%, 5% 77%, 13% 67%, 0% 62%, 11% 55%, 1% 42%, 18% 41%, 12% 25%, 26% 30%, 24% 13%, 35% 22%, 37% 5%, 46% 16%)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '22px 18px',
-        fontSize: 13.5,
-        boxSizing: 'border-box',
-      }}>{label}</div>
+      <div style={{ filter: `drop-shadow(0 0 3px #fff) drop-shadow(0 0 2px #fff) ${wrapperShadow}` }}>
+        <div style={{
+          width: 118, height: 118,
+          background: O,
+          clipPath,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '26px 20px',
+          boxSizing: 'border-box',
+        }}>
+          <span style={txt}>{label}</span>
+        </div>
+      </div>
     )
   }
 
   if (shape === 'blob') {
-    // Organic asymmetric blob — Kaplan
     return (
-      <div style={{
-        ...base,
-        background: O,
-        borderRadius: '42% 58% 70% 30% / 42% 50% 60% 52%',
-        padding: '18px 26px',
-        maxWidth: 140,
-        fontSize: 15,
-      }}>{label}</div>
+      <div style={{ filter: wrapperShadow }}>
+        <div style={{
+          background: O,
+          borderRadius: '42% 58% 70% 30% / 42% 50% 60% 52%',
+          border: '2.5px solid rgba(255,255,255,0.9)',
+          padding: '18px 26px',
+          maxWidth: 144,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxSizing: 'border-box',
+        }}>
+          <span style={{ ...txt, fontSize: 14 }}>{label}</span>
+        </div>
+      </div>
     )
   }
 
   if (shape === 'nametag') {
-    // HELLO MY NAME IS sticker — Scribd
     return (
-      <div style={{
-        ...base,
-        background: O,
-        borderRadius: 7,
-        padding: '12px 18px',
-        minWidth: 118,
-        position: 'relative',
-      }}>
+      <div style={{ filter: wrapperShadow }}>
         <div style={{
-          position: 'absolute', inset: 6,
-          border: '2px solid rgba(255,255,255,0.65)',
-          borderRadius: 3,
-          pointerEvents: 'none',
-        }} />
-        <span style={{ ...base, fontSize: 14 }}>{label}</span>
+          background: O,
+          borderRadius: 7,
+          border: '2.5px solid rgba(255,255,255,0.9)',
+          padding: '13px 20px',
+          minWidth: 120,
+          position: 'relative',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxSizing: 'border-box',
+        }}>
+          <div style={{
+            position: 'absolute', inset: 6,
+            border: '1.5px solid rgba(255,255,255,0.5)',
+            borderRadius: 3,
+            pointerEvents: 'none',
+          }} />
+          <span style={{ ...txt, fontSize: 14, position: 'relative' }}>{label}</span>
+        </div>
       </div>
     )
   }
 
   if (shape === 'seal') {
-    // Award seal with scalloped edge — SlideShare
+    const clipPath = 'polygon(50% 0%, 56% 5%, 63% 2%, 68% 8%, 75% 6%, 79% 13%, 87% 12%, 89% 20%, 97% 21%, 97% 29%, 100% 32%, 98% 40%, 100% 44%, 97% 50%, 100% 56%, 98% 60%, 100% 68%, 97% 71%, 97% 79%, 89% 80%, 87% 88%, 79% 87%, 75% 94%, 68% 92%, 63% 98%, 56% 95%, 50% 100%, 44% 95%, 37% 98%, 32% 92%, 25% 94%, 21% 87%, 13% 88%, 11% 80%, 3% 79%, 3% 71%, 0% 68%, 2% 60%, 0% 56%, 3% 50%, 0% 44%, 2% 40%, 0% 32%, 3% 29%, 3% 21%, 11% 20%, 13% 12%, 21% 13%, 25% 6%, 32% 8%, 37% 2%, 44% 5%)'
     return (
-      <div style={{
-        ...base,
-        width: 110, height: 110,
-        background: O,
-        clipPath: 'polygon(50% 0%, 56% 5%, 63% 2%, 68% 8%, 75% 6%, 79% 13%, 87% 12%, 89% 20%, 97% 21%, 97% 29%, 100% 32%, 98% 40%, 100% 44%, 97% 50%, 100% 56%, 98% 60%, 100% 68%, 97% 71%, 97% 79%, 89% 80%, 87% 88%, 79% 87%, 75% 94%, 68% 92%, 63% 98%, 56% 95%, 50% 100%, 44% 95%, 37% 98%, 32% 92%, 25% 94%, 21% 87%, 13% 88%, 11% 80%, 3% 79%, 3% 71%, 0% 68%, 2% 60%, 0% 56%, 3% 50%, 0% 44%, 2% 40%, 0% 32%, 3% 29%, 3% 21%, 11% 20%, 13% 12%, 21% 13%, 25% 6%, 32% 8%, 37% 2%, 44% 5%)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '20px 16px',
-        fontSize: 13,
-        boxSizing: 'border-box',
-      }}>{label}</div>
+      <div style={{ filter: `drop-shadow(0 0 3px #fff) drop-shadow(0 0 2px #fff) ${wrapperShadow}` }}>
+        <div style={{
+          width: 116, height: 116,
+          background: O,
+          clipPath,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '24px 18px',
+          boxSizing: 'border-box',
+        }}>
+          <span style={txt}>{label}</span>
+        </div>
+      </div>
     )
   }
 
-  // badge — About Me: circle with inner ring
+  // badge — About Me
   return (
-    <div style={{
-      ...base,
-      width: 96, height: 96,
-      background: O,
-      borderRadius: '50%',
-      boxShadow: 'inset 0 0 0 5px rgba(255,255,255,0.5)',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '16px',
-      fontSize: 13.5,
-      boxSizing: 'border-box',
-    }}>{label}</div>
+    <div style={{ filter: wrapperShadow }}>
+      <div style={{
+        width: 98, height: 98,
+        background: O,
+        borderRadius: '50%',
+        border: '2.5px solid rgba(255,255,255,0.9)',
+        boxShadow: 'inset 0 0 0 5px rgba(255,255,255,0.35)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '18px',
+        boxSizing: 'border-box',
+      }}>
+        <span style={{ ...txt, fontSize: 13.5 }}>{label}</span>
+      </div>
+    </div>
   )
 }
 
