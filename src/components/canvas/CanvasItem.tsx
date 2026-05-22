@@ -14,16 +14,16 @@ const PIN_H = 139
 // ─── Visited sticker shapes ───────────────────────────────────────────────────
 export type StickerShape = 'burst' | 'blob' | 'nametag' | 'seal' | 'badge'
 
-const STICKER_META: Record<StickerShape, { rotation: number }> = {
-  burst:   { rotation: -6  },
-  blob:    { rotation: 10  },
-  nametag: { rotation: -10 },
-  seal:    { rotation: 8   },
-  badge:   { rotation: -14 },
+const STICKER_META: Record<StickerShape, { rotation: number; color: string; textColor: string }> = {
+  burst:   { rotation: -6,  color: '#4C029C', textColor: '#fff'     }, // TacoBell — purple
+  blob:    { rotation: 10,  color: '#005DE8', textColor: '#fff'     }, // Kaplan   — blue
+  nametag: { rotation: -10, color: '#0B8747', textColor: '#fff'     }, // Scribd   — green
+  seal:    { rotation: 8,   color: '#FDBD6F', textColor: '#1C1C1C'  }, // SlideShare — yellow (dark text for contrast)
+  badge:   { rotation: -14, color: '#f2612e', textColor: '#fff'     }, // About Me — orange
 }
 
 function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }) {
-  const O = '#f2612e'
+  const { color, textColor } = STICKER_META[shape]
   // Soft sticker shadow — works on clip-path shapes via filter
   const shadow = 'drop-shadow(1px 2px 4px rgba(0,0,0,0.18))'
   // Text block always fills container width so textAlign:center works on all lines
@@ -34,105 +34,151 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     fontWeight: 700,
     fontSize: 13,
     lineHeight: 1.25,
-    color: '#fff',
+    color: textColor,
     textAlign: 'center',
     pointerEvents: 'none',
     userSelect: 'none',
   }
 
+  // ── burst — TacoBell: taco/arch shell shape ──────────────────────────────────
   if (shape === 'burst') {
-    const clipPath = 'polygon(50% 0%, 54% 16%, 63% 5%, 65% 22%, 76% 13%, 74% 30%, 88% 25%, 82% 41%, 99% 42%, 89% 55%, 100% 62%, 87% 67%, 95% 77%, 80% 78%, 84% 91%, 69% 88%, 68% 100%, 55% 92%, 50% 100%, 45% 92%, 32% 100%, 31% 88%, 16% 91%, 20% 78%, 5% 77%, 13% 67%, 0% 62%, 11% 55%, 1% 42%, 18% 41%, 12% 25%, 26% 30%, 24% 13%, 35% 22%, 37% 5%, 46% 16%)'
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{
-          width: 118, height: 118,
-          background: O,
-          clipPath,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '28px 22px',
-          boxSizing: 'border-box',
-        }}>
-          <div style={txt}>{label}</div>
+        <div style={{ position: 'relative', width: 120, height: 104 }}>
+          <svg
+            viewBox="0 0 120 104"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+            aria-hidden="true"
+          >
+            {/* Outer taco shell: wide arch top, rounded bottom point */}
+            <path
+              d="M 7,34 C 7,16 20,5 34,5 L 86,5 C 100,5 113,16 113,34 C 113,68 90,99 60,99 C 30,99 7,68 7,34 Z"
+              fill={color}
+            />
+            {/* Inner arch — the taco fold line, dark stroke */}
+            <path
+              d="M 20,32 C 20,20 28,13 39,13 L 81,13 C 92,13 100,20 100,32"
+              fill="none"
+              stroke="rgba(0,0,0,0.22)"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
+          {/* Text sits in the lower portion of the taco */}
+          <div style={{
+            ...txt,
+            position: 'absolute',
+            left: 0, right: 0,
+            bottom: 14,
+            padding: '0 20px',
+          }}>
+            {label}
+          </div>
         </div>
       </div>
     )
   }
 
+  // ── blob — Kaplan: horizontal oval (like "NEW ARRIVAL" reference) ────────────
   if (shape === 'blob') {
     return (
       <div style={{ filter: shadow }}>
         <div style={{
-          background: O,
-          borderRadius: '42% 58% 70% 30% / 42% 50% 60% 52%',
-          border: '2.5px solid rgba(255,255,255,0.9)',
-          padding: '18px 26px',
-          width: 140,
+          background: color,
+          borderRadius: '50%',
+          border: '2.5px solid rgba(255,255,255,0.85)',
+          width: 152,
+          height: 96,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxSizing: 'border-box',
+          position: 'relative',
         }}>
-          <div style={{ ...txt, fontSize: 14 }}>{label}</div>
+          {/* Concentric inner oval ring — white, matching the reference */}
+          <div style={{
+            position: 'absolute',
+            inset: 8,
+            borderRadius: '50%',
+            border: '1.5px solid rgba(255,255,255,0.4)',
+            pointerEvents: 'none',
+          }} />
+          <div style={{ ...txt, fontSize: 13, position: 'relative' }}>{label}</div>
         </div>
       </div>
     )
   }
 
+  // ── nametag — Scribd: rounded rect with thick dark inner border ──────────────
   if (shape === 'nametag') {
     return (
       <div style={{ filter: shadow }}>
         <div style={{
-          background: O,
-          borderRadius: 7,
-          border: '2.5px solid rgba(255,255,255,0.9)',
+          background: color,
+          borderRadius: 8,
+          border: '2.5px solid rgba(255,255,255,0.85)',
           padding: '13px 20px',
-          width: 128,
+          width: 130,
           position: 'relative',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxSizing: 'border-box',
         }}>
+          {/* Thick dark inner rectangle — like a badge inset */}
           <div style={{
             position: 'absolute', inset: 6,
-            border: '1.5px solid rgba(255,255,255,0.5)',
-            borderRadius: 3,
+            border: '2.5px solid rgba(0,0,0,0.25)',
+            borderRadius: 4,
             pointerEvents: 'none',
           }} />
-          <div style={{ ...txt, fontSize: 14, position: 'relative' }}>{label}</div>
+          <div style={{ ...txt, fontSize: 13, position: 'relative' }}>{label}</div>
         </div>
       </div>
     )
   }
 
+  // ── seal — SlideShare: scalloped circle with dark inner ring ─────────────────
   if (shape === 'seal') {
     const clipPath = 'polygon(50% 0%, 56% 5%, 63% 2%, 68% 8%, 75% 6%, 79% 13%, 87% 12%, 89% 20%, 97% 21%, 97% 29%, 100% 32%, 98% 40%, 100% 44%, 97% 50%, 100% 56%, 98% 60%, 100% 68%, 97% 71%, 97% 79%, 89% 80%, 87% 88%, 79% 87%, 75% 94%, 68% 92%, 63% 98%, 56% 95%, 50% 100%, 44% 95%, 37% 98%, 32% 92%, 25% 94%, 21% 87%, 13% 88%, 11% 80%, 3% 79%, 3% 71%, 0% 68%, 2% 60%, 0% 56%, 3% 50%, 0% 44%, 2% 40%, 0% 32%, 3% 29%, 3% 21%, 11% 20%, 13% 12%, 21% 13%, 25% 6%, 32% 8%, 37% 2%, 44% 5%)'
     return (
-      <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
+      <div style={{ filter: `drop-shadow(0 0 2.5px rgba(0,0,0,0.3)) ${shadow}` }}>
         <div style={{
-          width: 116, height: 116,
-          background: O,
+          width: 120, height: 120,
+          background: color,
           clipPath,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           padding: '26px 20px',
           boxSizing: 'border-box',
+          position: 'relative',
         }}>
-          <div style={txt}>{label}</div>
+          {/* Inner circle ring — dark, matching "black inner lines" directive */}
+          <div style={{
+            position: 'absolute',
+            width: 88, height: 88,
+            borderRadius: '50%',
+            border: '2px solid rgba(0,0,0,0.22)',
+            top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            pointerEvents: 'none',
+          }} />
+          <div style={{ ...txt, position: 'relative' }}>{label}</div>
         </div>
       </div>
     )
   }
 
-  // badge — About Me
+  // ── badge — About Me: ticket shape with side notches ────────────────────────
+  // Clip-path cuts semicircular notches into both sides at mid-height
+  const ticketClip = 'polygon(0% 0%, 100% 0%, 100% 35%, 88% 50%, 100% 65%, 100% 100%, 0% 100%, 0% 65%, 12% 50%, 0% 35%)'
   return (
-    <div style={{ filter: shadow }}>
+    <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
       <div style={{
-        width: 98, height: 98,
-        background: O,
-        borderRadius: '50%',
-        border: '2.5px solid rgba(255,255,255,0.9)',
-        boxShadow: 'inset 0 0 0 5px rgba(255,255,255,0.35)',
+        width: 124,
+        height: 84,
+        background: color,
+        clipPath: ticketClip,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '18px',
+        padding: '8px 26px',
         boxSizing: 'border-box',
       }}>
-        <div style={{ ...txt, fontSize: 13.5 }}>{label}</div>
+        <div style={txt}>{label}</div>
       </div>
     </div>
   )

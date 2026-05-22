@@ -9,7 +9,7 @@ import { CanvasItem, type StickerShape } from './CanvasItem'
 import { WowDecor, LetteringDecor, GastlyDecor, CollageDecor } from './DecorItems'
 import { Pegboard } from './Pegboard'
 import { ProjectCard } from './ProjectCard'
-import { ResetLayoutButton } from './ResetLayoutButton'
+
 import { TacoBellCard } from './TacoBellCard'
 import { SlideShareCard } from './SlideShareCard'
 import { ScribdCard } from './ScribdCard'
@@ -480,12 +480,6 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             )
           })}
         </motion.div>
-
-        <ResetLayoutButton
-          visible={hasCustomLayout}
-          onReset={reset}
-          label={dict.ui.resetLayout ?? 'Reset layout'}
-        />
 
         {/* Drag-to-explore hint — mobile/tablet only, fades out on first interaction */}
         <AnimatePresence>
