@@ -24,9 +24,12 @@ const STICKER_META: Record<StickerShape, { rotation: number }> = {
 
 function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }) {
   const O = '#f2612e'
-  // Shadow applied on a wrapper so it works with clip-path shapes too
-  const wrapperShadow = 'drop-shadow(2px 3px 7px rgba(0,0,0,0.32))'
+  // Soft sticker shadow — works on clip-path shapes via filter
+  const shadow = 'drop-shadow(1px 2px 4px rgba(0,0,0,0.18))'
+  // Text block always fills container width so textAlign:center works on all lines
   const txt: React.CSSProperties = {
+    display: 'block',
+    width: '100%',
     fontFamily: 'var(--font-caveat), cursive',
     fontWeight: 700,
     fontSize: 13,
@@ -38,19 +41,18 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
   }
 
   if (shape === 'burst') {
-    // For clip-path shapes: stacked white drop-shadows create the border glow
     const clipPath = 'polygon(50% 0%, 54% 16%, 63% 5%, 65% 22%, 76% 13%, 74% 30%, 88% 25%, 82% 41%, 99% 42%, 89% 55%, 100% 62%, 87% 67%, 95% 77%, 80% 78%, 84% 91%, 69% 88%, 68% 100%, 55% 92%, 50% 100%, 45% 92%, 32% 100%, 31% 88%, 16% 91%, 20% 78%, 5% 77%, 13% 67%, 0% 62%, 11% 55%, 1% 42%, 18% 41%, 12% 25%, 26% 30%, 24% 13%, 35% 22%, 37% 5%, 46% 16%)'
     return (
-      <div style={{ filter: `drop-shadow(0 0 3px #fff) drop-shadow(0 0 2px #fff) ${wrapperShadow}` }}>
+      <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
         <div style={{
           width: 118, height: 118,
           background: O,
           clipPath,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '26px 20px',
+          padding: '28px 22px',
           boxSizing: 'border-box',
         }}>
-          <span style={txt}>{label}</span>
+          <div style={txt}>{label}</div>
         </div>
       </div>
     )
@@ -58,17 +60,17 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
 
   if (shape === 'blob') {
     return (
-      <div style={{ filter: wrapperShadow }}>
+      <div style={{ filter: shadow }}>
         <div style={{
           background: O,
           borderRadius: '42% 58% 70% 30% / 42% 50% 60% 52%',
           border: '2.5px solid rgba(255,255,255,0.9)',
           padding: '18px 26px',
-          maxWidth: 144,
+          width: 140,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxSizing: 'border-box',
         }}>
-          <span style={{ ...txt, fontSize: 14 }}>{label}</span>
+          <div style={{ ...txt, fontSize: 14 }}>{label}</div>
         </div>
       </div>
     )
@@ -76,13 +78,13 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
 
   if (shape === 'nametag') {
     return (
-      <div style={{ filter: wrapperShadow }}>
+      <div style={{ filter: shadow }}>
         <div style={{
           background: O,
           borderRadius: 7,
           border: '2.5px solid rgba(255,255,255,0.9)',
           padding: '13px 20px',
-          minWidth: 120,
+          width: 128,
           position: 'relative',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxSizing: 'border-box',
@@ -93,7 +95,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
             borderRadius: 3,
             pointerEvents: 'none',
           }} />
-          <span style={{ ...txt, fontSize: 14, position: 'relative' }}>{label}</span>
+          <div style={{ ...txt, fontSize: 14, position: 'relative' }}>{label}</div>
         </div>
       </div>
     )
@@ -102,16 +104,16 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
   if (shape === 'seal') {
     const clipPath = 'polygon(50% 0%, 56% 5%, 63% 2%, 68% 8%, 75% 6%, 79% 13%, 87% 12%, 89% 20%, 97% 21%, 97% 29%, 100% 32%, 98% 40%, 100% 44%, 97% 50%, 100% 56%, 98% 60%, 100% 68%, 97% 71%, 97% 79%, 89% 80%, 87% 88%, 79% 87%, 75% 94%, 68% 92%, 63% 98%, 56% 95%, 50% 100%, 44% 95%, 37% 98%, 32% 92%, 25% 94%, 21% 87%, 13% 88%, 11% 80%, 3% 79%, 3% 71%, 0% 68%, 2% 60%, 0% 56%, 3% 50%, 0% 44%, 2% 40%, 0% 32%, 3% 29%, 3% 21%, 11% 20%, 13% 12%, 21% 13%, 25% 6%, 32% 8%, 37% 2%, 44% 5%)'
     return (
-      <div style={{ filter: `drop-shadow(0 0 3px #fff) drop-shadow(0 0 2px #fff) ${wrapperShadow}` }}>
+      <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
         <div style={{
           width: 116, height: 116,
           background: O,
           clipPath,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '24px 18px',
+          padding: '26px 20px',
           boxSizing: 'border-box',
         }}>
-          <span style={txt}>{label}</span>
+          <div style={txt}>{label}</div>
         </div>
       </div>
     )
@@ -119,7 +121,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
 
   // badge — About Me
   return (
-    <div style={{ filter: wrapperShadow }}>
+    <div style={{ filter: shadow }}>
       <div style={{
         width: 98, height: 98,
         background: O,
@@ -130,7 +132,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
         padding: '18px',
         boxSizing: 'border-box',
       }}>
-        <span style={{ ...txt, fontSize: 13.5 }}>{label}</span>
+        <div style={{ ...txt, fontSize: 13.5 }}>{label}</div>
       </div>
     </div>
   )
