@@ -209,8 +209,8 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
   // White perforated outer silhouette + orange inner rect — matches reference image.
   // r=8 makes bumps clearly visible; inset=16 gives a generous white border area.
   // No white drop-shadow here — the white SVG base IS the border, glow would blur bumps.
-  const SW = 112, SH = 134, NR = 8   // stamp width/height, notch radius
-  const inset = 16                    // orange body inset — defines white border width
+  const SW = 112, SH = 134, NR = 4   // stamp width/height, notch radius
+  const inset = 9                     // orange body inset — defines white border width
   const bodyX = inset, bodyY = inset
   const bodyW = SW - inset * 2, bodyH = SH - inset * 2
   const path = stampPath(SW, SH, NR)
