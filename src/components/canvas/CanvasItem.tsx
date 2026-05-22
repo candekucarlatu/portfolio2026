@@ -11,6 +11,54 @@ import { getNearestHole } from './pegboardGrid'
 const PIN_W = 28
 const PIN_H = 139
 
+// ─── Stamp perforated-edge path ───────────────────────────────────────────────
+// Generates an SVG path string for a postage-stamp shape:
+// a rectangle with outward semicircular notches on all four sides.
+// w/h: outer dimensions; r: notch radius; gap: center-to-center spacing
+function stampPath(w: number, h: number, r: number): string {
+  const s: string[] = []
+
+  const topCount = Math.round((w - 2 * r) / (r * 2.5))
+  const topGap   = (w - 2 * r) / topCount
+  const sidCount = Math.round((h - 2 * r) / (r * 2.5))
+  const sidGap   = (h - 2 * r) / sidCount
+
+  // ── Top edge: going RIGHT at y=r, bumps UP (outward) ─────────────────────
+  s.push(`M ${r},${r}`)
+  for (let i = 0; i < topCount; i++) {
+    const cx = r + topGap * (i + 0.5)
+    s.push(`L ${cx - r},${r}`)
+    s.push(`A ${r},${r} 0 0,1 ${cx + r},${r}`)
+  }
+
+  // ── Right edge: going DOWN at x=w-r, bumps RIGHT (outward) ───────────────
+  s.push(`L ${w - r},${r}`)
+  for (let i = 0; i < sidCount; i++) {
+    const cy = r + sidGap * (i + 0.5)
+    s.push(`L ${w - r},${cy - r}`)
+    s.push(`A ${r},${r} 0 0,0 ${w - r},${cy + r}`)
+  }
+
+  // ── Bottom edge: going LEFT at y=h-r, bumps DOWN (outward) ───────────────
+  s.push(`L ${w - r},${h - r}`)
+  for (let i = topCount - 1; i >= 0; i--) {
+    const cx = r + topGap * (i + 0.5)
+    s.push(`L ${cx + r},${h - r}`)
+    s.push(`A ${r},${r} 0 0,0 ${cx - r},${h - r}`)
+  }
+
+  // ── Left edge: going UP at x=r, bumps LEFT (outward) ─────────────────────
+  s.push(`L ${r},${h - r}`)
+  for (let i = sidCount - 1; i >= 0; i--) {
+    const cy = r + sidGap * (i + 0.5)
+    s.push(`L ${r},${cy + r}`)
+    s.push(`A ${r},${r} 0 0,1 ${r},${cy - r}`)
+  }
+
+  s.push('Z')
+  return s.join(' ')
+}
+
 // ─── Visited sticker shapes ───────────────────────────────────────────────────
 export type StickerShape = 'burst' | 'blob' | 'nametag' | 'seal' | 'badge'
 
@@ -164,21 +212,40 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     )
   }
 
-  // ── badge — About Me: ticket shape with side notches ────────────────────────
-  // Clip-path cuts semicircular notches into both sides at mid-height
-  const ticketClip = 'polygon(0% 0%, 100% 0%, 100% 35%, 88% 50%, 100% 65%, 100% 100%, 0% 100%, 0% 65%, 12% 50%, 0% 35%)'
+  // ── badge — About Me: postage stamp shape ────────────────────────────────────
+  // White perforated outer body + orange inner rect — 1:1 based on reference image
+  const SW = 110, SH = 128, NR = 5  // stamp width/height, notch radius
+  const inset = NR + 4              // orange body inset from outer edge
+  const bodyX = inset, bodyY = inset
+  const bodyW = SW - inset * 2, bodyH = SH - inset * 2
+  const path = stampPath(SW, SH, NR)
   return (
     <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-      <div style={{
-        width: 124,
-        height: 84,
-        background: color,
-        clipPath: ticketClip,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '8px 26px',
-        boxSizing: 'border-box',
-      }}>
-        <div style={txt}>{label}</div>
+      <div style={{ position: 'relative', width: SW, height: SH }}>
+        {/* SVG: white perforated silhouette + orange body */}
+        <svg
+          viewBox={`0 0 ${SW} ${SH}`}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+          aria-hidden="true"
+        >
+          <path d={path} fill="#fff" />
+          <rect x={bodyX} y={bodyY} width={bodyW} height={bodyH} fill={color} />
+        </svg>
+        {/* Text centered inside the orange area */}
+        <div style={{
+          position: 'absolute',
+          left: bodyX,
+          top: bodyY,
+          width: bodyW,
+          height: bodyH,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '6px 8px',
+          boxSizing: 'border-box',
+        }}>
+          <div style={txt}>{label}</div>
+        </div>
       </div>
     </div>
   )
