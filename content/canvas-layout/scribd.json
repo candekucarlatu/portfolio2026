@@ -27,7 +27,8 @@
         "y": -52
       },
       "zIndex": 1,
-      "pin": true
+      "pin": true,
+      "paper": true
     },
     {
       "id": "sticky",
@@ -42,7 +43,9 @@
       },
       "zIndex": 2,
       "rotation": 6.98,
-      "pin": true
+      "pin": true,
+      "paper": true,
+      "stickerItem": true
     }
   ]
 }

@@ -5,7 +5,7 @@ import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import type { Project } from '@/lib/content/schema'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 import type { Locale } from '@/lib/i18n/config'
-import { CanvasItem } from './CanvasItem'
+import { CanvasItem, type StickerShape } from './CanvasItem'
 import { WowDecor, LetteringDecor, GastlyDecor, CollageDecor } from './DecorItems'
 import { Pegboard } from './Pegboard'
 import { ProjectCard } from './ProjectCard'
@@ -16,6 +16,7 @@ import { ScribdCard } from './ScribdCard'
 import { KaplanCard } from './KaplanCard'
 import { ABOUT_ME_RECT, BOARD_HEIGHT, BOARD_WIDTH, PROJECTS } from './itemPositions'
 import { useCanvasLayout } from '@/lib/canvas/useCanvasLayout'
+import { useVisitedSlugs } from '@/lib/canvas/useVisitedSlugs'
 import { CanvasLayoutSchema, type CanvasLayout, type CanvasItem as CanvasItemData } from '@/lib/canvas/manifest'
 import tacobellLayoutRaw from '../../../content/canvas-layout/tacobell.json'
 import kaplanLayoutRaw from '../../../content/canvas-layout/kaplan.json'
@@ -33,6 +34,58 @@ const CANVAS_LAYOUTS: Record<string, CanvasLayout> = {
 
 const DECOR_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(decorLayoutRaw)
 const ABOUTME_LAYOUT: CanvasLayout = CanvasLayoutSchema.parse(aboutmeLayoutRaw)
+
+/** Maps slug → company display name for the hover/mobile chip. */
+const CHIP_COMPANY: Record<string, string> = {
+  tacobell:   'TACO BELL',
+  kaplan:     'KAPLAN',
+  scribd:     'SCRIBD',
+  slideshare: 'SLIDESHARE',
+}
+
+/** Maps slug → visited sticker shape. */
+const STICKER_SHAPE: Record<string, StickerShape> = {
+  tacobell:   'burst',
+  kaplan:     'blob',
+  scribd:     'nametag',
+  slideshare: 'seal',
+  aboutme:    'badge',
+}
+
+/**
+ * Pre-computed canvas-space center (cx, cy) for each project group + About Me.
+ * Used by the mobile proximity chip to know which group the user is exploring.
+ */
+const GROUP_CHIPS = (() => {
+  const results: { slug: string; label: string; cx: number; cy: number }[] = []
+  for (const [slug, layout] of Object.entries(CANVAS_LAYOUTS)) {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
+    for (const item of layout.items) {
+      if (item.x < minX) minX = item.x
+      if (item.y < minY) minY = item.y
+      if (item.x + item.w > maxX) maxX = item.x + item.w
+      if (item.y + item.h > maxY) maxY = item.y + item.h
+    }
+    results.push({
+      slug,
+      label: `SEE ${CHIP_COMPANY[slug] ?? slug.toUpperCase()} CASE STUDY`,
+      cx: (minX + maxX) / 2,
+      cy: (minY + maxY) / 2,
+    })
+  }
+  // About Me group
+  {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
+    for (const item of ABOUTME_LAYOUT.items) {
+      if (item.x < minX) minX = item.x
+      if (item.y < minY) minY = item.y
+      if (item.x + item.w > maxX) maxX = item.x + item.w
+      if (item.y + item.h > maxY) maxY = item.y + item.h
+    }
+    results.push({ slug: 'aboutme', label: 'SEE ABOUT ME', cx: (minX + maxX) / 2, cy: (minY + maxY) / 2 })
+  }
+  return results
+})()
 
 /**
  * Replaces the `-en.png` suffix with the current locale so every sticky and
@@ -215,13 +268,53 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
 
   const projectMap = new Map(projects.map((p) => [p.slug, p]))
   const { getPosition, setPosition, reset, hasCustomLayout } = useCanvasLayout()
+  const { visited } = useVisitedSlugs()
   const scale = viewport ? getScale(viewport) : 1
   const constraints = viewport ? getDragConstraints(viewport, scale) : undefined
   // Desktop uses cursor panning; tablet/mobile/1024px uses touch drag to pan the canvas
   const isDesktop = viewport ? viewport.width > 1024 : false
   const dragEnabled = !reduceMotion && !isDesktop
 
+  // Cursor-following chip tooltip (desktop only)
+  const [tooltip, setTooltip] = useState<{ label: string; x: number; y: number } | null>(null)
+  const handleChipHover = useCallback((label: string, x: number, y: number) => {
+    setTooltip({ label, x, y })
+  }, [])
+  const handleChipHoverEnd = useCallback(() => {
+    setTooltip(null)
+  }, [])
+
+  // Mobile proximity chip — nearest project group to viewport center
+  const [mobileChip, setMobileChip] = useState<string | null>(null)
+  useEffect(() => {
+    if (!viewport || isDesktop) return
+    const scale = getScale(viewport)
+    const vpCx = viewport.width / 2
+    const vpCy = viewport.height / 2
+    const maxDist = Math.hypot(viewport.width, viewport.height) * 0.9
+
+    const compute = () => {
+      const panX = x.get()
+      const panY = y.get()
+      let nearest: string | null = null
+      let nearestDist = Infinity
+      for (const g of GROUP_CHIPS) {
+        const sx = g.cx * scale + panX
+        const sy = g.cy * scale + panY
+        const d = Math.hypot(sx - vpCx, sy - vpCy)
+        if (d < nearestDist) { nearestDist = d; nearest = g.label }
+      }
+      setMobileChip(nearestDist < maxDist ? nearest : null)
+    }
+
+    compute()
+    const unsubX = x.on('change', compute)
+    const unsubY = y.on('change', compute)
+    return () => { unsubX(); unsubY() }
+  }, [viewport, isDesktop, x, y])
+
   return (
+    <>
       <div
         ref={containerRef}
         className="bg-paper canvas-scroll-hidden fixed inset-0 touch-none overflow-hidden select-none"
@@ -269,21 +362,31 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           ))}
 
           {/* About Me — same PNG composite for all locales, paper src swapped per locale */}
-          {ABOUTME_LAYOUT.items.map((subItem) => (
-            <CanvasItem
-              key={`aboutme-${subItem.id}`}
-              item={{ ...subItem, src: localizeSrc(subItem.src, locale), links: localizeLinks(subItem.links, locale) }}
-              slug="aboutme"
-              href={isDesktop ? (subItem.links ? undefined : `/${locale}/about`) : `/${locale}/about`}
-              ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
-              position={getPosition('aboutme', subItem.id)}
-              onPositionChange={(pos) => setPosition('aboutme', subItem.id, pos)}
-              onDragStateChange={(dragging) => {
-                itemDragRef.current = dragging
-              }}
-              itemDragEnabled={isDesktop}
-            />
-          ))}
+          {ABOUTME_LAYOUT.items.map((subItem) => {
+            const aboutHref = `/${locale}/about`
+            return (
+              <CanvasItem
+                key={`aboutme-${subItem.id}`}
+                item={{ ...subItem, src: localizeSrc(subItem.src, locale), links: localizeLinks(subItem.links, locale) }}
+                slug="aboutme"
+                href={aboutHref}
+                ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
+                chipLabel="SEE ABOUT ME"
+                visited={visited.has('aboutme')}
+                visitedLabel="I'VE BEEN HERE"
+                stickerShape={STICKER_SHAPE['aboutme']}
+                isDesktop={isDesktop}
+                onChipHover={handleChipHover}
+                onChipHoverEnd={handleChipHoverEnd}
+                position={getPosition('aboutme', subItem.id)}
+                onPositionChange={(pos) => setPosition('aboutme', subItem.id, pos)}
+                onDragStateChange={(dragging) => {
+                  itemDragRef.current = dragging
+                }}
+                itemDragEnabled={isDesktop}
+              />
+            )
+          })}
 
           {PROJECTS.map((item) => {
             const project = projectMap.get(item.slug)
@@ -292,6 +395,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             if (layout) {
               const href = `/${locale}/work/${item.slug}`
               const ariaLabel = `${dict.ui.openProject}: ${project.card.title}`
+              const chipLabel = `SEE ${CHIP_COMPANY[item.slug] ?? item.slug.toUpperCase()} CASE STUDY`
               return (
                 <Fragment key={item.slug}>
                   {layout.items.map((subItem) => (
@@ -301,6 +405,13 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       slug={item.slug}
                       href={href}
                       ariaLabel={ariaLabel}
+                      chipLabel={chipLabel}
+                      visited={visited.has(item.slug)}
+                      visitedLabel="I'VE SEEN THIS CASE STUDY"
+                      stickerShape={STICKER_SHAPE[item.slug]}
+                      isDesktop={isDesktop}
+                      onChipHover={handleChipHover}
+                      onChipHoverEnd={handleChipHoverEnd}
                       position={getPosition(item.slug, subItem.id)}
                       onPositionChange={(pos) => setPosition(item.slug, subItem.id, pos)}
                       onDragStateChange={(dragging) => {
@@ -380,7 +491,6 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
               animate={{ opacity: 1, y: 0, transition: { delay: 1.2, duration: 0.4, ease: 'easeOut' } }}
               exit={{ opacity: 0, y: 4, transition: { duration: 0.3, ease: 'easeIn' } }}
             >
-              {/* Hand / swipe icon */}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M9 11V6a2 2 0 1 1 4 0v5m0 0V9a2 2 0 1 1 4 0v2m0 0v-1a2 2 0 1 1 4 0v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6v-1a2 2 0 0 1 4 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -389,6 +499,38 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           )}
         </AnimatePresence>
 
+        {/* Mobile global proximity chip — nearest project group, shown after first interaction */}
+        <AnimatePresence mode="wait">
+          {viewport && !isDesktop && hasInteracted && mobileChip && (
+            <motion.div
+              key={mobileChip}
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-8 left-1/2 z-30 -translate-x-1/2"
+              initial={{ opacity: 0, y: 6, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
+              exit={{ opacity: 0, y: 4, scale: 0.95, transition: { duration: 0.15, ease: 'easeIn' } }}
+            >
+              <span className="border-ink/15 bg-paper/85 text-ink inline-flex items-center rounded-full border px-3 py-1.5 text-[13px] font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap">
+                {mobileChip}
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
+
+      {/* Desktop cursor-following chip tooltip */}
+      {isDesktop && tooltip && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed z-[60]"
+          style={{ left: tooltip.x + 14, top: tooltip.y + 14 }}
+        >
+          <span className="border-ink/15 bg-paper/85 text-ink inline-flex items-center rounded-full border px-3 py-1.5 text-[13px] font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap">
+            {tooltip.label}
+          </span>
+        </div>
+      )}
+    </>
   )
 }

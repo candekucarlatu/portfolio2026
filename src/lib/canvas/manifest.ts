@@ -21,6 +21,10 @@ export const CanvasItemSchema = z.object({
   rotation: z.number().default(0),
   /** When true, render a CSS pin at the top of the wrapper (centered on anchor.x). PNG renders below the pin. */
   pin: z.boolean().default(false),
+  /** When true, this item is a paper element (sticky note, document). Visited paper items get brightness shift. */
+  paper: z.boolean().default(false),
+  /** When true, this is the primary sticker item for its project group — the visited sticker renders here. */
+  stickerItem: z.boolean().default(false),
   /**
    * Optional clickable overlay regions (e.g. links inside a paper PNG).
    * Each entry positions an `<a>` tag at (x, y) with (w, h), relative to the PNG top-left.

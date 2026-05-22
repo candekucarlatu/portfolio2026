@@ -27,7 +27,9 @@
       },
       "zIndex": 1,
       "rotation": 1.51,
-      "pin": true
+      "pin": true,
+      "paper": true,
+      "stickerItem": true
     }
   ]
 }

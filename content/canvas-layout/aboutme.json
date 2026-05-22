@@ -56,7 +56,9 @@
           "h": 61,
           "ariaLabel": "Resume"
         }
-      ]
+      ],
+      "paper": true,
+      "stickerItem": true
     }
   ]
 }
