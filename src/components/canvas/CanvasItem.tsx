@@ -384,6 +384,8 @@ export function CanvasItem({
           rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           aria-label={link.ariaLabel}
           onPointerDownCapture={(e) => e.stopPropagation()}
+          onMouseEnter={() => onChipHoverEnd?.()}
+          onMouseMove={(e) => e.stopPropagation()}
           className="canvas-link"
           style={{
             position: 'absolute',
