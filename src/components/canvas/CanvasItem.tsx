@@ -84,6 +84,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     lineHeight: 1.25,
     color: textColor,
     textAlign: 'center',
+    whiteSpace: 'pre-line',
     pointerEvents: 'none',
     userSelect: 'none',
   }
