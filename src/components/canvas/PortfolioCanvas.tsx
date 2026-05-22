@@ -377,7 +377,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                 visited={visited.has('aboutme')}
                 visitedLabel={isES ? 'YA ESTUVE ACÁ' : "I'VE BEEN HERE"}
                 stickerShape={STICKER_SHAPE['aboutme']}
-                grayscaleOnVisit={false}
+                grayscaleOnVisit={subItem.id === 'photo'}
                 stickerTopRatio={subItem.id === 'photo' ? 0.44 : 0.28}
                 isDesktop={isDesktop}
                 onChipHover={handleChipHover}
