@@ -161,6 +161,8 @@ interface CanvasItemProps {
   stickerShape?: StickerShape
   /** When true, converts this item to grayscale on visit. */
   grayscaleOnVisit?: boolean
+  /** Vertical position of the sticker as a fraction of item height (default 0.28). */
+  stickerTopRatio?: number
   /** Whether we're on desktop (≥1025px). Controls chip visibility. */
   isDesktop?: boolean
   /** Called on desktop hover with label + cursor client coords. */
@@ -184,6 +186,7 @@ export function CanvasItem({
   visitedLabel,
   stickerShape,
   grayscaleOnVisit = false,
+  stickerTopRatio = 0.28,
   isDesktop = false,
   onChipHover,
   onChipHoverMove,
@@ -359,7 +362,7 @@ export function CanvasItem({
             transition={{ type: 'spring', damping: 8, stiffness: 160, delay: 0.15 }}
             style={{
               position: 'absolute',
-              top: pngTopInWrapper + Math.round(item.h * 0.28),
+              top: pngTopInWrapper + Math.round(item.h * stickerTopRatio),
               left: '50%',
               translateX: '-50%',
               pointerEvents: 'none',

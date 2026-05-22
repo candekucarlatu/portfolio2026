@@ -54,10 +54,10 @@ const STICKER_SHAPE: Record<string, StickerShape> = {
 
 /**
  * Pre-computed canvas-space center (cx, cy) for each project group + About Me.
- * Used by the mobile proximity chip to know which group the user is exploring.
+ * Labels are omitted here — computed at runtime with the correct locale.
  */
-const GROUP_CHIPS = (() => {
-  const results: { slug: string; label: string; cx: number; cy: number }[] = []
+const GROUP_CENTERS = (() => {
+  const results: { slug: string; cx: number; cy: number }[] = []
   for (const [slug, layout] of Object.entries(CANVAS_LAYOUTS)) {
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
     for (const item of layout.items) {
@@ -66,14 +66,8 @@ const GROUP_CHIPS = (() => {
       if (item.x + item.w > maxX) maxX = item.x + item.w
       if (item.y + item.h > maxY) maxY = item.y + item.h
     }
-    results.push({
-      slug,
-      label: `SEE ${CHIP_COMPANY[slug] ?? slug.toUpperCase()} CASE STUDY`,
-      cx: (minX + maxX) / 2,
-      cy: (minY + maxY) / 2,
-    })
+    results.push({ slug, cx: (minX + maxX) / 2, cy: (minY + maxY) / 2 })
   }
-  // About Me group
   {
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
     for (const item of ABOUTME_LAYOUT.items) {
@@ -82,7 +76,7 @@ const GROUP_CHIPS = (() => {
       if (item.x + item.w > maxX) maxX = item.x + item.w
       if (item.y + item.h > maxY) maxY = item.y + item.h
     }
-    results.push({ slug: 'aboutme', label: 'SEE ABOUT ME', cx: (minX + maxX) / 2, cy: (minY + maxY) / 2 })
+    results.push({ slug: 'aboutme', cx: (minX + maxX) / 2, cy: (minY + maxY) / 2 })
   }
   return results
 })()
@@ -284,6 +278,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
     setTooltip(null)
   }, [])
 
+  const isES = locale === 'es'
+
   // Mobile proximity chip — nearest project group to viewport center
   const [mobileChip, setMobileChip] = useState<string | null>(null)
   useEffect(() => {
@@ -293,25 +289,31 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
     const vpCy = viewport.height / 2
     const maxDist = Math.hypot(viewport.width, viewport.height) * 0.9
 
+    const getChipLabel = (slug: string) => {
+      if (slug === 'aboutme') return isES ? 'VER SOBRE MÍ' : 'SEE ABOUT ME'
+      const co = CHIP_COMPANY[slug] ?? slug.toUpperCase()
+      return isES ? `VER EL CASO DE ESTUDIO DE ${co}` : `SEE ${co} CASE STUDY`
+    }
+
     const compute = () => {
       const panX = x.get()
       const panY = y.get()
-      let nearest: string | null = null
+      let nearestSlug: string | null = null
       let nearestDist = Infinity
-      for (const g of GROUP_CHIPS) {
+      for (const g of GROUP_CENTERS) {
         const sx = g.cx * scale + panX
         const sy = g.cy * scale + panY
         const d = Math.hypot(sx - vpCx, sy - vpCy)
-        if (d < nearestDist) { nearestDist = d; nearest = g.label }
+        if (d < nearestDist) { nearestDist = d; nearestSlug = g.slug }
       }
-      setMobileChip(nearestDist < maxDist ? nearest : null)
+      setMobileChip(nearestDist < maxDist && nearestSlug ? getChipLabel(nearestSlug) : null)
     }
 
     compute()
     const unsubX = x.on('change', compute)
     const unsubY = y.on('change', compute)
     return () => { unsubX(); unsubY() }
-  }, [viewport, isDesktop, x, y])
+  }, [viewport, isDesktop, x, y, isES])
 
   return (
     <>
@@ -371,11 +373,12 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                 slug="aboutme"
                 href={aboutHref}
                 ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
-                chipLabel="SEE ABOUT ME"
+                chipLabel={isES ? 'VER SOBRE MÍ' : 'SEE ABOUT ME'}
                 visited={visited.has('aboutme')}
-                visitedLabel="I'VE BEEN HERE"
+                visitedLabel={isES ? 'YA ESTUVE ACÁ' : "I'VE BEEN HERE"}
                 stickerShape={STICKER_SHAPE['aboutme']}
                 grayscaleOnVisit={subItem.id === 'photo'}
+                stickerTopRatio={subItem.id === 'photo' ? 0.44 : 0.28}
                 isDesktop={isDesktop}
                 onChipHover={handleChipHover}
                 onChipHoverEnd={handleChipHoverEnd}
@@ -396,7 +399,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
             if (layout) {
               const href = `/${locale}/work/${item.slug}`
               const ariaLabel = `${dict.ui.openProject}: ${project.card.title}`
-              const chipLabel = `SEE ${CHIP_COMPANY[item.slug] ?? item.slug.toUpperCase()} CASE STUDY`
+              const co = CHIP_COMPANY[item.slug] ?? item.slug.toUpperCase()
+              const chipLabel = isES ? `VER EL CASO DE ESTUDIO DE ${co}` : `SEE ${co} CASE STUDY`
               return (
                 <Fragment key={item.slug}>
                   {layout.items.map((subItem) => (
@@ -408,7 +412,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       ariaLabel={ariaLabel}
                       chipLabel={chipLabel}
                       visited={visited.has(item.slug)}
-                      visitedLabel="I'VE SEEN THIS CASE STUDY"
+                      visitedLabel={isES ? 'YA VI ESTE CASE STUDY' : "I'VE SEEN THIS CASE STUDY"}
                       stickerShape={STICKER_SHAPE[item.slug]}
                       grayscaleOnVisit={subItem.stickerItem}
                       isDesktop={isDesktop}
