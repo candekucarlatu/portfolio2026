@@ -13,15 +13,9 @@ interface TopRightControlsProps {
   resetLabel: string
 }
 
-/** Base button styles shared by both buttons. */
-const btnBase =
-  'rounded-full border px-3 py-1.5 text-[13px] font-medium tracking-wide uppercase backdrop-blur transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
-
-/** Full-opacity style — used on the home canvas. */
-const btnNormal = `${btnBase} border-ink/15 bg-paper/85 text-ink hover:border-ink/30 hover:bg-paper`
-
-/** Subtle/ghost style — used when a project or About page is open (less distracting). */
-const btnSubtle = `${btnBase} border-ink/10 bg-paper/40 text-ink/60 hover:bg-paper/65 hover:text-ink`
+/** Shared visual style for both buttons — matches the proximity chip. */
+const btnClass =
+  'rounded-full border border-ink/15 bg-paper/85 text-ink text-xs font-medium tracking-wide uppercase backdrop-blur transition-colors hover:border-ink/30 hover:bg-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
 
 export function TopRightControls({ current, langLabel, resetLabel }: TopRightControlsProps) {
   const pathname = usePathname() ?? `/${current}`
@@ -37,12 +31,16 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
     return `/${target}${pathname}`
   }, [pathname, current, target])
 
-  // Use subtle style when a project drawer or about page is overlaid on the canvas
+  // Hide when a project, About or any nested page is overlaid on the canvas.
+  // The URL gains a third segment (e.g. /en/work/scribd or /en/about).
   const isInsidePage = pathname.split('/').filter(Boolean).length > 1
-  const btnClass = isInsidePage ? btnSubtle : btnNormal
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex items-center gap-4 md:top-6 md:right-6">
+    <div
+      className={`fixed top-4 right-4 z-50 flex items-center gap-4 md:top-6 md:right-6 transition-opacity duration-200 ${
+        isInsidePage ? 'pointer-events-none opacity-0' : 'opacity-100'
+      }`}
+    >
       {/* Reset layout — animates in/out, appears to the left of the lang switch */}
       <AnimatePresence>
         {hasCustomLayout && (
@@ -50,7 +48,7 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
             key="reset-layout"
             type="button"
             onClick={reset}
-            className={`inline-flex items-center gap-1.5 ${btnClass}`}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 ${btnClass}`}
             initial={{ opacity: 0, scale: 0.9, x: 8 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.95, x: 4 }}
@@ -71,10 +69,10 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
         )}
       </AnimatePresence>
 
-      {/* Language switch — always visible */}
+      {/* Language switch */}
       <Link
         href={href}
-        className={btnClass}
+        className={`px-3 py-1.5 ${btnClass}`}
         aria-label={`Switch to ${target.toUpperCase()}`}
       >
         {langLabel}

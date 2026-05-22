@@ -382,7 +382,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                 ariaLabel={dict.aboutSheet?.profileLabel ?? 'About'}
                 chipLabel={isES ? 'VER SOBRE MÍ' : 'SEE ABOUT ME'}
                 visited={visited.has('aboutme')}
-                visitedLabel={isES ? 'YA ESTUVE ACÁ' : "I'VE BEEN HERE"}
+                visitedLabel={isES ? 'YA ESTUVE\nACÁ' : "I'VE BEEN HERE"}
                 stickerShape={STICKER_SHAPE['aboutme']}
                 grayscaleOnVisit={subItem.id === 'photo'}
                 stickerTopRatio={subItem.id === 'photo' ? 0.44 : 0.28}
@@ -519,7 +519,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
               <Link
                 href={mobileChip.href}
                 onPointerDownCapture={(e) => e.stopPropagation()}
-                className="border-ink/15 bg-paper/85 text-ink hover:border-ink/30 hover:bg-paper inline-flex items-center rounded-full border px-3 py-1.5 text-[13px] font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap transition-colors"
+                className="border-ink/15 bg-paper/85 text-ink hover:border-ink/30 hover:bg-paper inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap transition-colors"
               >
                 {mobileChip.label}
               </Link>
@@ -536,7 +536,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           className="pointer-events-none fixed z-[60]"
           style={{ left: tooltip.x + 14, top: tooltip.y + 14 }}
         >
-          <span className="border-ink/15 bg-paper/85 text-ink inline-flex items-center rounded-full border px-3 py-1.5 text-[13px] font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap">
+          <span className="border-ink/15 bg-paper/85 text-ink inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap">
             {tooltip.label}
           </span>
         </div>
