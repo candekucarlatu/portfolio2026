@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import type { Project } from '@/lib/content/schema'
 import type { Dictionary } from '@/lib/i18n/dictionaries'
 import type { Locale } from '@/lib/i18n/config'
@@ -281,7 +282,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
   const isES = locale === 'es'
 
   // Mobile proximity chip — nearest project group to viewport center
-  const [mobileChip, setMobileChip] = useState<string | null>(null)
+  const [mobileChip, setMobileChip] = useState<{ label: string; href: string } | null>(null)
   useEffect(() => {
     if (!viewport || isDesktop) return
     const scale = getScale(viewport)
@@ -294,6 +295,8 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
       const co = CHIP_COMPANY[slug] ?? slug.toUpperCase()
       return isES ? `VER EL CASO DE ESTUDIO DE ${co}` : `SEE ${co} CASE STUDY`
     }
+    const getChipHref = (slug: string) =>
+      slug === 'aboutme' ? `/${locale}/about` : `/${locale}/work/${slug}`
 
     const compute = () => {
       const panX = x.get()
@@ -306,14 +309,18 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
         const d = Math.hypot(sx - vpCx, sy - vpCy)
         if (d < nearestDist) { nearestDist = d; nearestSlug = g.slug }
       }
-      setMobileChip(nearestDist < maxDist && nearestSlug ? getChipLabel(nearestSlug) : null)
+      setMobileChip(
+        nearestDist < maxDist && nearestSlug
+          ? { label: getChipLabel(nearestSlug), href: getChipHref(nearestSlug) }
+          : null
+      )
     }
 
     compute()
     const unsubX = x.on('change', compute)
     const unsubY = y.on('change', compute)
     return () => { unsubX(); unsubY() }
-  }, [viewport, isDesktop, x, y, isES])
+  }, [viewport, isDesktop, x, y, isES, locale])
 
   return (
     <>
@@ -503,16 +510,19 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
         <AnimatePresence mode="wait">
           {viewport && !isDesktop && hasInteracted && mobileChip && (
             <motion.div
-              key={mobileChip}
-              aria-hidden="true"
-              className="pointer-events-none absolute bottom-8 left-1/2 z-30 -translate-x-1/2"
+              key={mobileChip.label}
+              className="absolute bottom-8 left-1/2 z-30 -translate-x-1/2"
               initial={{ opacity: 0, y: 6, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
               exit={{ opacity: 0, y: 4, scale: 0.95, transition: { duration: 0.15, ease: 'easeIn' } }}
             >
-              <span className="border-ink/15 bg-paper/85 text-ink inline-flex items-center rounded-full border px-3 py-1.5 text-[13px] font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap">
-                {mobileChip}
-              </span>
+              <Link
+                href={mobileChip.href}
+                onPointerDownCapture={(e) => e.stopPropagation()}
+                className="border-ink/15 bg-paper/85 text-ink hover:border-ink/30 hover:bg-paper inline-flex items-center rounded-full border px-3 py-1.5 text-[13px] font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap transition-colors"
+              >
+                {mobileChip.label}
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>

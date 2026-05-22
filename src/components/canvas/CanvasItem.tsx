@@ -89,30 +89,30 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: half-ellipse taco dome with flat bottom ───────────────
-  // Uses SVG arc (A) not bezier — guarantees a clean dome, not a bucket shape.
-  // M x,y A rx,ry 0 0,0 x2,y closes with straight line = flat-bottom dome.
+  // ── burst — TacoBell: concave-top taco shell shape ─────────────────────────
+  // Top edge bows inward (Q control below endpoints) = taco/shell silhouette.
+  // Sides flare out and converge at the bottom curve.
   if (shape === 'burst') {
+    const tacoOuter = 'M 14,0 Q 80,18 146,0 C 160,28 154,60 130,70 C 106,78 54,78 30,70 C 6,60 0,28 14,0 Z'
+    // Inner ring ≈ 85% scale from shape centre (80,39)
+    const tacoInner = 'M 24,6 Q 80,21 136,6 C 148,30 143,57 123,65 C 102,72 58,72 38,65 C 17,57 12,30 24,6 Z'
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 160, height: 92 }}>
+        <div style={{ position: 'relative', width: 160, height: 84 }}>
           <svg
-            viewBox="0 0 160 92"
+            viewBox="0 0 160 84"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
             aria-hidden="true"
           >
-            {/* Half-ellipse: arc from bottom-left to bottom-right curving UP, Z closes flat */}
-            <path d="M 6,84 A 74,80 0 0,0 154,84 Z" fill={color} />
-            {/* Inner dark ring — same style as Scribd, inset ~9px */}
-            <path d="M 15,81 A 65,71 0 0,0 145,81 Z"
-              fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
+            <path d={tacoOuter} fill={color} />
+            <path d={tacoInner} fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
           </svg>
           <div style={{
             ...txt,
             position: 'absolute',
             inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '4px 22px 16px',
+            padding: '8px 24px',
           }}>
             {label}
           </div>
@@ -227,7 +227,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
           <path d={path} fill="#fff" />
           <rect x={bodyX} y={bodyY} width={bodyW} height={bodyH} fill={color} />
           {/* Inner dark border — consistent with Scribd/TacoBell/Kaplan */}
-          <rect x={bodyX + 5} y={bodyY + 5} width={bodyW - 10} height={bodyH - 10}
+          <rect x={bodyX + 7} y={bodyY + 7} width={bodyW - 14} height={bodyH - 14}
             fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
         </svg>
         {/* Text flex-centered inside the orange area */}
