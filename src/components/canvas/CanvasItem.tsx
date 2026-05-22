@@ -149,7 +149,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
             border: '1.5px solid rgba(255,255,255,0.4)',
             pointerEvents: 'none',
           }} />
-          <div style={{ ...txt, fontSize: 13, position: 'relative' }}>{label}</div>
+          <div style={{ ...txt, fontSize: 13, position: 'relative', padding: '0 22px' }}>{label}</div>
         </div>
       </div>
     )
