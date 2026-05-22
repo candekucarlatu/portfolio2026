@@ -225,6 +225,9 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
         >
           <path d={path} fill="#fff" />
           <rect x={bodyX} y={bodyY} width={bodyW} height={bodyH} fill={color} />
+          {/* Inner dark border — consistent with Scribd/TacoBell/Kaplan */}
+          <rect x={bodyX + 5} y={bodyY + 5} width={bodyW - 10} height={bodyH - 10}
+            fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
         </svg>
         {/* Text flex-centered inside the orange area */}
         <div style={{
