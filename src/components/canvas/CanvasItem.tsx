@@ -89,30 +89,46 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: concave-top taco shell shape ─────────────────────────
-  // Top edge bows inward (Q control below endpoints) = taco/shell silhouette.
-  // Sides flare out and converge at the bottom curve.
+  // ── burst — TacoBell: convex dome (taco shell from front) + dark toppings ──
+  // Shell is a half-ellipse arc (sweep=1 = CW = goes UP from left to right).
+  // Toppings are circles centred near the dome surface, clipped to the shell —
+  // only their lower half shows, creating the scalloped filling visible at top.
   if (shape === 'burst') {
-    const tacoOuter = 'M 14,0 Q 80,18 146,0 C 160,28 154,60 130,70 C 106,78 54,78 30,70 C 6,60 0,28 14,0 Z'
-    // Inner ring ≈ 85% scale from shape centre (80,39)
-    const tacoInner = 'M 24,6 Q 80,21 136,6 C 148,30 143,57 123,65 C 102,72 58,72 38,65 C 17,57 12,30 24,6 Z'
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 160, height: 84 }}>
+        <div style={{ position: 'relative', width: 160, height: 92 }}>
           <svg
-            viewBox="0 0 160 84"
+            viewBox="0 0 160 92"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
             aria-hidden="true"
           >
-            <path d={tacoOuter} fill={color} />
-            <path d={tacoInner} fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
+            <defs>
+              {/* Clip region = shell interior — toppings only show inside */}
+              <clipPath id="taco-clip">
+                <path d="M 6,88 A 82,52 0 0,1 154,88 Z" />
+              </clipPath>
+            </defs>
+            {/* Shell — convex arch, flat base */}
+            <path d="M 6,88 A 82,52 0 0,1 154,88 Z" fill={color} />
+            {/* Toppings — circles whose centres sit just inside the dome surface */}
+            <g clipPath="url(#taco-clip)">
+              <circle cx="35"  cy="27" r="17" fill="rgba(0,0,0,0.78)" />
+              <circle cx="57"  cy="21" r="17" fill="rgba(0,0,0,0.78)" />
+              <circle cx="80"  cy="19" r="17" fill="rgba(0,0,0,0.78)" />
+              <circle cx="103" cy="21" r="17" fill="rgba(0,0,0,0.78)" />
+              <circle cx="125" cy="27" r="17" fill="rgba(0,0,0,0.78)" />
+            </g>
+            {/* Inner ring — consistent dark border like other stickers */}
+            <path d="M 20,84 A 70,44 0 0,1 140,84 Z"
+              fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
           </svg>
+          {/* Text sits in the purple zone, below the toppings band */}
           <div style={{
             ...txt,
             position: 'absolute',
             inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '8px 24px',
+            padding: '38px 24px 6px',
           }}>
             {label}
           </div>
