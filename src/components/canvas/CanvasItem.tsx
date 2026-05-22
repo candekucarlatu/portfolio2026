@@ -88,36 +88,44 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: taco/arch shell shape ──────────────────────────────────
+  // ── burst — TacoBell: taco shell, narrow top / wide bottom ──────────────────
   if (shape === 'burst') {
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 120, height: 104 }}>
+        <div style={{ position: 'relative', width: 130, height: 114 }}>
           <svg
             viewBox="0 0 120 104"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
             aria-hidden="true"
           >
-            {/* Outer taco shell: wide arch top, rounded bottom point */}
+            {/* Outer taco shell: narrow point at top, wide opening at bottom */}
             <path
-              d="M 7,34 C 7,16 20,5 34,5 L 86,5 C 100,5 113,16 113,34 C 113,68 90,99 60,99 C 30,99 7,68 7,34 Z"
+              d="M 7,70 C 7,88 20,99 34,99 L 86,99 C 100,99 113,88 113,70 C 113,36 90,5 60,5 C 30,5 7,36 7,70 Z"
               fill={color}
             />
-            {/* Inner arch — the taco fold line, dark stroke */}
+            {/* Inner white outline — same shape inset ~7px, like Scribd/Kaplan inner ring */}
             <path
-              d="M 20,32 C 20,20 28,13 39,13 L 81,13 C 92,13 100,20 100,32"
+              d="M 13,69 C 13,84 24,92 36,92 L 84,92 C 96,92 107,84 107,69 C 107,38 86,12 60,12 C 34,12 13,38 13,69 Z"
+              fill="none"
+              stroke="rgba(255,255,255,0.55)"
+              strokeWidth="1.8"
+            />
+            {/* Fold arch near the bottom — dark, marks the taco crease */}
+            <path
+              d="M 20,72 C 20,84 28,91 39,91 L 81,91 C 92,91 100,84 100,72"
               fill="none"
               stroke="rgba(0,0,0,0.22)"
               strokeWidth="3"
               strokeLinecap="round"
             />
           </svg>
-          {/* Text sits in the lower portion of the taco */}
+          {/* Text centered in the wide middle zone, above the fold crease */}
           <div style={{
             ...txt,
             position: 'absolute',
             left: 0, right: 0,
-            bottom: 14,
+            top: 14, bottom: 28,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: '0 20px',
           }}>
             {label}
