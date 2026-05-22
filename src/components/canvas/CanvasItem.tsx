@@ -11,6 +11,25 @@ import { getNearestHole } from './pegboardGrid'
 const PIN_W = 28
 const PIN_H = 139
 
+// ─── Scalloped-circle (seal) SVG path ────────────────────────────────────────
+// Places n equidistant points on a circle of radius R; each adjacent pair is
+// connected by an outward arc of radius r (sweep=0 = bumps away from centre).
+// This produces perfectly uniform scallops — no polygon irregularities.
+function sealSvgPath(cx: number, cy: number, R: number, r: number, n: number): string {
+  const pts = Array.from({ length: n }, (_, i) => {
+    const a = (2 * Math.PI * i) / n - Math.PI / 2
+    return [cx + R * Math.cos(a), cy + R * Math.sin(a)] as const
+  })
+  const arc = ([x, y]: readonly [number, number]) =>
+    `A ${r},${r} 0 0,0 ${x.toFixed(2)},${y.toFixed(2)}`
+  return [
+    `M ${pts[0][0].toFixed(2)},${pts[0][1].toFixed(2)}`,
+    ...pts.slice(1).map(arc),
+    arc(pts[0]),
+    'Z',
+  ].join(' ')
+}
+
 // ─── Stamp perforated-edge path ───────────────────────────────────────────────
 // Generates an SVG path string for a postage-stamp shape:
 // a rectangle with outward semicircular notches on all four sides.
@@ -89,22 +108,22 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     userSelect: 'none',
   }
 
-  // ── burst — TacoBell: convex dome (taco shell from front) ──────────────────
-  // Half-ellipse arc, sweep=1 (CW) so it goes UP from left to right.
-  // rx=82 is intentionally > half the chord (74) to avoid the degenerate case.
+  // ── burst — TacoBell: convex dome, taller to fit 2-line label ──────────────
+  // ry=65 gives a dome height of ~93px (ratio ~1.6:1 width:height).
+  // sweep=1 (CW) → arc goes UP from (6,100) to (154,100).
   if (shape === 'burst') {
     return (
       <div style={{ filter: `drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1.5px #fff) ${shadow}` }}>
-        <div style={{ position: 'relative', width: 160, height: 92 }}>
+        <div style={{ position: 'relative', width: 160, height: 106 }}>
           <svg
-            viewBox="0 0 160 92"
+            viewBox="0 0 160 106"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
             aria-hidden="true"
           >
             {/* Shell — convex arch, flat base */}
-            <path d="M 6,88 A 82,52 0 0,1 154,88 Z" fill={color} />
-            {/* Inner ring — consistent dark border like other stickers */}
-            <path d="M 20,84 A 70,44 0 0,1 140,84 Z"
+            <path d="M 6,100 A 82,65 0 0,1 154,100 Z" fill={color} />
+            {/* Inner ring — ~10px inset all around */}
+            <path d="M 18,90 A 70,52 0 0,1 142,90 Z"
               fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
           </svg>
           <div style={{
@@ -112,7 +131,7 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
             position: 'absolute',
             inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '8px 24px',
+            padding: '12px 26px 8px',
           }}>
             {label}
           </div>
@@ -176,31 +195,32 @@ function VisitedSticker({ shape, label }: { shape: StickerShape; label: string }
     )
   }
 
-  // ── seal — SlideShare: scalloped circle with dark inner ring ─────────────────
+  // ── seal — SlideShare: mathematically uniform scalloped circle ──────────────
+  // 20 equidistant points on R=50, each pair connected by arc r=9 (sweep=0 =
+  // outward bump). All 20 scallops are identical — no polygon irregularities.
   if (shape === 'seal') {
-    const clipPath = 'polygon(50% 0%, 56% 5%, 63% 2%, 68% 8%, 75% 6%, 79% 13%, 87% 12%, 89% 20%, 97% 21%, 97% 29%, 100% 32%, 98% 40%, 100% 44%, 97% 50%, 100% 56%, 98% 60%, 100% 68%, 97% 71%, 97% 79%, 89% 80%, 87% 88%, 79% 87%, 75% 94%, 68% 92%, 63% 98%, 56% 95%, 50% 100%, 44% 95%, 37% 98%, 32% 92%, 25% 94%, 21% 87%, 13% 88%, 11% 80%, 3% 79%, 3% 71%, 0% 68%, 2% 60%, 0% 56%, 3% 50%, 0% 44%, 2% 40%, 0% 32%, 3% 29%, 3% 21%, 11% 20%, 13% 12%, 21% 13%, 25% 6%, 32% 8%, 37% 2%, 44% 5%)'
+    const W = 120, H = 120, cx = 60, cy = 60
+    const sPath = sealSvgPath(cx, cy, 50, 9, 20)
     return (
-      <div style={{ filter: `drop-shadow(0 0 2.5px rgba(0,0,0,0.3)) ${shadow}` }}>
+      <div style={{ filter: shadow, position: 'relative' }}>
+        <svg
+          width={W} height={H} viewBox={`0 0 ${W} ${H}`}
+          style={{ display: 'block' }}
+          aria-hidden="true"
+        >
+          <path d={sPath} fill={color} />
+          {/* Inner concentric ring */}
+          <circle cx={cx} cy={cy} r={40} fill="none" stroke="rgba(0,0,0,0.22)" strokeWidth="2" />
+        </svg>
         <div style={{
-          width: 120, height: 120,
-          background: color,
-          clipPath,
+          ...txt,
+          position: 'absolute',
+          top: 0, left: 0,
+          width: W, height: H,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '26px 20px',
-          boxSizing: 'border-box',
-          position: 'relative',
+          padding: '22px',
         }}>
-          {/* Inner circle ring — dark, matching "black inner lines" directive */}
-          <div style={{
-            position: 'absolute',
-            width: 88, height: 88,
-            borderRadius: '50%',
-            border: '2px solid rgba(0,0,0,0.22)',
-            top: '50%', left: '50%',
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none',
-          }} />
-          <div style={{ ...txt, position: 'relative' }}>{label}</div>
+          {label}
         </div>
       </div>
     )

@@ -419,7 +419,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
                       ariaLabel={ariaLabel}
                       chipLabel={chipLabel}
                       visited={visited.has(item.slug)}
-                      visitedLabel={isES ? 'YA VI ESTE\nCASO DE ESTUDIO' : "I'VE SEEN THIS CASE STUDY"}
+                      visitedLabel={isES ? 'YA VI ESTE CASO\nDE ESTUDIO' : "I'VE SEEN THIS\nCASE STUDY"}
                       stickerShape={STICKER_SHAPE[item.slug]}
                       grayscaleOnVisit={subItem.stickerItem}
                       isDesktop={isDesktop}
