@@ -133,12 +133,14 @@ interface CanvasItemProps {
   itemDragEnabled?: boolean
   /** Short label shown in the hover chip (desktop) and always-visible chip (mobile). */
   chipLabel?: string
-  /** Whether this slug has been visited — triggers brightness shift + sticker on paper items. */
+  /** Whether this slug has been visited. */
   visited?: boolean
   /** Text shown in the visited sticker (only on stickerItem items). */
   visitedLabel?: string
   /** Shape variant for the visited sticker. */
   stickerShape?: StickerShape
+  /** When true, converts this item to grayscale on visit. */
+  grayscaleOnVisit?: boolean
   /** Whether we're on desktop (≥1025px). Controls chip visibility. */
   isDesktop?: boolean
   /** Called on desktop hover with label + cursor client coords. */
@@ -161,6 +163,7 @@ export function CanvasItem({
   visited = false,
   visitedLabel,
   stickerShape,
+  grayscaleOnVisit = false,
   isDesktop = false,
   onChipHover,
   onChipHoverMove,
@@ -283,8 +286,7 @@ export function CanvasItem({
         '--item-z': item.zIndex,
         rotate: item.rotation,
         transformOrigin: `${item.anchor.x}px ${pinTopInWrapper + 4}px`,
-        // Subtle brightness shift for visited items
-        filter: visited ? 'brightness(0.92)' : undefined,
+        filter: visited && grayscaleOnVisit ? 'grayscale(1)' : undefined,
         transition: 'filter 0.5s ease',
       } as unknown as React.CSSProperties}
       className={`canvas-item touch-none ${href ? 'cursor-pointer' : 'cursor-grab'} focus-visible:outline-accent focus-visible:outline-2 focus-visible:outline-offset-4 active:cursor-grabbing`}
