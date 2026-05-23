@@ -69,10 +69,10 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
         )}
       </AnimatePresence>
 
-      {/* Language switch */}
+      {/* Language switch — desktop only */}
       <Link
         href={href}
-        className={`px-3 py-1.5 ${btnClass}`}
+        className={`hidden lg:inline-flex px-3 py-1.5 ${btnClass}`}
         aria-label={`Switch to ${target.toUpperCase()}`}
       >
         {langLabel}

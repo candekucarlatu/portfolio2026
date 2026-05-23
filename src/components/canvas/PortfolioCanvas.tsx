@@ -53,6 +53,13 @@ const STICKER_SHAPE: Record<string, StickerShape> = {
   aboutme:    'badge',
 }
 
+/** Centers of non-clickable decor items. If a decor center is closer to the
+ *  viewport center than any project group, the mobile chip is suppressed. */
+const DECOR_CENTERS: { cx: number; cy: number }[] = DECOR_LAYOUT.items.map((item) => ({
+  cx: item.x + item.w / 2,
+  cy: item.y + item.h / 2,
+}))
+
 /**
  * Pre-computed canvas-space center (cx, cy) for each project group + About Me.
  * Labels are omitted here — computed at runtime with the correct locale.
@@ -309,8 +316,17 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
         const d = Math.hypot(sx - vpCx, sy - vpCy)
         if (d < nearestDist) { nearestDist = d; nearestSlug = g.slug }
       }
+      // Suppress chip if a non-clickable decor item is closer to viewport center
+      let nearestDecorDist = Infinity
+      for (const d of DECOR_CENTERS) {
+        const sx = d.cx * scale + panX
+        const sy = d.cy * scale + panY
+        const dist = Math.hypot(sx - vpCx, sy - vpCy)
+        if (dist < nearestDecorDist) nearestDecorDist = dist
+      }
+      const decorIsNearer = nearestDecorDist < nearestDist
       setMobileChip(
-        nearestDist < maxDist && nearestSlug
+        nearestDist < maxDist && nearestSlug && !decorIsNearer
           ? { label: getChipLabel(nearestSlug), href: getChipHref(nearestSlug) }
           : null
       )
