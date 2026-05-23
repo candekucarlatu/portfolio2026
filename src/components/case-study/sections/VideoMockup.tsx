@@ -135,12 +135,12 @@ export function VideoMockup({
       >
         {src && (
           <>
-            {/* Mobile phone — 125×257 (Figma 495:273) */}
+            {/* Mobile phone — 125×272 */}
             <div
               className="md:hidden"
               style={{
                 width: 125,
-                height: 257,
+                height: 272,
                 borderRadius: 17,
                 border: '3px solid #e0e0e0',
                 boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
@@ -167,18 +167,16 @@ export function VideoMockup({
               />
             </div>
 
-            {/* Desktop phone — 234×505 (Figma 392:96: 205×452 mockup) */}
+            {/* Desktop phone — width fixed, height follows video natural ratio */}
             <div
               className="hidden md:block"
               style={{
                 width: 234,
-                height: 505,
                 borderRadius: 32,
                 border: '5px solid #e0e0e0',
                 boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
                 overflow: 'hidden',
                 flexShrink: 0,
-                position: 'relative',
               }}
             >
               <video
@@ -190,12 +188,10 @@ export function VideoMockup({
                 playsInline
                 style={{
                   width: '100%',
-                  height: '100%',
+                  height: 'auto',
                   display: 'block',
-                  transform: 'scale(1.35) translateY(-12px)',
-                  transformOrigin: '50% 44%',
+                  transform: 'scale(1.01)',
                 }}
-                className="object-cover"
               />
             </div>
           </>
