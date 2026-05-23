@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { useCallback, useRef } from 'react'
 
 interface VideoMockupProps {
   src?: string
@@ -29,18 +28,6 @@ export function VideoMockup({
   background = '#ede5fa',
   variant = 'phone',
 }: VideoMockupProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const enterFullscreen = useCallback(() => {
-    const v = videoRef.current
-    if (!v) return
-    if (v.requestFullscreen) {
-      v.requestFullscreen()
-    } else if ((v as HTMLVideoElement & { webkitEnterFullscreen?: () => void }).webkitEnterFullscreen) {
-      (v as HTMLVideoElement & { webkitEnterFullscreen: () => void }).webkitEnterFullscreen()
-    }
-  }, [])
-
   if (variant === 'desktop') {
     return (
       <section className="mx-[24px] lg:mx-[56px]">
@@ -52,7 +39,6 @@ export function VideoMockup({
           >
             {src ? (
               <video
-                ref={videoRef}
                 src={src}
                 poster={poster}
                 autoPlay
@@ -66,17 +52,6 @@ export function VideoMockup({
                 <Image src={imageSrc} alt="" fill sizes="100vw" className="object-cover object-bottom" />
               </div>
             ) : null}
-            {src && (
-              <button
-                onClick={enterFullscreen}
-                className="absolute right-2 bottom-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50"
-                aria-label="Ver en pantalla completa"
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-                  <path d="M10 2h4v4M6 2H2v4M2 10v4h4M14 10v4h-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            )}
           </div>
         </div>
 
