@@ -534,7 +534,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           {viewport && !isDesktop && hasInteracted && mobileChip && (
             <motion.div
               key={mobileChip.label}
-              className="absolute bottom-8 left-1/2 z-30 -translate-x-1/2"
+              className="absolute bottom-8 left-4 z-30"
               initial={{ opacity: 0, y: 6, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
               exit={{ opacity: 0, y: 4, scale: 0.95, transition: { duration: 0.15, ease: 'easeIn' } }}
