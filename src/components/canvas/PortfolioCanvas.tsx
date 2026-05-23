@@ -300,7 +300,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
     const getChipLabel = (slug: string) => {
       if (slug === 'aboutme') return isES ? 'VER SOBRE MÍ' : 'SEE ABOUT ME'
       const co = CHIP_COMPANY[slug] ?? slug.toUpperCase()
-      return isES ? `VER EL CASO DE ESTUDIO DE ${co}` : `SEE ${co} CASE STUDY`
+      return isES ? `VER ${co}` : `SEE ${co} CASE STUDY`
     }
     const getChipHref = (slug: string) =>
       slug === 'aboutme' ? `/${locale}/about` : `/${locale}/work/${slug}`
@@ -516,15 +516,12 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           {viewport && !isDesktop && !hasInteracted && !reduceMotion && (
             <motion.div
               key="drag-hint"
-              className="pointer-events-none absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/60 px-4 py-2.5 text-white backdrop-blur-sm"
+              className="pointer-events-none absolute bottom-8 left-4 border-ink/15 bg-paper/85 text-ink inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0, transition: { delay: 1.2, duration: 0.4, ease: 'easeOut' } }}
               exit={{ opacity: 0, y: 4, transition: { duration: 0.3, ease: 'easeIn' } }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 11V6a2 2 0 1 1 4 0v5m0 0V9a2 2 0 1 1 4 0v2m0 0v-1a2 2 0 1 1 4 0v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6v-1a2 2 0 0 1 4 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span className="font-sans text-sm font-medium tracking-wide">{dict.ui.dragHint}</span>
+              {dict.ui.dragHint}
             </motion.div>
           )}
         </AnimatePresence>

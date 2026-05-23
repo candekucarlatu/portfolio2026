@@ -135,18 +135,16 @@ export function VideoMockup({
       >
         {src && (
           <>
-            {/* Mobile phone — 125×272 */}
+            {/* Mobile phone — width fixed, height follows video natural ratio */}
             <div
               className="md:hidden"
               style={{
                 width: 125,
-                height: 272,
                 borderRadius: 17,
                 border: '3px solid #e0e0e0',
                 boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
                 overflow: 'hidden',
                 flexShrink: 0,
-                position: 'relative',
               }}
             >
               <video
@@ -156,14 +154,7 @@ export function VideoMockup({
                 loop
                 muted
                 playsInline
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'block',
-                  transform: 'scale(1.35) translateY(-6px)',
-                  transformOrigin: '50% 44%',
-                }}
-                className="object-cover"
+                style={{ width: '100%', height: 'auto', display: 'block', transform: 'scale(1.01)' }}
               />
             </div>
 

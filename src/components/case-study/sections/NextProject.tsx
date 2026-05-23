@@ -66,7 +66,7 @@ export function NextProject({
           </div>
 
           {/* Title — 16px below tag on mobile, 20px on desktop */}
-          <Link href={href} className="mt-[16px] md:mt-[20px]">
+          <Link replace href={href} className="mt-[16px] md:mt-[20px]">
             <h3 className="text-ink text-[24px] leading-[1.25] font-bold md:text-[32px] md:leading-[1.4]">
               {title}
             </h3>
@@ -85,7 +85,7 @@ export function NextProject({
 
         {/* ── Mobile image — shown on mobile only, below title ─────────────── */}
         {mobileImg && (
-          <Link href={href} aria-hidden tabIndex={-1} className="md:hidden block w-full" style={{ marginTop: mobileImageGap }}>
+          <Link replace href={href} aria-hidden tabIndex={-1} className="md:hidden block w-full" style={{ marginTop: mobileImageGap }}>
             <Image
               src={mobileImg.src}
               alt={mobileImg.alt}
@@ -101,7 +101,7 @@ export function NextProject({
           // Tablet: ml-[48px] + fixed 378px width — image overflows right edge (clipped by section overflow-hidden)
           // Desktop: flex-1 right column, image max-w-[666px] centered
           <div className="hidden md:flex md:ml-[48px] md:items-center md:shrink-0 lg:ml-0 lg:flex-1 lg:justify-center">
-            <Link href={href} aria-hidden tabIndex={-1} className="block">
+            <Link replace href={href} aria-hidden tabIndex={-1} className="block">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -154,7 +154,7 @@ export function NextProject({
         {/* Tablet + Desktop: flex-1 centered in right half                    */}
         {image && imageLayout === 'phone-framed' && (
           <div className="hidden md:flex md:flex-1 md:self-center md:justify-center lg:justify-center">
-            <Link href={href} aria-hidden tabIndex={-1} className="block">
+            <Link replace href={href} aria-hidden tabIndex={-1} className="block">
               <Image
                 src={image.src}
                 alt={image.alt}
