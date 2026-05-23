@@ -516,7 +516,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
           {viewport && !isDesktop && !hasInteracted && !reduceMotion && (
             <motion.div
               key="drag-hint"
-              className="pointer-events-none absolute bottom-8 left-4 border-ink/15 bg-paper/85 text-ink inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap"
+              className="pointer-events-none absolute bottom-8 left-4 inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium tracking-wide uppercase text-white backdrop-blur-sm whitespace-nowrap"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0, transition: { delay: 1.2, duration: 0.4, ease: 'easeOut' } }}
               exit={{ opacity: 0, y: 4, transition: { duration: 0.3, ease: 'easeIn' } }}
