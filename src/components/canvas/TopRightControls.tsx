@@ -37,15 +37,11 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
 
   return (
     <>
-      {/* Top-right: reset layout (all breakpoints) + lang switch (desktop only) */}
-      <div
-        className={`fixed top-4 right-4 z-50 flex items-center gap-4 md:top-6 md:right-6 transition-opacity duration-200 ${
-          isInsidePage ? 'pointer-events-none opacity-0' : 'opacity-100'
-        }`}
-      >
-        {/* Reset layout — animates in/out, appears to the left of the lang switch */}
+      {/* Top-right container — always visible on desktop */}
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-4 md:top-6 md:right-6">
+        {/* Reset layout — only on canvas (hidden inside sheets) */}
         <AnimatePresence>
-          {hasCustomLayout && (
+          {hasCustomLayout && !isInsidePage && (
             <motion.button
               key="reset-layout"
               type="button"
@@ -71,7 +67,7 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
           )}
         </AnimatePresence>
 
-        {/* Language switch — desktop only */}
+        {/* Language switch — desktop only, always visible */}
         <Link
           href={href}
           className={`hidden lg:inline-flex px-3 py-1.5 ${btnClass}`}
@@ -81,7 +77,7 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
         </Link>
       </div>
 
-      {/* Language switch — mobile only, fixed bottom-right */}
+      {/* Language switch — mobile only, fixed bottom-right, hidden inside sheets */}
       <div
         className={`lg:hidden fixed bottom-4 right-4 z-50 transition-opacity duration-200 ${
           isInsidePage ? 'pointer-events-none opacity-0' : 'opacity-100'
