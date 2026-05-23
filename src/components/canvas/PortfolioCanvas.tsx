@@ -521,6 +521,9 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
               animate={{ opacity: 1, y: 0, transition: { delay: 1.2, duration: 0.4, ease: 'easeOut' } }}
               exit={{ opacity: 0, y: 4, transition: { duration: 0.3, ease: 'easeIn' } }}
             >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 11V6a2 2 0 1 1 4 0v5m0 0V9a2 2 0 1 1 4 0v2m0 0v-1a2 2 0 1 1 4 0v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6v-1a2 2 0 0 1 4 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
               {dict.ui.dragHint}
             </motion.div>
           )}

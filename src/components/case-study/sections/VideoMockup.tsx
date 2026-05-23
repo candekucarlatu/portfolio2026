@@ -134,58 +134,26 @@ export function VideoMockup({
         style={{ backgroundColor: background }}
       >
         {src && (
-          <>
-            {/* Mobile phone — width fixed, height follows video natural ratio */}
-            <div
-              className="md:hidden"
-              style={{
-                width: 125,
-                borderRadius: 17,
-                border: '3px solid #e0e0e0',
-                boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
-                overflow: 'hidden',
-                flexShrink: 0,
-              }}
-            >
-              <video
-                src={src}
-                poster={poster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{ width: '100%', height: 'auto', display: 'block', transform: 'scale(1.01)' }}
-              />
-            </div>
-
-            {/* Desktop phone — width fixed, height follows video natural ratio */}
-            <div
-              className="hidden md:block"
-              style={{
-                width: 234,
-                borderRadius: 32,
-                border: '5px solid #e0e0e0',
-                boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
-                overflow: 'hidden',
-                flexShrink: 0,
-              }}
-            >
-              <video
-                src={src}
-                poster={poster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  transform: 'scale(1.01)',
-                }}
-              />
-            </div>
-          </>
+          <div
+            className="w-[125px] md:w-[234px]"
+            style={{
+              borderRadius: 'clamp(17px, 4vw, 32px)',
+              border: 'clamp(3px, 0.5vw, 5px) solid #e0e0e0',
+              boxShadow: '12px 12px 20px 0px rgba(0,0,0,0.1)',
+              overflow: 'hidden',
+              flexShrink: 0,
+            }}
+          >
+            <video
+              src={src}
+              poster={poster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ width: '100%', height: 'auto', display: 'block', transform: 'scale(1.01)' }}
+            />
+          </div>
         )}
       </div>
     </section>
