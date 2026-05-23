@@ -79,7 +79,7 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
 
       {/* Language switch — mobile only, fixed bottom-right, hidden inside sheets */}
       <div
-        className={`lg:hidden fixed bottom-4 right-4 z-50 transition-opacity duration-200 ${
+        className={`lg:hidden fixed bottom-8 right-4 z-50 transition-opacity duration-200 ${
           isInsidePage ? 'pointer-events-none opacity-0' : 'opacity-100'
         }`}
       >
