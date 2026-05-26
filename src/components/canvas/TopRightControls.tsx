@@ -67,25 +67,25 @@ export function TopRightControls({ current, langLabel, resetLabel }: TopRightCon
           )}
         </AnimatePresence>
 
-        {/* Language switch — desktop only, always visible */}
+        {/* Language switch — true desktop only (≥1280px), always visible */}
         <Link
           href={href}
-          className={`hidden lg:inline-flex px-3 py-1.5 ${btnClass}`}
+          className={`hidden xl:inline-flex px-3 py-1.5 ${btnClass}`}
           aria-label={`Switch to ${target.toUpperCase()}`}
         >
           {langLabel}
         </Link>
       </div>
 
-      {/* Language switch — mobile only, fixed bottom-right, hidden inside sheets */}
+      {/* Language switch — mobile/tablet (<1280px), fixed bottom-right, hidden inside sheets */}
       <div
-        className={`lg:hidden fixed bottom-8 right-4 z-50 transition-opacity duration-200 ${
+        className={`xl:hidden fixed bottom-8 right-4 z-50 transition-opacity duration-200 ${
           isInsidePage ? 'pointer-events-none opacity-0' : 'opacity-100'
         }`}
       >
         <Link
           href={href}
-          className={`inline-flex px-3 py-1.5 ${btnClass}`}
+          className={`inline-flex px-3 py-1.5 md:px-5 md:py-2.5 md:text-sm ${btnClass}`}
           aria-label={`Switch to ${target.toUpperCase()}`}
         >
           {langLabel}

@@ -542,7 +542,7 @@ export function PortfolioCanvas({ projects, dict, locale }: PortfolioCanvasProps
               <Link
                 href={mobileChip.href}
                 onPointerDownCapture={(e) => e.stopPropagation()}
-                className="border-ink/15 bg-paper/85 text-ink hover:border-ink/30 hover:bg-paper inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap transition-colors"
+                className="border-ink/15 bg-paper/85 text-ink hover:border-ink/30 hover:bg-paper inline-flex items-center rounded-full border px-3 py-1.5 md:px-5 md:py-2.5 text-xs md:text-sm font-medium tracking-wide uppercase backdrop-blur whitespace-nowrap transition-colors"
               >
                 {mobileChip.label}
               </Link>
